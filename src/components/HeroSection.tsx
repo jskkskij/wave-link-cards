@@ -63,7 +63,7 @@ const HeroSection = () => {
 
           {/* Subheading - Clean Sans (Western Logic) */}
           <p className="text-base md:text-xl text-mist/80 max-w-2xl px-4 md:px-0 leading-relaxed animate-fade-in opacity-0" style={{ animationDelay: '0.4s' }}>
-            Where technology meets tranquility. A smart card designed not just to share connection, but to leave a lasting impression.
+            Where technology meets tranquility. A smart card designed to share connection and leave a lasting impression.
           </p>
 
           {/* 
