@@ -1,0 +1,174 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* 
+  ZEN LUXURY DESIGN SYSTEM
+  Philosophy: Harmonizing Eastern Flow (Nature, Void) with Western Structure (Logic, Grid).
+  All colors are defined in HSL for maximum flexibility.
+*/
+
+@layer base {
+  :root {
+    /* 
+      1. BASE COLORS (The Canvas) 
+      Western: Clean, structured white.
+      Eastern: Soft, rice-paper white.
+    */
+    --background: 210 20% 98%; /* Mist White */
+    --foreground: 216 20% 15%; /* Charcoal / Deep Ink */
+
+    /* 
+      2. COMPONENT SURFACES 
+      Floating cards, subtle depth.
+    */
+    --card: 0 0% 100%;
+    --card-foreground: 216 20% 15%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 216 20% 15%;
+
+    /* 
+      3. PRIMARY ACCENTS (The Ink)
+      Deep Navy representing the "Water" element.
+    */
+    --primary: 216 50% 20%;      /* Deep Ocean Navy */
+    --primary-foreground: 210 20% 98%;
+
+    --primary-light: 216 30% 40%;
+    --primary-dark: 216 60% 15%;
+
+    /* 
+      4. SECONDARY ACCENTS (The Earth/Sand)
+      Warmth to balance the cool navy. 
+    */
+    --secondary: 40 20% 94%;     /* Washed Sand */
+    --secondary-foreground: 216 20% 15%;
+
+    /* 
+      5. MUTED ELEMENTS (The Void/Fog)
+      For subtle text and disabled states.
+    */
+    --muted: 210 10% 90%;
+    --muted-foreground: 216 10% 50%;
+
+    /* 
+      6. HIGHLIGHTS (The Sky)
+      Subtle freshness, clarity.
+    */
+    --accent: 200 40% 90%;       /* Soft Sky */
+    --accent-foreground: 216 50% 20%;
+
+    /* 
+      7. STATUS COLORS 
+    */
+    --destructive: 0 70% 60%;
+    --destructive-foreground: 210 20% 98%;
+
+    --border: 216 10% 90%;
+    --input: 216 10% 90%;
+    --ring: 216 50% 20%;
+
+    --radius: 0.5rem; /* Slightly sharper for Western precision */
+
+    /* Custom Palette Aliases */
+    --custom-navy: 216 50% 20%;
+    --custom-sky: 200 60% 85%;
+    --custom-sand: 40 20% 90%;
+    --custom-ink: 216 20% 15%;
+  }
+
+  .dark {
+    /* 
+      Dark Mode: "Midnight Meditation" 
+      Deep, rich, encompassing.
+    */
+    --background: 216 40% 10%;   /* Deep Night */
+    --foreground: 210 20% 90%;   /* Moonlight */
+
+    --card: 216 30% 12%;
+    --card-foreground: 210 20% 90%;
+
+    --popover: 216 30% 12%;
+    --popover-foreground: 210 20% 90%;
+
+    --primary: 210 20% 90%;      /* Moonlight as primary */
+    --primary-foreground: 216 50% 20%;
+
+    --secondary: 216 20% 20%;
+    --secondary-foreground: 210 20% 90%;
+
+    --muted: 216 20% 20%;
+    --muted-foreground: 216 10% 60%;
+
+    --accent: 216 30% 25%;
+    --accent-foreground: 210 20% 90%;
+
+    --destructive: 0 60% 50%;
+    --destructive-foreground: 210 20% 90%;
+
+    --border: 216 20% 20%;
+    --input: 216 20% 20%;
+    --ring: 210 20% 80%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+    /* Western Logic: Clean Sans-Serif for body text */
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
+    line-height: 1.7; /* Eastern Breathability: Increased line height */
+    letter-spacing: 0.01em;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  /* 
+    PAPER TEXTURE OVERLAY
+    Adds the "Tactile" Western/Eastern craft feel. 
+    Uses a pseudo-element on the body to mask everything slightly.
+  */
+  body::before {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.04'/%3E%3C/svg%3E");
+    pointer-events: none;
+    z-index: 50;
+    opacity: 0.4;
+  }
+
+  /* HEADINGS: Western Tradition (Serif) */
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Playfair Display', serif;
+    font-weight: 500; /* Less bold, more elegant */
+    letter-spacing: -0.02em;
+    line-height: 1.2;
+  }
+
+  /* UTILITIES */
+  
+  /* Text Balance for headlines */
+  .text-balance {
+    text-wrap: balance;
+  }
+
+  /* Smooth Scrolling */
+  html {
+    scroll-behavior: smooth;
+  }
+
+  /* Selection Color */
+  ::selection {
+    background-color: hsl(var(--primary) / 0.2);
+    color: hsl(var(--primary));
+  }
+}
