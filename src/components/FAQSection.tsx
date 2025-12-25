@@ -37,6 +37,10 @@ const faqs = [
   {
     question: "What if my card gets damaged?",
     answer: "Our cards are waterproof and extremely durable. However, if you experience any issues, please contact our support team and we'll help you with a replacement."
+  },
+  {
+    question: "How does an NFC card help the environment?",
+    answer: "One digital card replaces thousands of paper business cards, significantly reducing your carbon footprint and eliminating paper waste."
   }
 ];
 

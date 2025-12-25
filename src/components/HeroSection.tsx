@@ -96,12 +96,12 @@ const HeroSection = () => {
             Floating at the bottom, partially cut off to invite scrolling 
         */}
         <div className="relative w-[85%] sm:w-full max-w-sm md:max-w-lg mx-auto mt-12 md:mt-16 perspective-1000 animate-fade-in-delayed opacity-0">
-          <div className="w-full aspect-[1.586/1] rounded-xl md:rounded-2xl bg-gradient-to-br from-white/10 to-white/5 backdrop-blur-xl border border-white/20 shadow-2xl transform rotate-X-12 animate-float-intense flex items-center justify-center overflow-hidden">
-            <div className="absolute inset-0 bg-gradient-to-tr from-transparent via-white/5 to-transparent skew-x-12" />
+          <div className="w-full aspect-[1.586/1] rounded-xl md:rounded-2xl bg-gradient-to-br from-white/10 via-sky/10 to-white/5 backdrop-blur-xl border border-white/20 shadow-2xl transform rotate-X-12 animate-float-intense flex items-center justify-center overflow-hidden">
+            <div className="absolute inset-0 bg-gradient-to-tr from-transparent via-sky/20 to-transparent skew-x-12" />
             <img
               src={newLogo}
               alt="Wavelink Logo"
-              className="w-24 md:w-32 h-auto opacity-80 drop-shadow-[0_0_15px_rgba(255,255,255,0.3)]"
+              className="w-24 md:w-32 h-auto opacity-80 drop-shadow-[0_0_25px_rgba(0,150,255,0.6)]"
             />
           </div>
         </div>

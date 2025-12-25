@@ -62,12 +62,12 @@ const PricingSection = () => {
 
         <div className="max-w-6xl mx-auto grid md:grid-cols-2 gap-8 items-start">
           {/* Interactive Card Display */}
-          <div className="order-2 md:order-1">
+          <div className="order-1 md:order-1">
             <InteractiveCardDisplay className="mb-8" />
           </div>
 
           {/* Pricing Card - Conversion Optimized */}
-          <div className="order-1 md:order-2">
+          <div className="order-2 md:order-2">
             <Card className="relative p-8 border-2 border-primary/40 shadow-luxury bg-gradient-to-br from-card to-card/50 backdrop-blur-sm animate-fade-in-up overflow-visible">
               {/* Urgency Banner - Top */}
               <div className="absolute -top-4 left-1/2 -translate-x-1/2 z-10">
@@ -153,14 +153,14 @@ const PricingSection = () => {
               </div>
 
               {/* MEGA CTA Button - Conversion Focus */}
-              <Button 
+              <Button
                 onClick={scrollToOrder}
                 className="w-full bg-gradient-to-r from-primary via-primary/90 to-primary text-white hover:from-primary/90 hover:via-primary hover:to-primary/90 text-xl font-bold py-7 rounded-full shadow-luxury-glow transition-all duration-300 hover:scale-105 hover:shadow-[0_0_40px_rgba(59,130,246,0.6)] focus-visible:ring-4 focus-visible:ring-primary/50 focus-visible:ring-offset-2 relative overflow-hidden group animate-pulse-glow"
                 aria-label="Order your Wavelink card now"
               >
                 {/* Shimmer effect */}
                 <span className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000"></span>
-                
+
                 <span className="relative z-10 flex items-center justify-center gap-2">
                   Get Your Card Now
                   <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
