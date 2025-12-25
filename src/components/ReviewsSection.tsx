@@ -100,7 +100,10 @@ const ReviewsSection = () => {
 
         {/* Bottom CTA - Clearer & Styled */}
         <div className="flex justify-center animate-fade-in-delayed">
-          <div className="group relative inline-flex items-center gap-4 px-10 py-5 bg-white shadow-2xl border border-sky/10 rounded-2xl hover:scale-105 transition-all duration-300 cursor-pointer hover:border-sky/30">
+          <a
+            href="mailto:waavelink@gmail.com"
+            className="group relative inline-flex items-center gap-4 px-10 py-5 bg-white shadow-2xl border border-sky/10 rounded-2xl hover:scale-105 transition-all duration-300 cursor-pointer hover:border-sky/30"
+          >
             <div className="w-12 h-12 rounded-full bg-sky/10 flex items-center justify-center group-hover:bg-sky/20 transition-colors shrink-0">
               <Mail className="w-6 h-6 text-sky" />
             </div>
@@ -108,7 +111,7 @@ const ReviewsSection = () => {
               <p className="text-lg font-bold text-navy mb-1">Want to share your experience?</p>
               <p className="text-sm text-mist/60 font-medium">Contact us and we'll feature your story!</p>
             </div>
-          </div>
+          </a>
         </div>
       </div>
     </section>
