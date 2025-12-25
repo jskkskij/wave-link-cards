@@ -55,15 +55,15 @@ const HeroSection = () => {
         <div ref={contentRef} className="max-w-5xl mx-auto text-center flex flex-col items-center gap-8">
           {/* Main Headline - Large Serif (Eastern Balance) */}
           <h1 className="font-serif text-4xl sm:text-5xl md:text-7xl lg:text-8xl text-white leading-[1.2] md:leading-[1.1] animate-fade-in opacity-0" style={{ animationDelay: '0.2s' }}>
-            Connect with <br />
+            One Tap <br />
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-sky via-white to-sky animate-shimmer bg-[length:200%_auto]">
-              Seamless Flow
+              Endless Connections
             </span>
           </h1>
 
           {/* Subheading - Clean Sans (Western Logic) */}
           <p className="text-base md:text-xl text-mist/80 max-w-2xl px-4 md:px-0 leading-relaxed animate-fade-in opacity-0" style={{ animationDelay: '0.4s' }}>
-            Where technology meets tranquility. A smart card designed to share connection and leave a lasting impression.
+            A smart card designed to share your digital identity and leave a lasting impression.
           </p>
 
           {/* 
