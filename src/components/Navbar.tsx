@@ -2,7 +2,8 @@ import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Link, useNavigate, useLocation } from "react-router-dom";
 import wavelinkLogo from "@/assets/wavelink-logo-new.png";
-import { Menu, X, ShoppingBag } from "lucide-react";
+import companyProfilePdf from "@/assets/WaveLinkCompanyProfile.pdf";
+import { Menu, X, ShoppingBag, FileDown } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 const Navbar = () => {
@@ -20,10 +21,10 @@ const Navbar = () => {
 
   const navLinks = [
     { name: "About", href: "#about" },
-    { name: "Demo", href: "#demo" },
     { name: "Features", href: "#features" },
     { name: "Reviews", href: "#reviews" },
     { name: "FAQ", href: "#faq" },
+    { name: "Profile", href: "/company-profile", isRoute: true },
   ];
 
   const scrollToSection = (href: string) => {
@@ -53,8 +54,8 @@ const Navbar = () => {
           className={cn(
             "relative flex items-center justify-between transition-all duration-500",
             // Glass Pill Styling - More translucent when scrolled
-            isScrolled 
-              ? "bg-white/40 backdrop-blur-sm border border-white/10 shadow-sm" 
+            isScrolled
+              ? "bg-white/40 backdrop-blur-sm border border-white/10 shadow-sm"
               : "bg-white/80 backdrop-blur-md border border-white/20 shadow-luxury",
             "rounded-full",
             // Responsive Sizing
@@ -87,30 +88,52 @@ const Navbar = () => {
             </span>
           </Link>
 
-          {/* Desktop Navigation (Western Structure) - Dimmed when scrolled */}
           <div className={cn(
             "hidden lg:flex items-center gap-8 transition-all duration-500",
             isScrolled ? "opacity-30 pointer-events-none" : "opacity-100"
           )}>
             {navLinks.map((link) => (
-              <a
-                key={link.name}
-                href={link.href}
-                onClick={(e) => {
-                  e.preventDefault();
-                  scrollToSection(link.href);
-                }}
-                className="relative text-sm font-medium text-foreground/80 hover:text-navy transition-colors duration-300 group py-2"
-              >
-                {link.name}
-                {/* Ink Spread Effect (Eastern Flow) */}
-                <span className="absolute bottom-0 left-1/2 w-0 h-[2px] bg-navy/50 -translate-x-1/2 transition-all duration-300 group-hover:w-full opacity-0 group-hover:opacity-100 rounded-full" />
-              </a>
+              link.isRoute ? (
+                <Link
+                  key={link.name}
+                  to={link.href}
+                  className="relative text-sm font-medium text-foreground/80 hover:text-navy transition-colors duration-300 group py-2"
+                >
+                  {link.name}
+                  <span className="absolute bottom-0 left-1/2 w-0 h-[2px] bg-navy/50 -translate-x-1/2 transition-all duration-300 group-hover:w-full opacity-0 group-hover:opacity-100 rounded-full" />
+                </Link>
+              ) : (
+                <a
+                  key={link.name}
+                  href={link.href}
+                  onClick={(e) => {
+                    e.preventDefault();
+                    scrollToSection(link.href);
+                  }}
+                  className="relative text-sm font-medium text-foreground/80 hover:text-navy transition-colors duration-300 group py-2"
+                >
+                  {link.name}
+                  <span className="absolute bottom-0 left-1/2 w-0 h-[2px] bg-navy/50 -translate-x-1/2 transition-all duration-300 group-hover:w-full opacity-0 group-hover:opacity-100 rounded-full" />
+                </a>
+              )
             ))}
           </div>
 
           {/* Right Actions */}
           <div className="flex items-center gap-4">
+            <a
+              href={companyProfilePdf}
+              download="WaveLink_Company_Profile.pdf"
+              className={cn(
+                "hidden sm:flex items-center gap-2 text-xs font-bold text-navy/60 hover:text-navy transition-all px-3 py-1.5 rounded-full border border-navy/10 hover:border-navy/30 bg-navy/5",
+                isScrolled && "opacity-30 pointer-events-none"
+              )}
+              title="Download Company Profile"
+            >
+              <FileDown size={14} />
+              <span className="hidden md:inline">Profile</span>
+            </a>
+
             <Button
               variant="ghost"
               size="icon"
@@ -125,8 +148,8 @@ const Navbar = () => {
               className={cn(
                 "hidden lg:flex items-center gap-2 rounded-full px-6 transition-all duration-500",
                 // Enhanced focus when scrolled
-                isScrolled 
-                  ? "bg-navy text-white hover:bg-navy/90 shadow-luxury-glow scale-110 animate-pulse-glow border-2 border-white/30" 
+                isScrolled
+                  ? "bg-navy text-white hover:bg-navy/90 shadow-luxury-glow scale-110 animate-pulse-glow border-2 border-white/30"
                   : "bg-navy text-white hover:bg-navy/90 shadow-none hover:shadow-lg border border-transparent scale-100",
                 "relative overflow-visible"
               )}
@@ -148,21 +171,36 @@ const Navbar = () => {
         isMobileMenuOpen ? "opacity-100 pointer-events-auto clip-path-full" : "opacity-0 pointer-events-none"
       )}>
         {navLinks.map((link, idx) => (
-          <a
-            key={link.name}
-            href={link.href}
-            onClick={(e) => {
-              e.preventDefault();
-              scrollToSection(link.href);
-            }}
-            className={cn(
-              "text-3xl font-serif text-navy hover:text-navy/60 transition-all duration-500 transform translate-y-0",
-              isMobileMenuOpen ? "translate-y-0 opacity-100" : "translate-y-10 opacity-0"
-            )}
-            style={{ transitionDelay: `${idx * 100}ms` }}
-          >
-            {link.name}
-          </a>
+          link.isRoute ? (
+            <Link
+              key={link.name}
+              to={link.href}
+              onClick={() => setIsMobileMenuOpen(false)}
+              className={cn(
+                "text-3xl font-serif text-navy hover:text-navy/60 transition-all duration-500 transform translate-y-0",
+                isMobileMenuOpen ? "translate-y-0 opacity-100" : "translate-y-10 opacity-0"
+              )}
+              style={{ transitionDelay: `${idx * 100}ms` }}
+            >
+              {link.name}
+            </Link>
+          ) : (
+            <a
+              key={link.name}
+              href={link.href}
+              onClick={(e) => {
+                e.preventDefault();
+                scrollToSection(link.href);
+              }}
+              className={cn(
+                "text-3xl font-serif text-navy hover:text-navy/60 transition-all duration-500 transform translate-y-0",
+                isMobileMenuOpen ? "translate-y-0 opacity-100" : "translate-y-10 opacity-0"
+              )}
+              style={{ transitionDelay: `${idx * 100}ms` }}
+            >
+              {link.name}
+            </a>
+          )
         ))}
         <Button
           onClick={() => scrollToSection('#order')}

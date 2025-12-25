@@ -2,6 +2,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Building2, Award, Users, Target, Globe, Shield, FileText } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useNavigate } from "react-router-dom";
+import companyProfilePdf from "@/assets/WaveLinkCompanyProfile.pdf";
 
 const CompanyProfile = () => {
   const navigate = useNavigate();
@@ -30,7 +31,7 @@ const CompanyProfile = () => {
             </CardHeader>
             <CardContent>
               <p className="text-muted-foreground leading-relaxed">
-                To revolutionize networking and professional connections through cutting-edge NFC technology, 
+                To revolutionize networking and professional connections through cutting-edge NFC technology,
                 making digital business cards accessible, sustainable, and efficient for professionals worldwide.
               </p>
             </CardContent>
@@ -45,7 +46,7 @@ const CompanyProfile = () => {
             </CardHeader>
             <CardContent>
               <p className="text-muted-foreground leading-relaxed">
-                To become the global leader in smart business card solutions, empowering millions of professionals 
+                To become the global leader in smart business card solutions, empowering millions of professionals
                 to connect seamlessly while contributing to a paperless, sustainable future.
               </p>
             </CardContent>
@@ -108,9 +109,9 @@ const CompanyProfile = () => {
             <div className="pt-6 border-t border-border">
               <h4 className="font-semibold text-foreground mb-3">What We Do</h4>
               <p className="text-muted-foreground leading-relaxed">
-                Wavelink specializes in creating premium NFC-powered smart business cards that enable professionals 
-                to share their contact information, social media profiles, and digital portfolios with a simple tap. 
-                Our eco-friendly, waterproof cards combine cutting-edge technology with elegant design, making networking 
+                Wavelink specializes in creating premium NFC-powered smart business cards that enable professionals
+                to share their contact information, social media profiles, and digital portfolios with a simple tap.
+                Our eco-friendly, waterproof cards combine cutting-edge technology with elegant design, making networking
                 more efficient and sustainable.
               </p>
             </div>
@@ -132,9 +133,8 @@ const CompanyProfile = () => {
                   className="bg-gradient-primary text-primary-foreground hover:opacity-90 rounded-full px-8 shadow-luxury transition-all duration-300 hover:scale-105"
                 >
                   <a
-                    href="https://drive.google.com/file/d/15am8doCHJuTaC3i7zopPwG3BGhFxgU9p/view?usp=sharing"
-                    target="_blank"
-                    rel="noopener noreferrer"
+                    href={companyProfilePdf}
+                    download="WaveLink_Company_Profile.pdf"
                   >
                     Download PDF
                   </a>
