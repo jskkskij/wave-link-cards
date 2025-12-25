@@ -49,18 +49,25 @@ const CookieConsent = () => {
                                     <Link to="/privacy-policy" className="text-primary hover:underline ml-1">Privacy Policy</Link>.
                                 </p>
 
-                                <div className="flex items-center gap-3">
+                                <div className="flex flex-wrap items-center gap-3">
                                     <Button
                                         onClick={handleAccept}
-                                        className="flex-1 rounded-full bg-primary hover:bg-primary/90 text-primary-foreground font-bold shadow-luxury-glow hover:scale-[1.02] transition-all"
+                                        className="flex-1 min-w-[120px] rounded-full bg-primary hover:bg-primary/90 text-primary-foreground font-bold shadow-luxury-glow hover:scale-[1.02] transition-all"
                                     >
                                         Accept All
+                                    </Button>
+                                    <Button
+                                        variant="outline"
+                                        onClick={handleAccept}
+                                        className="flex-1 min-w-[120px] rounded-full border-primary/20 hover:bg-primary/5 text-foreground font-medium"
+                                    >
+                                        Reject All
                                     </Button>
                                     <Button
                                         variant="ghost"
                                         size="icon"
                                         onClick={() => setIsVisible(false)}
-                                        className="rounded-full hover:bg-primary/10 hover:text-primary"
+                                        className="rounded-full hover:bg-primary/10 hover:text-primary shrink-0"
                                     >
                                         <X className="w-5 h-5" />
                                     </Button>
