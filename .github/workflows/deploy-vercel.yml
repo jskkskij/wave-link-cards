@@ -34,6 +34,7 @@ jobs:
           vercel-org-id: ${{ secrets.VERCEL_ORG_ID }}
           vercel-project-id: ${{ secrets.VERCEL_PROJECT_ID }}
           working-directory: .
+          vercel-args: '--yes'
           alias-domains: ''
         env:
           VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}

@@ -6,8 +6,9 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Index from "./pages/Index";
 import NotFound from "./pages/NotFound";
-import { Analytics } from "@vercel/analytics/next"
-import { SpeedInsights } from "@vercel/speed-insights/next"
+import { Analytics } from "@vercel/analytics/react"
+import { SpeedInsights } from "@vercel/speed-insights/react"
+import CookieConsent from "./components/CookieConsent";
 
 // Lazy load pages for performance
 const ThankYou = lazy(() => import("./pages/ThankYou"));
@@ -33,42 +34,45 @@ const App = () => (
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Index />} />
-          <Route 
-            path="/thank-you" 
+          <Route
+            path="/thank-you"
             element={
               <Suspense fallback={<RouteLoader />}>
                 <ThankYou />
               </Suspense>
-            } 
+            }
           />
-          <Route 
-            path="/company-profile" 
+          <Route
+            path="/company-profile"
             element={
               <Suspense fallback={<RouteLoader />}>
                 <CompanyProfile />
               </Suspense>
-            } 
+            }
           />
-          <Route 
-            path="/privacy-policy" 
+          <Route
+            path="/privacy-policy"
             element={
               <Suspense fallback={<RouteLoader />}>
                 <PrivacyPolicy />
               </Suspense>
-            } 
+            }
           />
-          <Route 
-            path="/terms-of-service" 
+          <Route
+            path="/terms-of-service"
             element={
               <Suspense fallback={<RouteLoader />}>
                 <TermsOfService />
               </Suspense>
-            } 
+            }
           />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>
+        <CookieConsent />
       </BrowserRouter>
+      <Analytics />
+      <SpeedInsights />
     </TooltipProvider>
   </QueryClientProvider>
 );
