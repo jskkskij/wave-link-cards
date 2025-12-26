@@ -5,9 +5,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
 import { MessageCircle, Send, Loader2, CheckCircle2, Upload, X, AlertCircle } from "lucide-react";
 import { toast } from "sonner";
-
-// PLACEHOLDER: User needs to replace this after following the setup guide
-const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbx_YOUR_SCRIPT_ID_HERE/exec";
+import { CONFIG } from "@/lib/config";
 
 const OrderSection = () => {
   const [formData, setFormData] = useState({
@@ -50,7 +48,7 @@ const OrderSection = () => {
 
     try {
       // 1. Send text data to Google Sheets
-      await fetch(GOOGLE_SCRIPT_URL, {
+      await fetch(CONFIG.GOOGLE_SCRIPT_URL, {
         method: "POST",
         mode: "no-cors",
         headers: {
@@ -75,7 +73,7 @@ const OrderSection = () => {
       }
 
       setTimeout(() => {
-        window.open(`https://wa.me/8801410809023?text=${message}`, '_blank');
+        window.open(CONFIG.WHATSAPP_LINK(message), '_blank');
         setIsSubmitting(false);
         // Reset form
         setFormData({ name: "", phone: "", email: "", quantity: "1", address: "" });
@@ -86,7 +84,7 @@ const OrderSection = () => {
       console.error("Submission error:", error);
       toast.error("Network error. Redirecting to WhatsApp manually.");
       const message = `Hello Wavelink, I tried to submit the form but it failed. Here are my details:%0AName: ${formData.name}%0APhone: ${formData.phone}%0A...`;
-      window.open(`https://wa.me/8801410809023?text=${message}`, '_blank');
+      window.open(CONFIG.WHATSAPP_LINK(message), '_blank');
       setIsSubmitting(false);
     }
   };
@@ -264,7 +262,7 @@ const OrderSection = () => {
             <div className="bg-navy/30 border border-white/5 p-8 rounded-3xl text-center flex-1 flex flex-col justify-center items-center">
               <p className="text-mist/60 text-sm mb-4">Have questions before ordering?</p>
               <a
-                href="https://wa.me/8801410809023"
+                href={CONFIG.WHATSAPP_LINK("Hello Wavelink, I have questions before ordering.")}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="flex items-center gap-2 text-white hover:text-sky transition-colors duration-300 group"

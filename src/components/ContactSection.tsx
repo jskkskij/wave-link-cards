@@ -1,6 +1,7 @@
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { MessageCircle, Mail, Facebook } from "lucide-react";
+import { CONFIG } from "@/lib/config";
 
 const ContactSection = () => {
   return (
@@ -22,13 +23,13 @@ const ContactSection = () => {
             </div>
             <h3 className="text-xl font-semibold mb-3 text-card-foreground">WhatsApp</h3>
             <p className="text-muted-foreground mb-4">Chat with us directly</p>
-            <Button 
-              variant="outline" 
+            <Button
+              variant="outline"
               className="border-primary text-primary hover:bg-primary hover:text-primary-foreground"
               asChild
             >
-              <a href="https://wa.me/8801410809023" target="_blank" rel="noopener noreferrer">
-                +8801410809023
+              <a href={CONFIG.WHATSAPP_LINK("")} target="_blank" rel="noopener noreferrer">
+                +{CONFIG.WHATSAPP_NUMBER}
               </a>
             </Button>
           </Card>
@@ -39,13 +40,13 @@ const ContactSection = () => {
             </div>
             <h3 className="text-xl font-semibold mb-3 text-card-foreground">Email</h3>
             <p className="text-muted-foreground mb-4">Send us a message</p>
-            <Button 
-              variant="outline" 
+            <Button
+              variant="outline"
               className="border-primary text-primary hover:bg-primary hover:text-primary-foreground"
               asChild
             >
-              <a href="mailto:waavelink@gmail.com">
-                waavelink@gmail.com
+              <a href={`mailto:${CONFIG.SUPPORT_EMAIL}`}>
+                {CONFIG.SUPPORT_EMAIL}
               </a>
             </Button>
           </Card>
@@ -56,8 +57,8 @@ const ContactSection = () => {
             </div>
             <h3 className="text-xl font-semibold mb-3 text-card-foreground">Facebook</h3>
             <p className="text-muted-foreground mb-4">Follow our page</p>
-            <Button 
-              variant="outline" 
+            <Button
+              variant="outline"
               className="border-primary text-primary hover:bg-primary hover:text-primary-foreground"
               asChild
             >

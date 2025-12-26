@@ -1,5 +1,6 @@
 import { Facebook, Instagram, MessageCircle, FileText, Shield, Building2 } from "lucide-react";
 import { Link } from "react-router-dom";
+import { CONFIG } from "@/lib/config";
 
 const Footer = () => {
   const footerLinks = [
@@ -25,7 +26,7 @@ const Footer = () => {
               {[
                 { icon: Facebook, href: "https://www.facebook.com/profile.php?id=61582857699324" },
                 { icon: Instagram, href: "https://www.instagram.com/__wave_link__/" },
-                { icon: MessageCircle, href: "https://wa.me/8801410809023" }
+                { icon: MessageCircle, href: CONFIG.WHATSAPP_LINK("") }
               ].map((social, idx) => (
                 <a
                   key={idx}
