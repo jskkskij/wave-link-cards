@@ -14,9 +14,16 @@ A premium, secure, and privacy-compliant web platform for NFC-powered smart busi
 ### Performance & Observability
 - **Analytics**: [Vercel Analytics](https://vercel.com/analytics) & [Speed Insights](https://vercel.com/speed-insights).
 - **SEO/AEO**: Automated [Sitemap](file:///public/sitemap.xml) generation and JSON-LD Structured Data (Organization, Product, FAQ).
-- **Metadata**: Verified via Google Search Console and Yandex Webmaster.
+- **Metadata**: Verified via Google Search Console. 
 
 ---
+
+## 📈 Audit Controls & Logging
+
+Access and integrity are monitored through:
+- **Build Logs**: GitHub Actions logs for every deployment (using modern `$GITHUB_STATE` and `$GITHUB_OUTPUT` syntax).
+- **Runtime Insights**: Vercel Speed Insights and Analytics for performance and availability monitoring.
+- **Form Integrity**: Submission tokens validated via Cloudflare Turnstile API.
 
 ## 🛡 Security Architecture
 

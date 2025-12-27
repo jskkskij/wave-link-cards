@@ -24,8 +24,21 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
+      - name: Initialize Workflow State
+        run: echo "deployment_phase=started" >> $GITHUB_STATE
+
       - name: Build project
         run: npm run build
+
+      - name: Record Build Metadata
+        id: metadata
+        run: |
+          echo "build_time=$(date +'%Y-%m-%dT%H:%M:%S')" >> $GITHUB_OUTPUT
+          echo "build_status=success" >> $GITHUB_OUTPUT
+
+      - name: Log Workflow Step
+        run: |
+          echo "Processing build at ${{ steps.metadata.outputs.build_time }}"
 
       - name: Deploy to Vercel
         uses: amondnet/vercel-action@v20
