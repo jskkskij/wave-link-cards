@@ -13,20 +13,20 @@ interface VideoReview {
 const videoReviews: VideoReview[] = [
   {
     id: 1,
-    videoUrl: "https://drive.google.com/file/d/1VAz5BUjuyHyXwjlPY3cN0imBpjT-MV97/preview",
-    customerName: "Abir Abbas",
+    videoUrl: "https://www.youtube.com/embed/2Cf40pKBaIg?si=z2xsKS2nEuW7TxX4",
+    customerName: "Mohammad Abir Abbas, Creative Technologist/Mechanical Engineer, Bangladesh",
     testimonial: "Amazing product! The NFC card is sleek and professional.",
   },
   {
     id: 2,
-    videoUrl: "https://drive.google.com/file/d/1HVA7FwFii0zOIt0SndA6ZdrK0qWCZZQx/preview",
-    customerName: "Shahadat Sakib",
+    videoUrl: "https://www.youtube.com/embed/q2c7rBADm1c",
+    customerName: "Shahadat Sakib, Student, Bangladesh",
     testimonial: "Game changer for networking. Highly recommend!",
   },
   {
     id: 3,
-    videoUrl: "https://drive.google.com/file/d/1HKe7pG_xmm8ZR-tiXg7Y_aEaN-jXB4VX/preview",
-    customerName: "Dr.Mohammad Abed Abbas",
+    videoUrl: "https://www.youtube.com/embed/65WefBC-Hg8",
+    customerName: "Dr.Mohammad Abed Abbas, Neurosurgeon, BSMMU, Bangladesh",
     testimonial: "As a Med Professional it has given the best identity experience",
   },
 ];
