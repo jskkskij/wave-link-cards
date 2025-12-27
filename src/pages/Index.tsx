@@ -11,7 +11,6 @@ const OrderSection = lazy(() => import("@/components/OrderSection"));
 const ReviewsSection = lazy(() => import("@/components/ReviewsSection"));
 const FAQSection = lazy(() => import("@/components/FAQSection"));
 const ContactSection = lazy(() => import("@/components/ContactSection"));
-const AIVisibilitySection = lazy(() => import("@/components/AIVisibilitySection"));
 const Footer = lazy(() => import("@/components/Footer"));
 
 // Loading fallback component
@@ -47,9 +46,6 @@ const Index = () => {
           </Suspense>
           <Suspense fallback={<SectionLoader />}>
             <ReviewsSection />
-          </Suspense>
-          <Suspense fallback={<SectionLoader />}>
-            <AIVisibilitySection />
           </Suspense>
           <Suspense fallback={<SectionLoader />}>
             <FAQSection />
