@@ -1,73 +1,68 @@
-# Welcome to your Lovable project
+# Wavelink Bangladesh - Digital Presence Platform
 
-## Project info
+A premium, secure, and privacy-compliant web platform for NFC-powered smart business cards. Designed with a "Zen Luxury" aesthetic, focusing on performance, security hardening, and international privacy standards.
 
-**URL**: https://lovable.dev/projects/8f6fb81e-d047-4535-bd9a-e5d9766c846e
+## 🛠 Technical Stack
 
-## How can I edit this code?
+### Core Architecture
+- **Framework**: [React 18](https://reactjs.org/) with [Vite](https://vitejs.dev/) for ultra-fast builds and HMR.
+- **Language**: [TypeScript](https://www.typescriptlang.org/) for robust type-safety and auditability.
+- **Styling**: [Tailwind CSS](https://tailwindcss.com/) with custom "Luxury Glow" design system.
+- **Animations**: [Framer Motion](https://www.framer.com/motion/) for fluid, performance-optimized micro-interactions.
+- **Backend Services**: [Supabase](https://supabase.com/) (PostgreSQL/Auth) and [Google Apps Script](https://developers.google.com/apps-script) for order processing.
 
-There are several ways of editing your application.
+### Performance & Observability
+- **Analytics**: [Vercel Analytics](https://vercel.com/analytics) & [Speed Insights](https://vercel.com/speed-insights).
+- **SEO/AEO**: Automated [Sitemap](file:///public/sitemap.xml) generation and JSON-LD Structured Data (Organization, Product, FAQ).
+- **Metadata**: Verified via Google Search Console and Yandex Webmaster.
 
-**Use Lovable**
+---
 
-Simply visit the [Lovable Project](https://lovable.dev/projects/8f6fb81e-d047-4535-bd9a-e5d9766c846e) and start prompting.
+## 🛡 Security Architecture
 
-Changes made via Lovable will be committed automatically to this repo.
+The platform is hardened to protect both user data and system integrity:
 
-**Use your preferred IDE**
+### 1. Content Security Policy (CSP)
+Strict CSP implemented via meta tags to prevent XSS and unauthorized data injection:
+- `script-src`: Restrained to self, Google Analytics, and Cloudflare challenges.
+- `frame-src`: Locked to YouTube (Demo), Google Drive, and Cloudflare challenges.
+- `connect-src`: Limited to Supabase, Google Scripts, and Vercel services.
 
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
+### 2. Bot Protection (Anti-Spam)
+- **Cloudflare Turnstile**: Integrated across the Order and Review flows to prevent automated bot attacks while maintaining a frictionless user experience.
 
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
+### 3. Data Integrity
+- **Environment Management**: All sensitive endpoint URLs (Supabase, Google Scripts, WhatsApp numbers) are externalized into environment variables (`.env`).
+- **Encrypted Transfers**: All payment redirections are handled via secure WhatsApp parameters to ensure no financial data is stored on-platform.
 
-Follow these steps:
+---
 
-```sh
-# Step 1: Clone the repository using the project's Git URL.
-git clone <YOUR_GIT_URL>
+## ⚖️ Privacy & Compliance (Audit Ready)
 
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
+Wavelink adheres to the "Gold Standard" of international data privacy laws:
 
-# Step 3: Install the necessary dependencies.
-npm i
+### 🇪🇺 GDPR Compliance (Europe)
+- **Transparency Report**: Detailed [Privacy Policy](file:///src/pages/PrivacyPolicy.tsx) explicitly listing all **8 GDPR Rights** (including Erasure and Portability).
+- **Sub-Processor Transparency**: Clear disclosure of data handling by Vercel, Supabase, and Google.
+- **Lawful Basis**: Defined processing under Contractual Necessity and Legitimate Interest (GDPR Art. 6).
 
-# Step 4: Start the development server with auto-reloading and an instant preview.
-npm run dev
-```
+### 🇨🇦 PIPEDA & Law 25 (Canada/Quebec)
+- **Privacy by Default**: Cookie consent is requested before any analytical scripts are fired.
+- **Explicit Rejection**: Users can opt-out of non-essential cookies via a custom [Cookie Consent](file:///src/components/CookieConsent.tsx) mechanism.
+- **DPO Accountability**: Designated Data Protection Officer (Abir Abbas) with direct contact channels for data inquiries.
 
-**Edit a file directly in GitHub**
+---
 
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
+## 🚀 Deployment & Development
 
-**Use GitHub Codespaces**
+### Local Setup
+1. Clone the repository.
+2. Create a `.env` file based on the provided configuration.
+3. Run `npm install`.
+4. Run `npm run dev`.
 
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
-
-## What technologies are used for this project?
-
-This project is built with:
-
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
-
-## How can I deploy this project?
-
-Simply open [Lovable](https://lovable.dev/projects/8f6fb81e-d047-4535-bd9a-e5d9766c846e) and click on Share -> Publish.
-
-## Can I connect a custom domain to my Lovable project?
-
-Yes, you can!
-
-To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
-
-Read more here: [Setting up a custom domain](https://docs.lovable.dev/features/custom-domain#custom-domain)
+### Production Audit
+For security audits, please review:
+- `index.html`: For CSP and SEO headers.
+- `src/lib/config.ts`: For centralized endpoint management.
+- `src/pages/PrivacyPolicy.tsx`: For legal alignment documentation.

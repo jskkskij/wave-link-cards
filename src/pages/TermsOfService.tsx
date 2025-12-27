@@ -26,22 +26,27 @@ const TermsOfService = () => {
       icon: CreditCard,
       title: "Warranty",
       content: "All Wavelink cards come with a 6-month warranty covering software-related issues. Physical damage, loss, or misuse is not covered. Warranty claims require proof of purchase and must be reported via our official WhatsApp number."
+    },
+    {
+      icon: Shield,
+      title: "Security & Bots",
+      content: "To protect our services, we use Cloudflare Turnstile for bot detection on our forms. By using our site, you agree to the processing of device-level data by Cloudflare as necessary for security verification."
     }
   ];
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-background via-secondary/10 to-background">
+    <div className="min-h-screen bg-gradient-to-b from-background via-secondary/10 to-background pb-20">
       <div className="container mx-auto px-4 py-20 max-w-4xl">
         {/* Header */}
         <div className="text-center mb-16 animate-fade-in">
-          <div className="w-20 h-20 bg-gradient-primary rounded-full flex items-center justify-center mx-auto mb-6">
+          <div className="w-20 h-20 bg-gradient-primary rounded-full flex items-center justify-center mx-auto mb-6 shadow-luxury-glow">
             <FileText className="w-10 h-10 text-primary-foreground" />
           </div>
           <h1 className="text-5xl md:text-6xl font-bold text-foreground mb-4 font-serif">
             Terms of Service
           </h1>
-          <p className="text-xl text-muted-foreground">
-            Last Updated: January 2025
+          <p className="text-lg text-muted-foreground uppercase tracking-widest font-medium">
+            Effective: Jan 2025 | Version 1.2
           </p>
         </div>
 
@@ -49,8 +54,10 @@ const TermsOfService = () => {
         <Card className="mb-8 p-8 border-2 border-primary/20 shadow-luxury bg-gradient-to-br from-card to-card/50 backdrop-blur-sm animate-fade-in-up">
           <CardContent>
             <p className="text-muted-foreground leading-relaxed">
-              By placing an order with Wavelink, you agree to these Terms of Service. Please read them carefully. 
-              These terms govern your purchase and use of our NFC smart business cards and related services.
+              By placing an order with Wavelink Bangladesh, you agree to these Terms of Service.
+              These terms govern your purchase of NFC smart business cards and your use of our digital profile services.
+              All data handling is performed in accordance with our
+              <a href="/privacy-policy" className="text-primary hover:underline ml-1">Transparency Report</a>.
             </p>
           </CardContent>
         </Card>
@@ -62,50 +69,54 @@ const TermsOfService = () => {
             return (
               <Card
                 key={index}
-                className="p-6 border-2 border-border hover:shadow-luxury transition-all duration-300 animate-fade-in-up"
+                className="p-8 border-2 border-border/50 hover:border-primary/20 hover:shadow-luxury transition-all duration-500 bg-card/40 backdrop-blur-sm animate-fade-in-up"
                 style={{ animationDelay: `${index * 0.1}s` }}
               >
-                <CardHeader>
-                  <div className="flex items-center gap-3 mb-2">
-                    <div className="w-12 h-12 bg-gradient-primary rounded-full flex items-center justify-center">
-                      <Icon className="w-6 h-6 text-primary-foreground" />
-                    </div>
-                    <CardTitle className="text-2xl font-serif">{section.title}</CardTitle>
+                <div className="flex gap-4">
+                  <div className="w-12 h-12 bg-primary/5 rounded-xl flex items-center justify-center shrink-0">
+                    <Icon className="w-6 h-6 text-primary" />
                   </div>
-                </CardHeader>
-                <CardContent>
-                  <p className="text-muted-foreground leading-relaxed">{section.content}</p>
-                </CardContent>
+                  <div>
+                    <h3 className="text-xl font-bold mb-3 text-foreground font-serif">{section.title}</h3>
+                    <p className="text-muted-foreground leading-relaxed text-sm">{section.content}</p>
+                  </div>
+                </div>
               </Card>
             );
           })}
         </div>
 
         {/* Additional Terms */}
-        <Card className="mb-8 p-8 border-2 border-primary/20 shadow-luxury bg-gradient-to-br from-card to-card/50 backdrop-blur-sm">
-          <CardHeader>
-            <CardTitle className="text-2xl font-serif">Additional Terms</CardTitle>
+        <Card className="mb-8 p-10 border-2 border-primary/20 shadow-luxury bg-card/60 backdrop-blur-md">
+          <CardHeader className="p-0 mb-6">
+            <CardTitle className="text-3xl font-serif">Governance</CardTitle>
           </CardHeader>
-          <CardContent className="space-y-4">
-            <div>
-              <h4 className="font-semibold text-foreground mb-2">Customization</h4>
-              <p className="text-muted-foreground">
-                All designs are customizable. We'll guide you through the design process via WhatsApp. 
-                Once approved, changes may incur additional fees.
-              </p>
+          <CardContent className="p-0 space-y-8">
+            <div className="grid md:grid-cols-2 gap-8">
+              <div>
+                <h4 className="font-bold text-foreground mb-2 flex items-center gap-2">
+                  <span className="w-1.5 h-1.5 bg-primary rounded-full" />
+                  Customization Logic
+                </h4>
+                <p className="text-muted-foreground text-xs leading-relaxed">
+                  Designs are finalized via WhatsApp. Once printing begins, modifications are subject to reprint fees.
+                </p>
+              </div>
+              <div>
+                <h4 className="font-bold text-foreground mb-2 flex items-center gap-2">
+                  <span className="w-1.5 h-1.5 bg-primary rounded-full" />
+                  Digital Sovereignty
+                </h4>
+                <p className="text-muted-foreground text-xs leading-relaxed">
+                  We provide free lifetime updates for card content. We do not sell user data to third-party advertisers.
+                </p>
+              </div>
             </div>
-            <div>
-              <h4 className="font-semibold text-foreground mb-2">Data Updates</h4>
-              <p className="text-muted-foreground">
-                Free lifetime updates are available for your card's digital content. Contact us via WhatsApp 
-                to request updates to your contact information, social media links, or portfolio.
-              </p>
-            </div>
-            <div>
-              <h4 className="font-semibold text-foreground mb-2">Contact</h4>
-              <p className="text-muted-foreground">
-                For questions about these terms, contact us via WhatsApp:{" "}
-                <a href="https://wa.me/8801410809023" className="text-primary hover:underline">+8801410809023</a>
+
+            <div className="pt-6 border-t border-border/50">
+              <p className="text-sm text-center text-muted-foreground">
+                For dispute resolution or inquiries, contact our Legal Desk via WhatsApp:{" "}
+                <a href="https://wa.me/8801410809023" className="text-primary font-bold hover:underline">+8801410809023</a>
               </p>
             </div>
           </CardContent>
@@ -115,10 +126,10 @@ const TermsOfService = () => {
         <div className="text-center">
           <Button
             onClick={() => navigate("/")}
-            variant="outline"
-            className="rounded-full px-8"
+            variant="ghost"
+            className="rounded-full px-12 py-6 text-lg hover:bg-primary/5 border border-primary/10 transition-all font-serif"
           >
-            Back to Home
+            ← Personal Connection Over Digital Terms
           </Button>
         </div>
       </div>

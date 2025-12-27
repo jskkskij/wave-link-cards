@@ -148,10 +148,10 @@ const CompanyProfile = () => {
         <div className="text-center mt-12">
           <Button
             onClick={() => navigate("/")}
-            variant="outline"
-            className="rounded-full px-8"
+            variant="ghost"
+            className="rounded-full px-12 py-6 text-lg hover:bg-primary/5 border border-primary/10 transition-all font-serif"
           >
-            Back to Home
+            ← Legacy Foundation, Digital Future
           </Button>
         </div>
       </div>
