@@ -73,6 +73,18 @@ const Footer = () => {
         {/* Bottom Bar */}
         <div className="border-t border-white/5 pt-8 flex flex-col md:flex-row justify-between items-center gap-4 text-xs text-mist/40">
           <p>© 2025 Wavelink. All rights reserved.</p>
+
+          {/* Trade License Badge */}
+          <a
+            href="/trade-license.pdf"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="group flex items-center gap-2 px-4 py-2 rounded-full border border-white/10 hover:border-sky/30 hover:bg-white/5 transition-all duration-300"
+          >
+            <Shield className="w-4 h-4 text-sky group-hover:scale-110 transition-transform" />
+            <span className="text-white/60 group-hover:text-sky transition-colors">Licensed Business</span>
+          </a>
+
           <p>Designed with Intent.</p>
         </div>
       </div>

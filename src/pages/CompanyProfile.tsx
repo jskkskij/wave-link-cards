@@ -118,6 +118,35 @@ const CompanyProfile = () => {
           </CardContent>
         </Card>
 
+        {/* Trade License Section */}
+        <div className="text-center mt-12">
+          <Card className="inline-block p-8 border-2 border-sky/30 shadow-luxury-glow bg-gradient-to-br from-card to-sky/5 backdrop-blur-sm animate-fade-in-up">
+            <CardContent className="flex flex-col items-center gap-4">
+              <div className="w-20 h-20 bg-gradient-to-br from-sky to-primary rounded-full flex items-center justify-center shadow-luxury-glow">
+                <Shield className="w-10 h-10 text-white" />
+              </div>
+              <div>
+                <h3 className="text-2xl font-bold mb-2 font-serif">Licensed & Verified Business</h3>
+                <p className="text-sm text-muted-foreground mb-4 max-w-md">
+                  Wavelink is a legally registered business in Bangladesh. View our official trade license for verification.
+                </p>
+                <Button
+                  asChild
+                  className="bg-gradient-to-r from-sky to-primary text-white hover:opacity-90 rounded-full px-8 shadow-luxury transition-all duration-300 hover:scale-105"
+                >
+                  <a
+                    href="/trade-license.pdf"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    View Trade License
+                  </a>
+                </Button>
+              </div>
+            </CardContent>
+          </Card>
+        </div>
+
         {/* Download Company Profile */}
         <div className="text-center mt-12">
           <Card className="inline-block p-6 border-2 border-primary/30 shadow-luxury bg-gradient-to-br from-card to-card/50 backdrop-blur-sm">
