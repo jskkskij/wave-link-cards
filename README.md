@@ -25,6 +25,15 @@ Access and integrity are monitored through:
 - **Runtime Insights**: Vercel Speed Insights and Analytics for performance and availability monitoring.
 - **Form Integrity**: Submission tokens validated via Cloudflare Turnstile API.
 
+---
+
+## 🤖 AI-Ready Infrastructure
+
+The platform implements the latest standards for AI model visibility and indexing:
+- **LLM Context**: [llms.txt](file:///public/llms.txt) provided for structured site summaries.
+- **AI Discovery**: Meta-links and `robots.txt` registration for LLM crawlers.
+- **AEO**: Schema.org JSON-LD structured data for better representation in AI-powered search engines.
+
 ## 🛡 Security Architecture
 
 The platform is hardened to protect both user data and system integrity:

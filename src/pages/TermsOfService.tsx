@@ -1,5 +1,5 @@
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { FileText, ShoppingBag, CreditCard, RotateCcw, Truck } from "lucide-react";
+import { FileText, ShoppingBag, CreditCard, RotateCcw, Truck, Shield } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useNavigate } from "react-router-dom";
 
