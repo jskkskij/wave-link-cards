@@ -9,6 +9,7 @@ const FeaturesSection = lazy(() => import("@/components/FeaturesSection"));
 const PricingSection = lazy(() => import("@/components/PricingSection"));
 const OrderSection = lazy(() => import("@/components/OrderSection"));
 const ReviewsSection = lazy(() => import("@/components/ReviewsSection"));
+const AffiliateSection = lazy(() => import("@/components/AffiliateSection"));
 const FAQSection = lazy(() => import("@/components/FAQSection"));
 const ContactSection = lazy(() => import("@/components/ContactSection"));
 const Footer = lazy(() => import("@/components/Footer"));
@@ -46,6 +47,9 @@ const Index = () => {
           </Suspense>
           <Suspense fallback={<SectionLoader />}>
             <ReviewsSection />
+          </Suspense>
+          <Suspense fallback={<SectionLoader />}>
+            <AffiliateSection />
           </Suspense>
           <Suspense fallback={<SectionLoader />}>
             <FAQSection />

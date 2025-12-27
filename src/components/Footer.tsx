@@ -45,7 +45,7 @@ const Footer = () => {
           <div className="md:col-start-3">
             <h4 className="text-white font-serif mb-6">Explore</h4>
             <ul className="space-y-4 text-sm text-mist/60">
-              {['Home', 'Features', 'Pricing', 'Reviews'].map((item) => (
+              {['Home', 'Features', 'Pricing', 'Reviews', 'Affiliate'].map((item) => (
                 <li key={item}>
                   <a href={`#${item.toLowerCase()}`} className="hover:text-sky transition-colors duration-300">
                     {item}

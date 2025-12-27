@@ -23,6 +23,7 @@ const Navbar = () => {
     { name: "About", href: "#about" },
     { name: "Features", href: "#features" },
     { name: "Reviews", href: "#reviews" },
+    { name: "Affiliate", href: "#affiliate" },
     { name: "FAQ", href: "#faq" },
     { name: "Profile", href: "/company-profile", isRoute: true },
   ];
