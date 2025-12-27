@@ -23,6 +23,12 @@ const videoReviews: VideoReview[] = [
     customerName: "Shahadat Sakib",
     testimonial: "Game changer for networking. Highly recommend!",
   },
+  {
+    id: 3,
+    videoUrl: "https://drive.google.com/file/d/1HKe7pG_xmm8ZR-tiXg7Y_aEaN-jXB4VX/preview",
+    customerName: "Dr.Mohammad Abed Abbas",
+    testimonial: "As a Med Professional it has given the best identity experience",
+  },
 ];
 
 const ReviewsSection = () => {
