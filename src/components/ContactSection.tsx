@@ -17,9 +17,9 @@ const ContactSection = () => {
         </div>
 
         <div className="grid md:grid-cols-3 gap-6 max-w-5xl mx-auto">
-          <Card className="p-8 text-center hover:shadow-card-hover transition-all duration-300 animate-fade-in-up border-2 border-border bg-card">
-            <div className="w-16 h-16 bg-gradient-primary rounded-full flex items-center justify-center mx-auto mb-4">
-              <MessageCircle className="w-8 h-8 text-primary-foreground" />
+          <Card className="p-8 text-center hover:shadow-luxury-intense transition-all duration-500 animate-fade-in-up border-2 border-border/50 bg-card/60 backdrop-blur-sm group hover:-translate-y-2">
+            <div className="w-20 h-20 bg-gradient-primary rounded-full flex items-center justify-center mx-auto mb-6 shadow-luxury-glow group-hover:scale-110 transition-transform duration-500">
+              <MessageCircle className="w-10 h-10 text-white filter drop-shadow-md" />
             </div>
             <h3 className="text-xl font-semibold mb-3 text-card-foreground">WhatsApp</h3>
             <p className="text-muted-foreground mb-4">Chat with us directly</p>
@@ -34,9 +34,9 @@ const ContactSection = () => {
             </Button>
           </Card>
 
-          <Card className="p-8 text-center hover:shadow-card-hover transition-all duration-300 animate-fade-in-up border-2 border-border bg-card" style={{ animationDelay: '0.1s' }}>
-            <div className="w-16 h-16 bg-gradient-primary rounded-full flex items-center justify-center mx-auto mb-4">
-              <Mail className="w-8 h-8 text-primary-foreground" />
+          <Card className="p-8 text-center hover:shadow-luxury-intense transition-all duration-500 animate-fade-in-up border-2 border-border/50 bg-card/60 backdrop-blur-sm group hover:-translate-y-2" style={{ animationDelay: '0.1s' }}>
+            <div className="w-20 h-20 bg-gradient-primary rounded-full flex items-center justify-center mx-auto mb-6 shadow-luxury-glow group-hover:scale-110 transition-transform duration-500">
+              <Mail className="w-10 h-10 text-white filter drop-shadow-md" />
             </div>
             <h3 className="text-xl font-semibold mb-3 text-card-foreground">Email</h3>
             <p className="text-muted-foreground mb-4">Send us a message</p>
@@ -51,9 +51,9 @@ const ContactSection = () => {
             </Button>
           </Card>
 
-          <Card className="p-8 text-center hover:shadow-card-hover transition-all duration-300 animate-fade-in-up border-2 border-border bg-card" style={{ animationDelay: '0.2s' }}>
-            <div className="w-16 h-16 bg-gradient-primary rounded-full flex items-center justify-center mx-auto mb-4">
-              <Facebook className="w-8 h-8 text-primary-foreground" />
+          <Card className="p-8 text-center hover:shadow-luxury-intense transition-all duration-500 animate-fade-in-up border-2 border-border/50 bg-card/60 backdrop-blur-sm group hover:-translate-y-2" style={{ animationDelay: '0.2s' }}>
+            <div className="w-20 h-20 bg-gradient-primary rounded-full flex items-center justify-center mx-auto mb-6 shadow-luxury-glow group-hover:scale-110 transition-transform duration-500">
+              <Facebook className="w-10 h-10 text-white filter drop-shadow-md" />
             </div>
             <h3 className="text-xl font-semibold mb-3 text-card-foreground">Facebook</h3>
             <p className="text-muted-foreground mb-4">Follow our page</p>

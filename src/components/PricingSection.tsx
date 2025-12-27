@@ -156,8 +156,8 @@ const PricingSection = () => {
                   const Icon = feature.icon;
                   return (
                     <div key={index} className="flex items-center gap-3 group">
-                      <div className="w-6 h-6 bg-gradient-primary rounded-full flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform">
-                        <Icon className="w-3.5 h-3.5 text-primary-foreground" />
+                      <div className="w-8 h-8 bg-gradient-primary rounded-full flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform shadow-luxury-glow">
+                        <Icon className="w-4 h-4 text-white filter drop-shadow-sm" />
                       </div>
                       <span className="text-card-foreground font-medium">{feature.text}</span>
                     </div>

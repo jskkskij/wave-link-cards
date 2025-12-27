@@ -110,14 +110,14 @@ const AboutSection = () => {
               className="group p-8 text-center hover:shadow-2xl hover:shadow-primary/5 transition-all duration-500 bg-card/50 backdrop-blur-sm border-border/50 relative overflow-hidden"
             >
               <motion.div
-                className="w-16 h-16 bg-gradient-primary rounded-full flex items-center justify-center mx-auto mb-6 relative"
+                className="w-20 h-20 bg-gradient-primary rounded-full flex items-center justify-center mx-auto mb-6 relative shadow-luxury-glow"
                 variants={iconContainerVariants}
                 initial="initial"
                 animate={hoveredStates[0] ? "active" : "initial"}
                 whileHover="hover"
               >
                 <motion.div
-                  className="absolute inset-0 bg-[#0099ff] rounded-full blur-md opacity-40"
+                  className="absolute inset-0 bg-sky-400/40 rounded-full blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"
                   variants={pulseVariants}
                   animate="animate"
                 />
@@ -126,7 +126,7 @@ const AboutSection = () => {
                   transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
                   className="relative z-10"
                 >
-                  <Smartphone className="w-8 h-8 text-primary-foreground" />
+                  <Smartphone className="w-10 h-10 text-white filter drop-shadow-md" />
                 </motion.div>
               </motion.div>
               <h3 className={`text-xl font-semibold mb-3 transition-colors duration-300 ${hoveredStates[0] ? 'text-primary' : 'text-card-foreground group-hover:text-primary'}`}>No App Required</h3>
@@ -143,15 +143,15 @@ const AboutSection = () => {
               className="group p-8 text-center hover:shadow-2xl hover:shadow-primary/5 transition-all duration-500 bg-card/50 backdrop-blur-sm border-border/50 relative overflow-hidden"
             >
               <motion.div
-                className="w-16 h-16 bg-gradient-primary rounded-full flex items-center justify-center mx-auto mb-6 relative"
+                className="w-20 h-20 bg-gradient-primary rounded-full flex items-center justify-center mx-auto mb-6 relative shadow-luxury-glow"
                 variants={iconContainerVariants}
                 initial="initial"
                 animate={hoveredStates[1] ? "active" : "initial"}
                 whileHover="hover"
               >
                 <motion.div
-                  className={`absolute inset-0 bg-[#0099ff] rounded-full transition-opacity duration-500 blur-sm ${hoveredStates[1] ? 'opacity-40' : 'opacity-0 group-hover:opacity-40'}`}
-                  animate={{ scale: [1, 1.3, 1] }}
+                  className={`absolute inset-0 bg-sky-400/40 rounded-full transition-opacity duration-500 blur-xl ${hoveredStates[1] ? 'opacity-100' : 'opacity-0 group-hover:opacity-100'}`}
+                  animate={{ scale: [1, 1.2, 1] }}
                   transition={{ duration: 2, repeat: Infinity }}
                 />
                 <motion.div
@@ -159,7 +159,7 @@ const AboutSection = () => {
                   transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
                   className="relative z-10"
                 >
-                  <Zap className="w-8 h-8 text-primary-foreground" />
+                  <Zap className="w-10 h-10 text-white filter drop-shadow-md" />
                 </motion.div>
               </motion.div>
               <h3 className={`text-xl font-semibold mb-3 transition-colors duration-300 ${hoveredStates[1] ? 'text-primary' : 'text-card-foreground group-hover:text-primary'}`}>Instant Sharing</h3>
@@ -176,20 +176,20 @@ const AboutSection = () => {
               className="group p-8 text-center hover:shadow-2xl hover:shadow-primary/5 transition-all duration-500 bg-card/50 backdrop-blur-sm border-border/50 relative overflow-hidden"
             >
               <motion.div
-                className="w-16 h-16 bg-gradient-primary rounded-full flex items-center justify-center mx-auto mb-6 relative"
+                className="w-20 h-20 bg-gradient-primary rounded-full flex items-center justify-center mx-auto mb-6 relative shadow-luxury-glow"
                 variants={iconContainerVariants}
                 initial="initial"
                 animate={hoveredStates[2] ? "active" : "initial"}
                 whileHover="hover"
               >
-                <div className={`absolute inset-0 bg-[#0099ff]/20 rounded-full blur-md transition-opacity duration-500 ${hoveredStates[2] ? 'opacity-100' : 'opacity-0 group-hover:opacity-100'}`} />
+                <div className={`absolute inset-0 bg-sky-400/30 rounded-full blur-xl transition-opacity duration-500 ${hoveredStates[2] ? 'opacity-100' : 'opacity-0 group-hover:opacity-100'}`} />
                 <motion.div
                   animate={{ rotate: 360 }}
                   transition={{ duration: hoveredStates[2] ? 5 : 20, repeat: Infinity, ease: "linear" }}
                   whileHover={{ rotate: 360, transition: { duration: 5, repeat: Infinity, ease: "linear" } }}
                   className="relative z-10"
                 >
-                  <Globe className="w-8 h-8 text-primary-foreground" />
+                  <Globe className="w-10 h-10 text-white filter drop-shadow-md" />
                 </motion.div>
               </motion.div>
               <h3 className={`text-xl font-semibold mb-3 transition-colors duration-300 ${hoveredStates[2] ? 'text-primary' : 'text-card-foreground group-hover:text-primary'}`}>Digital First</h3>

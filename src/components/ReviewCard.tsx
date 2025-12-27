@@ -46,13 +46,12 @@ export const ReviewCard = ({ review, index }: ReviewCardProps) => {
   }, []);
 
   return (
-    <Card 
+    <Card
       ref={cardRef}
-      className={`relative bg-card/80 backdrop-blur-sm border-border/50 transition-all duration-500 ease-out overflow-hidden group ${
-        isHovered 
-          ? 'shadow-luxury -translate-y-2 scale-[1.02] border-primary/30' 
+      className={`relative bg-card/80 backdrop-blur-sm border-border/50 transition-all duration-500 ease-out overflow-hidden group ${isHovered
+          ? 'shadow-luxury -translate-y-2 scale-[1.02] border-primary/30'
           : 'shadow-sm hover:shadow-card-hover'
-      }`}
+        }`}
       style={{ animationDelay: `${index * 0.1}s` }}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
@@ -60,22 +59,21 @@ export const ReviewCard = ({ review, index }: ReviewCardProps) => {
       aria-label={`Review by ${review.name}`}
     >
       {/* Digital transformation overlay effect */}
-      <div 
+      <div
         className={`absolute inset-0 bg-gradient-luxury opacity-0 group-hover:opacity-10 transition-opacity duration-500 pointer-events-none`}
         aria-hidden="true"
       />
-      
+
       {/* Shimmer effect on hover */}
-      <div 
+      <div
         className={`absolute inset-0 shimmer-effect opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none`}
         aria-hidden="true"
       />
       <CardContent className="p-6 relative z-10">
         {/* Header with Avatar and Name */}
         <div className="flex items-start gap-4 mb-4">
-          <div className={`w-12 h-12 rounded-full bg-gradient-primary flex items-center justify-center text-primary-foreground font-bold text-lg flex-shrink-0 transition-all duration-300 ${
-            isHovered ? 'scale-110 shadow-luxury-glow' : ''
-          }`}>
+          <div className={`w-14 h-14 rounded-full bg-gradient-primary flex items-center justify-center text-white font-bold text-xl flex-shrink-0 transition-all duration-500 shadow-luxury-glow ${isHovered ? 'scale-110 rotate-3 shadow-luxury-intense' : ''
+            }`}>
             {getInitial(review.name)}
           </div>
           <div className="flex-1 min-w-0">
@@ -112,11 +110,10 @@ export const ReviewCard = ({ review, index }: ReviewCardProps) => {
           {[1, 2, 3, 4, 5].map((star) => (
             <Star
               key={star}
-              className={`w-4 h-4 transition-all duration-300 ${
-                star <= review.rating
+              className={`w-4 h-4 transition-all duration-300 ${star <= review.rating
                   ? `fill-primary text-primary ${isHovered ? 'scale-110' : ''}`
                   : "text-muted"
-              }`}
+                }`}
               style={{ transitionDelay: `${star * 20}ms` }}
               aria-hidden="true"
             />
@@ -125,9 +122,8 @@ export const ReviewCard = ({ review, index }: ReviewCardProps) => {
         </div>
 
         {/* Review Text */}
-        <p className={`text-foreground/80 leading-relaxed transition-colors duration-300 ${
-          isHovered ? 'text-foreground' : ''
-        }`}>
+        <p className={`text-foreground/80 leading-relaxed transition-colors duration-300 ${isHovered ? 'text-foreground' : ''
+          }`}>
           "{review.review}"
         </p>
       </CardContent>

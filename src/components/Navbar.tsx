@@ -121,18 +121,6 @@ const Navbar = () => {
 
           {/* Right Actions */}
           <div className="flex items-center gap-4">
-            <a
-              href={companyProfilePdf}
-              download="WaveLink_Company_Profile.pdf"
-              className={cn(
-                "hidden sm:flex items-center gap-2 text-xs font-bold text-navy/60 hover:text-navy transition-all px-3 py-1.5 rounded-full border border-navy/10 hover:border-navy/30 bg-navy/5",
-                isScrolled && "opacity-30 pointer-events-none"
-              )}
-              title="Download Company Profile"
-            >
-              <FileDown size={14} />
-              <span className="hidden md:inline">Profile</span>
-            </a>
 
             <Button
               variant="ghost"
