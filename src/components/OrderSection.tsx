@@ -44,6 +44,16 @@ const OrderSection = () => {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+
+    // Validate Turnstile
+    const formDataObj = new FormData(e.target as HTMLFormElement);
+    const turnstileToken = formDataObj.get('cf-turnstile-response');
+
+    if (!turnstileToken) {
+      toast.error("Please complete the security verification.");
+      return;
+    }
+
     setIsSubmitting(true);
 
     try {
@@ -215,6 +225,14 @@ const OrderSection = () => {
                   value={formData.address} onChange={handleInputChange}
                   className="bg-navy/50 border-white/10 text-white placeholder:text-white/20 min-h-[100px] focus:border-sky/50 focus:bg-navy/80 transition-all resize-none"
                 />
+              </div>
+
+              <div className="space-y-4">
+                <div
+                  className="cf-turnstile"
+                  data-sitekey={CONFIG.TURNSTILE_SITE_KEY}
+                  data-theme="dark"
+                ></div>
               </div>
 
               <Button

@@ -13,6 +13,8 @@ import { Label } from "./ui/label";
 import { Textarea } from "./ui/textarea";
 import { useToast } from "@/hooks/use-toast";
 
+import { CONFIG } from "@/lib/config";
+
 interface ReviewFormDialogProps {
   isOpen: boolean;
   onClose: () => void;
@@ -49,6 +51,19 @@ export const ReviewFormDialog = ({
       toast({
         title: "Missing Information",
         description: "Please fill in all fields and select a rating.",
+        variant: "destructive",
+      });
+      return;
+    }
+
+    // Validate Turnstile
+    const formDataObj = new FormData(e.target as HTMLFormElement);
+    const turnstileToken = formDataObj.get('cf-turnstile-response');
+
+    if (!turnstileToken) {
+      toast({
+        title: "Security Verification Required",
+        description: "Please complete the CAPTCHA to submit your review.",
         variant: "destructive",
       });
       return;
@@ -151,11 +166,10 @@ export const ReviewFormDialog = ({
                   className="transition-transform hover:scale-110"
                 >
                   <Star
-                    className={`w-8 h-8 ${
-                      star <= (hoveredRating || formData.rating)
-                        ? "fill-primary text-primary"
-                        : "text-muted"
-                    }`}
+                    className={`w-8 h-8 ${star <= (hoveredRating || formData.rating)
+                      ? "fill-primary text-primary"
+                      : "text-muted"
+                      }`}
                   />
                 </button>
               ))}
@@ -180,6 +194,15 @@ export const ReviewFormDialog = ({
               rows={4}
               required
             />
+          </div>
+
+          {/* Turnstile */}
+          <div className="pt-2">
+            <div
+              className="cf-turnstile"
+              data-sitekey={CONFIG.TURNSTILE_SITE_KEY}
+              data-theme="light"
+            ></div>
           </div>
 
           {/* Submit Button */}
