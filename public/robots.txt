@@ -10,7 +10,12 @@ Allow: /
 User-agent: facebookexternalhit
 Allow: /
 
+User-agent: Yandex
+Allow: /
+Crawl-delay: 2
+
 User-agent: *
 Allow: /
 
 Sitemap: https://wave-link-cards.vercel.app/sitemap.xml
+llms.txt: https://wave-link-cards.vercel.app/llms.txt

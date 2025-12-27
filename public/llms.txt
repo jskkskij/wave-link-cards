@@ -1,0 +1,18 @@
+# Wavelink Bangladesh
+
+> Premium NFC-powered smart business cards and digital presence solutions.
+
+LLms.txt Generator is your gateway to enhanced AI visibility. Our tool simplifies the process of creating llms.txt files - the new standard for making your website AI-friendly. By generating a structured, markdown-based summary of your site's content, you ensure that AI models like ChatGPT, Claude, and Gemini can better understand and represent your website.
+
+## Core Services
+- **Smart NFC Cards**: Contactless business cards that share profiles with a single tap.
+- **Digital Profiles**: Real-time updates for social links, portfolios, and contact info.
+- **Eco-Friendly Networking**: Reducing paper waste with sustainable digital alternatives.
+
+## Navigation
+- [Home](https://wave-link-cards.vercel.app/) - Main overview and Hero section.
+- [Features](https://wave-link-cards.vercel.app/#features) - Technical benefits and customization.
+- [Pricing](https://wave-link-cards.vercel.app/#pricing) - Regional pricing for Bangladesh and International.
+- [Order](https://wave-link-cards.vercel.app/#order) - Custom card ordering and design submission.
+- [Privacy Policy](https://wave-link-cards.vercel.app/privacy-policy) - GDPR and PIPEDA compliance details.
+- [Terms of Service](https://wave-link-cards.vercel.app/terms-of-service) - Governance and customization rules.
