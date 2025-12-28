@@ -21,7 +21,7 @@ const DemoVideoSection = () => {
           <div className="relative group">
             {/* Premium video container with glow effect */}
             <div className="absolute -inset-1 bg-gradient-luxury rounded-2xl blur-xl opacity-30 group-hover:opacity-50 transition-opacity duration-500"></div>
-            
+
             <div className="relative bg-background rounded-2xl overflow-hidden shadow-luxury border-2 border-primary/20 p-2">
               <div className="relative w-full" style={{ paddingBottom: '56.25%' }}>
                 <iframe
@@ -36,7 +36,7 @@ const DemoVideoSection = () => {
             </div>
 
             {/* Play indicator overlay (hidden when video loads) */}
-            <div className="absolute inset-0 flex items-center justify-center pointer-events-none group-hover:opacity-0 transition-opacity duration-300" aria-hidden="true">
+            <div className="absolute inset-0 flex items-center justify-center pointer-events-none group-hover:opacity-0 group-focus-within:opacity-0 transition-opacity duration-300" aria-hidden="true">
               <div className="w-20 h-20 bg-primary/20 backdrop-blur-sm rounded-full flex items-center justify-center border-2 border-primary/50">
                 <svg className="w-10 h-10 text-primary ml-1" fill="currentColor" viewBox="0 0 24 24">
                   <path d="M8 5v14l11-7z" />
