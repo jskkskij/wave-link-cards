@@ -9,6 +9,7 @@ import NotFound from "./pages/NotFound";
 import { Analytics } from "@vercel/analytics/react"
 import { SpeedInsights } from "@vercel/speed-insights/react"
 import CookieConsent from "./components/CookieConsent";
+import { useDisableSource } from "./hooks/use-disable-source";
 
 // Lazy load pages for performance
 const ThankYou = lazy(() => import("./pages/ThankYou"));
@@ -26,55 +27,59 @@ const RouteLoader = () => (
   </div>
 );
 
-const App = () => (
-  <QueryClientProvider client={queryClient}>
-    <TooltipProvider>
-      <Toaster />
-      <Sonner />
-      <BrowserRouter>
-        <Routes>
-          <Route path="/" element={<Index />} />
-          <Route
-            path="/thank-you"
-            element={
-              <Suspense fallback={<RouteLoader />}>
-                <ThankYou />
-              </Suspense>
-            }
-          />
-          <Route
-            path="/company-profile"
-            element={
-              <Suspense fallback={<RouteLoader />}>
-                <CompanyProfile />
-              </Suspense>
-            }
-          />
-          <Route
-            path="/privacy-policy"
-            element={
-              <Suspense fallback={<RouteLoader />}>
-                <PrivacyPolicy />
-              </Suspense>
-            }
-          />
-          <Route
-            path="/terms-of-service"
-            element={
-              <Suspense fallback={<RouteLoader />}>
-                <TermsOfService />
-              </Suspense>
-            }
-          />
-          {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
-          <Route path="*" element={<NotFound />} />
-        </Routes>
-        <CookieConsent />
-      </BrowserRouter>
-      <Analytics />
-      <SpeedInsights />
-    </TooltipProvider>
-  </QueryClientProvider>
-);
+const App = () => {
+  useDisableSource();
+
+  return (
+    <QueryClientProvider client={queryClient}>
+      <TooltipProvider>
+        <Toaster />
+        <Sonner />
+        <BrowserRouter>
+          <Routes>
+            <Route path="/" element={<Index />} />
+            <Route
+              path="/thank-you"
+              element={
+                <Suspense fallback={<RouteLoader />}>
+                  <ThankYou />
+                </Suspense>
+              }
+            />
+            <Route
+              path="/company-profile"
+              element={
+                <Suspense fallback={<RouteLoader />}>
+                  <CompanyProfile />
+                </Suspense>
+              }
+            />
+            <Route
+              path="/privacy-policy"
+              element={
+                <Suspense fallback={<RouteLoader />}>
+                  <PrivacyPolicy />
+                </Suspense>
+              }
+            />
+            <Route
+              path="/terms-of-service"
+              element={
+                <Suspense fallback={<RouteLoader />}>
+                  <TermsOfService />
+                </Suspense>
+              }
+            />
+            {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
+            <Route path="*" element={<NotFound />} />
+          </Routes>
+          <CookieConsent />
+        </BrowserRouter>
+        <Analytics />
+        <SpeedInsights />
+      </TooltipProvider>
+    </QueryClientProvider>
+  );
+};
 
 export default App;

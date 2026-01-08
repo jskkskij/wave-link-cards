@@ -18,6 +18,14 @@ export default defineConfig(({ mode }) => ({
   assetsInclude: ["**/*.png", "**/*.jpg", "**/*.jpeg", "**/*.gif", "**/*.svg", "**/*.webp"],
   build: {
     assetsDir: "assets",
+    minify: "terser",
+    sourcemap: false,
+    terserOptions: {
+      compress: {
+        drop_console: true,
+        drop_debugger: true,
+      },
+    },
     rollupOptions: {
       output: {
         assetFileNames: (assetInfo) => {

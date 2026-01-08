@@ -52,11 +52,12 @@ const ReviewsSection = () => {
         </div>
 
         {/* Video Reviews - Centered Layout with improved spacing for clarity */}
-        <div className="flex flex-wrap justify-center gap-8 md:gap-16 max-w-7xl mx-auto mb-16 md:mb-24">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-16 max-w-5xl mx-auto mb-16 md:mb-24 px-4">
           {videoReviews.map((review, index) => (
             <Card
               key={review.id}
-              className="w-full md:w-[480px] group overflow-hidden shadow-luxury hover:shadow-2xl transition-all duration-500 border-white/20 bg-white/40 backdrop-blur-md animate-fade-in-up hover:-translate-y-2"
+              className={`w-full md:w-[480px] group overflow-hidden shadow-luxury hover:shadow-2xl transition-all duration-500 border-white/20 bg-white/40 backdrop-blur-md animate-fade-in-up hover:-translate-y-2 ${index === 0 ? "md:col-span-2 md:justify-self-center" : ""
+                }`}
               style={{ animationDelay: `${index * 0.15}s` }}
             >
               <CardContent className="p-0">
