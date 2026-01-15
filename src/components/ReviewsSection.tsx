@@ -1,15 +1,15 @@
+import { useState } from "react";
 import { Card, CardContent } from "./ui/card";
-import { MessageSquareQuote, Mail } from "lucide-react";
+import { MessageSquareQuote, Mail, Play } from "lucide-react";
 
-// Video review interface - easy to update with new reviews
+// Video review interface
 interface VideoReview {
   id: number;
-  videoUrl: string; // Google Drive share link (use /preview format)
+  videoUrl: string;
   customerName: string;
   testimonial: string;
 }
 
-// UPDATE THIS ARRAY WITH YOUR VIDEO REVIEWS
 const videoReviews: VideoReview[] = [
   {
     id: 1,
@@ -32,6 +32,16 @@ const videoReviews: VideoReview[] = [
 ];
 
 const ReviewsSection = () => {
+  // Track which video is currently playing by its ID
+  const [playingVideoId, setPlayingVideoId] = useState<number | null>(null);
+
+  // Helper to extract YouTube ID
+  const getYouTubeId = (url: string) => {
+    const regExp = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|&v=)([^#&?]*).*/;
+    const match = url.match(regExp);
+    return (match && match[2].length === 11) ? match[2] : null;
+  };
+
   return (
     <section id="reviews" className="py-12 md:py-20 bg-gradient-to-b from-background via-mist/30 to-background relative overflow-hidden">
       {/* Ambient background blur */}
@@ -51,63 +61,88 @@ const ReviewsSection = () => {
           </p>
         </div>
 
-        {/* Video Reviews - Centered Layout with improved spacing for clarity */}
+        {/* Video Reviews */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-16 max-w-5xl mx-auto mb-16 md:mb-24 px-4">
-          {videoReviews.map((review, index) => (
-            <Card
-              key={review.id}
-              className={`w-full md:w-[480px] group overflow-hidden shadow-luxury hover:shadow-2xl transition-all duration-500 border-white/20 bg-white/40 backdrop-blur-md animate-fade-in-up hover:-translate-y-2 ${index === 0 ? "md:col-span-2 md:justify-self-center" : ""
-                }`}
-              style={{ animationDelay: `${index * 0.15}s` }}
-            >
-              <CardContent className="p-0">
-                {/* Video Container */}
-                <div className="relative">
-                  <div className="absolute -inset-0.5 bg-gradient-to-r from-sky/20 to-navy/20 rounded-t-xl opacity-0 group-hover:opacity-100 blur-sm transition-opacity duration-500" />
+          {videoReviews.map((review, index) => {
+            const videoId = getYouTubeId(review.videoUrl);
+            const isPlaying = playingVideoId === review.id;
 
-                  <div className="relative w-full bg-navy/5 rounded-t-xl overflow-hidden aspect-video">
-                    <iframe
-                      src={review.videoUrl}
-                      className="absolute top-0 left-0 w-full h-full"
-                      allow="autoplay; fullscreen; picture-in-picture"
-                      allowFullScreen
-                      sandbox="allow-scripts allow-same-origin allow-presentation"
-                      referrerPolicy="no-referrer"
-                      title={`Review by ${review.customerName}`}
-                      loading="lazy"
-                    />
-                    {/* Hover Overlay */}
-                    <div className="absolute inset-0 bg-navy/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none" />
-                  </div>
-                </div>
+            return (
+              <Card
+                key={review.id}
+                className={`w-full md:w-[480px] group overflow-hidden shadow-luxury hover:shadow-2xl transition-all duration-500 border-white/20 bg-white/40 backdrop-blur-md animate-fade-in-up hover:-translate-y-2 ${index === 0 ? "md:col-span-2 md:justify-self-center" : ""
+                  }`}
+                style={{ animationDelay: `${index * 0.15}s` }}
+              >
+                <CardContent className="p-0">
+                  {/* Video Container */}
+                  <div className="relative w-full bg-black rounded-t-xl overflow-hidden aspect-video group-video">
+                    {!isPlaying ? (
+                      // 1. Thumbnail + Play Button (Facade)
+                      <button
+                        onClick={() => setPlayingVideoId(review.id)}
+                        className="absolute inset-0 w-full h-full flex items-center justify-center group/play cursor-pointer"
+                        aria-label={`Play review by ${review.customerName}`}
+                      >
+                        {/* High Quality Thumbnail */}
+                        <img
+                          src={`https://img.youtube.com/vi/${videoId}/maxresdefault.jpg`}
+                          alt={`Video thumbnail for ${review.customerName}`}
+                          className="absolute inset-0 w-full h-full object-cover opacity-90 group-hover/play:opacity-100 transition-opacity duration-300"
+                        />
 
-                {/* Customer Info */}
-                <div className="p-8 bg-gradient-to-br from-white/60 to-white/30 backdrop-blur-sm">
-                  <div className="flex items-center gap-4 mb-4">
-                    <div className="w-12 h-12 rounded-full bg-navy text-white flex items-center justify-center font-serif text-xl border-2 border-white/50 shadow-lg">
-                      {review.customerName.charAt(0)}
+                        {/* Dark Overlay */}
+                        <div className="absolute inset-0 bg-black/30 group-hover/play:bg-black/20 transition-colors duration-300" />
+
+                        {/* Custom Animated Play Button */}
+                        <div className="relative z-10 w-20 h-20 bg-white/10 backdrop-blur-md rounded-full flex items-center justify-center border border-white/30 shadow-2xl group-hover/play:scale-110 transition-transform duration-300 group-hover/play:bg-white/20">
+                          <div className="w-16 h-16 bg-gradient-to-br from-primary to-sky-500 rounded-full flex items-center justify-center shadow-lg">
+                            <Play className="w-6 h-6 text-white ml-1 fill-white" />
+                          </div>
+                          {/* Pulse Effect */}
+                          <div className="absolute inset-0 rounded-full border border-white/20 animate-ping opacity-75" style={{ animationDuration: '2s' }}></div>
+                        </div>
+                      </button>
+                    ) : (
+                      // 2. Actual Iframe (Loads only on click)
+                      <iframe
+                        src={`https://www.youtube.com/embed/${videoId}?autoplay=1&rel=0`}
+                        className="absolute top-0 left-0 w-full h-full"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                        allowFullScreen
+                        // KEY FIX: Use strict-origin-when-cross-origin to allow YouTube to verify domain
+                        referrerPolicy="strict-origin-when-cross-origin"
+                        title={`Review by ${review.customerName}`}
+                      />
+                    )}
+                  </div>
+
+                  {/* Customer Info */}
+                  <div className="p-8 bg-gradient-to-br from-white/60 to-white/30 backdrop-blur-sm relative z-20">
+                    <div className="flex items-center gap-4 mb-4">
+                      <div className="w-12 h-12 rounded-full bg-navy text-white flex items-center justify-center font-serif text-xl border-2 border-white/50 shadow-lg">
+                        {review.customerName.charAt(0)}
+                      </div>
+                      <div>
+                        <h3 className="text-xl font-bold text-navy font-serif tracking-wide">
+                          {review.customerName}
+                        </h3>
+                      </div>
                     </div>
-                    <div>
-                      <h3 className="text-xl font-bold text-navy font-serif tracking-wide">
-                        {review.customerName}
-                      </h3>
-                      {/* Optional role placeholder if available later */}
-                      {/* <p className="text-xs text-mist/80 uppercase tracking-wider">Verified User</p> */}
+                    <div className="relative pl-6">
+                      <MessageSquareQuote className="absolute top-0 left-0 w-5 h-5 text-sky" />
+                      <p className="text-foreground/80 font-medium italic leading-relaxed text-base">
+                        "{review.testimonial}"
+                      </p>
                     </div>
                   </div>
-                  <div className="relative pl-6">
-                    <MessageSquareQuote className="absolute top-0 left-0 w-5 h-5 text-sky" />
-                    <p className="text-foreground/80 font-medium italic leading-relaxed text-base">
-                      "{review.testimonial}"
-                    </p>
-                  </div>
-                </div>
-              </CardContent>
-            </Card>
-          ))}
+                </CardContent>
+              </Card>
+            );
+          })}
         </div>
 
-        {/* Bottom CTA - Clearer & Styled */}
+        {/* Bottom CTA */}
         <div className="flex justify-center animate-fade-in-delayed">
           <a
             href="mailto:waavelink@gmail.com"
