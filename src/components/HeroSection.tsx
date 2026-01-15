@@ -51,7 +51,7 @@ const HeroSection = () => {
         Content Layer: "Structure/Logic"
         Centered, balanced, typographic focus.
       */}
-      <div className="relative z-10 container mx-auto px-4 pt-20">
+      <div className="relative z-10 container mx-auto px-4 pt-32 md:pt-40">
         <div ref={contentRef} className="max-w-5xl mx-auto text-center flex flex-col items-center gap-8">
           {/* Main Headline - Large Serif (Eastern Balance) */}
           <h1 className="font-serif text-4xl sm:text-5xl md:text-7xl lg:text-8xl text-white leading-[1.2] md:leading-[1.1] animate-fade-in opacity-0" style={{ animationDelay: '0.2s' }}>

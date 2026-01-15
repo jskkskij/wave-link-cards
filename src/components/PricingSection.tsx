@@ -129,10 +129,7 @@ const PricingSection = () => {
                     <span className="text-xl text-muted-foreground">{currentPricing.currencyCode}</span>
                   </div>
                   <div className="flex flex-wrap justify-center gap-x-4 gap-y-1 mt-3">
-                    <p className="text-xs font-semibold text-primary/80 flex items-center gap-1">
-                      <Truck className="w-3 h-3" />
-                      Delivery: {currentPricing.shipping}
-                    </p>
+
                     <p className="text-xs font-semibold text-mist/60 flex items-center gap-1">
                       <Info className="w-3 h-3" />
                       {currentPricing.tax}

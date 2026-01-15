@@ -1,4 +1,4 @@
-import { useEffect, useState, useCallback } from "react";
+import { useEffect, useState } from "react";
 import {
     Carousel,
     CarouselContent,
@@ -13,11 +13,23 @@ import { ArrowRight, Star, Zap } from "lucide-react";
 import stand1 from "@/assets/review-stands/stand-1.jpg";
 import stand2 from "@/assets/review-stands/stand-2.jpg";
 import stand3 from "@/assets/review-stands/stand-3.jpg";
-import stand4 from "@/assets/review-stands/stand-4.png";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 
 const ReviewStandsSection = () => {
-    const images = [stand1, stand2, stand3, stand4];
+    const images = [stand1, stand2, stand3];
     const [api, setApi] = useState<CarouselApi>();
+    const [customization, setCustomization] = useState<"semi" | "full">("semi");
+    const [material, setMaterial] = useState<"white" | "black">("white");
+
+    const pricing = {
+        semi: { white: "1,212", black: "1,313" },
+        full: { white: "1,515", black: "1,616" }
+    };
+
+    const descriptions = {
+        semi: "A perfect balance of branding and flexibility. The bottom section will feature the Wave Link logo and QR code, while the remaining area can be fully customized by the owner according to their preference. Ideal for a neat, branded, and professional look.",
+        full: "Complete freedom, no restrictions. This option comes with no Wave Link logo—the entire stand is 100% customized based on your brand identity and design choice. Best for businesses that want total personalization."
+    };
 
     // Manual Autoplay
     useEffect(() => {
@@ -98,46 +110,123 @@ const ReviewStandsSection = () => {
                     <div className="space-y-8 text-left">
                         <div className="space-y-4">
                             <h3 className="text-3xl font-bold font-serif">Smart Review Stand</h3>
-                            <div className="flex items-baseline gap-2">
-                                <span className="text-5xl font-bold text-primary">৳1,699</span>
-                                <span className="text-xl text-muted-foreground line-through">৳2,499</span>
-                            </div>
-                            <div className="flex flex-wrap gap-2">
-                                <span className="bg-primary/10 text-primary text-xs font-bold px-3 py-1 rounded-full border border-primary/20">NFC Enabled</span>
-                                <span className="bg-sky/10 text-sky text-xs font-bold px-3 py-1 rounded-full border border-sky/20">QR Code Backup</span>
-                                <span className="bg-green-500/10 text-green-600 text-xs font-bold px-3 py-1 rounded-full border border-green-500/20">Waterproof</span>
-                            </div>
-                        </div>
 
-                        <div className="space-y-4">
-                            <p className="text-muted-foreground leading-relaxed">
-                                Boost your business credibility effortlessly. Place this stand at your reception or checkout counter, and let your customers share their positive experiences instantly. No apps required – just a simple tap or scan.
-                            </p>
+                            <div className="bg-white/50 backdrop-blur-xl border border-white/20 shadow-xl rounded-3xl p-6 md:p-8 relative overflow-hidden">
+                                {/* Decorative glow */}
+                                <div className="absolute top-0 right-0 w-64 h-64 bg-primary/5 rounded-full blur-3xl -z-10"></div>
 
-                            <ul className="space-y-3">
-                                {[
-                                    "Increase review volume by 300%",
-                                    "Compatible with all smartphones",
-                                    "Custom branded with your logo",
-                                    "No monthly subscription fees"
-                                ].map((feature, i) => (
-                                    <li key={i} className="flex items-center gap-3">
-                                        <div className="w-6 h-6 rounded-full bg-primary/10 flex items-center justify-center">
-                                            <Zap className="w-3 h-3 text-primary" />
+                                <Tabs defaultValue="semi" className="w-full" onValueChange={(val) => setCustomization(val as "semi" | "full")}>
+                                    <div className="flex flex-col gap-6">
+                                        <div className="bg-secondary/10 p-1.5 rounded-full border border-secondary/10">
+                                            <TabsList className="grid w-full grid-cols-2 bg-transparent h-auto p-0 gap-2">
+                                                <TabsTrigger
+                                                    value="semi"
+                                                    className="rounded-full py-3 text-sm font-semibold text-muted-foreground data-[state=active]:bg-white data-[state=active]:text-primary data-[state=active]:shadow-md transition-all duration-300"
+                                                >
+                                                    Semi Custom
+                                                </TabsTrigger>
+                                                <TabsTrigger
+                                                    value="full"
+                                                    className="rounded-full py-3 text-sm font-semibold text-muted-foreground data-[state=active]:bg-white data-[state=active]:text-primary data-[state=active]:shadow-md transition-all duration-300"
+                                                >
+                                                    Full Custom
+                                                </TabsTrigger>
+                                            </TabsList>
                                         </div>
-                                        <span className="text-foreground/80 font-medium">{feature}</span>
-                                    </li>
-                                ))}
-                            </ul>
-                        </div>
 
-                        <Button
-                            onClick={scrollToOrder}
-                            className="w-full md:w-auto px-8 py-6 bg-primary hover:bg-primary/90 text-white text-lg font-bold rounded-full shadow-lg hover:shadow-primary/50 transition-all duration-300 group"
-                        >
-                            Order Review Stand
-                            <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" />
-                        </Button>
+                                        <div className="space-y-8 animate-fade-in">
+                                            {/* Material Selection */}
+                                            <div className="space-y-4">
+                                                <div className="flex items-center justify-between">
+                                                    <label className="text-sm font-bold text-foreground/80 tracking-wide uppercase text-[11px]">Choose Material</label>
+                                                </div>
+                                                <div className="grid grid-cols-2 gap-4">
+                                                    <button
+                                                        onClick={() => setMaterial("white")}
+                                                        className={`relative overflow-hidden group p-4 rounded-2xl border transition-all duration-300 text-left ${material === "white" ? "border-primary/50 bg-white shadow-lg shadow-primary/5 ring-1 ring-primary/20" : "border-transparent bg-white/60 hover:bg-white hover:border-primary/20"}`}
+                                                    >
+                                                        <div className="flex items-center justify-between mb-2">
+                                                            <div className="w-6 h-6 rounded-full border border-gray-100 bg-gradient-to-br from-white to-gray-50 shadow-sm"></div>
+                                                            {material === "white" && <div className="w-2 h-2 rounded-full bg-primary animate-scale-in"></div>}
+                                                        </div>
+                                                        <span className={`font-serif font-bold text-lg block ${material === "white" ? "text-primary" : "text-gray-600"}`}>White</span>
+                                                        <span className="text-xs text-muted-foreground">Minimalist & Clean</span>
+                                                        <div className={`absolute inset-0 border-2 border-primary rounded-2xl opacity-0 transition-opacity duration-300 ${material === "white" ? "opacity-100" : "group-hover:opacity-10"}`}></div>
+                                                    </button>
+
+                                                    <button
+                                                        onClick={() => setMaterial("black")}
+                                                        className={`relative overflow-hidden group p-4 rounded-2xl border transition-all duration-300 text-left ${material === "black" ? "border-primary/50 bg-gray-900 shadow-lg shadow-black/20 ring-1 ring-primary/20" : "border-transparent bg-white/60 hover:bg-white hover:border-primary/20"}`}
+                                                    >
+                                                        <div className="flex items-center justify-between mb-2">
+                                                            <div className="w-6 h-6 rounded-full border border-gray-700 bg-gradient-to-br from-gray-800 to-black shadow-sm"></div>
+                                                            {material === "black" && <div className="w-2 h-2 rounded-full bg-primary animate-scale-in"></div>}
+                                                        </div>
+                                                        <span className={`font-serif font-bold text-lg block ${material === "black" ? "text-white" : "text-gray-600"}`}>Black</span>
+                                                        <span className={`text-xs ${material === "black" ? "text-gray-400" : "text-muted-foreground"}`}>Bold & Professional</span>
+                                                        <div className={`absolute inset-0 border-2 border-primary rounded-2xl opacity-0 transition-opacity duration-300 ${material === "black" ? "opacity-100" : "group-hover:opacity-10"}`}></div>
+                                                    </button>
+                                                </div>
+                                            </div>
+
+                                            {/* Price Display */}
+                                            <div className="relative p-6 rounded-2xl bg-gradient-to-br from-primary/5 via-primary/0 to-transparent border border-primary/10">
+                                                <div className="flex items-end justify-between">
+                                                    <div className="space-y-1">
+                                                        <p className="text-sm font-medium text-muted-foreground">Estimate Total</p>
+                                                        <p className="text-xs text-primary bg-primary/10 px-2 py-0.5 rounded-full inline-block">Includes Tax</p>
+                                                    </div>
+                                                    <div className="text-right">
+                                                        <span className="block text-5xl font-serif font-bold text-primary tracking-tight">
+                                                            <span className="text-2xl align-top mr-1 opacity-60">৳</span>
+                                                            {pricing[customization][material]}
+                                                        </span>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div className="border-t border-border/50 pt-6">
+                                                <p className="text-muted-foreground leading-relaxed text-sm">
+                                                    {descriptions[customization]}
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </Tabs>
+
+                                <div className="space-y-6 mt-8 border-t border-border/40 pt-6">
+                                    <div className="flex flex-wrap gap-2">
+                                        <span className="bg-primary/10 text-primary font-bold text-xs px-3 py-1.5 rounded-full border border-primary/20">NFC Enabled</span>
+                                        <span className="bg-sky/10 text-sky-700 font-bold text-xs px-3 py-1.5 rounded-full border border-sky/20">QR Code Backup</span>
+                                        <span className="bg-green-500/10 text-green-700 font-bold text-xs px-3 py-1.5 rounded-full border border-green-500/20">Waterproof</span>
+                                    </div>
+
+                                    <ul className="space-y-3">
+                                        {[
+                                            "Increase review volume by 300%",
+                                            "Compatible with all smartphones",
+                                            "Custom branded with your logo",
+                                            "No monthly subscription fees"
+                                        ].map((feature, i) => (
+                                            <li key={i} className="flex items-center gap-3">
+                                                <div className="w-6 h-6 rounded-full bg-primary/10 flex items-center justify-center shrink-0">
+                                                    <Zap className="w-3 h-3 text-primary" />
+                                                </div>
+                                                <span className="text-foreground/80 font-medium text-sm">{feature}</span>
+                                            </li>
+                                        ))}
+                                    </ul>
+
+                                    <Button
+                                        onClick={scrollToOrder}
+                                        className="w-full py-6 bg-primary hover:bg-primary/90 text-white text-lg font-bold rounded-xl shadow-lg hover:shadow-primary/50 transition-all duration-300 group"
+                                    >
+                                        Order Review Stand
+                                        <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" />
+                                    </Button>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
