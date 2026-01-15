@@ -11,8 +11,10 @@ const OrderSection = () => {
   const [formData, setFormData] = useState({
     name: "",
     phone: "",
+    phone: "",
     email: "",
     quantity: "1",
+    product: "Smart Card", // Default product
     address: ""
   });
   const [selectedImage, setSelectedImage] = useState<string | null>(null);
@@ -73,7 +75,7 @@ const OrderSection = () => {
       toast.success("Order initiated!");
 
       // 2. Construct WhatsApp Message
-      let message = `Hello Wavelink, I would like to place an order.%0A%0A*Order Details:*%0AName: ${formData.name}%0APhone: ${formData.phone}%0AEmail: ${formData.email}%0AQuantity: ${formData.quantity}%0AAddress: ${formData.address}`;
+      let message = `Hello Wavelink, I would like to place an order.%0A%0A*Order Details:*%0AName: ${formData.name}%0APhone: ${formData.phone}%0AEmail: ${formData.email}%0AProduct: ${formData.product}%0AQuantity: ${formData.quantity}%0AAddress: ${formData.address}`;
 
       if (selectedImage) {
         message += `%0A%0A*Custom Design:* I have a design photo to share. I am attaching it now.`;
@@ -86,7 +88,7 @@ const OrderSection = () => {
         window.open(CONFIG.WHATSAPP_LINK(message), '_blank');
         setIsSubmitting(false);
         // Reset form
-        setFormData({ name: "", phone: "", email: "", quantity: "1", address: "" });
+        setFormData({ name: "", phone: "", email: "", quantity: "1", product: "Smart Card", address: "" });
         setSelectedImage(null);
       }, 1500);
 
@@ -145,14 +147,26 @@ const OrderSection = () => {
                 </div>
               </div>
 
+              <div className="space-y-2">
+                <Label htmlFor="email" className="text-mist font-medium">Email Address</Label>
+                <Input
+                  id="email" name="email" type="email" required placeholder="john@example.com"
+                  value={formData.email} onChange={handleInputChange}
+                  className="bg-navy/50 border-white/10 text-white placeholder:text-white/20 focus:border-sky/50 focus:bg-navy/80 transition-all h-12"
+                />
+              </div>
+
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div className="space-y-2">
-                  <Label htmlFor="email" className="text-mist font-medium">Email Address</Label>
-                  <Input
-                    id="email" name="email" type="email" required placeholder="john@example.com"
-                    value={formData.email} onChange={handleInputChange}
-                    className="bg-navy/50 border-white/10 text-white placeholder:text-white/20 focus:border-sky/50 focus:bg-navy/80 transition-all h-12"
-                  />
+                  <Label htmlFor="product" className="text-mist font-medium">Select Product</Label>
+                  <select
+                    id="product" name="product"
+                    value={formData.product} onChange={(e) => setFormData({ ...formData, product: e.target.value })}
+                    className="w-full bg-navy/50 border border-white/10 text-white rounded-md h-12 px-3 focus:outline-none focus:border-sky/50 focus:bg-navy/80 transition-all"
+                  >
+                    <option value="Smart Card">NFC Smart Card</option>
+                    <option value="Review Stand">NFC Review Stand</option>
+                  </select>
                 </div>
                 <div className="space-y-2">
                   <Label htmlFor="quantity" className="text-mist font-medium">Quantity</Label>

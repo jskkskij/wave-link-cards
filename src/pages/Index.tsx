@@ -12,6 +12,7 @@ const ReviewsSection = lazy(() => import("@/components/ReviewsSection"));
 const AffiliateSection = lazy(() => import("@/components/AffiliateSection"));
 const FAQSection = lazy(() => import("@/components/FAQSection"));
 const ContactSection = lazy(() => import("@/components/ContactSection"));
+const ReviewStandsSection = lazy(() => import("@/components/ReviewStandsSection"));
 const Footer = lazy(() => import("@/components/Footer"));
 
 // Loading fallback component
@@ -38,6 +39,9 @@ const Index = () => {
           </Suspense>
           <Suspense fallback={<SectionLoader />}>
             <FeaturesSection />
+          </Suspense>
+          <Suspense fallback={<SectionLoader />}>
+            <ReviewStandsSection />
           </Suspense>
           <Suspense fallback={<SectionLoader />}>
             <PricingSection />
