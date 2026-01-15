@@ -69,8 +69,10 @@ const ReviewsSection = () => {
                     <iframe
                       src={review.videoUrl}
                       className="absolute top-0 left-0 w-full h-full"
-                      allow="autoplay"
+                      allow="autoplay; fullscreen; picture-in-picture"
                       allowFullScreen
+                      sandbox="allow-scripts allow-same-origin allow-presentation"
+                      referrerPolicy="no-referrer"
                       title={`Review by ${review.customerName}`}
                       loading="lazy"
                     />

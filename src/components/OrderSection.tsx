@@ -1,4 +1,4 @@
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
@@ -6,20 +6,37 @@ import { Label } from "@/components/ui/label";
 import { MessageCircle, Send, Loader2, CheckCircle2, Upload, X, AlertCircle } from "lucide-react";
 import { toast } from "sonner";
 import { CONFIG } from "@/lib/config";
+import { useRateLimit } from "@/hooks/use-rate-limit";
+import { initCSRFProtection, getCSRFToken, logSecurityEvent } from "@/lib/security";
+import { OrderFormSchema, validateFormData } from "@/lib/validation";
 
 const OrderSection = () => {
   const [formData, setFormData] = useState({
     name: "",
     phone: "",
-    phone: "",
     email: "",
     quantity: "1",
     product: "Smart Card", // Default product
-    address: ""
+    address: "",
+    website: "" // Honeypot field for bot detection
   });
   const [selectedImage, setSelectedImage] = useState<string | null>(null);
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [csrfToken, setCSRFToken] = useState<string>("");
   const fileInputRef = useRef<HTMLInputElement>(null);
+
+  // Initialize CSRF protection
+  useEffect(() => {
+    const token = initCSRFProtection();
+    setCSRFToken(token);
+  }, []);
+
+  // Rate limiting: max 3 submissions per minute, block for 5 minutes if exceeded
+  const { checkRateLimit } = useRateLimit('order-form', {
+    maxAttempts: 3,
+    windowMs: 60000, // 1 minute
+    blockDurationMs: 300000 // 5 minutes
+  });
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
@@ -47,35 +64,76 @@ const OrderSection = () => {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
-    // Validate Turnstile
+    // 1. Check rate limit
+    const rateLimitCheck = checkRateLimit();
+    if (!rateLimitCheck.isAllowed) {
+      toast.error(rateLimitCheck.message || "Too many attempts. Please try again later.");
+      logSecurityEvent('RATE_LIMIT_EXCEEDED', { form: 'order' });
+      return;
+    }
+
+    // 2. Validate CSRF token
+    const currentCSRFToken = getCSRFToken();
+    if (!currentCSRFToken || currentCSRFToken !== csrfToken) {
+      toast.error("Security token invalid. Please refresh the page.");
+      logSecurityEvent('CSRF_TOKEN_INVALID', { form: 'order' });
+      return;
+    }
+
+    // 3. Validate Turnstile (optional - log but don't block)
     const formDataObj = new FormData(e.target as HTMLFormElement);
     const turnstileToken = formDataObj.get('cf-turnstile-response');
 
     if (!turnstileToken) {
-      toast.error("Please complete the security verification.");
+      // Log for monitoring but don't block the user
+      logSecurityEvent('TURNSTILE_MISSING', { form: 'order' }, 'info');
+      console.warn('[Security] Turnstile token missing - proceeding with other validations');
+    }
+
+    // 4. Check honeypot field (bot detection)
+    if (formData.website) {
+      logSecurityEvent('HONEYPOT_TRIGGERED', { value: formData.website }, 'critical');
+      toast.error("Security check failed. Please try again.");
       return;
     }
+
+    // 5. Validate form data with Zod (runtime type safety)
+    const validation = validateFormData(OrderFormSchema, formData);
+
+    if (!validation.success) {
+      // TypeScript now knows this is the error case
+      toast.error(validation.error);
+      logSecurityEvent('VALIDATION_FAILED', { errors: validation.details }, 'warning');
+      return;
+    }
+
+    // TypeScript now knows this is the success case
+    const sanitizedData = validation.data;
 
     setIsSubmitting(true);
 
     try {
-      // 1. Send text data to Google Sheets
+      // 6. Send text data to Google Sheets with CSRF token
       await fetch(CONFIG.GOOGLE_SCRIPT_URL, {
         method: "POST",
         mode: "no-cors",
         headers: {
           "Content-Type": "application/x-www-form-urlencoded",
+          "X-CSRF-Token": csrfToken,
         },
         body: new URLSearchParams({
-          ...formData,
-          hasCustomDesign: selectedImage ? "Yes" : "No"
+          ...sanitizedData,
+          hasCustomDesign: selectedImage ? "Yes" : "No",
+          _csrf: csrfToken,
+          timestamp: new Date().toISOString(),
         } as any).toString(),
       });
 
       toast.success("Order initiated!");
+      logSecurityEvent('ORDER_SUBMITTED', { product: sanitizedData.product, quantity: sanitizedData.quantity });
 
-      // 2. Construct WhatsApp Message
-      let message = `Hello Wavelink, I would like to place an order.%0A%0A*Order Details:*%0AName: ${formData.name}%0APhone: ${formData.phone}%0AEmail: ${formData.email}%0AProduct: ${formData.product}%0AQuantity: ${formData.quantity}%0AAddress: ${formData.address}`;
+      // 7. Construct WhatsApp Message with sanitized data
+      let message = `Hello Wavelink, I would like to place an order.%0A%0A*Order Details:*%0AName: ${encodeURIComponent(sanitizedData.name)}%0APhone: ${encodeURIComponent(sanitizedData.phone)}%0AEmail: ${encodeURIComponent(sanitizedData.email)}%0AProduct: ${encodeURIComponent(sanitizedData.product)}%0AQuantity: ${sanitizedData.quantity}%0AAddress: ${encodeURIComponent(sanitizedData.address)}`;
 
       if (selectedImage) {
         message += `%0A%0A*Custom Design:* I have a design photo to share. I am attaching it now.`;
@@ -88,14 +146,18 @@ const OrderSection = () => {
         window.open(CONFIG.WHATSAPP_LINK(message), '_blank');
         setIsSubmitting(false);
         // Reset form
-        setFormData({ name: "", phone: "", email: "", quantity: "1", product: "Smart Card", address: "" });
+        setFormData({ name: "", phone: "", email: "", quantity: "1", product: "Smart Card", address: "", website: "" });
         setSelectedImage(null);
+        // Generate new CSRF token for next submission
+        const newToken = initCSRFProtection();
+        setCSRFToken(newToken);
       }, 1500);
 
     } catch (error) {
       console.error("Submission error:", error);
+      logSecurityEvent('ORDER_SUBMISSION_ERROR', { error: String(error) });
       toast.error("Network error. Redirecting to WhatsApp manually.");
-      const message = `Hello Wavelink, I tried to submit the form but it failed. Here are my details:%0AName: ${formData.name}%0APhone: ${formData.phone}%0A...`;
+      const message = `Hello Wavelink, I tried to submit the form but it failed. Here are my details:%0AName: ${encodeURIComponent(sanitizedData.name)}%0APhone: ${encodeURIComponent(sanitizedData.phone)}%0A...`;
       window.open(CONFIG.WHATSAPP_LINK(message), '_blank');
       setIsSubmitting(false);
     }
@@ -140,7 +202,7 @@ const OrderSection = () => {
                 <div className="space-y-2">
                   <Label htmlFor="phone" className="text-mist font-medium">Phone Number</Label>
                   <Input
-                    id="phone" name="phone" required placeholder="+880..."
+                    id="phone" name="phone" required placeholder="+880... or any valid number"
                     value={formData.phone} onChange={handleInputChange}
                     className="bg-navy/50 border-white/10 text-white placeholder:text-white/20 focus:border-sky/50 focus:bg-navy/80 transition-all h-12"
                   />
@@ -240,6 +302,18 @@ const OrderSection = () => {
                   className="bg-navy/50 border-white/10 text-white placeholder:text-white/20 min-h-[100px] focus:border-sky/50 focus:bg-navy/80 transition-all resize-none"
                 />
               </div>
+
+              {/* Honeypot field - hidden from users, only bots fill it */}
+              <input
+                type="text"
+                name="website"
+                tabIndex={-1}
+                autoComplete="off"
+                value={formData.website}
+                onChange={handleInputChange}
+                style={{ position: 'absolute', left: '-9999px', opacity: 0, pointerEvents: 'none' }}
+                aria-hidden="true"
+              />
 
               <div className="space-y-4">
                 <div

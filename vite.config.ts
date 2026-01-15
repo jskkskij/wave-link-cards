@@ -9,6 +9,17 @@ export default defineConfig(({ mode }) => ({
     host: "::",
     port: 8080,
     open: false,
+    cors: {
+      origin: mode === 'development'
+        ? ['http://localhost:8080', 'http://127.0.0.1:8080', 'http://[::]:8080']
+        : false,
+      credentials: true,
+    },
+    headers: {
+      'X-Frame-Options': 'SAMEORIGIN',
+      'X-Content-Type-Options': 'nosniff',
+      'Referrer-Policy': 'strict-origin-when-cross-origin',
+    }
   },
   plugins: [react(), mode === "development" && componentTagger()].filter(Boolean),
   resolve: {

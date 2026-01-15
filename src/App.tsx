@@ -1,4 +1,4 @@
-import { lazy, Suspense } from "react";
+import { lazy, Suspense, useEffect } from "react";
 import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
@@ -9,7 +9,7 @@ import NotFound from "./pages/NotFound";
 import { Analytics } from "@vercel/analytics/react"
 import { SpeedInsights } from "@vercel/speed-insights/react"
 import CookieConsent from "./components/CookieConsent";
-import { useDisableSource } from "./hooks/use-disable-source";
+import { initSecurityMonitoring } from "@/lib/security-monitor";
 
 // Lazy load pages for performance
 const ThankYou = lazy(() => import("./pages/ThankYou"));
@@ -28,7 +28,10 @@ const RouteLoader = () => (
 );
 
 const App = () => {
-  useDisableSource();
+  // Initialize security monitoring on app startup
+  useEffect(() => {
+    initSecurityMonitoring();
+  }, []);
 
   return (
     <QueryClientProvider client={queryClient}>
