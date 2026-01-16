@@ -9,6 +9,7 @@ const FeaturesSection = lazy(() => import("@/components/FeaturesSection"));
 const PricingSection = lazy(() => import("@/components/PricingSection"));
 const OrderSection = lazy(() => import("@/components/OrderSection"));
 const ReviewsSection = lazy(() => import("@/components/ReviewsSection"));
+const AdSenseBanner = lazy(() => import("@/components/AdSenseBanner")); // Lazy load AdSense
 const AffiliateSection = lazy(() => import("@/components/AffiliateSection"));
 const FAQSection = lazy(() => import("@/components/FAQSection"));
 const ContactSection = lazy(() => import("@/components/ContactSection"));
@@ -52,6 +53,12 @@ const Index = () => {
           <Suspense fallback={<SectionLoader />}>
             <ReviewsSection />
           </Suspense>
+
+          {/* Google AdSense Banner - Discrete Placement */}
+          <Suspense fallback={null}>
+            <AdSenseBanner />
+          </Suspense>
+
           <Suspense fallback={<SectionLoader />}>
             <AffiliateSection />
           </Suspense>
