@@ -118,6 +118,10 @@ export default {
         "pulse-subtle": {
           "0%, 100%": { opacity: "1" },
           "50%": { opacity: "0.8" },
+        },
+        "swing": {
+          "0%, 100%": { transform: "rotate(3deg)" },
+          "50%": { transform: "rotate(-3deg)" },
         }
       },
       animation: {
@@ -132,6 +136,7 @@ export default {
         "shimmer": "shimmer 3s linear infinite",
         "pulse-subtle": "pulse-subtle 3s ease-in-out infinite",
         "drop": "drop 2s infinite",
+        "swing": "swing 3s ease-in-out infinite",
       },
       backgroundImage: {
         'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',

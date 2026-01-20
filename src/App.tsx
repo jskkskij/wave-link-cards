@@ -10,6 +10,7 @@ import { Analytics } from "@vercel/analytics/react"
 import { SpeedInsights } from "@vercel/speed-insights/react"
 import CookieConsent from "./components/CookieConsent";
 import { initSecurityMonitoring } from "@/lib/security-monitor";
+import HangingSign from "@/components/HangingSign";
 
 // Lazy load pages for performance
 const ThankYou = lazy(() => import("./pages/ThankYou"));
@@ -39,6 +40,7 @@ const App = () => {
         <Toaster />
         <Sonner />
         <BrowserRouter>
+          <HangingSign />
           <Routes>
             <Route path="/" element={<Index />} />
             <Route
