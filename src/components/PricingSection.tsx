@@ -1,6 +1,6 @@
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { Check, ShieldCheck, Lock, Users, Clock, TrendingUp, Zap, ArrowRight, Truck, Info, Building2 } from "lucide-react";
+import { Check, ShieldCheck, Lock, Users, Clock, TrendingUp, Zap, ArrowRight, Info, Building2 } from "lucide-react";
 import InteractiveCardDisplay from "./InteractiveCardDisplay";
 import { useState, useEffect } from "react";
 
