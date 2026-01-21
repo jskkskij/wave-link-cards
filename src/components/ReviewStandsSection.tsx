@@ -13,7 +13,7 @@ import { ArrowRight, Star, Zap } from "lucide-react";
 import stand1 from "@/assets/review-stands/stand-1.jpg";
 import stand2 from "@/assets/review-stands/stand-2.jpg";
 import stand3 from "@/assets/review-stands/stand-3.jpg";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
 
 const ReviewStandsSection = () => {
     const images = [stand1, stand2, stand3];
