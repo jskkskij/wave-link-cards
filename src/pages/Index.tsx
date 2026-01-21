@@ -38,30 +38,36 @@ const Index = () => {
           <Suspense fallback={<SectionLoader />}>
             <DemoVideoSection />
           </Suspense>
-          <Suspense fallback={<SectionLoader />}>
-            <FeaturesSection />
-          </Suspense>
-          <Suspense fallback={<SectionLoader />}>
-            <ReviewStandsSection />
-          </Suspense>
+          {/* Grouped to reduce excessive spacing */}
+          <div className="space-y-0">
+            <Suspense fallback={<SectionLoader />}>
+              <FeaturesSection />
+            </Suspense>
+            <Suspense fallback={<SectionLoader />}>
+              <ReviewStandsSection />
+            </Suspense>
+          </div>
           <Suspense fallback={<SectionLoader />}>
             <PricingSection />
           </Suspense>
           <Suspense fallback={<SectionLoader />}>
             <OrderSection />
           </Suspense>
-          <Suspense fallback={<SectionLoader />}>
-            <ReviewsSection />
-          </Suspense>
+          {/* Grouped to reduce excessive spacing caused by global space-y */}
+          <div className="space-y-0">
+            <Suspense fallback={<SectionLoader />}>
+              <ReviewsSection />
+            </Suspense>
 
-          {/* Google AdSense Banner - Discrete Placement */}
-          <Suspense fallback={null}>
-            <AdSenseBanner />
-          </Suspense>
+            {/* Google AdSense Banner - Discrete Placement */}
+            <Suspense fallback={null}>
+              <AdSenseBanner />
+            </Suspense>
 
-          <Suspense fallback={<SectionLoader />}>
-            <AffiliateSection />
-          </Suspense>
+            <Suspense fallback={<SectionLoader />}>
+              <AffiliateSection />
+            </Suspense>
+          </div>
           <Suspense fallback={<SectionLoader />}>
             <FAQSection />
           </Suspense>

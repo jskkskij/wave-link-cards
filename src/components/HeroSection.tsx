@@ -73,19 +73,19 @@ const HeroSection = () => {
           <div className="mt-8 md:mt-12 animate-fade-in opacity-0" style={{ animationDelay: '0.6s' }}>
             <button
               onClick={scrollToOrder}
-              className="group flex flex-col items-center gap-4 text-mist/60 hover:text-white transition-colors duration-500"
+              className="group flex flex-col items-center gap-4 text-white/90 hover:text-white transition-colors duration-500"
             >
-              <span className="uppercase tracking-[0.2em] text-[10px] md:text-xs font-medium group-hover:text-sky transition-colors">
+              <span className="uppercase tracking-[0.2em] text-xs md:text-sm font-bold group-hover:text-sky transition-colors drop-shadow-md">
                 Begin Journey
               </span>
 
               {/* Custom Scroll Indicator - simulating "infinite scroll" line */}
-              <div className="relative w-[1px] h-12 md:h-16 bg-white/10 overflow-hidden">
+              <div className="relative w-[1.5px] h-12 md:h-16 bg-white/20 overflow-hidden">
                 <div className="absolute top-0 left-0 w-full h-1/2 bg-gradient-to-b from-transparent via-sky to-transparent animate-drop" />
               </div>
 
-              <div className="w-8 h-8 rounded-full border border-white/10 flex items-center justify-center group-hover:border-sky/50 transition-colors">
-                <ArrowDown className="w-4 h-4 text-mist/60 group-hover:text-sky animate-bounce" />
+              <div className="w-10 h-10 rounded-full border border-white/30 flex items-center justify-center group-hover:border-sky/50 transition-colors bg-white/5 backdrop-blur-sm shadow-lg">
+                <ArrowDown className="w-5 h-5 text-white group-hover:text-sky animate-bounce" />
               </div>
             </button>
           </div>

@@ -6,7 +6,7 @@ import affiliateImage from "@/assets/affiliate-program.png";
 
 const AffiliateSection = () => {
     return (
-        <section className="py-24 bg-gradient-to-b from-background to-secondary/20 relative overflow-hidden" id="affiliate">
+        <section className="pt-0 pb-24 bg-gradient-to-b from-background to-secondary/20 relative overflow-hidden" id="affiliate">
             {/* Background Elements */}
             <div className="absolute top-0 right-0 w-96 h-96 bg-sky/10 rounded-full blur-[120px] -z-10" />
             <div className="absolute bottom-0 left-0 w-96 h-96 bg-primary/10 rounded-full blur-[120px] -z-10" />

@@ -43,7 +43,7 @@ const ReviewsSection = () => {
   };
 
   return (
-    <section id="reviews" className="py-12 md:py-20 bg-gradient-to-b from-background via-mist/30 to-background relative overflow-hidden">
+    <section id="reviews" className="pt-12 pb-0 md:pt-20 md:pb-0 bg-gradient-to-b from-background via-mist/30 to-background relative overflow-hidden">
       {/* Ambient background blur */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-sky/5 rounded-full blur-[100px] pointer-events-none" />
 

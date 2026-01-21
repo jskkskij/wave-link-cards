@@ -77,7 +77,7 @@ const FeaturesSection = () => {
   };
 
   return (
-    <section className="py-24 bg-secondary/30 relative overflow-hidden" id="features">
+    <section className="pt-24 pb-0 bg-secondary/30 relative overflow-hidden" id="features">
       {/* Decorative Background Elements */}
       <div className="absolute top-1/4 -right-20 w-80 h-80 bg-primary/5 rounded-full blur-[100px] pointer-events-none" />
       <div className="absolute bottom-1/4 -left-20 w-80 h-80 bg-sky/5 rounded-full blur-[100px] pointer-events-none" />

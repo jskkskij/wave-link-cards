@@ -47,7 +47,7 @@ const ReviewStandsSection = () => {
     };
 
     return (
-        <section className="py-20 bg-gradient-to-t from-background via-secondary/5 to-background relative overflow-hidden" id="review-stands">
+        <section className="pt-8 pb-20 bg-gradient-to-t from-background via-secondary/5 to-background relative overflow-hidden" id="review-stands">
             {/* Background decorative elements */}
             <div className="absolute inset-0 overflow-hidden pointer-events-none" aria-hidden="true">
                 <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-primary/5 rounded-full blur-3xl"></div>
