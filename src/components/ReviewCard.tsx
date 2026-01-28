@@ -49,8 +49,8 @@ export const ReviewCard = ({ review, index }: ReviewCardProps) => {
     <Card
       ref={cardRef}
       className={`relative bg-card/80 backdrop-blur-sm border-border/50 transition-all duration-500 ease-out overflow-hidden group ${isHovered
-          ? 'shadow-luxury -translate-y-2 scale-[1.02] border-primary/30'
-          : 'shadow-sm hover:shadow-card-hover'
+        ? 'shadow-luxury -translate-y-2 scale-[1.02] border-primary/30'
+        : 'shadow-sm hover:shadow-card-hover'
         }`}
       style={{ animationDelay: `${index * 0.1}s` }}
       onMouseEnter={() => setIsHovered(true)}
@@ -86,8 +86,9 @@ export const ReviewCard = ({ review, index }: ReviewCardProps) => {
               )}
             </div>
             {review.verified && (
-              <p className="text-xs text-primary font-medium">
-                Verified Customer
+              <p className="text-xs text-sky font-bold flex items-center gap-1">
+                <CheckCircle2 size={12} />
+                Verified Buyer
               </p>
             )}
           </div>
@@ -111,8 +112,8 @@ export const ReviewCard = ({ review, index }: ReviewCardProps) => {
             <Star
               key={star}
               className={`w-4 h-4 transition-all duration-300 ${star <= review.rating
-                  ? `fill-primary text-primary ${isHovered ? 'scale-110' : ''}`
-                  : "text-muted"
+                ? `fill-primary text-primary ${isHovered ? 'scale-110' : ''}`
+                : "text-muted"
                 }`}
               style={{ transitionDelay: `${star * 20}ms` }}
               aria-hidden="true"

@@ -9,4 +9,7 @@ export const CONFIG = {
   TURNSTILE_SITE_KEY: import.meta.env.VITE_TURNSTILE_SITE_KEY || "",
   WHATSAPP_LINK: (message: string) =>
     `https://wa.me/${import.meta.env.VITE_WHATSAPP_NUMBER || "8801410809023"}?text=${message}`,
+  FACEBOOK_LINK: "https://www.facebook.com/profile.php?id=61582857699324",
+  INSTAGRAM_LINK: "https://www.instagram.com/__wave_link__/",
+  TIKTOK_LINK: "https://www.tiktok.com/@mohammadabir68",
 };

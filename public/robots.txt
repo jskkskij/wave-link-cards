@@ -1,21 +1,18 @@
-User-agent: Googlebot
+User-agent: GPTBot
 Allow: /
 
-User-agent: Bingbot
+User-agent: CCBot
 Allow: /
 
-User-agent: Twitterbot
+User-agent: ClaudeBot
 Allow: /
 
-User-agent: facebookexternalhit
+User-agent: Google-Extended
 Allow: /
-
-User-agent: Yandex
-Allow: /
-Crawl-delay: 2
 
 User-agent: *
-Allow: /
+Disallow: /admin/
+Disallow: /test/
+Disallow: /api/
 
 Sitemap: https://wave-link-cards.vercel.app/sitemap.xml
-llms.txt: https://wave-link-cards.vercel.app/llms.txt

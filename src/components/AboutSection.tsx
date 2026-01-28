@@ -89,10 +89,10 @@ const AboutSection = () => {
             What is Wavelink?
           </motion.h2>
           <motion.p
-            className="text-lg text-muted-foreground max-w-2xl mx-auto"
+            className="text-lg text-muted-foreground max-w-3xl mx-auto leading-relaxed"
             variants={itemVariants}
           >
-            Wavelink helps you share your contact, social, and professional info with a single tap using NFC-powered smart cards.
+            Wavelink is a next-generation networking solution that leverages Near Field Communication (NFC) technology to bridge the gap between physical connections and digital presence. Our smart cards allow you to instantly share your contact details, social media profiles, and professional portfolio with a single tap.
           </motion.p>
         </motion.div>
 
@@ -129,9 +129,9 @@ const AboutSection = () => {
                   <Smartphone className="w-10 h-10 text-white filter drop-shadow-md" />
                 </motion.div>
               </motion.div>
-              <h3 className={`text-xl font-semibold mb-3 transition-colors duration-300 ${hoveredStates[0] ? 'text-primary' : 'text-card-foreground group-hover:text-primary'}`}>No App Required</h3>
+              <h3 className={`text-xl font-semibold mb-3 transition-colors duration-300 ${hoveredStates[0] ? 'text-primary' : 'text-card-foreground group-hover:text-primary'}`}>Universal Compatibility</h3>
               <p className="text-muted-foreground leading-relaxed">
-                Simply tap your Wavelink card on any smartphone. No downloads, no hassle.
+                Wavelink cards work seamlessly with any NFC-enabled smartphone (iOS & Android). The recipient doesn't need to install any third-party apps or software to receive your information.
               </p>
             </Card>
           </motion.div>
@@ -162,9 +162,9 @@ const AboutSection = () => {
                   <Zap className="w-10 h-10 text-white filter drop-shadow-md" />
                 </motion.div>
               </motion.div>
-              <h3 className={`text-xl font-semibold mb-3 transition-colors duration-300 ${hoveredStates[1] ? 'text-primary' : 'text-card-foreground group-hover:text-primary'}`}>Instant Sharing</h3>
+              <h3 className={`text-xl font-semibold mb-3 transition-colors duration-300 ${hoveredStates[1] ? 'text-primary' : 'text-card-foreground group-hover:text-primary'}`}>High-Speed Networking</h3>
               <p className="text-muted-foreground leading-relaxed">
-                Share all your contact details, social media, and portfolio in one tap.
+                Accelerate your professional growth by sharing comprehensive digital profiles, including LinkedIn, portfolios, and contact files (vCard), in less than a second.
               </p>
             </Card>
           </motion.div>
@@ -192,9 +192,9 @@ const AboutSection = () => {
                   <Globe className="w-10 h-10 text-white filter drop-shadow-md" />
                 </motion.div>
               </motion.div>
-              <h3 className={`text-xl font-semibold mb-3 transition-colors duration-300 ${hoveredStates[2] ? 'text-primary' : 'text-card-foreground group-hover:text-primary'}`}>Digital First</h3>
+              <h3 className={`text-xl font-semibold mb-3 transition-colors duration-300 ${hoveredStates[2] ? 'text-primary' : 'text-card-foreground group-hover:text-primary'}`}>Sustainable Identity</h3>
               <p className="text-muted-foreground leading-relaxed">
-                Update your information anytime by informing the official WhatsApp number.
+                Embrace the future of eco-friendly networking. One Wavelink card eliminates the need for thousands of paper business cards, reducing environmental waste and printing costs.
               </p>
             </Card>
           </motion.div>

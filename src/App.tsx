@@ -17,6 +17,7 @@ const ThankYou = lazy(() => import("./pages/ThankYou"));
 const CompanyProfile = lazy(() => import("./pages/CompanyProfile"));
 const PrivacyPolicy = lazy(() => import("./pages/PrivacyPolicy"));
 const TermsOfService = lazy(() => import("./pages/TermsOfService"));
+const DataProcessingAgreement = lazy(() => import("./pages/DataProcessingAgreement"));
 
 const queryClient = new QueryClient();
 
@@ -72,6 +73,14 @@ const App = () => {
               element={
                 <Suspense fallback={<RouteLoader />}>
                   <TermsOfService />
+                </Suspense>
+              }
+            />
+            <Route
+              path="/dpa"
+              element={
+                <Suspense fallback={<RouteLoader />}>
+                  <DataProcessingAgreement />
                 </Suspense>
               }
             />

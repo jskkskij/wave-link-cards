@@ -1,6 +1,7 @@
 import { lazy, Suspense } from "react";
 import Navbar from "@/components/Navbar";
 import HeroSection from "@/components/HeroSection";
+import TopConnectBar from "@/components/TopConnectBar";
 
 // Lazy load below-the-fold sections for performance optimization
 const AboutSection = lazy(() => import("@/components/AboutSection"));
@@ -15,6 +16,7 @@ const FAQSection = lazy(() => import("@/components/FAQSection"));
 const ContactSection = lazy(() => import("@/components/ContactSection"));
 const ReviewStandsSection = lazy(() => import("@/components/ReviewStandsSection"));
 const Footer = lazy(() => import("@/components/Footer"));
+const LiveReviewFeed = lazy(() => import("@/components/LiveReviewFeed"));
 
 // Loading fallback component
 const SectionLoader = () => (
@@ -37,6 +39,9 @@ const Index = () => {
           </Suspense>
           <Suspense fallback={<SectionLoader />}>
             <DemoVideoSection />
+          </Suspense>
+          <Suspense fallback={<SectionLoader />}>
+            <LiveReviewFeed />
           </Suspense>
           {/* Grouped to reduce excessive spacing */}
           <div className="space-y-0">

@@ -6,12 +6,12 @@ const features = [
   {
     icon: Palette,
     title: "Customizable Design",
-    description: "Make it yours with personalized designs and branding"
+    description: "Express your unique brand identity with fully personalized card designs, including logos, colors, and multimedia content."
   },
   {
     icon: Droplet,
-    title: "Waterproof & Durable",
-    description: "Built to last through daily wear and tear"
+    title: "Industrial Grade Durability",
+    description: "Our cards are waterproof and scratch-resistant, engineered to withstand rigorous daily use in any professional environment."
   },
   {
     icon: Globe2,
@@ -20,8 +20,8 @@ const features = [
   },
   {
     icon: Zap,
-    title: "One Tap to Share",
-    description: "Instant contact sharing with NFC technology"
+    title: "Near Field Communication (NFC)",
+    description: "Leverage high-speed data transfer protocols for instant contact sharing with a single contactless tap."
   },
   {
     icon: Leaf,

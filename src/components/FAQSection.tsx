@@ -4,14 +4,14 @@ import { ChevronLeft, ChevronRight, Sparkles } from "lucide-react";
 
 const faqs = [
   {
-    question: "What is a smart card?",
-    answer: "A smart card is an NFC-enabled card that allows you to share your contact information, social media profiles, portfolio, and more with just a tap on any smartphone. No app required!",
+    question: "How does a Wavelink smart card work?",
+    answer: "A Wavelink smart card uses Near Field Communication (NFC) technology to transmit your digital profile details instantly to any compatible smartphone. When you tap the card against a phone, it triggers a link that opens your personalized dashboard in the browser—no app installation needed.",
     icon: "💳",
     color: "from-sky-500/20 to-blue-500/20"
   },
   {
-    question: "Does it work on all phones?",
-    answer: "Yes! Wavelink cards work with any NFC-enabled smartphone, which includes most modern Android and iPhone models (iPhone 7 and above). The recipient doesn't need to install any app.",
+    question: "Is Wavelink compatible with all smartphones?",
+    answer: "Yes, Wavelink is designed for universal compatibility. It works with all NFC-enabled devices, including iPhone 7 and newer, as well as most modern Android smartphones. For older devices, each card comes with a backup QR code for instant access.",
     icon: "📱",
     color: "from-purple-500/20 to-pink-500/20"
   },
@@ -52,8 +52,8 @@ const faqs = [
     color: "from-indigo-500/20 to-blue-500/20"
   },
   {
-    question: "How does an NFC card help the environment?",
-    answer: "One digital card replaces thousands of paper business cards, significantly reducing your carbon footprint and eliminating paper waste.",
+    question: "How does using an NFC card help the environment?",
+    answer: "By switching to a digital business card, you help eliminate the 8-10 billion paper cards printed annually, 88% of which are thrown away within a week. One Wavelink card lasts for years, drastically reducing paper waste and your environmental footprint.",
     icon: "🌱",
     color: "from-green-500/20 to-emerald-500/20"
   }
