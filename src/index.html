@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wavelink Interactive</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@800&display=swap');
+
+        body {
+            margin: 0;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: #ffffff;
+            font-family: 'Montserrat', sans-serif;
+            overflow: hidden;
+        }
+
+        .main-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 0;
+        }
+
+        .brand-block {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .interactive-word {
+            display: flex;
+            gap: 4px;
+            cursor: default;
+            align-items: baseline;
+            letter-spacing: 0.08em;
+            justify-content: center;
+        }
+
+        .char {
+            font-size: 2rem;
+            font-weight: 600;
+            color: #102a43;
+            display: inline-block;
+            position: relative;
+            user-select: none;
+            will-change: transform, color, filter;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        /* Letter "i" with Wi‑Fi icon as dot (like reference logo) */
+        .char-i {
+            display: inline-flex;
+            flex-direction: column;
+            align-items: center;
+            vertical-align: baseline;
+        }
+        .char-i .wifi-dot {
+            line-height: 0;
+            margin-bottom: 2px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .char-i .wifi-dot svg {
+            display: block;
+        }
+        .char-i .i-stem {
+            line-height: 1;
+            font-size: inherit;
+            font-weight: inherit;
+            color: inherit;
+        }
+
+        /* Unique animations for each letter - emotional signaling */
+        
+        /* W - Welcoming Wave (gentle wave motion) */
+        .char:nth-child(1):hover {
+            animation: welcomingWave 0.8s ease-in-out infinite;
+            color: #00a8cc;
+            transform-origin: center bottom;
+        }
+
+        /* A - Adventurous Ascend (upward bounce) */
+        .char:nth-child(2):hover {
+            animation: adventurousAscend 0.6s ease-out infinite;
+            color: #ff6b6b;
+            transform-origin: center bottom;
+        }
+
+        /* V - Vibrant Vibration (rapid shake) */
+        .char:nth-child(3):hover {
+            animation: vibrantVibration 0.4s ease-in-out infinite;
+            color: #ffd93d;
+            transform-origin: center;
+        }
+
+        /* E - Energetic Explosion (scale and rotate) */
+        .char:nth-child(4):hover {
+            animation: energeticExplosion 0.7s ease-in-out infinite;
+            color: #6bcf7f;
+            transform-origin: center;
+        }
+
+        /* L - Lively Leap (jump and bounce) */
+        .char:nth-child(5):hover {
+            animation: livelyLeap 0.8s ease-in-out infinite;
+            color: #a29bfe;
+            transform-origin: center bottom;
+        }
+
+        /* I - Inspiring Illuminate (glow and pulse) */
+        .char:nth-child(6):hover {
+            animation: inspiringIlluminate 1s ease-in-out infinite;
+            color: #fd79a8;
+            text-shadow: 0 0 20px currentColor, 0 0 40px currentColor;
+            transform-origin: center;
+        }
+
+        /* N - Natural Nudge (sideways sway) */
+        .char:nth-child(7):hover {
+            animation: naturalNudge 0.9s ease-in-out infinite;
+            color: #00b894;
+            transform-origin: center;
+        }
+
+        /* K - Kinetic Kick (diagonal kick) */
+        .char:nth-child(8):hover {
+            animation: kineticKick 0.6s ease-in-out infinite;
+            color: #e17055;
+            transform-origin: center bottom;
+        }
+
+        @keyframes welcomingWave {
+            0%, 100% { transform: rotate(0deg) translateY(0px); }
+            25% { transform: rotate(-8deg) translateY(-5px); }
+            50% { transform: rotate(0deg) translateY(-10px); }
+            75% { transform: rotate(8deg) translateY(-5px); }
+        }
+
+        @keyframes adventurousAscend {
+            0%, 100% { transform: translateY(0px) scale(1); }
+            50% { transform: translateY(-25px) scale(1.15); }
+        }
+
+        @keyframes vibrantVibration {
+            0%, 100% { transform: translateX(0px) rotate(0deg); }
+            25% { transform: translateX(-3px) rotate(-2deg); }
+            50% { transform: translateX(3px) rotate(2deg); }
+            75% { transform: translateX(-3px) rotate(-2deg); }
+        }
+
+        @keyframes energeticExplosion {
+            0%, 100% { transform: scale(1) rotate(0deg); }
+            25% { transform: scale(1.3) rotate(-10deg); }
+            50% { transform: scale(1.1) rotate(10deg); }
+            75% { transform: scale(1.25) rotate(-5deg); }
+        }
+
+        @keyframes livelyLeap {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            30% { transform: translateY(-30px) rotate(-5deg); }
+            60% { transform: translateY(-10px) rotate(5deg); }
+        }
+
+        @keyframes inspiringIlluminate {
+            0%, 100% { 
+                transform: scale(1);
+                filter: brightness(1);
+            }
+            50% { 
+                transform: scale(1.2);
+                filter: brightness(1.5);
+            }
+        }
+
+        @keyframes naturalNudge {
+            0%, 100% { transform: translateX(0px) rotate(0deg); }
+            25% { transform: translateX(-8px) rotate(-3deg); }
+            50% { transform: translateX(8px) rotate(3deg); }
+            75% { transform: translateX(-8px) rotate(-3deg); }
+        }
+
+        @keyframes kineticKick {
+            0%, 100% { transform: translateX(0px) translateY(0px) rotate(0deg); }
+            50% { transform: translateX(15px) translateY(-20px) rotate(15deg); }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="main-container">
+        <div class="brand-block">
+            <div class="interactive-word" id="interactiveWord">
+            <span class="char">w</span>
+            <span class="char">a</span>
+            <span class="char">v</span>
+            <span class="char">e</span>
+            <span class="char">l</span>
+            <span class="char char-i"><span class="wifi-dot" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" width="0.5em" height="0.5em"><path d="M5 12.55a11 11 0 0 1 14.08 0"/><path d="M1.42 9a16 16 0 0 1 21.16 0"/><path d="M8.53 16.11a6 6 0 0 1 6.95 0"/><circle cx="12" cy="20" r="1.5" fill="currentColor"/></svg></span><span class="i-stem">ı</span></span>
+            <span class="char">n</span>
+            <span class="char">k</span>
+            </div>
+        </div>
+    </div>
+
+<script>
+    const letters = document.querySelectorAll('.char');
+    
+    // Physics Configuration - reduced for better hover animation compatibility
+    const CONFIG = {
+        pushDistance: 40,    // Reduced downward movement to not conflict with hover
+        radius: 120,         // Mouse influence zone
+        stiffness: 0.12,     // Spring tension
+        friction: 0.85       // Movement damping
+    };
+
+    let letterStates = Array.from(letters).map((el, index) => ({
+        el: el,
+        y: 0,
+        vy: 0,
+        targetY: 0,
+        rect: el.getBoundingClientRect(),
+        isHovered: false,
+        index: index
+    }));
+
+    let mouse = { x: -1000, y: -1000 };
+
+    // Track hover state for each letter
+    letterStates.forEach(state => {
+        state.el.addEventListener('mouseenter', () => {
+            state.isHovered = true;
+        });
+        
+        state.el.addEventListener('mouseleave', () => {
+            state.isHovered = false;
+        });
+    });
+
+    document.addEventListener('mousemove', (e) => {
+        mouse.x = e.clientX;
+        mouse.y = e.clientY;
+    });
+
+    window.addEventListener('resize', () => {
+        letterStates.forEach(state => {
+            state.rect = state.el.getBoundingClientRect();
+        });
+    });
+
+    function updatePhysics() {
+        letterStates.forEach(state => {
+            const centerX = state.rect.left + state.rect.width / 2;
+            const centerY = state.rect.top + state.rect.height / 2;
+
+            const dx = mouse.x - centerX;
+            const dy = mouse.y - centerY;
+            const distance = Math.sqrt(dx * dx + dy * dy);
+
+            // Reduced physics interaction when hovered (let CSS animations take over)
+            if (!state.isHovered && distance < CONFIG.radius) {
+                const intensity = (1 - distance / CONFIG.radius);
+                state.targetY = intensity * CONFIG.pushDistance;
+            } else {
+                state.targetY = 0;
+            }
+
+            // Apply spring physics for elastic feel
+            const force = (state.targetY - state.y) * CONFIG.stiffness;
+            state.vy += force;
+            state.vy *= CONFIG.friction;
+            state.y += state.vy;
+
+            // Only apply physics transform when not hovered (CSS handles hover)
+            if (!state.isHovered && Math.abs(state.y) > 0.1) {
+                const scaleEffect = 1 + (Math.abs(state.y) / 500);
+                state.el.style.transform = `translate3d(0, ${state.y}px, 0) scaleY(${scaleEffect})`;
+                
+                // Subtle color shift during proximity interaction
+                const colorBlend = Math.min(180, 42 + state.y * 2.5);
+                state.el.style.color = `rgb(16, ${colorBlend}, ${Math.min(255, 67 + state.y * 3)})`;
+            } else if (!state.isHovered) {
+                // Reset to default when not interacting
+                state.el.style.transform = '';
+                state.el.style.color = '';
+            }
+        });
+
+        requestAnimationFrame(updatePhysics);
+    }
+
+    updatePhysics();
+</script>
+</body>
+</html>
