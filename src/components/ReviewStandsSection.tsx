@@ -20,11 +20,36 @@ const ReviewStandsSection = () => {
     const [api, setApi] = useState<CarouselApi>();
     const [customization, setCustomization] = useState<"semi" | "full">("semi");
     const [material, setMaterial] = useState<"white" | "black">("white");
+    const [region, setRegion] = useState("BD"); // "BD", "USA", "CA", "UAE"
 
-    const pricing = {
-        semi: { white: "1,212", black: "1,313" },
-        full: { white: "1,515", black: "1,616" }
+    const pricingData = {
+        BD: {
+            semi: { white: "1,212", black: "1,313" },
+            full: { white: "1,515", black: "1,616" },
+            symbol: "৳",
+            currency: "BDT"
+        },
+        USA: {
+            semi: { white: "14.99", black: "16.99" },
+            full: { white: "19.99", black: "22.99" },
+            symbol: "$",
+            currency: "USD"
+        },
+        CA: {
+            semi: { white: "19.99", black: "22.99" },
+            full: { white: "24.99", black: "29.99" },
+            symbol: "$",
+            currency: "CAD"
+        },
+        UAE: {
+            semi: { white: "55", black: "65" },
+            full: { white: "75", black: "85" },
+            symbol: "د.إ",
+            currency: "AED"
+        }
     };
+
+    const currentPricing = pricingData[region as keyof typeof pricingData];
 
     const descriptions = {
         semi: "A perfect balance of branding and flexibility. The bottom section will feature the Wave Link logo and QR code, while the remaining area can be fully customized by the owner according to their preference. Ideal for a neat, branded, and professional look.",
@@ -69,6 +94,29 @@ const ReviewStandsSection = () => {
                     <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
                         Instant feedback while the customer is still in front of you.
                     </p>
+
+                    {/* Region Switcher */}
+                    <div className="flex justify-center mt-8">
+                        <div className="flex bg-secondary/20 p-1 rounded-full border border-primary/20">
+                            {[
+                                { id: "BD", label: "Bangladesh" },
+                                { id: "USA", label: "USA" },
+                                { id: "CA", label: "Canada" },
+                                { id: "UAE", label: "Dubai" }
+                            ].map((r) => (
+                                <button
+                                    key={r.id}
+                                    onClick={() => setRegion(r.id)}
+                                    className={`px-4 py-1.5 rounded-full text-xs font-bold transition-all ${region === r.id
+                                        ? "bg-primary text-white shadow-lg"
+                                        : "text-muted-foreground hover:text-primary"
+                                        }`}
+                                >
+                                    {r.label}
+                                </button>
+                            ))}
+                        </div>
+                    </div>
                 </div>
 
                 <div className="grid md:grid-cols-2 gap-12 items-center max-w-6xl mx-auto">
@@ -109,7 +157,12 @@ const ReviewStandsSection = () => {
                     {/* Product Details Section */}
                     <div className="space-y-8 text-left">
                         <div className="space-y-4">
-                            <h3 className="text-3xl font-bold font-serif">Smart Review Stand</h3>
+                            <div className="flex items-center justify-between">
+                                <h3 className="text-3xl font-bold font-serif">Smart Review Stand</h3>
+                                <div className="text-xs font-bold text-primary bg-primary/10 px-3 py-1 rounded-full">
+                                    {region === "UAE" ? "Fast UAE Shipping" : region === "BD" ? "Next Day Delivery" : "Global Express"}
+                                </div>
+                            </div>
 
                             <div className="bg-white/50 backdrop-blur-xl border border-white/20 shadow-xl rounded-3xl p-6 md:p-8 relative overflow-hidden">
                                 {/* Decorative glow */}
@@ -174,13 +227,18 @@ const ReviewStandsSection = () => {
                                                 <div className="flex items-end justify-between">
                                                     <div className="space-y-1">
                                                         <p className="text-sm font-medium text-muted-foreground">Estimate Total</p>
-                                                        <p className="text-xs text-primary bg-primary/10 px-2 py-0.5 rounded-full inline-block">Includes Tax</p>
+                                                        <p className="text-xs text-primary bg-primary/10 px-2 py-0.5 rounded-full inline-block">
+                                                            {region === "BD" ? "Includes Tax" : region === "USA" ? "Excl. Taxes" : "Market Price"}
+                                                        </p>
                                                     </div>
                                                     <div className="text-right">
                                                         <span className="block text-5xl font-serif font-bold text-primary tracking-tight">
-                                                            <span className="text-2xl align-top mr-1 opacity-60">৳</span>
-                                                            {pricing[customization][material]}
+                                                            <span className={`text-2xl align-top mr-1 opacity-60 ${region === "UAE" ? "text-lg" : ""}`}>
+                                                                {currentPricing.symbol}
+                                                            </span>
+                                                            {currentPricing[customization][material]}
                                                         </span>
+                                                        <span className="text-xs font-bold text-muted-foreground/60">{currentPricing.currency}</span>
                                                     </div>
                                                 </div>
                                             </div>

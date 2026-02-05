@@ -2,6 +2,7 @@ import { lazy, Suspense } from "react";
 import Navbar from "@/components/Navbar";
 import HeroSection from "@/components/HeroSection";
 import TopConnectBar from "@/components/TopConnectBar";
+import { OnboardingTutorial } from "@/components/OnboardingTutorial";
 
 // Lazy load below-the-fold sections for performance optimization
 const AboutSection = lazy(() => import("@/components/AboutSection"));
@@ -27,8 +28,11 @@ const SectionLoader = () => (
 );
 
 const Index = () => {
+  const hasConsent = localStorage.getItem("cookie-consent") === "true";
+
   return (
     <div className="min-h-screen bg-background text-foreground overflow-x-hidden selection:bg-sky/20 selection:text-navy">
+      <OnboardingTutorial />
       <Navbar />
       <main className="w-full">
         <HeroSection />
@@ -64,10 +68,12 @@ const Index = () => {
               <ReviewsSection />
             </Suspense>
 
-            {/* Google AdSense Banner - Discrete Placement */}
-            <Suspense fallback={null}>
-              <AdSenseBanner />
-            </Suspense>
+            {/* Google AdSense Banner - Discrete Placement & Privacy First */}
+            {hasConsent && (
+              <Suspense fallback={null}>
+                <AdSenseBanner />
+              </Suspense>
+            )}
 
             <Suspense fallback={<SectionLoader />}>
               <AffiliateSection />

@@ -52,6 +52,12 @@ const faqs = [
     color: "from-indigo-500/20 to-blue-500/20"
   },
   {
+    question: "Is WaveLink compliant with UAE regulations?",
+    answer: "Yes. We fully comply with UAE Federal Decree-Law No. 26 of 2025 (Child Safety) and UAE Data Protection Laws. Our platform features bilingual explicit consent, mandatory age verification for all users, and avoids all prohibited content categories defined by the TDRA.",
+    icon: "🇦🇪",
+    color: "from-green-500/20 to-red-500/20"
+  },
+  {
     question: "How does using an NFC card help the environment?",
     answer: "By switching to a digital business card, you help eliminate the 8-10 billion paper cards printed annually, 88% of which are thrown away within a week. One Wavelink card lasts for years, drastically reducing paper waste and your environmental footprint.",
     icon: "🌱",

@@ -131,6 +131,11 @@ const Footer = () => {
               <Shield className="w-4 h-4 text-blue-500" />
               <span className="text-white/40">GDPR COMPLIANT</span>
             </div>
+
+            <div className="hidden sm:flex items-center gap-2 px-4 py-2 rounded-full border border-primary/20 bg-primary/5">
+              <Shield className="w-4 h-4 text-primary" />
+              <span className="text-white/60 font-bold text-[10px]">UAE 2026 COMPLIANT</span>
+            </div>
           </div>
 
           <div className="flex items-center gap-1.5 order-last md:order-none">

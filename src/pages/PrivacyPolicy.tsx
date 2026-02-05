@@ -81,8 +81,9 @@ const PrivacyPolicy = () => {
           <h1 className="text-5xl md:text-7xl font-bold text-foreground mb-4 font-serif">
             Transparency Report
           </h1>
+          <h2 className="text-2xl font-serif font-bold text-primary mb-6" dir="rtl">تقرير الشفافية</h2>
           <p className="text-xl text-muted-foreground uppercase tracking-widest font-medium">
-            PIPEDA • GDPR • Law 25 Compliance
+            PIPEDA • GDPR • UAE Data Protection • Law 25
           </p>
           <p className="mt-4 text-sm text-mist/60 font-mono">Effective: Jan 2025 | Version 2.1</p>
         </div>
@@ -133,6 +134,51 @@ const PrivacyPolicy = () => {
               Data may be transferred across borders (e.g. Canada to USA) using Standard Contractual Clauses (SCCs).
             </p>
           </Card>
+        </div>
+
+        {/* UAE Compliance Section */}
+        <div className="mb-16 p-8 rounded-3xl border-2 border-primary/20 bg-primary/5 shadow-luxury-glow relative overflow-hidden">
+          <div className="absolute top-0 right-0 p-8 opacity-5 pointer-events-none">
+            <Scale className="w-48 h-48" />
+          </div>
+
+          <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-8 gap-4">
+            <h2 className="text-3xl font-serif font-bold text-foreground flex items-center gap-2">
+              <Shield className="w-8 h-8 text-primary" />
+              UAE Federal Law Compliance
+            </h2>
+            <div className="text-right" dir="rtl">
+              <h2 className="text-2xl font-serif font-bold text-primary">الامتثال للقوانين الاتحادية الإماراتية</h2>
+            </div>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 relative z-10">
+            <div className="space-y-4">
+              <h3 className="font-bold text-lg text-foreground flex items-center gap-2">
+                <FileCheck className="w-5 h-5 text-primary" />
+                Child Safety (Decree-Law 26/2025)
+              </h3>
+              <p className="text-sm text-muted-foreground leading-relaxed">
+                We strictly adhere to the 2026 Child Safety updates. We do not collect data from children under 13 for advertising and provide mandatory age verification gates for all UAE users.
+              </p>
+              <div dir="rtl" className="text-xs text-primary/80 font-medium">
+                نحن نلتزم بصرامة بتحديثات سلامة الطفل لعام 2026. لا نجمع بيانات الأطفال دون سن 13 عاماً لأغراض إعلانية.
+              </div>
+            </div>
+
+            <div className="space-y-4">
+              <h3 className="font-bold text-lg text-foreground flex items-center gap-2">
+                <Lock className="w-5 h-5 text-primary" />
+                Explicit Tracking Consent
+              </h3>
+              <p className="text-sm text-muted-foreground leading-relaxed">
+                In line with TDRA regulations, "implied consent" is not used. Tracking remains disabled until you explicitly opt-in via our bilingual consent portal.
+              </p>
+              <div dir="rtl" className="text-xs text-primary/80 font-medium">
+                وفقاً للوائح هيئة تنظيم الاتصالات، لا يتم استخدام "الموافقة الضمنية". يظل التتبع معطلاً حتى توافق صراحة.
+              </div>
+            </div>
+          </div>
         </div>
 
         {/* 10 PIPEDA Principles */}

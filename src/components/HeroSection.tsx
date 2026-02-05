@@ -20,6 +20,7 @@ const HeroSection = () => {
 
   return (
     <section
+      id="hero"
       className="relative min-h-screen flex items-center justify-center overflow-hidden bg-background"
       aria-label="Hero section"
     >

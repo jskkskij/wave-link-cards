@@ -18,6 +18,9 @@ const CookieConsent = () => {
     const handleAction = (accepted: boolean) => {
         localStorage.setItem("cookie-consent", accepted ? "true" : "false");
         setIsVisible(false);
+        if (accepted) {
+            window.location.reload(); // Reload to trigger analytics scripts that check for this flag
+        }
     };
 
     return (
@@ -30,47 +33,61 @@ const CookieConsent = () => {
                     transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
                     className="fixed bottom-6 left-6 right-6 md:left-auto md:right-8 md:max-w-md z-[100]"
                 >
-                    <div className="relative overflow-hidden rounded-2xl border border-primary/20 bg-card/40 backdrop-blur-xl shadow-2xl p-6 group">
+                    <div className="relative overflow-hidden rounded-3xl border border-primary/20 bg-[#0f172a] backdrop-blur-2xl shadow-2xl p-6 group shadow-luxury-glow">
                         {/* Animated Background Glow */}
                         <div className="absolute -top-24 -right-24 w-48 h-48 bg-primary/10 rounded-full blur-[60px] group-hover:bg-primary/20 transition-colors duration-1000" />
 
                         <div className="flex gap-4 relative z-10">
-                            <div className="w-12 h-12 rounded-xl bg-gradient-primary flex items-center justify-center shrink-0 shadow-lg shadow-primary/20">
-                                <Cookie className="w-6 h-6 text-primary-foreground" />
+                            <div className="w-14 h-14 rounded-2xl bg-gradient-primary flex items-center justify-center shrink-0 shadow-lg shadow-primary/20">
+                                <Cookie className="w-7 h-7 text-white" />
                             </div>
 
                             <div className="flex-1">
-                                <h3 className="text-lg font-bold text-foreground mb-1 flex items-center gap-2">
-                                    Privacy Settings
-                                    <ShieldCheck className="w-4 h-4 text-primary" />
-                                </h3>
-                                <p className="text-xs text-muted-foreground leading-relaxed mb-4">
-                                    We use essential cookies for site functionality and analytical cookies (GDPR/PIPEDA compliant) to improve your experience. See our
-                                    <Link to="/privacy-policy" className="text-primary hover:underline ml-1">Transparency Report</Link>.
-                                </p>
+                                <div className="flex items-center justify-between mb-2">
+                                    <h3 className="text-lg font-bold text-white flex items-center gap-2">
+                                        Privacy Choice
+                                        <ShieldCheck className="w-4 h-4 text-primary" />
+                                    </h3>
+                                    <span className="text-xs font-bold text-primary" dir="rtl">خيارات الخصوصية</span>
+                                </div>
 
-                                <div className="flex flex-wrap items-center gap-3">
+                                <div className="space-y-3 mb-6">
+                                    <p className="text-xs text-mist/80 leading-relaxed font-medium">
+                                        Following UAE Federal Laws, we require your explicit consent for non-essential cookies. Tracking is disabled by default.
+                                    </p>
+                                    <p className="text-xs text-mist/80 leading-relaxed font-medium text-right" dir="rtl">
+                                        وفقاً للقوانين الاتحادية في الإمارات، نطلب موافقتك الصريحة لملفات تعريف الارتباط غير الأساسية. التتبع معطل افتراضياً.
+                                    </p>
+                                    <Link to="/privacy-policy" className="inline-block text-[10px] text-primary hover:underline font-bold uppercase tracking-wider">
+                                        Transparency Report / تقرير الشفافية
+                                    </Link>
+                                </div>
+
+                                <div className="flex flex-col gap-3">
                                     <Button
                                         onClick={() => handleAction(true)}
-                                        className="flex-1 min-w-[120px] rounded-full bg-primary hover:bg-primary/90 text-primary-foreground font-bold shadow-luxury-glow hover:scale-[1.02] transition-all"
+                                        className="w-full rounded-2xl bg-primary hover:bg-primary/90 text-white font-bold h-12 shadow-luxury-glow hover:scale-[1.02] transition-all flex justify-between px-6"
                                     >
-                                        Accept All
+                                        <span>Accept All</span>
+                                        <span dir="rtl">قبول الكل</span>
                                     </Button>
-                                    <Button
-                                        variant="outline"
-                                        onClick={() => handleAction(false)}
-                                        className="flex-1 min-w-[120px] rounded-full border-primary/20 hover:bg-primary/5 text-foreground font-medium"
-                                    >
-                                        Reject All
-                                    </Button>
-                                    <Button
-                                        variant="ghost"
-                                        size="icon"
-                                        onClick={() => setIsVisible(false)}
-                                        className="rounded-full hover:bg-primary/10 hover:text-primary shrink-0"
-                                    >
-                                        <X className="w-5 h-5" />
-                                    </Button>
+                                    <div className="grid grid-cols-2 gap-2">
+                                        <Button
+                                            variant="outline"
+                                            onClick={() => handleAction(false)}
+                                            className="rounded-xl border-white/10 hover:bg-white/5 text-mist font-medium h-10 text-xs"
+                                        >
+                                            Reject / رفض
+                                        </Button>
+                                        <Button
+                                            variant="ghost"
+                                            size="sm"
+                                            onClick={() => setIsVisible(false)}
+                                            className="rounded-xl hover:bg-primary/10 hover:text-primary text-mist/60 text-xs"
+                                        >
+                                            Close / إغلاق
+                                        </Button>
+                                    </div>
                                 </div>
                             </div>
                         </div>

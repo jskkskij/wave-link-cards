@@ -7,6 +7,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Index from "./pages/Index";
 import NotFound from "./pages/NotFound";
 import CookieConsent from "./components/CookieConsent";
+import { AgeVerification } from "./components/AgeVerification";
 import { initSecurityMonitoring } from "@/lib/security-monitor";
 import HangingSign from "@/components/HangingSign";
 
@@ -86,6 +87,7 @@ const App = () => {
             <Route path="*" element={<NotFound />} />
           </Routes>
           <CookieConsent />
+          <AgeVerification />
         </BrowserRouter>
       </TooltipProvider>
     </QueryClientProvider>

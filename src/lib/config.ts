@@ -12,4 +12,5 @@ export const CONFIG = {
   FACEBOOK_LINK: "https://www.facebook.com/profile.php?id=61582857699324",
   INSTAGRAM_LINK: "https://www.instagram.com/__wave_link__/",
   TIKTOK_LINK: "https://www.tiktok.com/@mohammadabir68",
+  GOOGLE_REVIEW_LINK: "https://search.google.com/local/writereview?placeid=YOUR_PLACE_ID",
 };
