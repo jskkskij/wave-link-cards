@@ -7,6 +7,7 @@ export const CONFIG = {
   WHATSAPP_NUMBER: import.meta.env.VITE_WHATSAPP_NUMBER || "8801410809023",
   SUPPORT_EMAIL: import.meta.env.VITE_SUPPORT_EMAIL || "waavelink@gmail.com",
   TURNSTILE_SITE_KEY: import.meta.env.VITE_TURNSTILE_SITE_KEY || "",
+  LEAD_SCRIPT_URL: import.meta.env.VITE_LEAD_SCRIPT_URL || "",
   WHATSAPP_LINK: (message: string) =>
     `https://wa.me/${import.meta.env.VITE_WHATSAPP_NUMBER || "8801410809023"}?text=${message}`,
   FACEBOOK_LINK: "https://www.facebook.com/profile.php?id=61582857699324",

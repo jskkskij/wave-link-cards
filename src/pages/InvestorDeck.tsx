@@ -3,17 +3,29 @@ import {
     ShieldCheck, MapPin, Calendar, Ghost, FileX,
     TrendingDown, Activity, Scissors, Dumbbell,
     Target, CheckCircle, TrendingUp, Award, Users,
-    Info, Rocket, Zap, ArrowLeft, Download
+    Info, Rocket, Zap, ArrowLeft, Download, Send, Loader2
 } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import {
+    Dialog,
+    DialogContent,
+    DialogHeader,
+    DialogTitle,
+    DialogTrigger,
+} from "@/components/ui/dialog";
 import { motion, AnimatePresence } from "framer-motion";
 import { cn } from "@/lib/utils";
+import { toast } from "sonner";
 import { CONFIG } from "@/lib/config";
 
 const InvestorDeck = () => {
     const navigate = useNavigate();
     const [currentSlide, setCurrentSlide] = useState(0);
+    const [isLeadDialogOpen, setIsLeadDialogOpen] = useState(false);
+    const [leadEmail, setLeadEmail] = useState("");
+    const [isSubmittingLead, setIsSubmittingLead] = useState(false);
     const containerRef = useRef<HTMLDivElement>(null);
 
     const slides = [
@@ -49,6 +61,39 @@ const InvestorDeck = () => {
 
     const handleDownload = () => {
         window.print();
+    };
+
+    const handleLeadSubmit = async (e: React.FormEvent) => {
+        e.preventDefault();
+        if (!leadEmail || !leadEmail.includes("@")) {
+            toast.error("Please enter a valid email address.");
+            return;
+        }
+
+        setIsSubmittingLead(true);
+        try {
+            await fetch(CONFIG.LEAD_SCRIPT_URL, {
+                method: "POST",
+                mode: "no-cors",
+                headers: {
+                    "Content-Type": "application/x-www-form-urlencoded",
+                },
+                body: new URLSearchParams({
+                    email: leadEmail,
+                    source: "Investor Deck",
+                    timestamp: new Date().toISOString(),
+                }).toString(),
+            });
+
+            toast.success("Thank you! You've been added to our lead list.");
+            setIsLeadDialogOpen(false);
+            setLeadEmail("");
+        } catch (error) {
+            console.error("Lead submission error:", error);
+            toast.error("Failed to submit. Please try again.");
+        } finally {
+            setIsSubmittingLead(false);
+        }
     };
 
     return (
@@ -454,12 +499,51 @@ const InvestorDeck = () => {
                         </div>
 
                         <div className="flex flex-col items-center gap-8">
-                            <Button
-                                onClick={() => navigate("/#contact")}
-                                className="bg-white text-blue-800 px-16 py-10 rounded-full font-black text-2xl hover:bg-blue-50 transition-all hover:scale-105 shadow-2xl shadow-white/10"
-                            >
-                                Join the Journey
-                            </Button>
+                            <Dialog open={isLeadDialogOpen} onOpenChange={setIsLeadDialogOpen}>
+                                <DialogTrigger asChild>
+                                    <Button
+                                        className="bg-white text-blue-800 px-16 py-10 rounded-full font-black text-2xl hover:bg-blue-50 transition-all hover:scale-105 shadow-2xl shadow-white/10"
+                                    >
+                                        Join the Journey
+                                    </Button>
+                                </DialogTrigger>
+                                <DialogContent className="sm:max-w-md bg-white rounded-[2rem] border-none shadow-2xl p-10">
+                                    <DialogHeader>
+                                        <DialogTitle className="text-3xl font-bold tracking-tight text-slate-900 mb-2">
+                                            Stay Connected
+                                        </DialogTitle>
+                                        <p className="text-slate-500 font-medium">
+                                            Join our exclusive lead list to receive updates on WaveLink's growth and investment milestones.
+                                        </p>
+                                    </DialogHeader>
+                                    <form onSubmit={handleLeadSubmit} className="space-y-6 mt-6">
+                                        <div className="space-y-2">
+                                            <Input
+                                                type="email"
+                                                placeholder="Enter your email"
+                                                value={leadEmail}
+                                                onChange={(e) => setLeadEmail(e.target.value)}
+                                                className="h-14 bg-slate-50 border-slate-100 rounded-2xl px-6 focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 transition-all text-lg"
+                                                required
+                                            />
+                                        </div>
+                                        <Button
+                                            type="submit"
+                                            disabled={isSubmittingLead}
+                                            className="w-full h-14 bg-blue-600 hover:bg-blue-700 text-white rounded-2xl font-bold text-lg shadow-lg shadow-blue-600/20 transition-all group"
+                                        >
+                                            {isSubmittingLead ? (
+                                                <Loader2 className="animate-spin" />
+                                            ) : (
+                                                <>
+                                                    Subscribe to Leads
+                                                    <Send className="ml-2 w-5 h-5 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
+                                                </>
+                                            )}
+                                        </Button>
+                                    </form>
+                                </DialogContent>
+                            </Dialog>
 
                             <p className="text-blue-200 text-sm font-bold tracking-widest uppercase opacity-60">
                                 WaveLink Technologies | Dhaka, Bangladesh | 2025
