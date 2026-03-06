@@ -13,4 +13,16 @@ export const CONFIG = {
   INSTAGRAM_LINK: "https://www.instagram.com/__wave_link__/",
   TIKTOK_LINK: "https://www.tiktok.com/@mohammadabir68",
   GOOGLE_REVIEW_LINK: "https://search.google.com/local/writereview?placeid=YOUR_PLACE_ID",
+  MILESTONES: {
+    cards: {
+      current: 1350, // 45% of 3000
+      target: 3000,
+      label: "Cards Deployed"
+    },
+    reviews: {
+      current: 450, // 15% of 3000 (just an example for the second bar in image)
+      target: 3000,
+      label: "Digital Review Stands"
+    }
+  }
 };

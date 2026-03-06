@@ -298,11 +298,11 @@ export const OnboardingTutorial = ({ lang = "en" }: OnboardingTutorialProps) => 
                         animate={{ opacity: 1, scale: 1, y: 0 }}
                         exit={{ opacity: 0, scale: 0.9, y: -20 }}
                         transition={{ duration: 0.4, ease: "easeOut" }}
-                        className="relative w-full max-w-sm bg-card/95 backdrop-blur-2xl border border-white/20 rounded-[2.5rem] p-6 sm:p-8 shadow-2xl glass-morphism pointer-events-auto"
+                        className="relative w-full max-w-sm bg-white border border-white/20 rounded-[2.5rem] p-6 sm:p-8 shadow-2xl pointer-events-auto"
                     >
                         {/* Background Decoration */}
-                        <div className="absolute top-0 right-0 w-32 h-32 bg-sky/20 rounded-full blur-[60px] -mr-16 -mt-16" />
-                        <div className="absolute bottom-0 left-0 w-32 h-32 bg-primary/20 rounded-full blur-[60px] -ml-16 -mb-16" />
+                        <div className="absolute top-0 right-0 w-32 h-32 bg-blue/10 rounded-full blur-[60px] -mr-16 -mt-16" />
+                        <div className="absolute bottom-0 left-0 w-32 h-32 bg-primary/10 rounded-full blur-[60px] -ml-16 -mb-16" />
 
                         {/* Progress Header */}
                         <div className="flex justify-between items-center mb-6">
@@ -310,13 +310,13 @@ export const OnboardingTutorial = ({ lang = "en" }: OnboardingTutorialProps) => 
                                 {steps.map((_, idx) => (
                                     <div
                                         key={idx}
-                                        className={`h-1.5 rounded-full transition-all duration-500 ${idx === currentStep ? "w-6 bg-sky shadow-[0_0_10px_rgba(14,165,233,0.5)]" : "w-1.5 bg-muted-foreground/20"}`}
+                                        className={`h-1.5 rounded-full transition-all duration-500 ${idx === currentStep ? "w-6 bg-blue shadow-[0_0_10px_rgba(0,119,255,0.4)]" : "w-1.5 bg-slate-200"}`}
                                     />
                                 ))}
                             </div>
                             <button
                                 onClick={handleDismiss}
-                                className="p-1.5 rounded-full hover:bg-white/10 transition-colors text-muted-foreground"
+                                className="p-1.5 rounded-full hover:bg-slate-100 transition-colors text-slate-400"
                             >
                                 <X className="w-5 h-5" />
                             </button>
@@ -327,16 +327,16 @@ export const OnboardingTutorial = ({ lang = "en" }: OnboardingTutorialProps) => 
                             <motion.div
                                 initial={{ scale: 0.5, rotate: -10 }}
                                 animate={{ scale: 1, rotate: 0 }}
-                                className="p-4 bg-white/5 rounded-3xl border border-white/10 shadow-luxury"
+                                className="p-4 bg-slate-50 rounded-3xl border border-slate-100 shadow-sm"
                             >
                                 {steps[currentStep].icon}
                             </motion.div>
 
                             <div className="space-y-2">
-                                <h3 className="text-xl sm:text-2xl font-bold font-serif text-[#0f1d35] tracking-tight">
+                                <h3 className="text-xl sm:text-2xl font-bold font-serif text-slate-900 tracking-tight">
                                     {steps[currentStep].title}
                                 </h3>
-                                <p className="text-[#0f1d35]/80 text-sm sm:text-base leading-relaxed font-medium">
+                                <p className="text-slate-600 text-sm sm:text-base leading-relaxed font-medium">
                                     {steps[currentStep].description}
                                 </p>
                             </div>

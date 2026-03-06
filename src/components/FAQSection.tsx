@@ -78,9 +78,9 @@ const FAQSection = ({ lang = "en" }: FAQSectionProps) => {
 
     const position = relativeIndex + centerIndex;
     const rotation = (position - centerIndex) * 4;
-    const xOffset = (position - centerIndex) * 100;
-    const yOffset = Math.abs(position - centerIndex) * 20;
-    const scale = position === centerIndex ? 1 : 0.9;
+    const xOffset = (position - centerIndex) * 80;
+    const yOffset = Math.abs(position - centerIndex) * 25;
+    const scale = position === centerIndex ? 1 : 0.85;
     const zIndex = totalCards - Math.abs(position - centerIndex);
 
     return {
@@ -91,26 +91,32 @@ const FAQSection = ({ lang = "en" }: FAQSectionProps) => {
   };
 
   return (
-    <section className="py-32 bg-background relative overflow-hidden" id="faq">
+    <section className="py-32 bg-slate-950 relative overflow-hidden" id="faq">
+      {/* Background Glows */}
+      <div className="absolute inset-0 z-0 pointer-events-none">
+        <div className="absolute top-1/4 left-1/4 w-[50%] h-[50%] bg-blue-600/10 blur-[120px] rounded-full" />
+        <div className="absolute bottom-1/4 right-1/4 w-[40%] h-[40%] bg-cyan-600/5 blur-[100px] rounded-full" />
+      </div>
+
       <div className="container mx-auto px-6 max-w-7xl relative z-10">
-        <div className="max-w-3xl mb-24 md:mb-32">
+        <div className="text-center mb-24 md:mb-32">
           <motion.div
             initial={{ opacity: 0, scale: 0.95 }}
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true }}
-            className="text-blue font-bold uppercase tracking-[0.3em] text-[10px] md:text-xs mb-8"
+            className="text-blue-400 font-bold uppercase tracking-[0.4em] text-[10px] md:text-xs mb-8"
           >
             {lang === "en" ? "Knowledge Infrastructure" : "নলেজ ইনফ্রাস্ট্রাকচার"}
           </motion.div>
-          <h2 className="text-5xl md:text-7xl font-serif text-foreground mb-8 font-bold leading-[1.1] tracking-[-0.04em]">
+          <h2 className="text-5xl md:text-7xl font-serif text-white mb-8 font-bold leading-[1.1] tracking-[-0.04em]">
             {lang === "en" ? "Refining Clarity." : "স্বচ্ছতার সাথে উত্তর।"}
           </h2>
-          <p className="text-xl md:text-2xl text-muted-foreground leading-tight tracking-tight font-medium max-w-2xl">
+          <p className="text-xl md:text-2xl text-slate-400 leading-tight tracking-tight font-medium max-w-2xl mx-auto">
             {lang === "en" ? "Technical insights into the global trust architecture we are building." : "আমাদের বৈশ্বিক আস্থা অবকাঠামো সম্পর্কে বিস্তারিত জানুন।"}
           </p>
         </div>
 
-        <div className="hidden md:block relative h-[560px] mb-12">
+        <div className="hidden md:block relative h-[600px] mb-12">
           <div className="absolute inset-0 flex items-center justify-center" role="region" aria-label="FAQ Cards">
             {faqs.map((faq, index) => {
               const style = getCardStyle(index) as any;
@@ -121,7 +127,7 @@ const FAQSection = ({ lang = "en" }: FAQSectionProps) => {
               return (
                 <div
                   key={index}
-                  className="absolute w-[440px] cursor-pointer"
+                  className="absolute w-[520px] cursor-pointer"
                   style={style}
                   onClick={() => {
                     if (!isActive) {
@@ -134,44 +140,43 @@ const FAQSection = ({ lang = "en" }: FAQSectionProps) => {
                 >
                   <div className={`
                     relative overflow-hidden
-                    bg-white border border-muted
-                    rounded-2xl p-12 shadow-luxury
-                    transition-luxury
-                    ${isActive ? 'shadow-luxury-intense bg-warm-gray' : 'opacity-60 grayscale hover:grayscale-0'}
+                    bg-slate-900/80 backdrop-blur-xl border border-white/10
+                    rounded-[2.5rem] p-16 shadow-2xl
+                    transition-luxury text-center
+                    ${isActive ? 'shadow-blue-500/20 ring-1 ring-white/20' : 'opacity-40 scale-95 blur-[2px] hover:opacity-100 hover:blur-0'}
                   `}>
+                    {/* Status Dot */}
+                    <div className="absolute top-10 right-10">
+                      <div className={`w-3 h-3 rounded-full ${isActive ? 'bg-blue-400 animate-pulse shadow-[0_0_10px_rgba(96,165,250,0.5)]' : 'bg-slate-700'}`} />
+                    </div>
+
                     <div className="relative z-10">
                       <div className={`
-                        text-5xl mb-10 transition-luxury
-                        ${isActive ? 'scale-110' : 'scale-90 opacity-40'}
+                        text-7xl mb-12 transition-luxury
+                        ${isActive ? 'scale-110 drop-shadow-2xl' : 'scale-90 opacity-40'}
                       `}>
                         {faq.icon}
                       </div>
 
                       <h3 className={`
-                        text-2xl font-bold mb-6 font-serif tracking-tight leading-tight
+                        text-3xl font-bold mb-8 font-serif tracking-tight leading-tight
                         transition-luxury
-                        ${isActive ? 'text-foreground' : 'text-muted-foreground'}
+                        ${isActive ? 'text-white' : 'text-slate-400'}
                       `}>
                         {faq.question}
                       </h3>
 
                       <div className={`
-                        text-muted-foreground leading-relaxed text-base font-medium tracking-tight
+                        text-slate-300 leading-relaxed text-lg font-medium tracking-tight
                         transition-luxury
                         ${isActive
-                          ? 'opacity-100 max-h-[250px] mt-6'
+                          ? 'opacity-100 max-h-[300px] mt-8'
                           : 'opacity-0 max-h-0 overflow-hidden mt-0'
                         }
                       `}>
                         {faq.answer}
                       </div>
                     </div>
-
-                    {isActive && (
-                      <div className="absolute top-8 right-8">
-                        <div className="w-2 h-2 bg-blue rounded-full animate-pulse" aria-hidden="true" />
-                      </div>
-                    )}
                   </div>
                 </div>
               );
@@ -180,19 +185,20 @@ const FAQSection = ({ lang = "en" }: FAQSectionProps) => {
         </div>
 
         {/* Mobile View Implementation */}
-        <div className="md:hidden relative h-[520px] mb-12">
+        <div className="md:hidden relative h-[560px] mb-12">
           <AnimatePresence initial={false} custom={direction} mode="wait">
             <motion.div
               key={currentIndex}
               custom={direction}
               className="absolute inset-0 flex items-center justify-center p-4"
             >
-              <div className="w-full bg-warm-gray border border-muted rounded-2xl p-10 shadow-luxury-intense">
-                <div className="text-6xl mb-10 text-center">{currentFaq.icon}</div>
-                <h3 className="text-2xl font-bold text-foreground mb-6 text-center font-serif tracking-tight leading-tight">
+              <div className="w-full bg-slate-900/90 backdrop-blur-xl border border-white/10 rounded-[2rem] p-12 shadow-2xl text-center relative">
+                <div className="absolute top-8 right-8 w-2.5 h-2.5 bg-blue-400 rounded-full animate-pulse" />
+                <div className="text-6xl mb-10">{currentFaq.icon}</div>
+                <h3 className="text-2xl font-bold text-white mb-6 font-serif tracking-tight leading-tight">
                   {currentFaq.question}
                 </h3>
-                <p className="text-muted-foreground text-center leading-relaxed text-base font-medium tracking-tight">
+                <p className="text-slate-300 leading-relaxed text-base font-medium tracking-tight">
                   {currentFaq.answer}
                 </p>
               </div>
@@ -200,13 +206,13 @@ const FAQSection = ({ lang = "en" }: FAQSectionProps) => {
           </AnimatePresence>
         </div>
 
-        <div className="flex items-center justify-center gap-12">
+        <div className="flex items-center justify-center gap-12 mt-20">
           <button
             onClick={() => paginate(-1)}
-            className="w-14 h-14 rounded-full border border-muted flex items-center justify-center hover:bg-warm-gray transition-luxury group"
+            className="w-16 h-16 rounded-full border border-white/10 flex items-center justify-center hover:bg-white/5 transition-luxury group"
             aria-label="Previous question"
           >
-            <ChevronLeft className="w-6 h-6 text-muted-foreground group-hover:text-blue transition-luxury" />
+            <ChevronLeft className="w-8 h-8 text-slate-500 group-hover:text-blue-400 transition-luxury" />
           </button>
 
           <div className="flex gap-4" role="tablist">
@@ -220,8 +226,8 @@ const FAQSection = ({ lang = "en" }: FAQSectionProps) => {
                 className={`
                   h-1.5 rounded-full transition-luxury
                   ${index === currentIndex
-                    ? 'w-10 bg-blue'
-                    : 'w-1.5 bg-muted hover:bg-muted-foreground'
+                    ? 'w-12 bg-blue-400 shadow-[0_0_10px_rgba(96,165,250,0.5)]'
+                    : 'w-1.5 bg-slate-700 hover:bg-slate-500'
                   }
                 `}
                 aria-selected={index === currentIndex}
@@ -231,10 +237,10 @@ const FAQSection = ({ lang = "en" }: FAQSectionProps) => {
 
           <button
             onClick={() => paginate(1)}
-            className="w-14 h-14 rounded-full border border-muted flex items-center justify-center hover:bg-warm-gray transition-luxury group"
+            className="w-16 h-16 rounded-full border border-white/10 flex items-center justify-center hover:bg-white/5 transition-luxury group"
             aria-label="Next question"
           >
-            <ChevronRight className="w-6 h-6 text-muted-foreground group-hover:text-blue transition-luxury" />
+            <ChevronRight className="w-8 h-8 text-slate-500 group-hover:text-blue-400 transition-luxury" />
           </button>
         </div>
       </div>

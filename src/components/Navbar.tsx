@@ -5,6 +5,7 @@ import wavelinkLogo from "@/assets/wavelink-logo-new.png";
 import companyProfilePdf from "@/assets/WaveLinkCompanyProfile.pdf";
 import { Menu, X, ShoppingBag, FileDown } from "lucide-react";
 import { cn } from "@/lib/utils";
+import { motion, AnimatePresence } from "framer-motion";
 
 interface NavbarProps {
   lang?: "en" | "bn";
@@ -28,6 +29,7 @@ const Navbar = ({ lang = "en" }: NavbarProps) => {
     { name: "Features", href: "#features" },
     { name: "Methodology", href: "#funnel" },
     { name: "FAQ", href: "#faq" },
+    { name: "Affiliate", href: "#affiliate" },
     { name: "Investors", href: "/investors", isRoute: true },
   ];
 
@@ -45,7 +47,7 @@ const Navbar = ({ lang = "en" }: NavbarProps) => {
     <>
       <nav
         className={cn(
-          "fixed top-6 left-0 right-0 z-50 flex justify-center transition-luxury",
+          "fixed top-6 left-0 right-0 z-[60] flex justify-center transition-luxury",
           isScrolled ? "translate-y-[-4px]" : "translate-y-0"
         )}
         role="navigation"
@@ -132,6 +134,49 @@ const Navbar = ({ lang = "en" }: NavbarProps) => {
         </div>
       </nav>
 
+      {/* Mobile Menu */}
+      <AnimatePresence>
+        {isMobileMenuOpen && (
+          <motion.div
+            initial={{ opacity: 0, y: -20 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -20 }}
+            className="fixed inset-0 z-50 lg:hidden flex flex-col items-center justify-center bg-white/95 backdrop-blur-2xl px-8"
+          >
+            <div className="flex flex-col items-center gap-8 w-full max-w-sm">
+              {navLinks.map((link) => (
+                link.isRoute ? (
+                  <Link
+                    key={link.name}
+                    to={link.href}
+                    onClick={() => setIsMobileMenuOpen(false)}
+                    className="text-2xl font-serif font-bold text-foreground hover:text-blue transition-luxury"
+                  >
+                    {link.name}
+                  </Link>
+                ) : (
+                  <button
+                    key={link.name}
+                    onClick={() => {
+                      scrollToSection(link.href);
+                    }}
+                    className="text-2xl font-serif font-bold text-foreground hover:text-blue transition-luxury"
+                  >
+                    {link.name}
+                  </button>
+                )
+              ))}
+              <Button
+                onClick={() => scrollToSection('#order')}
+                className="w-full mt-8 bg-primary hover:bg-primary/95 text-primary-foreground font-bold rounded-full py-6 text-lg transition-luxury shadow-xl border-none"
+              >
+                <span>Get Started</span>
+                <ShoppingBag size={20} className="ml-3" />
+              </Button>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </>
   );
 };

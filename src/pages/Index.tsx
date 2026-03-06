@@ -147,10 +147,10 @@ const Index = () => {
                 <phase.icon className={`w-5 h-5 md:w-6 md:h-6 ${activePhase === phase.id ? "text-white" : "text-blue/40 group-hover/btn:text-blue"}`} />
               </button>
 
-              {/* Tooltip: pure CSS opacity/translate transition instead of AnimatePresence */}
+              {/* Tooltip: High-contrast vibrant blue for maximum readability during onboarding */}
               <div
-                className={`absolute right-full mr-4 top-1/2 -translate-y-1/2 px-5 py-3 bg-blue text-white rounded-2xl whitespace-nowrap shadow-luxury-glow pointer-events-none
-                    transition-all duration-300 ease-out backdrop-blur-sm
+                className={`absolute right-full mr-4 top-1/2 -translate-y-1/2 px-5 py-3 bg-blue text-white rounded-2xl whitespace-nowrap shadow-luxury-intense pointer-events-none
+                    transition-all duration-300 ease-out z-50
                     ${(hoveredPhase === phase.id || activePhase === phase.id)
                     ? "opacity-100 translate-x-0"
                     : "opacity-0 translate-x-5"}`}

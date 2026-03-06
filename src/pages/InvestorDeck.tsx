@@ -1,13 +1,15 @@
 import { useEffect, useState, useRef } from "react";
 import {
     ShieldCheck, MapPin, Calendar, Ghost, FileX,
-    TrendingDown, Stethoscope, Scissors, Dumbbell,
-    Goal, CheckCircle, TrendingUp, Award, Users,
+    TrendingDown, Activity, Scissors, Dumbbell,
+    Target, CheckCircle, TrendingUp, Award, Users,
     Info, Rocket, Zap, ArrowLeft, Download
 } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { motion, AnimatePresence } from "framer-motion";
+import { cn } from "@/lib/utils";
+import { CONFIG } from "@/lib/config";
 
 const InvestorDeck = () => {
     const navigate = useNavigate();
@@ -58,10 +60,10 @@ const InvestorDeck = () => {
                         key={index}
                         onClick={() => scrollToSlide(index)}
                         className={`w-3 h-3 rounded-full transition-all duration-300 border-2 ${currentSlide === index
-                                ? "bg-blue-600 border-white scale-125 shadow-lg"
-                                : (currentSlide === 0 || currentSlide === 4 || currentSlide === 5)
-                                    ? "bg-white/30 border-transparent hover:bg-white/50"
-                                    : "bg-slate-300 border-transparent hover:bg-slate-400"
+                            ? "bg-blue-600 border-white scale-125 shadow-lg"
+                            : (currentSlide === 0 || currentSlide === 4 || currentSlide === 5)
+                                ? "bg-white/30 border-transparent hover:bg-white/50"
+                                : "bg-slate-300 border-transparent hover:bg-slate-400"
                             }`}
                         aria-label={`Go to slide ${index + 1}`}
                     />
@@ -74,8 +76,8 @@ const InvestorDeck = () => {
                     variant="ghost"
                     onClick={() => navigate("/investors")}
                     className={`rounded-full px-6 backdrop-blur-md border ${(currentSlide === 0 || currentSlide === 4 || currentSlide === 5)
-                            ? "text-white hover:bg-white/10 border-white/20"
-                            : "text-slate-900 hover:bg-slate-900/5 border-slate-900/10"
+                        ? "text-white hover:bg-white/10 border-white/20"
+                        : "text-slate-900 hover:bg-slate-900/5 border-slate-900/10"
                         }`}
                 >
                     <ArrowLeft className="mr-2 h-4 w-4" /> Back
@@ -107,7 +109,7 @@ const InvestorDeck = () => {
                             <span className="text-sm font-medium tracking-wider uppercase">Verified by WaveLink</span>
                         </div>
 
-                        <h1 className="text-6xl md:text-8xl font-bold mb-6 leading-tight tracking-tighter">
+                        <h1 className="text-6xl md:text-8xl font-bold mb-6 leading-tight tracking-tighter text-white">
                             Trusted Feedback<br />
                             <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-400">for High-Traffic</span><br />
                             Businesses
@@ -180,25 +182,38 @@ const InvestorDeck = () => {
 
                     <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
                         {[
-                            { icon: Stethoscope, title: "Clinics", text: "Patient confidence through verified reviews.", tag: "Real-time alerts", color: "blue" },
-                            { icon: Scissors, title: "Salons", text: "Transforming service quality into digital social proof.", tag: "Fastest adoption in SA", color: "emerald" },
+                            { icon: Activity, title: "Clinics", text: "Patient confidence through verified reviews.", tag: "Real-time alerts", color: "blue" },
+                            { icon: Scissors, title: "Salons", text: "Transforming service quality into digital social proof.", tag: "Fastest adoption in SA", color: "rose" },
                             { icon: Dumbbell, title: "Gyms", text: "Capturing post-workout engagement instantly.", tag: "+35% Retention", color: "amber" },
-                            { icon: Goal, title: "Turfs", text: "Data-driven management for sports hubs.", tag: "Sponsor-ready data", color: "violet" }
+                            { icon: Target, title: "Turfs", text: "Data-driven management for sports hubs.", tag: "Sponsor-ready data", color: "indigo" }
                         ].map((item, i) => (
                             <motion.div
                                 key={i}
                                 initial={{ opacity: 0, scale: 0.9 }}
                                 whileInView={{ opacity: 1, scale: 1 }}
                                 transition={{ delay: i * 0.1 }}
-                                className={`group bg-slate-50 rounded-[2rem] p-8 hover:bg-${item.color}-50 transition-all duration-500 border border-slate-100 hover:border-${item.color}-200 shadow-sm hover:shadow-xl`}
+                                className="group bg-white rounded-[2rem] p-8 hover:bg-slate-50 transition-all duration-500 border border-slate-100 hover:border-slate-200 shadow-sm hover:shadow-xl"
                             >
-                                <div className={`w-16 h-16 bg-${item.color}-600 rounded-2xl flex items-center justify-center mb-8 text-white group-hover:scale-110 group-hover:rotate-6 transition-all duration-500 shadow-lg shadow-${item.color}-600/20`}>
+                                <div className={cn(
+                                    "w-16 h-16 rounded-2xl flex items-center justify-center mb-8 group-hover:scale-110 group-hover:rotate-6 transition-all duration-500 shadow-sm",
+                                    item.color === 'blue' && "bg-blue-50 text-blue-600",
+                                    item.color === 'rose' && "bg-rose-50 text-rose-600",
+                                    item.color === 'amber' && "bg-amber-50 text-amber-600",
+                                    item.color === 'indigo' && "bg-indigo-50 text-indigo-600",
+                                )}
+                                >
                                     <item.icon className="w-8 h-8" />
                                 </div>
                                 <h3 className="text-2xl font-bold mb-3">{item.title}</h3>
-                                <p className="text-slate-600 mb-6 leading-relaxed">{item.text}</p>
-                                <div className={`flex items-center gap-2 text-xs text-${item.color}-600 font-bold uppercase tracking-widest bg-${item.color}-100/50 py-2 px-4 rounded-full w-fit`}>
-                                    <CheckCircle className="w-4 h-4" />
+                                <p className="text-slate-500 mb-6 leading-relaxed font-medium">{item.text}</p>
+                                <div className={cn(
+                                    "flex items-center gap-2 text-[10px] font-black uppercase tracking-[0.2em] py-2 px-4 rounded-full w-fit",
+                                    item.color === 'blue' && "bg-blue-50 text-blue-600",
+                                    item.color === 'rose' && "bg-rose-50 text-rose-600",
+                                    item.color === 'amber' && "bg-amber-50 text-amber-600",
+                                    item.color === 'indigo' && "bg-indigo-50 text-indigo-600",
+                                )}>
+                                    <CheckCircle className="w-3.5 h-3.5" />
                                     <span>{item.tag}</span>
                                 </div>
                             </motion.div>
@@ -307,10 +322,10 @@ const InvestorDeck = () => {
             </section>
 
             {/* Slide 5: Impact Metrics */}
-            <section className="min-h-screen w-full flex items-center justify-center bg-slate-900 text-white py-20">
+            <section className="min-h-screen w-full flex items-center justify-center bg-[#020617] text-white py-20">
                 <div className="container mx-auto px-8">
                     <div className="text-center mb-24">
-                        <h2 className="text-5xl md:text-7xl font-bold mb-6 tracking-tighter">Measurable Impact</h2>
+                        <h2 className="text-5xl md:text-7xl font-bold mb-6 tracking-tighter text-white">Measurable Impact</h2>
                         <p className="text-2xl text-slate-400 font-medium tracking-tight">Real results across our primary verticals</p>
                     </div>
 
@@ -328,8 +343,8 @@ const InvestorDeck = () => {
                                 className="bg-white/5 backdrop-blur-xl rounded-[2.5rem] p-12 text-center border border-white/10 group hover:bg-white/10 transition-all duration-500 shadow-2xl"
                             >
                                 <div className={`text-7xl font-bold text-${metric.color}-400 mb-6 group-hover:scale-110 transition-transform duration-500 tracking-tighter`}>{metric.val}</div>
-                                <h3 className="text-2xl font-bold mb-3">{metric.title}</h3>
-                                <p className="text-slate-400 text-base font-medium opacity-60">{metric.tag}</p>
+                                <h3 className="text-2xl font-bold mb-3 text-white">{metric.title}</h3>
+                                <p className="text-slate-300 text-base font-semibold">{metric.tag}</p>
                             </motion.div>
                         ))}
                     </div>
@@ -337,25 +352,62 @@ const InvestorDeck = () => {
                     <motion.div
                         initial={{ opacity: 0, y: 40 }}
                         whileInView={{ opacity: 1, y: 0 }}
-                        className="max-w-4xl mx-auto bg-white/5 backdrop-blur-3xl rounded-[3rem] p-12 flex flex-col md:flex-row items-center gap-12 border border-white/5 shadow-inner"
+                        className="max-w-4xl mx-auto space-y-12"
                     >
-                        <div className="flex-1 space-y-6">
-                            <h3 className="text-3xl font-bold tracking-tight">Enterprise Infrastructure</h3>
-                            <p className="text-slate-400 leading-relaxed text-lg font-medium opacity-80">
-                                Operational dashboards for Private Hospitals & Enterprise Care units. Real-time satisfaction measurement across OPD, IPD, and Pharmacy with high-fidelity institutional reporting.
-                            </p>
-                        </div>
-                        <div className="grid grid-cols-3 gap-10">
+                        {/* Dynamic Milestone Tracking (Scale Progress) */}
+                        <div className="grid md:grid-cols-2 gap-12 pt-12 border-t border-white/10">
                             {[
-                                { val: "96%", label: "OPD" },
-                                { val: "91%", label: "IPD" },
-                                { val: "88%", label: "PHRM" }
-                            ].map((item, i) => (
-                                <div key={i} className="text-center group">
-                                    <div className="text-4xl font-bold text-blue-400 group-hover:scale-110 transition-transform">{item.val}</div>
-                                    <div className="text-[10px] text-slate-500 uppercase font-black tracking-widest mt-3">{item.label}</div>
-                                </div>
-                            ))}
+                                { key: 'cards', color: 'text-rose-400', barColor: 'bg-rose-500' },
+                                { key: 'reviews', color: 'text-amber-400', barColor: 'bg-amber-500' }
+                            ].map((milestone) => {
+                                const data = (CONFIG.MILESTONES as any)[milestone.key];
+                                const percentage = Math.round((data.current / data.target) * 100);
+                                return (
+                                    <div key={milestone.key} className="space-y-6">
+                                        <div className="flex justify-between items-end">
+                                            <div>
+                                                <h4 className="text-[10px] font-black uppercase tracking-[0.3em] text-slate-500 mb-1">Scale Progress</h4>
+                                                <p className="text-xl font-bold text-white tracking-tight">{data.label}</p>
+                                            </div>
+                                            <span className={`text-xl font-black ${milestone.color}`}>{percentage}%</span>
+                                        </div>
+                                        <div className="relative h-2 bg-white/5 rounded-full overflow-hidden">
+                                            <motion.div
+                                                initial={{ width: 0 }}
+                                                whileInView={{ width: `${percentage}%` }}
+                                                transition={{ duration: 1.5, ease: "easeOut" }}
+                                                className={`absolute top-0 left-0 h-full ${milestone.barColor} shadow-[0_0_15px_rgba(255,255,255,0.1)]`}
+                                            />
+                                        </div>
+                                        <div className="flex justify-between text-[10px] font-black uppercase tracking-widest text-slate-500">
+                                            <span>{data.current.toLocaleString()} Units</span>
+                                            <span>Target: {data.target.toLocaleString()}</span>
+                                        </div>
+                                    </div>
+                                );
+                            })}
+                        </div>
+
+                        {/* Enterprise Infrastructure Box (existing) */}
+                        <div className="bg-white/5 backdrop-blur-3xl rounded-[3rem] p-12 flex flex-col md:flex-row items-center gap-12 border border-white/5 shadow-inner">
+                            <div className="flex-1 space-y-6">
+                                <h3 className="text-3xl font-bold tracking-tight text-white">Enterprise Infrastructure</h3>
+                                <p className="text-slate-300 leading-relaxed text-lg font-medium">
+                                    Operational dashboards for Private Hospitals & Enterprise Care units. Real-time satisfaction measurement across OPD, IPD, and Pharmacy with high-fidelity institutional reporting.
+                                </p>
+                            </div>
+                            <div className="grid grid-cols-3 gap-10">
+                                {[
+                                    { val: "96%", label: "OPD" },
+                                    { val: "91%", label: "IPD" },
+                                    { val: "88%", label: "PHRM" }
+                                ].map((item, i) => (
+                                    <div key={i} className="text-center group">
+                                        <div className="text-4xl font-bold text-blue-400 group-hover:scale-110 transition-transform">{item.val}</div>
+                                        <div className="text-[10px] text-slate-400 uppercase font-black tracking-widest mt-3">{item.label}</div>
+                                    </div>
+                                ))}
+                            </div>
                         </div>
                     </motion.div>
                 </div>
@@ -378,7 +430,7 @@ const InvestorDeck = () => {
                             <span className="font-bold tracking-[0.2em] uppercase text-xs">Investment Opportunity</span>
                         </div>
 
-                        <h2 className="text-7xl md:text-9xl font-bold mb-10 leading-[0.9] tracking-tighter">
+                        <h2 className="text-7xl md:text-9xl font-bold mb-10 leading-[0.9] tracking-tighter text-white">
                             Capture the<br />
                             <span className="text-blue-300">Analog Void</span>
                         </h2>

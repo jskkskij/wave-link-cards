@@ -60,6 +60,10 @@ export default {
           DEFAULT: "hsl(var(--custom-navy))",
           foreground: "hsl(210 20% 98%)",
         },
+        blue: {
+          DEFAULT: "hsl(var(--blue))",
+          foreground: "hsl(0 0% 100%)",
+        },
         mist: "hsl(210 20% 98%)",
         sky: "hsl(var(--custom-sky))",
         stone: "hsl(var(--custom-sand))",
