@@ -86,7 +86,10 @@ export function initScriptIntegrityMonitoring(): void {
         'https://challenges.cloudflare.com/turnstile/v0/api.js',
         'https://va.vercel-scripts.com',
         'https://www.google-analytics.com',
-        'https://vitals.vercel-insights.com'
+        'https://vitals.vercel-insights.com',
+        'https://pagead2.googlesyndication.com',
+        'https://googleads.g.doubleclick.net',
+        'https://ep2.adtrafficquality.google'
     ]);
 
     const observer = new MutationObserver((mutations) => {

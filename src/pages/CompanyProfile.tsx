@@ -8,8 +8,15 @@ const CompanyProfile = () => {
   const navigate = useNavigate();
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-background via-secondary/10 to-background">
-      <div className="container mx-auto px-4 py-20">
+    <div className="min-h-screen bg-background relative overflow-hidden">
+      {/* Background Decor */}
+      <div className="fixed inset-0 pointer-events-none overflow-hidden">
+        <div className="absolute top-[-10%] left-[-10%] w-[50%] h-[50%] bg-glow-wave opacity-80 rounded-full blur-[120px] animate-pulse-subtle" />
+        <div className="absolute bottom-[10%] right-[-5%] w-[40%] h-[40%] bg-glow-teal opacity-40 rounded-full blur-[100px] animate-float" />
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-full bg-glow-wave opacity-20 blur-[150px]" />
+      </div>
+
+      <div className="relative z-10 container mx-auto px-4 py-20">
         {/* Header */}
         <div className="text-center mb-16 animate-fade-in">
           <h1 className="text-5xl md:text-6xl font-bold text-foreground mb-4 font-serif">

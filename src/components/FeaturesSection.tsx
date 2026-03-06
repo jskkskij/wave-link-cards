@@ -1,42 +1,37 @@
 import { Card } from "@/components/ui/card";
-import { Palette, Droplet, Globe2, Zap, Leaf, ShieldCheck, Lock } from "lucide-react";
+import { Palette, Droplet, Globe2, Zap, Leaf, ShieldCheck, Lock, Star } from "lucide-react";
 import { motion, Variants } from "framer-motion";
 
 const features = [
   {
     icon: Palette,
-    title: "Customizable Design",
-    description: "Express your unique brand identity with fully personalized card designs, including logos, colors, and multimedia content."
-  },
-  {
-    icon: Droplet,
-    title: "Industrial Grade Durability",
-    description: "Our cards are waterproof and scratch-resistant, engineered to withstand rigorous daily use in any professional environment."
-  },
-  {
-    icon: Globe2,
-    title: "Smart Web Interface",
-    description: "Manage and update your profile anytime, anywhere"
-  },
-  {
-    icon: Zap,
-    title: "Near Field Communication (NFC)",
-    description: "Leverage high-speed data transfer protocols for instant contact sharing with a single contactless tap."
-  },
-  {
-    icon: Leaf,
-    title: "Eco-Friendly",
-    description: "A sustainable alternative to traditional paper cards"
+    title: "Bespoke Identity",
+    description: "Express your unique brand with refined aesthetic control. Signal professional maturity through every physical and digital touchpoint."
   },
   {
     icon: ShieldCheck,
-    title: "6-Month Warranty",
-    description: "Coverage for software issues with proof of purchase"
+    title: "Verifiable Trust",
+    description: "Infrastructure engineered for credibility. Your professional reputation compounds with every interaction, secured by NFC."
+  },
+  {
+    icon: Globe2,
+    title: "Global Reach",
+    description: "Architecture for world-class connectivity. Geography is no longer a limitation for high-performance professional networks."
+  },
+  {
+    icon: Zap,
+    title: "Frictionless Flow",
+    description: "Leverage high-speed protocols. Initiate relationships at the moment of impact with instant, seamless data exchange."
+  },
+  {
+    icon: Droplet,
+    title: "Industrial Grade",
+    description: "Hardware built for endurance. Waterproof and scratch-resistant, designed for the rigors of global professional expansion."
   },
   {
     icon: Lock,
-    title: "GDPR Protected",
-    description: "Your data is securely stored, encrypted, and GDPR compliant"
+    title: "Secure Foundation",
+    description: "Built on privacy and institutional compliance. Your professional data is encrypted and protected by design."
   }
 ];
 
@@ -52,90 +47,82 @@ const FeaturesSection = () => {
   };
 
   const itemVariants: Variants = {
-    hidden: { opacity: 0, y: 30 },
+    hidden: { opacity: 0, y: 20 },
     visible: {
       opacity: 1,
       y: 0,
       transition: {
-        duration: 0.8,
-        ease: [0.16, 1, 0.3, 1] as any,
+        duration: 0.6,
+        ease: [0.23, 1, 0.32, 1] as any,
       },
     },
   };
 
-  const iconPulseVariants: Variants = {
-    initial: { opacity: 0, scale: 0.8 },
-    hover: {
-      opacity: 0.4,
-      scale: 1.5,
-      transition: {
-        duration: 0.6,
-        repeat: Infinity,
-        repeatType: "reverse"
-      } as any
-    },
-  };
-
   return (
-    <section className="pt-24 pb-0 bg-secondary/30 relative overflow-hidden" id="features">
-      {/* Decorative Background Elements */}
-      <div className="absolute top-1/4 -right-20 w-80 h-80 bg-primary/5 rounded-full blur-[100px] pointer-events-none" />
-      <div className="absolute bottom-1/4 -left-20 w-80 h-80 bg-sky/5 rounded-full blur-[100px] pointer-events-none" />
-
-      <div className="container mx-auto px-4 relative z-10">
+    <section className="py-32 bg-background relative overflow-hidden" id="features">
+      {/* Structural Glows for Features */}
+      <div className="absolute inset-0 pointer-events-none">
+        <div className="absolute top-0 right-[10%] w-[50%] h-[50%] bg-glow-wave opacity-30 blur-[130px]" />
+        <div className="absolute bottom-0 left-[5%] w-[40%] h-[40%] bg-glow-teal opacity-10 blur-[110px]" />
+      </div>
+      <div className="container mx-auto px-6 max-w-7xl relative z-10">
         <motion.div
-          className="text-center mb-16"
+          className="max-w-3xl mb-24 md:mb-32"
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, margin: "-100px" }}
           variants={containerVariants}
         >
+          <div className="text-blue font-bold uppercase tracking-[0.3em] text-[10px] md:text-xs mb-8">
+            The Infrastructure
+          </div>
           <motion.h2
-            className="text-4xl md:text-5xl font-bold text-foreground mb-4"
+            className="text-5xl md:text-7xl font-bold text-foreground mb-8 font-serif leading-[1.1] tracking-[-0.04em]"
             variants={itemVariants}
           >
-            Why Choose Wavelink?
+            Engineering Proof <br /> of Credibility.
           </motion.h2>
           <motion.p
-            className="text-lg text-muted-foreground max-w-2xl mx-auto"
+            className="text-xl md:text-2xl text-muted-foreground leading-tight tracking-tight font-medium"
             variants={itemVariants}
           >
-            Smart features designed for modern professionals
+            Luxury engagement tools designed for high-performance professional networks.
           </motion.p>
         </motion.div>
 
         <motion.div
-          className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto"
+          className="grid md:grid-cols-2 lg:grid-cols-3 gap-px bg-muted/30 border border-muted"
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, margin: "-100px" }}
           variants={containerVariants}
+          role="list"
+          aria-label="Core Infrastructure Pillars"
         >
           {features.map((feature, index) => (
-            <motion.div key={index} variants={itemVariants}>
-              <Card
-                className="group p-8 transition-all duration-500 bg-card/40 backdrop-blur-md border border-border/50 hover:border-primary/40 hover:shadow-2xl hover:shadow-primary/5 cursor-default relative overflow-hidden"
+            <motion.div key={index} variants={itemVariants} role="listitem">
+              <div
+                className="group p-12 bg-white transition-luxury hover:bg-warm-gray flex flex-col items-start text-left min-h-[400px] justify-between relative"
               >
-                <div className="flex flex-col items-center text-center">
-                  <div className="w-20 h-20 bg-gradient-primary rounded-3xl flex items-center justify-center mb-6 relative group-hover:scale-110 transition-transform duration-500 shadow-luxury-glow">
-                    <motion.div
-                      className="absolute inset-0 bg-sky-400/30 rounded-3xl blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"
-                      variants={iconPulseVariants}
-                      initial="initial"
-                      whileHover="hover"
-                    />
-                    <feature.icon className="w-10 h-10 text-white relative z-10 filter drop-shadow-md" />
+                <div className="flex flex-col gap-8">
+                  <div className="w-12 h-12 flex items-center justify-start">
+                    <feature.icon className="w-6 h-6 text-foreground group-hover:text-blue transition-luxury" aria-hidden="true" />
                   </div>
                   <div>
-                    <h3 className="text-xl font-bold mb-3 text-card-foreground group-hover:text-primary transition-colors duration-300">
+                    <h3 className="text-2xl font-bold mb-6 text-foreground font-serif tracking-tight">
                       {feature.title}
                     </h3>
-                    <p className="text-muted-foreground leading-relaxed">
+                    <p className="text-muted-foreground text-base leading-relaxed font-medium tracking-tight">
                       {feature.description}
                     </p>
                   </div>
                 </div>
-              </Card>
+
+                {/* Intentional Empty Space / Potential Index Number */}
+                <div className="text-[10px] font-bold text-muted uppercase tracking-widest mt-8 group-hover:text-blue/30 transition-luxury">
+                  {`Module 0${index + 1}`}
+                </div>
+              </div>
             </motion.div>
           ))}
         </motion.div>

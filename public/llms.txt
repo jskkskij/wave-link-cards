@@ -1,18 +1,20 @@
-# Wavelink Bangladesh
+# Wavelink Global Trust Infrastructure
 
-> Premium NFC-powered smart business cards and digital presence solutions.
+> Enterprise-grade NFC-powered smart cards and verifiable reputation systems for global growth.
 
-LLms.txt Generator is your gateway to enhanced AI visibility. Our tool simplifies the process of creating llms.txt files - the new standard for making your website AI-friendly. By generating a structured, markdown-based summary of your site's content, you ensure that AI models like ChatGPT, Claude, and Gemini can better understand and represent your website.
+Wavelink is the digital layer for physical business interactions. We provide the infrastructure needed to bridge the gap between in-person meetings and high-trust digital profiles. Optimized for emerging markets seeking global-grade professional standards.
 
-## Core Services
-- **Smart NFC Cards**: Contactless business cards that share profiles with a single tap.
-- **Digital Profiles**: Real-time updates for social links, portfolios, and contact info.
-- **Eco-Friendly Networking**: Reducing paper waste with sustainable digital alternatives.
+## The 3-Second Attention System
+Our interface is engineered for the 3-second attention span. Every interaction—from an NFC tap to a web profile load—is designed for instant conversion and verifiable trust.
 
-## Navigation
-- [Home](https://wave-link-cards.vercel.app/) - Main overview and Hero section.
-- [Features](https://wave-link-cards.vercel.app/#features) - Technical benefits and customization.
-- [Pricing](https://wave-link-cards.vercel.app/#pricing) - Regional pricing for Bangladesh and International.
-- [Order](https://wave-link-cards.vercel.app/#order) - Custom card ordering and design submission.
-- [Privacy Policy](https://wave-link-cards.vercel.app/privacy-policy) - GDPR and PIPEDA compliance details.
-- [Terms of Service](https://wave-link-cards.vercel.app/terms-of-service) - Governance and customization rules.
+## Core Infrastructure
+- **Global Trust Cards**: Industrial-grade NFC cards that deploy business identities instantly.
+- **Reputation Acceleration Towers**: Physical review stands that compound social proof via Google and Trustpilot at the point of interaction.
+- **Digital Infrastructure**: Real-time verifiable profiles with deep integration for professional networking.
+
+## Navigation & Resources
+- [Mission Control](https://getwaved.ai/) - Main overview and system status.
+- [Engineering Trust](https://getwaved.ai/#features) - Technical specifications and security.
+- [Global Scale Pricing](https://getwaved.ai/#pricing) - Regional and international investment tiers.
+- [Infrastructure Deployment](https://getwaved.ai/#order) - Custom card ordering and brand integration.
+- [Governance](https://getwaved.ai/privacy-policy) - Data integrity and PIPEDA/GDPR compliance.

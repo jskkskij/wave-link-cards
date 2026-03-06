@@ -11,105 +11,75 @@
 @layer base {
   :root {
     /* 
-      1. BASE COLORS (The Canvas) 
-      Western: Clean, structured white.
-      Eastern: Soft, rice-paper white.
+      APPLE-LEVEL MINIMAL LUXURY PALETTE
+      Neutral base with one confident Vibrant Blue accent.
     */
-    --background: 210 20% 98%; /* Mist White */
-    --foreground: 216 20% 15%; /* Charcoal / Deep Ink */
+    --background: 30 20% 98%;
+    /* Warm Off-White */
+    --foreground: 215 50% 8%;
+    /* Deep Navy (Near-Black) */
 
-    /* 
-      2. COMPONENT SURFACES 
-      Floating cards, subtle depth.
-    */
     --card: 0 0% 100%;
-    --card-foreground: 216 20% 15%;
+    --card-foreground: 215 50% 8%;
 
     --popover: 0 0% 100%;
-    --popover-foreground: 216 20% 15%;
+    --popover-foreground: 215 50% 8%;
 
-    /* 
-      3. PRIMARY ACCENTS (The Ink)
-      Deep Navy representing the "Water" element.
-    */
-    --primary: 216 50% 20%;      /* Deep Ocean Navy */
-    --primary-foreground: 210 20% 98%;
+    /* Primary: Brand Solid Navy */
+    --primary: 215 60% 15%;
+    --primary-foreground: 30 20% 98%;
 
-    --primary-light: 216 30% 40%;
-    --primary-dark: 216 60% 15%;
+    /* Accent: Confident Vibrant Blue - Darkened for Sunlight Test Contrast (7:1 target) */
+    --accent: 210 100% 45%;
+    --accent-foreground: 0 0% 100%;
 
-    /* 
-      4. SECONDARY ACCENTS (The Earth/Sand)
-      Warmth to balance the cool navy. 
-    */
-    --secondary: 40 20% 94%;     /* Washed Sand */
-    --secondary-foreground: 216 20% 15%;
+    --muted: 210 10% 92%;
+    --muted-foreground: 215 25% 32%;
 
-    /* 
-      5. MUTED ELEMENTS (The Void/Fog)
-      For subtle text and disabled states.
-    */
-    --muted: 210 10% 90%;
-    --muted-foreground: 216 10% 50%;
-
-    /* 
-      6. HIGHLIGHTS (The Sky)
-      Subtle freshness, clarity.
-    */
-    --accent: 200 40% 90%;       /* Soft Sky */
-    --accent-foreground: 216 50% 20%;
-
-    /* 
-      7. STATUS COLORS 
-    */
-    --destructive: 0 70% 60%;
+    --destructive: 0 84% 60%;
     --destructive-foreground: 210 20% 98%;
 
-    --border: 216 10% 90%;
-    --input: 216 10% 90%;
-    --ring: 216 50% 20%;
+    --border: 215 15% 92%;
+    --input: 215 15% 92%;
+    --ring: 210 100% 50%;
 
-    --radius: 0.5rem; /* Slightly sharper for Western precision */
+    --radius: 0.5rem;
+    /* Tighter radius for industrial luxury */
 
     /* Custom Palette Aliases */
-    --custom-navy: 216 50% 20%;
-    --custom-sky: 200 60% 85%;
-    --custom-sand: 40 20% 90%;
-    --custom-ink: 216 20% 15%;
+    --navy: 215 60% 15%;
+    --blue: 210 100% 45%;
+    --mist: 210 10% 90%;
+    --warm-gray: 30 15% 95%;
+
+    /* Variables for tailwind config compatibility */
+    --custom-navy: 215 60% 15%;
+    --custom-sky: 210 100% 45%;
+    --custom-sand: 30 15% 95%;
   }
 
   .dark {
-    /* 
-      Dark Mode: "Midnight Meditation" 
-      Deep, rich, encompassing.
-    */
-    --background: 216 40% 10%;   /* Deep Night */
-    --foreground: 210 20% 90%;   /* Moonlight */
+    --background: 216 40% 4%;
+    --foreground: 210 20% 98%;
 
-    --card: 216 30% 12%;
-    --card-foreground: 210 20% 90%;
+    --card: 216 30% 7%;
+    --card-foreground: 210 20% 98%;
 
-    --popover: 216 30% 12%;
-    --popover-foreground: 210 20% 90%;
+    --popover: 216 30% 7%;
+    --popover-foreground: 210 20% 98%;
 
-    --primary: 210 20% 90%;      /* Moonlight as primary */
-    --primary-foreground: 216 50% 20%;
+    --primary: 210 20% 98%;
+    --primary-foreground: 216 80% 8%;
 
-    --secondary: 216 20% 20%;
-    --secondary-foreground: 210 20% 90%;
-
-    --muted: 216 20% 20%;
+    --muted: 216 20% 10%;
     --muted-foreground: 216 10% 60%;
 
-    --accent: 216 30% 25%;
-    --accent-foreground: 210 20% 90%;
+    --accent: 210 100% 55%;
+    --accent-foreground: 215 60% 4%;
 
-    --destructive: 0 60% 50%;
-    --destructive-foreground: 210 20% 90%;
-
-    --border: 216 20% 20%;
-    --input: 216 20% 20%;
-    --ring: 210 20% 80%;
+    --border: 216 20% 10%;
+    --input: 216 20% 10%;
+    --ring: 210 100% 55%;
   }
 }
 
@@ -120,18 +90,21 @@
 
   body {
     @apply bg-background text-foreground;
-    /* Western Logic: Clean Sans-Serif for body text */
+    /* Clean Sans-Serif for body text */
     font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
-    line-height: 1.7; /* Eastern Breathability: Increased line height */
-    letter-spacing: 0.01em;
+    line-height: 1.55;
+    font-weight: 400;
+    font-size: 16px;
+    /* Premium default */
+    letter-spacing: -0.011em;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
   }
 
   /* 
-    PAPER TEXTURE OVERLAY
-    Adds the "Tactile" Western/Eastern craft feel. 
-    Uses a pseudo-element on the body to mask everything slightly.
+    PAPER TEXTURE BACKGROUND
+    Moved to z-index: -1 to ensure text rendering is not impacted.
   */
   body::before {
     content: "";
@@ -140,22 +113,30 @@
     left: 0;
     width: 100%;
     height: 100%;
-    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.04'/%3E%3C/svg%3E");
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.02'/%3E%3C/svg%3E");
     pointer-events: none;
-    z-index: 50;
-    opacity: 0.4;
+    z-index: -1;
+    opacity: 0.03;
   }
 
-  /* HEADINGS: Western Tradition (Serif) */
-  h1, h2, h3, h4, h5, h6 {
+  /* HEADINGS: Apple-level Minimal Hierarchy */
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6,
+  .font-serif {
     font-family: 'Playfair Display', serif;
-    font-weight: 500; /* Less bold, more elegant */
-    letter-spacing: -0.02em;
-    line-height: 1.2;
+    font-weight: 700;
+    /* Large type hierarchy, tight tracking on display text */
+    letter-spacing: -0.04em;
+    line-height: 1.1;
+    @apply text-foreground;
   }
 
   /* UTILITIES */
-  
+
   /* Text Balance for headlines */
   .text-balance {
     text-wrap: balance;
@@ -168,43 +149,86 @@
 
   /* Selection Color */
   ::selection {
-    background-color: hsl(var(--primary) / 0.2);
-    color: hsl(var(--primary));
+    background-color: hsl(var(--accent) / 0.15);
+    color: hsl(var(--accent));
+  }
+}
+
+/* Stop ALL infinite CSS animations for users/devices that prefer reduced motion. */
+@media (prefers-reduced-motion: reduce) {
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
   }
 }
 
 @layer utilities {
+
+  /* Intentional Asymmetry and Professional Gradients */
   .bg-gradient-primary {
-    background: linear-gradient(135deg, hsl(var(--primary)) 0%, #0099ff 100%);
+    background: linear-gradient(165deg, hsl(var(--navy)) 0%, #0044cc 100%);
   }
 
   .bg-gradient-luxury {
-    background: linear-gradient(135deg, #ffffff 0%, #f0f4f8 100%);
+    background: linear-gradient(135deg, hsl(var(--background)) 0%, hsl(var(--warm-gray)) 100%);
   }
 
+  /* Logo-Aligned Vibrant Gradients */
   .bg-gradient-vibrant {
-    background: linear-gradient(135deg, #0066ff 0%, #00d2ff 100%);
+    background: linear-gradient(135deg, #0077ff 0%, #00e5ff 100%);
+  }
+
+  .bg-glow-wave {
+    background: radial-gradient(circle at center, rgba(0, 119, 255, 0.25) 0%, rgba(0, 229, 255, 0.1) 50%, transparent 100%);
+  }
+
+  .bg-glow-teal {
+    background: radial-gradient(circle at center, rgba(20, 220, 200, 0.2) 0%, transparent 70%);
+  }
+
+  /* Refined Glass Morphism with Blue Tint */
+  .glass-morphism-blue {
+    @apply bg-white/40 backdrop-blur-2xl border border-blue/20;
   }
 
   .shadow-luxury {
-    box-shadow: 
-      0 10px 50px -10px rgba(0, 0, 0, 0.1),
-      0 0 20px -5px rgba(0, 0, 0, 0.05);
+    box-shadow:
+      0 10px 40px -15px rgba(0, 0, 0, 0.08),
+      0 0 1px 0 rgba(0, 0, 0, 0.05);
   }
 
   .shadow-luxury-glow {
-    box-shadow: 
-      0 0 30px -5px rgba(0, 153, 255, 0.3),
-      0 10px 40px -10px rgba(0, 102, 255, 0.2);
+    box-shadow:
+      0 20px 50px -10px rgba(0, 102, 255, 0.12),
+      0 0 20px -5px rgba(0, 102, 255, 0.08);
   }
 
   .shadow-luxury-intense {
-    box-shadow: 
-      0 20px 70px -15px rgba(0, 0, 0, 0.15),
-      0 0 30px -5px rgba(0, 0, 0, 0.1);
+    box-shadow:
+      0 30px 60px -12px rgba(0, 0, 0, 0.12),
+      0 0 30px -5px rgba(0, 0, 0, 0.06);
   }
 
   .glass-morphism {
-    @apply bg-white/40 backdrop-blur-md border border-white/20;
+    @apply bg-white/60 backdrop-blur-xl border border-white/40;
+  }
+
+  /* Micro-interactions (150–250 ms ease-out) */
+  .transition-luxury {
+    transition: all 200ms cubic-bezier(0.23, 1, 0.32, 1);
+  }
+
+  /* 8px Spacing Grid Helpers */
+  .p-grid {
+    padding: 32px;
+  }
+
+  .gap-grid {
+    gap: 16px;
   }
 }

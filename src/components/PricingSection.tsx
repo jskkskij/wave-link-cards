@@ -57,9 +57,9 @@ const PricingSection = () => {
 
       <div className="container mx-auto px-4 relative z-10">
         <div className="text-center mb-12 animate-fade-in">
-          <div className="inline-flex items-center gap-2 bg-primary/10 px-4 py-2 rounded-full mb-4">
-            <TrendingUp className="w-4 h-4 text-primary" />
-            <span className="text-sm font-semibold text-primary">Join 500+ Professionals</span>
+          <div className="inline-flex items-center gap-2 bg-accent/10 px-4 py-2 rounded-full mb-4 border border-accent/20">
+            <TrendingUp className="w-4 h-4 text-accent" aria-hidden="true" />
+            <span className="text-sm font-semibold text-accent">Join 500+ Professionals</span>
           </div>
           <h2 className="text-4xl md:text-6xl font-bold text-foreground mb-4 font-serif">
             Simple, Affordable Pricing
@@ -77,11 +77,11 @@ const PricingSection = () => {
 
           {/* Pricing Card - Conversion Optimized */}
           <div className="order-2 md:order-2">
-            <Card className="relative p-8 border-2 border-primary/40 shadow-luxury bg-gradient-to-br from-card to-card/50 backdrop-blur-sm animate-fade-in-up overflow-visible">
+            <Card className="relative p-8 border-2 border-accent/40 shadow-luxury bg-gradient-to-br from-card to-card/50 backdrop-blur-sm animate-fade-in-up overflow-visible">
               {/* Urgency Banner - Top */}
               <div className="absolute -top-4 left-1/2 -translate-x-1/2 z-10">
-                <div className="bg-gradient-to-r from-red-500 to-orange-500 text-white px-6 py-2 rounded-full shadow-luxury-glow flex items-center gap-2 animate-pulse">
-                  <Clock className="w-4 h-4" />
+                <div className="bg-gradient-to-r from-red-600 to-orange-600 text-white px-6 py-2 rounded-full shadow-luxury-glow flex items-center gap-2 animate-pulse">
+                  <Clock className="w-4 h-4" aria-hidden="true" />
                   <span className="text-sm font-bold">
                     Offer Ends In: {String(timeLeft.hours).padStart(2, '0')}:{String(timeLeft.minutes).padStart(2, '0')}:{String(timeLeft.seconds).padStart(2, '0')}
                   </span>
@@ -91,14 +91,15 @@ const PricingSection = () => {
               {/* Social Proof - Live Counter */}
               <div className="flex flex-col items-center gap-4 mb-6 pt-4">
                 {/* Region Switcher */}
-                <div className="flex bg-secondary/20 p-1 rounded-full border border-primary/20">
+                <div className="flex bg-secondary/20 p-1 rounded-full border border-accent/20" role="group" aria-label="Region selection">
                   {["BD", "USA", "CA"].map((r) => (
                     <button
                       key={r}
                       onClick={() => setRegion(r)}
+                      aria-current={region === r ? "true" : "false"}
                       className={`px-4 py-1.5 rounded-full text-xs font-bold transition-all ${region === r
-                        ? "bg-primary text-white shadow-lg"
-                        : "text-muted-foreground hover:text-primary"
+                        ? "bg-accent text-navy shadow-lg"
+                        : "text-muted-foreground hover:text-accent"
                         }`}
                     >
                       {r === "BD" ? "Bangladesh" : r === "USA" ? "USA" : "Canada"}
@@ -106,9 +107,9 @@ const PricingSection = () => {
                   ))}
                 </div>
 
-                <div className="flex items-center gap-2 text-sm text-muted-foreground">
-                  <Users className="w-4 h-4 text-primary" />
-                  <span className="font-semibold text-primary">{ordersToday}+</span>
+                <div className="flex items-center gap-2 text-sm text-foreground">
+                  <Users className="w-4 h-4 text-accent" aria-hidden="true" />
+                  <span className="font-semibold text-accent">{ordersToday}+</span>
                   <span>ordered today in {region === "BD" ? "Bangladesh" : "North America"}</span>
                 </div>
               </div>
@@ -120,18 +121,17 @@ const PricingSection = () => {
                     <span className="text-2xl text-muted-foreground line-through">
                       {currentPricing.symbol}{currentPricing.original}
                     </span>
-                    <span className="text-sm bg-red-100 text-red-600 px-3 py-1 rounded-full font-bold">Save 54%</span>
+                    <span className="text-sm bg-red-100 text-red-700 px-3 py-1 rounded-full font-bold">Save 54%</span>
                   </div>
                   <div className="flex items-baseline justify-center gap-2">
-                    <span className="text-6xl md:text-8xl font-bold text-primary">
+                    <span className="text-6xl md:text-8xl font-bold text-navy">
                       {currentPricing.symbol}{currentPricing.current}
                     </span>
                     <span className="text-xl text-muted-foreground">{currentPricing.currencyCode}</span>
                   </div>
                   <div className="flex flex-wrap justify-center gap-x-4 gap-y-1 mt-3">
-
-                    <p className="text-xs font-semibold text-mist/60 flex items-center gap-1">
-                      <Info className="w-3 h-3" />
+                    <p className="text-xs font-semibold text-muted-foreground flex items-center gap-1">
+                      <Info className="w-3 h-3" aria-hidden="true" />
                       {currentPricing.tax}
                     </p>
                   </div>
@@ -140,7 +140,7 @@ const PricingSection = () => {
               </div>
 
               {/* Benefit-Focused Features */}
-              <div className="space-y-3 mb-6">
+              <div className="space-y-3 mb-6" role="list" aria-label="Product features">
                 {[
                   { text: "Customizable design", icon: Zap },
                   { text: "NFC technology - Tap & share instantly", icon: Zap },
@@ -152,9 +152,9 @@ const PricingSection = () => {
                 ].map((feature, index) => {
                   const Icon = feature.icon;
                   return (
-                    <div key={index} className="flex items-center gap-3 group">
-                      <div className="w-8 h-8 bg-gradient-primary rounded-full flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform shadow-luxury-glow">
-                        <Icon className="w-4 h-4 text-white filter drop-shadow-sm" />
+                    <div key={index} className="flex items-center gap-3 group" role="listitem">
+                      <div className="w-8 h-8 bg-navy rounded-full flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform shadow-lg border border-white/10">
+                        <Icon className="w-4 h-4 text-accent filter drop-shadow-sm" aria-hidden="true" />
                       </div>
                       <span className="text-card-foreground font-medium">{feature.text}</span>
                     </div>
@@ -163,9 +163,9 @@ const PricingSection = () => {
               </div>
 
               {/* Scarcity Indicator */}
-              <div className="bg-orange-50 border border-orange-200 rounded-lg p-4 mb-6">
-                <div className="flex items-center gap-2 text-orange-700">
-                  <Clock className="w-4 h-4" />
+              <div className="bg-orange-50 border border-orange-200 rounded-lg p-4 mb-6" role="alert">
+                <div className="flex items-center gap-2 text-orange-800">
+                  <Clock className="w-4 h-4" aria-hidden="true" />
                   <span className="text-sm font-semibold">Only 12 cards left at this price today!</span>
                 </div>
               </div>
@@ -173,18 +173,18 @@ const PricingSection = () => {
               {/* Trust Badges */}
               <div className="grid grid-cols-2 gap-3 mb-6">
                 <div className="bg-green-50 border border-green-200 rounded-lg p-3 text-center">
-                  <ShieldCheck className="w-5 h-5 text-green-600 mx-auto mb-1" />
-                  <p className="text-xs font-semibold text-green-700">6-Month Warranty</p>
+                  <ShieldCheck className="w-5 h-5 text-green-700 mx-auto mb-1" aria-hidden="true" />
+                  <p className="text-xs font-semibold text-green-800">6-Month Warranty</p>
                 </div>
                 <div className="bg-blue-50 border border-blue-200 rounded-lg p-3 text-center">
-                  <Lock className="w-5 h-5 text-blue-600 mx-auto mb-1" />
-                  <p className="text-xs font-semibold text-blue-700">GDPR Protected</p>
+                  <Lock className="w-5 h-5 text-blue-700 mx-auto mb-1" aria-hidden="true" />
+                  <p className="text-xs font-semibold text-blue-800">GDPR Protected</p>
                 </div>
               </div>
 
               {/* Risk Reversal & Institutional Support */}
               <div className="space-y-4 mb-6">
-                <div className="bg-gradient-to-r from-primary/10 to-primary/5 border border-primary/20 rounded-lg p-4 text-center">
+                <div className="bg-accent/5 border border-accent/20 rounded-lg p-4 text-center">
                   <p className="text-sm font-semibold text-foreground mb-1">
                     💰 {region === "BD" ? "Start with 50% down" : "International Shipping Available"}
                   </p>
@@ -196,17 +196,17 @@ const PricingSection = () => {
                 </div>
 
                 {region === "CA" && (
-                  <div className="bg-primary/5 border border-primary/20 rounded-lg p-4 text-center group">
+                  <div className="bg-navy/5 border border-navy/20 rounded-lg p-4 text-center group">
                     <p className="text-sm font-bold text-foreground mb-1 flex items-center justify-center gap-2">
-                      <Building2 className="w-4 h-4 text-primary" />
+                      <Building2 className="w-4 h-4 text-accent" aria-hidden="true" />
                       Institutional Support Available
                     </p>
                     <p className="text-xs text-muted-foreground mb-2">For bulk orders & corporate solutions in Canada</p>
                     <a
                       href="mailto:waavelink@gmail.com"
-                      className="text-xs font-bold text-primary hover:underline flex items-center justify-center gap-1"
+                      className="text-xs font-bold text-navy hover:underline flex items-center justify-center gap-1"
                     >
-                      Contact Us <ArrowRight className="w-3 h-3 group-hover:translate-x-0.5 transition-transform" />
+                      Contact Us <ArrowRight className="w-3 h-3 group-hover:translate-x-0.5 transition-transform" aria-hidden="true" />
                     </a>
                   </div>
                 )}
@@ -215,15 +215,15 @@ const PricingSection = () => {
               {/* MEGA CTA Button - Conversion Focus */}
               <Button
                 onClick={scrollToOrder}
-                className="w-full bg-gradient-to-r from-primary via-primary/90 to-primary text-white hover:from-primary/90 hover:via-primary hover:to-primary/90 text-xl font-bold py-7 rounded-full shadow-luxury-glow transition-all duration-300 hover:scale-105 hover:shadow-[0_0_40px_rgba(59,130,246,0.6)] focus-visible:ring-4 focus-visible:ring-primary/50 focus-visible:ring-offset-2 relative overflow-hidden group animate-pulse-glow"
+                className="w-full bg-accent text-navy hover:bg-accent/90 text-xl font-bold py-7 rounded-full shadow-[0_0_40px_rgba(75,207,181,0.4)] transition-all duration-300 hover:scale-105 focus-visible:ring-4 focus-visible:ring-accent/50 focus-visible:ring-offset-2 relative overflow-hidden group animate-pulse-glow"
                 aria-label="Order your Wavelink card now"
               >
                 {/* Shimmer effect */}
-                <span className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000"></span>
+                <span className="absolute inset-0 bg-gradient-to-r from-transparent via-white/40 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000" aria-hidden="true"></span>
 
                 <span className="relative z-10 flex items-center justify-center gap-2">
                   Get Your Card Now
-                  <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+                  <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" aria-hidden="true" />
                 </span>
               </Button>
 

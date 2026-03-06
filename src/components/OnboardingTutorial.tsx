@@ -8,6 +8,8 @@ import { useRateLimit } from "@/hooks/use-rate-limit";
 import { initCSRFProtection, sanitizeFormData, logSecurityEvent } from "@/lib/security";
 import { Loader2 } from "lucide-react";
 
+import { translations, Language } from "@/lib/translations";
+
 interface TutorialStep {
     title: string;
     description: string;
@@ -16,8 +18,12 @@ interface TutorialStep {
     content?: React.ReactNode;
 }
 
+interface OnboardingTutorialProps {
+    lang?: Language;
+}
 
-export const OnboardingTutorial = () => {
+export const OnboardingTutorial = ({ lang = "en" }: OnboardingTutorialProps) => {
+    const tDict = translations[lang];
     const [isOpen, setIsOpen] = useState(false);
     const [currentStep, setCurrentStep] = useState(0);
     const [spotlightRect, setSpotlightRect] = useState<{ x: number; y: number; width: number; height: number; borderRadius: number } | null>(null);
@@ -32,50 +38,32 @@ export const OnboardingTutorial = () => {
 
     const steps: TutorialStep[] = [
         {
-            title: "Welcome to WaveLink",
-            description: "Your digital identity, reimagined. Start making lasting impressions with our smart networking solutions.",
+            title: tDict.onboarding.welcome,
+            description: tDict.onboarding.welcomeDesc,
             icon: <Sparkles className="w-12 h-12 text-sky animate-pulse" />,
             targetId: "hero"
         },
         {
-            title: "Smart NFC Solutions",
-            description: "Innovation at your fingertips. Tap and share your social profiles, contact info, and business details instantly.",
+            title: tDict.onboarding.howItWorks,
+            description: tDict.onboarding.howItWorksDesc,
             icon: <CreditCard className="w-12 h-12 text-primary" />,
-            targetId: "features"
+            targetId: "phase-1"
         },
         {
-            title: "NFC Enabled Review Stands",
-            description: "Elevate your business presence. Double your Google or WhatsApp feedback instantly while customers are at checkout.",
-            icon: <Star className="w-12 h-12 text-sky" />,
-            targetId: "review-stands"
-        },
-        {
-            title: "Simple & Affordable",
-            description: "Premium quality without the premium price tag. Join 500+ professionals who trust WaveLink for their networking.",
+            title: tDict.onboarding.whyWaveLink,
+            description: tDict.onboarding.whyWaveLinkDesc,
             icon: <TrendingUp className="w-12 h-12 text-primary" />,
-            targetId: "pricing"
+            targetId: "phase-2"
         },
         {
-            title: "Seamless Ordering",
-            description: "Get yours in just 2 minutes. We guide you through WhatsApp to ensure your design is perfect.",
+            title: tDict.onboarding.orderEasily,
+            description: tDict.onboarding.orderEasilyDesc,
             icon: <ShoppingBag className="w-12 h-12 text-navy" />,
-            targetId: "order"
+            targetId: "phase-3"
         },
         {
-            title: "Trusted by Many",
-            description: "Hear from our vibrant community. Real stories from real people who have transformed their networking game.",
-            icon: <MessageSquare className="w-12 h-12 text-sky" />,
-            targetId: "reviews"
-        },
-        {
-            title: "Always Here to Help",
-            description: "Have questions? We've got answers. Explore our FAQs to learn everything about the future of networking.",
-            icon: <HelpCircle className="w-12 h-12 text-primary" />,
-            targetId: "faq"
-        },
-        {
-            title: "How was the journey?",
-            description: "We value your experience! Tell us what you think about our platform so far.",
+            title: tDict.onboarding.feedbackTitle,
+            description: tDict.onboarding.feedbackDesc,
             icon: <CheckCircle className="w-12 h-12 text-emerald-500" />,
             content: (
                 <div className="space-y-4 mt-4 bg-background/50 p-6 rounded-xl border border-border/50">
@@ -94,7 +82,7 @@ export const OnboardingTutorial = () => {
                         ))}
                     </div>
                     <textarea
-                        placeholder="Your thoughts..."
+                        placeholder={tDict.onboarding.feedbackPlaceholder}
                         className="w-full bg-background border border-border rounded-lg p-3 text-sm focus:ring-2 focus:ring-sky/50 outline-none min-h-[100px]"
                         value={reviewData.text}
                         onChange={(e) => setReviewData({ ...reviewData, text: e.target.value })}
@@ -107,10 +95,10 @@ export const OnboardingTutorial = () => {
                         {isSubmitting ? (
                             <>
                                 <Loader2 className="w-4 h-4 animate-spin" />
-                                Saving...
+                                {tDict.onboarding.saving}
                             </>
                         ) : (
-                            "Submit Feedback"
+                            tDict.onboarding.feedbackSubmit
                         )}
                     </Button>
                 </div>
@@ -369,7 +357,7 @@ export const OnboardingTutorial = () => {
                                 className={`text-navy/60 hover:text-navy hover:bg-navy/5 transition-all ${currentStep === 0 ? "opacity-0 cursor-default" : "opacity-100"}`}
                             >
                                 <ChevronLeft className="w-4 h-4 mr-2" />
-                                Back
+                                {tDict.onboarding.back}
                             </Button>
 
                             <div className="flex gap-2">
@@ -378,13 +366,13 @@ export const OnboardingTutorial = () => {
                                     onClick={handleDismiss}
                                     className="text-[#0f1d35]/40 hover:text-[#0f1d35] transition-colors"
                                 >
-                                    Skip
+                                    {tDict.onboarding.skip}
                                 </Button>
                                 <Button
                                     onClick={handleNext}
                                     className="bg-sky hover:bg-sky/90 text-[#0f1d35] font-bold px-6 rounded-2xl shadow-luxury-glow group"
                                 >
-                                    {currentStep === steps.length - 1 ? "Start" : "Next"}
+                                    {currentStep === steps.length - 1 ? tDict.onboarding.start : tDict.onboarding.next}
                                     <ChevronRight className="w-4 h-4 ml-1 group-hover:translate-x-1 transition-transform" />
                                 </Button>
                             </div>

@@ -7,8 +7,14 @@ const DataProcessingAgreement = () => {
     const navigate = useNavigate();
 
     return (
-        <div className="min-h-screen bg-gradient-to-b from-background via-secondary/10 to-background">
-            <div className="container mx-auto px-4 py-20">
+        <div className="min-h-screen bg-background relative overflow-hidden">
+            {/* Global Vibe Glows */}
+            <div className="fixed inset-0 z-0 pointer-events-none">
+                <div className="absolute top-[-10%] -left-[5%] w-[60%] h-[60%] bg-glow-wave opacity-60 blur-[120px] animate-pulse-subtle" />
+                <div className="absolute bottom-[10%] -right-[5%] w-[50%] h-[50%] bg-glow-teal opacity-30 blur-[100px]" />
+            </div>
+
+            <div className="relative z-10 container mx-auto px-4 py-20">
                 <div className="text-center mb-16 animate-fade-in">
                     <h1 className="text-5xl md:text-6xl font-bold text-foreground mb-4 font-serif">
                         Data Processing Agreement

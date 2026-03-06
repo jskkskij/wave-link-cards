@@ -8,9 +8,14 @@ import { toast } from "sonner";
 import { CONFIG } from "@/lib/config";
 import { useRateLimit } from "@/hooks/use-rate-limit";
 import { initCSRFProtection, getCSRFToken, logSecurityEvent } from "@/lib/security";
+import { motion } from "framer-motion";
 import { OrderFormSchema, validateFormData } from "@/lib/validation";
 
-const OrderSection = () => {
+interface OrderSectionProps {
+  lang?: "en" | "bn";
+}
+
+const OrderSection = ({ lang = "en" }: OrderSectionProps) => {
   const [formData, setFormData] = useState({
     name: "",
     phone: "",
@@ -100,8 +105,7 @@ const OrderSection = () => {
     // 5. Validate form data with Zod (runtime type safety)
     const validation = validateFormData(OrderFormSchema, formData);
 
-    if (!validation.success) {
-      // TypeScript now knows this is the error case
+    if (validation.success === false) {
       toast.error(validation.error);
       logSecurityEvent('VALIDATION_FAILED', { errors: validation.details }, 'warning');
       return;
@@ -164,219 +168,171 @@ const OrderSection = () => {
   };
 
   return (
-    <section className="py-16 md:py-24 relative overflow-hidden bg-navy" id="order">
-      {/* Background Ambience */}
-      <div className="absolute inset-0 pointer-events-none">
-        <div className="absolute top-0 left-1/4 w-[500px] h-[500px] bg-sky/10 blur-[120px] rounded-full mix-blend-screen" />
-        <div className="absolute bottom-0 right-1/4 w-[400px] h-[400px] bg-primary/20 blur-[100px] rounded-full mix-blend-screen" />
-        <div className="absolute inset-0 opacity-5 paper-texture" />
-      </div>
-
-      <div className="container mx-auto px-4 relative z-10">
-        <div className="text-center mb-10 md:mb-16 animate-fade-in">
-          <span className="text-sky font-medium tracking-widest text-[10px] md:text-xs uppercase mb-4 inline-block px-3 py-1 border border-sky/20 rounded-full bg-sky/5">
-            Start Your Journey
-          </span>
-          <h2 className="text-3xl md:text-5xl font-serif text-white mb-4 md:mb-6">
-            Place Your Order
+    <section className="py-32 bg-background relative overflow-hidden" id="order">
+      <div className="container mx-auto px-6 max-w-7xl relative z-10">
+        <div className="max-w-3xl mb-24 md:mb-32">
+          <motion.div
+            initial={{ opacity: 0, scale: 0.95 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            viewport={{ once: true }}
+            className="text-blue font-bold uppercase tracking-[0.3em] text-[10px] md:text-xs mb-8"
+          >
+            {lang === "en" ? "Global Infrastructure" : "গ্লোবাল ইনফ্রাস্ট্রাকচার"}
+          </motion.div>
+          <h2 className="text-5xl md:text-7xl font-serif text-foreground mb-8 font-bold leading-[1.1] tracking-[-0.04em]">
+            {lang === "en" ? "Begin the Connection." : "শুরু হোক আপনার নতুন যাত্রা।"}
           </h2>
-          <p className="text-base md:text-lg text-mist/70 max-w-2xl mx-auto leading-relaxed px-2 md:px-0">
-            Fill in the details below. We'll guide you to WhatsApp to finalize payment and design.
+          <p className="text-xl md:text-2xl text-muted-foreground leading-tight tracking-tight font-medium max-w-2xl">
+            {lang === "en" ? "Deploy your professional presence with our luxury NFC hardware and intelligent software ecosystem." : "আমাদের লাক্সারি এনএফসি হার্ডওয়্যার এবং ইন্টেলিজেন্ট সফটওয়্যার ইকোসিস্টেমের মাধ্যমে আপনার পেশাদার পরিচিতি বিশ্বব্যাপী ছড়িয়ে দিন।"}
           </p>
         </div>
 
-        <div className="max-w-5xl mx-auto grid md:grid-cols-5 gap-6 md:gap-8">
-          {/* Left Column: Form */}
-          <div className="md:col-span-3 bg-white/5 backdrop-blur-md border border-white/10 p-6 md:p-8 rounded-2xl md:rounded-3xl shadow-2xl">
-            <form onSubmit={handleSubmit} className="space-y-6">
-
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <div className="space-y-2">
-                  <Label htmlFor="name" className="text-mist font-medium">Full Name</Label>
+        <div className="grid lg:grid-cols-12 gap-16 items-start">
+          {/* Form Column */}
+          <div className="lg:col-span-7 bg-white border border-muted p-10 md:p-14 rounded-2xl shadow-luxury">
+            <form onSubmit={handleSubmit} className="space-y-10" aria-label="Order Information Form">
+              <div className="grid md:grid-cols-2 gap-8">
+                <div className="space-y-3">
+                  <Label htmlFor="name" className="text-[13px] font-bold text-foreground uppercase tracking-widest px-1">Full Name</Label>
                   <Input
                     id="name" name="name" required placeholder="John Doe"
                     value={formData.name} onChange={handleInputChange}
-                    className="bg-navy/50 border-white/10 text-white placeholder:text-white/20 focus:border-sky/50 focus:bg-navy/80 transition-all h-12"
+                    className="h-14 bg-warm-gray/50 border-muted text-foreground placeholder:text-muted-foreground/40 focus:border-blue/30 focus:bg-white transition-luxury shadow-none rounded-xl"
                   />
                 </div>
-                <div className="space-y-2">
-                  <Label htmlFor="phone" className="text-mist font-medium">Phone Number</Label>
+                <div className="space-y-3">
+                  <Label htmlFor="phone" className="text-[13px] font-bold text-foreground uppercase tracking-widest px-1">Phone Number</Label>
                   <Input
-                    id="phone" name="phone" required placeholder="+880... or any valid number"
+                    id="phone" name="phone" required placeholder="+880..."
                     value={formData.phone} onChange={handleInputChange}
-                    className="bg-navy/50 border-white/10 text-white placeholder:text-white/20 focus:border-sky/50 focus:bg-navy/80 transition-all h-12"
+                    className="h-14 bg-warm-gray/50 border-muted text-foreground placeholder:text-muted-foreground/40 focus:border-blue/30 focus:bg-white transition-luxury shadow-none rounded-xl"
                   />
                 </div>
               </div>
 
-              <div className="space-y-2">
-                <Label htmlFor="email" className="text-mist font-medium">Email Address</Label>
+              <div className="space-y-3">
+                <Label htmlFor="email" className="text-[13px] font-bold text-foreground uppercase tracking-widest px-1">Email Address</Label>
                 <Input
                   id="email" name="email" type="email" required placeholder="john@example.com"
                   value={formData.email} onChange={handleInputChange}
-                  className="bg-navy/50 border-white/10 text-white placeholder:text-white/20 focus:border-sky/50 focus:bg-navy/80 transition-all h-12"
+                  className="h-14 bg-warm-gray/50 border-muted text-foreground placeholder:text-muted-foreground/40 focus:border-blue/30 focus:bg-white transition-luxury shadow-none rounded-xl"
                 />
               </div>
 
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <div className="space-y-2">
-                  <Label htmlFor="product" className="text-mist font-medium">Select Product</Label>
+              <div className="grid md:grid-cols-2 gap-8">
+                <div className="space-y-3">
+                  <Label htmlFor="product" className="text-[13px] font-bold text-foreground uppercase tracking-widest px-1">Infrastructure Component</Label>
                   <select
                     id="product" name="product"
                     value={formData.product} onChange={(e) => setFormData({ ...formData, product: e.target.value })}
-                    className="w-full bg-navy/50 border border-white/10 text-white rounded-md h-12 px-3 focus:outline-none focus:border-sky/50 focus:bg-navy/80 transition-all"
+                    className="w-full h-14 bg-warm-gray/50 border border-muted text-foreground rounded-xl px-4 focus:outline-none focus:border-blue/30 focus:bg-white transition-luxury appearance-none font-medium text-sm"
                   >
                     <option value="Smart Card">NFC Smart Card</option>
                     <option value="Review Stand">NFC Review Stand</option>
                   </select>
                 </div>
-                <div className="space-y-2">
-                  <Label htmlFor="quantity" className="text-mist font-medium">Quantity</Label>
+                <div className="space-y-3">
+                  <Label htmlFor="quantity" className="text-[13px] font-bold text-foreground uppercase tracking-widest px-1">Volume</Label>
                   <Input
                     id="quantity" name="quantity" type="number" min="1" required
                     value={formData.quantity} onChange={handleInputChange}
-                    className="bg-navy/50 border-white/10 text-white placeholder:text-white/20 focus:border-sky/50 focus:bg-navy/80 transition-all h-12"
+                    className="h-14 bg-warm-gray/50 border-muted text-foreground placeholder:text-muted-foreground/40 focus:border-blue/30 focus:bg-white transition-luxury shadow-none rounded-xl"
                   />
                 </div>
               </div>
 
-              {/* Image Upload Section */}
-              <div className="space-y-2">
-                <div className="flex items-center justify-between">
-                  <Label className="text-mist font-medium">Custom Design (Optional)</Label>
-                  <span className="text-xs text-sky bg-sky/10 px-2 py-0.5 rounded-full flex items-center gap-1">
-                    <AlertCircle size={10} />
-                    You'll attach this in WhatsApp
-                  </span>
-                </div>
+              <div className="space-y-3">
+                <Label className="text-[13px] font-bold text-foreground uppercase tracking-widest px-1">Bespoke Design (Optional)</Label>
                 <div
                   onClick={() => fileInputRef.current?.click()}
-                  className={`relative border-2 border-dashed rounded-xl p-6 transition-all duration-300 cursor-pointer group ${selectedImage
-                    ? 'border-sky/50 bg-sky/5'
-                    : 'border-white/10 hover:border-sky/30 hover:bg-white/5'
-                    }`}
+                  role="button"
+                  className={`border-2 border-dashed rounded-2xl p-8 transition-luxury text-center hover:bg-warm-gray/30 group ${selectedImage ? 'border-blue/30 bg-blue/5' : 'border-muted'}`}
                 >
-                  <input
-                    type="file"
-                    ref={fileInputRef}
-                    className="hidden"
-                    accept="image/*"
-                    onChange={handleImageUpload}
-                  />
-
+                  <input type="file" ref={fileInputRef} className="hidden" accept="image/*" onChange={handleImageUpload} />
                   {selectedImage ? (
-                    <div className="relative flex flex-col items-center">
-                      <div className="relative w-full h-48 mb-4 rounded-lg overflow-hidden border border-white/20">
-                        <img src={selectedImage} alt="Preview" className="w-full h-full object-contain" />
-                        <button
-                          type="button"
-                          onClick={(e) => { e.stopPropagation(); removeImage(); }}
-                          className="absolute top-2 right-2 p-1 bg-black/60 text-white rounded-full hover:bg-red-500/80 transition-colors"
-                        >
-                          <X size={16} />
+                    <div className="flex flex-col items-center">
+                      <div className="relative w-full h-64 mb-6 rounded-xl overflow-hidden shadow-luxury">
+                        <img src={selectedImage} alt="Preview" className="w-full h-full object-contain bg-white" />
+                        <button type="button" onClick={(e) => { e.stopPropagation(); removeImage(); }} className="absolute top-4 right-4 p-2 bg-foreground text-white rounded-full hover:bg-red-500 transition-luxury">
+                          <X size={18} />
                         </button>
                       </div>
-                      <p className="text-sky text-sm font-medium flex items-center gap-2">
-                        <CheckCircle2 size={16} />
-                        Photo Selected
+                      <p className="text-blue font-bold text-sm tracking-tight flex items-center gap-2">
+                        <CheckCircle2 size={18} /> Asset Uploaded
                       </p>
-                      <p className="text-mist/50 text-xs mt-1">Remember to send this file in the WhatsApp chat!</p>
                     </div>
                   ) : (
-                    <div className="flex flex-col items-center text-center py-4">
-                      <div className="w-12 h-12 rounded-full bg-white/5 flex items-center justify-center mb-3 group-hover:scale-110 transition-transform">
-                        <Upload className="w-6 h-6 text-mist/60 group-hover:text-sky transition-colors" />
+                    <div className="py-6 flex flex-col items-center">
+                      <div className="w-16 h-16 rounded-full bg-warm-gray flex items-center justify-center mb-6 group-hover:scale-110 transition-luxury">
+                        <Upload className="w-8 h-8 text-muted-foreground group-hover:text-blue transition-luxury" />
                       </div>
-                      <p className="text-mist font-medium text-sm">Click to upload your design</p>
-                      <p className="text-mist/40 text-xs mt-1">Supports JPG, PNG (Max 5MB)</p>
+                      <p className="text-foreground font-bold tracking-tight">Upload Production Asset</p>
+                      <p className="text-muted-foreground text-sm font-medium mt-1">High-resolution PNG or JPG preferred</p>
                     </div>
                   )}
                 </div>
               </div>
 
-              <div className="space-y-2">
-                <Label htmlFor="address" className="text-mist font-medium">Delivery Address</Label>
+              <div className="space-y-3">
+                <Label htmlFor="address" className="text-[13px] font-bold text-foreground uppercase tracking-widest px-1">Delivery Logistics</Label>
                 <Textarea
-                  id="address" name="address" required placeholder="Enter your full delivery address..."
+                  id="address" name="address" required placeholder="Enter your deployment address..."
                   value={formData.address} onChange={handleInputChange}
-                  className="bg-navy/50 border-white/10 text-white placeholder:text-white/20 min-h-[100px] focus:border-sky/50 focus:bg-navy/80 transition-all resize-none"
+                  className="min-h-[120px] bg-warm-gray/50 border-muted text-foreground placeholder:text-muted-foreground/40 focus:border-blue/30 focus:bg-white transition-luxury shadow-none rounded-xl p-4"
                 />
               </div>
 
-              {/* Honeypot field - hidden from users, only bots fill it */}
-              <input
-                type="text"
-                name="website"
-                tabIndex={-1}
-                autoComplete="off"
-                value={formData.website}
-                onChange={handleInputChange}
-                style={{ position: 'absolute', left: '-9999px', opacity: 0, pointerEvents: 'none' }}
-                aria-hidden="true"
-              />
-
-              <div className="space-y-4">
-                <div
-                  className="cf-turnstile"
-                  data-sitekey={CONFIG.TURNSTILE_SITE_KEY}
-                  data-theme="dark"
-                ></div>
-              </div>
+              {/* Honeypot field */}
+              <input type="text" name="website" tabIndex={-1} autoComplete="off" value={formData.website} onChange={handleInputChange} className="hidden" aria-hidden="true" />
 
               <Button
                 type="submit"
                 disabled={isSubmitting}
-                className="w-full bg-sky text-navy hover:bg-sky/90 py-6 text-lg font-bold rounded-xl shadow-[0_0_20px_rgba(14,165,233,0.3)] transition-all duration-300 hover:scale-[1.02]"
+                className="w-full h-20 bg-primary hover:bg-primary/95 text-primary-foreground text-xl font-bold rounded-2xl shadow-luxury-glow transition-luxury group"
               >
                 {isSubmitting ? (
-                  <>
-                    <Loader2 className="mr-2 h-5 w-5 animate-spin" />
-                    Processing...
-                  </>
+                  <Loader2 className="animate-spin" />
                 ) : (
                   <>
-                    <Send className="mr-2 h-5 w-5" />
-                    Place Order on WhatsApp
+                    <Send className="mr-3 group-hover:translate-x-1 group-hover:-translate-y-1 transition-luxury" size={24} />
+                    Deploy Order via WhatsApp
                   </>
                 )}
               </Button>
-              <p className="text-center text-mist/40 text-xs mt-2">
-                You will be redirected to WhatsApp to confirm details & attach design files.
-              </p>
             </form>
           </div>
 
-          {/* Right Column: Context */}
-          <div className="md:col-span-2 flex flex-col gap-6">
-            <div className="bg-gradient-to-br from-white/10 to-transparent border border-white/10 p-8 rounded-3xl relative overflow-hidden">
-              <h3 className="text-xl font-serif font-bold mb-4 text-white">Why WhatsApp?</h3>
-              <ul className="space-y-4 text-mist/80">
+          {/* Context Column */}
+          <div className="lg:col-span-5 space-y-12">
+            <div className="bg-warm-gray border border-muted p-12 rounded-2xl">
+              <h3 className="text-2xl font-serif font-bold text-foreground mb-8 tracking-tight">Ecosystem Logistics</h3>
+              <div className="space-y-10">
                 {[
-                  "Instant confirmation of your design.",
-                  "Secure payment via Bkash/Nagad.",
-                  "Real-time updates on printing & delivery."
+                  { title: "Bespoke Validation", desc: "Our design team manually validates every custom asset via WhatsApp before production." },
+                  { title: "Secure Settlement", desc: "Transactions are handled through authorized banking channels (Bkash/Nagad) for security." },
+                  { title: "Real-time Audits", desc: "Receive live telemetry on your production and delivery status directly from our logisitics team." }
                 ].map((item, i) => (
-                  <li key={i} className="flex items-start gap-3 text-sm">
-                    <CheckCircle2 className="w-5 h-5 text-sky shrink-0" />
-                    <span>{item}</span>
-                  </li>
+                  <div key={i} className="flex gap-6">
+                    <CheckCircle2 className="w-7 h-7 text-blue shrink-0" />
+                    <div>
+                      <h4 className="font-bold text-foreground tracking-tight mb-2 uppercase text-[12px] tracking-widest">{item.title}</h4>
+                      <p className="text-muted-foreground text-base font-medium leading-relaxed">{item.desc}</p>
+                    </div>
+                  </div>
                 ))}
-              </ul>
+              </div>
             </div>
 
-            {/* Direct Support */}
-            <div className="bg-navy/30 border border-white/5 p-8 rounded-3xl text-center flex-1 flex flex-col justify-center items-center">
-              <p className="text-mist/60 text-sm mb-4">Have questions before ordering?</p>
+            <div className="text-center p-12 border border-muted rounded-2xl bg-white shadow-luxury">
+              <p className="text-muted-foreground font-medium mb-8">Technical or Custom Inquiries?</p>
               <a
                 href={CONFIG.WHATSAPP_LINK("Hello Wavelink, I have questions before ordering.")}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center gap-2 text-white hover:text-sky transition-colors duration-300 group"
+                className="inline-flex items-center gap-4 text-foreground font-bold hover:text-blue transition-luxury group"
               >
-                <div className="w-10 h-10 rounded-full bg-white/5 group-hover:bg-sky/20 flex items-center justify-center transition-colors">
-                  <MessageCircle className="w-5 h-5" />
-                </div>
-                <span className="font-medium">Chat with Support</span>
+                <span className="text-xl tracking-tight border-b-2 border-blue/20 group-hover:border-blue transition-luxury">Speak with our Tech Consultant</span>
+                <MessageCircle size={28} className="text-blue" />
               </a>
             </div>
           </div>

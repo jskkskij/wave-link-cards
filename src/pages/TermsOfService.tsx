@@ -35,8 +35,14 @@ const TermsOfService = () => {
   ];
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-background via-secondary/10 to-background pb-20">
-      <div className="container mx-auto px-4 py-20 max-w-4xl">
+    <div className="min-h-screen bg-background relative overflow-hidden pb-20">
+      {/* Global Vibe Glows */}
+      <div className="fixed inset-0 z-0 pointer-events-none">
+        <div className="absolute top-[-10%] -left-[5%] w-[60%] h-[60%] bg-glow-wave opacity-60 blur-[120px] animate-pulse-subtle" />
+        <div className="absolute bottom-[10%] -right-[5%] w-[50%] h-[50%] bg-glow-teal opacity-30 blur-[100px]" />
+      </div>
+
+      <div className="relative z-10 container mx-auto px-4 py-20 max-w-4xl">
         {/* Header */}
         <div className="text-center mb-16 animate-fade-in">
           <div className="w-20 h-20 bg-gradient-primary rounded-full flex items-center justify-center mx-auto mb-6 shadow-luxury-glow">

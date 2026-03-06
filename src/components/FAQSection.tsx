@@ -1,78 +1,61 @@
 import { useState } from "react";
 import { motion, AnimatePresence, PanInfo } from "framer-motion";
 import { ChevronLeft, ChevronRight, Sparkles } from "lucide-react";
+import { Language, translations } from "@/lib/translations";
 
 const faqs = [
   {
-    question: "How does a Wavelink smart card work?",
-    answer: "A Wavelink smart card uses Near Field Communication (NFC) technology to transmit your digital profile details instantly to any compatible smartphone. When you tap the card against a phone, it triggers a link that opens your personalized dashboard in the browser—no app installation needed.",
-    icon: "💳",
-    color: "from-sky-500/20 to-blue-500/20"
+    question: "এটা কি এবং কিভাবে কাজ করে? (What is this?)",
+    answer: "এটা একটা স্মার্ট কার্ড। আপনার ভিজিটিং কার্ডের মতো, কিন্তু এটা মোবাইলে টাচ করলেই আপনার সব তথ্য (ফোন নাম্বার, ফেসবুক, লিঙ্ক) অন্য ফোনে অটোমেটিক চলে যাবে। কোনো অ্যাপ লাগে না।",
+    icon: "🤝",
+    color: "from-sky-400/20 to-blue-400/20"
   },
   {
-    question: "Is Wavelink compatible with all smartphones?",
-    answer: "Yes, Wavelink is designed for universal compatibility. It works with all NFC-enabled devices, including iPhone 7 and newer, as well as most modern Android smartphones. For older devices, each card comes with a backup QR code for instant access.",
+    question: "রিভিউ স্ট্যান্ড দিয়ে কি গুগল রিভিউ বাড়ানো সম্ভব? (Boost Google Reviews?)",
+    answer: "হ্যাঁ! আমাদের রিভিউ স্ট্যান্ড ব্যবহার করে খুব সহজেই কাস্টমারদের থেকে গুগল রিভিউ সংগ্রহ করতে পারবেন। কাস্টমার শুধু স্ট্যান্ডে ফোন টাচ করবে আর সরাসরি আপনার গুগল রিভিউ পেজ ওপেন হবে।",
+    icon: "🚀",
+    color: "from-yellow-400/20 to-orange-400/20"
+  },
+  {
+    question: "আমার ফোনে কি চলবে? (Will it work on my phone?)",
+    answer: "হ্যাঁ, সব স্মার্টফোনেই চলবে। নতুন ফোনে টাচ করলেই হবে, আর পুরাতন ফোনের জন্য কার্ডের পিছনে একটা কিউআর (QR) কোড আছে যা স্ক্যান করলেই হবে।",
     icon: "📱",
-    color: "from-purple-500/20 to-pink-500/20"
+    color: "from-emerald-400/20 to-teal-400/20"
   },
   {
-    question: "What if my phone doesn't support NFC?",
-    answer: "No worries! All our NFC cards include a QR code — simply scan to access your digital profile.",
-    icon: "📷",
-    color: "from-emerald-500/20 to-teal-500/20"
+    question: "অর্ডার করবো কিভাবে? (How to order?)",
+    answer: "খুবই সহজ! 'অর্ডার' বাটনে ক্লিক করে আপনার নাম-ঠিকানা দিন। আমরা আপনাকে হোয়াটসঅ্যাপে (WhatsApp) নক দেবো এবং আপনার কার্ডের ডিজাইন ঠিক করে দেবো।",
+    icon: "🛍️",
+    color: "from-orange-400/20 to-amber-400/20"
   },
   {
-    question: "Does it require internet?",
-    answer: "Yes. Since the profile data is dynamically loaded from our server, internet access is required to view it.",
-    icon: "🌐",
-    color: "from-cyan-500/20 to-sky-500/20"
-  },
-  {
-    question: "How long does delivery take?",
-    answer: "Standard delivery takes 3-5 business days within Dhaka and 5-7 business days outside Dhaka. We'll provide tracking information once your order ships.",
-    icon: "🚚",
-    color: "from-orange-500/20 to-amber-500/20"
-  },
-  {
-    question: "Can I customize my design?",
-    answer: "Absolutely! You can upload your own design when placing an order, or choose from our pre-made templates. Our team will help ensure your design looks perfect.",
-    icon: "🎨",
-    color: "from-rose-500/20 to-pink-500/20"
-  },
-  {
-    question: "How do I update my information?",
-    answer: "You can update your contact details, social links, and profile information by informing us via WhatsApp or our official pages. We'll update your card profile accordingly.",
-    icon: "✏️",
-    color: "from-violet-500/20 to-purple-500/20"
-  },
-  {
-    question: "What if my card gets damaged?",
-    answer: "Our cards are waterproof and extremely durable. However, if you experience any issues, please contact our support team and we'll help you with a replacement.",
+    question: "নিরাপদ তো? (Is it safe?)",
+    answer: "একদম নিরাপদ। আপনি যা তথ্য সেভ করবেন, শুধু সেগুলোই মানুষ দেখতে পাবে। আপনার ফোনের কোনো গোপন তথ্য কেউ নিতে পারবে না।",
     icon: "🛡️",
-    color: "from-indigo-500/20 to-blue-500/20"
+    color: "from-rose-400/20 to-pink-400/20"
   },
   {
-    question: "Is WaveLink compliant with UAE regulations?",
-    answer: "Yes. We fully comply with UAE Federal Decree-Law No. 26 of 2025 (Child Safety) and UAE Data Protection Laws. Our platform features bilingual explicit consent, mandatory age verification for all users, and avoids all prohibited content categories defined by the TDRA.",
-    icon: "🇦🇪",
-    color: "from-green-500/20 to-red-500/20"
+    question: "ইন্টারনেট লাগবে কি? (Do I need internet?)",
+    answer: "হ্যাঁ, তথ্যগুলো দেখানোর জন্য ফোনে ইন্টারনেট সংযোগ থাকতে হবে।",
+    icon: "🌐",
+    color: "from-cyan-400/20 to-sky-400/20"
   },
   {
-    question: "How does using an NFC card help the environment?",
-    answer: "By switching to a digital business card, you help eliminate the 8-10 billion paper cards printed annually, 88% of which are thrown away within a week. One Wavelink card lasts for years, drastically reducing paper waste and your environmental footprint.",
-    icon: "🌱",
-    color: "from-green-500/20 to-emerald-500/20"
+    question: "কত দিন লাগবে পেতে? (Delivery time?)",
+    answer: "ঢাকার ভেতরে ৩-৫ দিন এবং ঢাকার বাইরে ৫-৭ দিন সময় লাগে।",
+    icon: "🚚",
+    color: "from-purple-400/20 to-indigo-400/20"
   }
 ];
 
-const FAQSection = () => {
+interface FAQSectionProps {
+  lang?: Language;
+}
+
+const FAQSection = ({ lang = "en" }: FAQSectionProps) => {
+  const t = translations[lang];
   const [currentIndex, setCurrentIndex] = useState(0);
   const [direction, setDirection] = useState(0);
-
-  const swipeConfidenceThreshold = 10000;
-  const swipePower = (offset: number, velocity: number) => {
-    return Math.abs(offset) * velocity;
-  };
 
   const paginate = (newDirection: number) => {
     setDirection(newDirection);
@@ -84,90 +67,53 @@ const FAQSection = () => {
     });
   };
 
-  const handleDragEnd = (e: MouseEvent | TouchEvent | PointerEvent, { offset, velocity }: PanInfo) => {
-    const swipe = swipePower(offset.x, velocity.x);
+  const currentFaq = faqs[currentIndex];
 
-    if (swipe < -swipeConfidenceThreshold) {
-      paginate(1);
-    } else if (swipe > swipeConfidenceThreshold) {
-      paginate(-1);
-    }
-  };
-
-  // Smoother, slower animations for better readability
-  const variants = {
-    enter: (direction: number) => ({
-      x: direction > 0 ? 300 : -300,
-      opacity: 0,
-      scale: 0.95,
-    }),
-    center: {
-      zIndex: 1,
-      x: 0,
-      opacity: 1,
-      scale: 1,
-    },
-    exit: (direction: number) => ({
-      zIndex: 0,
-      x: direction < 0 ? 300 : -300,
-      opacity: 0,
-      scale: 0.95,
-    }),
-  };
-
-  // Calculate card positions for spread layout (desktop)
   const getCardStyle = (index: number) => {
     const totalCards = Math.min(5, faqs.length);
     const centerIndex = Math.floor(totalCards / 2);
     const relativeIndex = index - currentIndex;
 
-    // Only show 5 cards at a time
     if (Math.abs(relativeIndex) > 2) return { display: 'none' };
 
     const position = relativeIndex + centerIndex;
-    const rotation = (position - centerIndex) * 6; // Reduced rotation for stability
-    const xOffset = (position - centerIndex) * 80;
-    const yOffset = Math.abs(position - centerIndex) * 15;
-    const scale = position === centerIndex ? 1 : 0.88;
+    const rotation = (position - centerIndex) * 4;
+    const xOffset = (position - centerIndex) * 100;
+    const yOffset = Math.abs(position - centerIndex) * 20;
+    const scale = position === centerIndex ? 1 : 0.9;
     const zIndex = totalCards - Math.abs(position - centerIndex);
 
     return {
       transform: `translateX(${xOffset}px) translateY(${yOffset}px) rotate(${rotation}deg) scale(${scale})`,
       zIndex,
-      transition: 'all 0.6s cubic-bezier(0.34, 1.2, 0.64, 1)',
+      transition: 'all 0.6s cubic-bezier(0.23, 1, 0.32, 1)',
     };
   };
 
-  const currentFaq = faqs[currentIndex];
-
   return (
-    <section className="py-16 md:py-24 bg-navy relative overflow-hidden" id="faq">
-      {/* Background Effects */}
-      <div className="absolute inset-0 pointer-events-none opacity-40">
-        <div className="absolute top-1/4 left-1/4 w-[400px] h-[400px] bg-sky/20 blur-[120px] rounded-full" />
-        <div className="absolute bottom-1/4 right-1/4 w-[300px] h-[300px] bg-primary/30 blur-[100px] rounded-full" />
-      </div>
-
-      <div className="container mx-auto px-4 relative z-10">
-        {/* Header */}
-        <div className="text-center mb-12 md:mb-16 animate-fade-in">
-          <span className="text-sky font-medium tracking-widest text-xs uppercase mb-4 inline-block px-3 py-1 border border-sky/20 rounded-full bg-sky/5">
-            <Sparkles className="w-3 h-3 inline mr-1" />
-            Got Questions?
-          </span>
-          <h2 className="text-3xl md:text-5xl font-serif text-white mb-4">
-            Frequently Asked Questions
+    <section className="py-32 bg-background relative overflow-hidden" id="faq">
+      <div className="container mx-auto px-6 max-w-7xl relative z-10">
+        <div className="max-w-3xl mb-24 md:mb-32">
+          <motion.div
+            initial={{ opacity: 0, scale: 0.95 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            viewport={{ once: true }}
+            className="text-blue font-bold uppercase tracking-[0.3em] text-[10px] md:text-xs mb-8"
+          >
+            {lang === "en" ? "Knowledge Infrastructure" : "নলেজ ইনফ্রাস্ট্রাকচার"}
+          </motion.div>
+          <h2 className="text-5xl md:text-7xl font-serif text-foreground mb-8 font-bold leading-[1.1] tracking-[-0.04em]">
+            {lang === "en" ? "Refining Clarity." : "স্বচ্ছতার সাথে উত্তর।"}
           </h2>
-          <p className="text-base md:text-lg text-mist/70 max-w-2xl mx-auto">
-            Swipe or click to explore answers
+          <p className="text-xl md:text-2xl text-muted-foreground leading-tight tracking-tight font-medium max-w-2xl">
+            {lang === "en" ? "Technical insights into the global trust architecture we are building." : "আমাদের বৈশ্বিক আস্থা অবকাঠামো সম্পর্কে বিস্তারিত জানুন।"}
           </p>
         </div>
 
-        {/* Desktop: Card Spread Layout */}
-        <div className="hidden md:block relative h-[520px] mb-8">
-          <div className="absolute inset-0 flex items-center justify-center">
+        <div className="hidden md:block relative h-[560px] mb-12">
+          <div className="absolute inset-0 flex items-center justify-center" role="region" aria-label="FAQ Cards">
             {faqs.map((faq, index) => {
-              const style = getCardStyle(index);
+              const style = getCardStyle(index) as any;
               if (style.display === 'none') return null;
 
               const isActive = index === currentIndex;
@@ -175,7 +121,7 @@ const FAQSection = () => {
               return (
                 <div
                   key={index}
-                  className="absolute w-[420px] cursor-pointer"
+                  className="absolute w-[440px] cursor-pointer"
                   style={style}
                   onClick={() => {
                     if (!isActive) {
@@ -183,46 +129,37 @@ const FAQSection = () => {
                       setCurrentIndex(index);
                     }
                   }}
+                  role="button"
+                  aria-pressed={isActive}
                 >
-                  {/* Solid card with gradient accent */}
                   <div className={`
                     relative overflow-hidden
-                    bg-[#0f1d35] 
-                    border-2 ${isActive ? 'border-sky/60' : 'border-white/10'}
-                    rounded-3xl p-8 shadow-2xl
-                    transition-all duration-500
-                    ${isActive ? 'shadow-[0_0_50px_rgba(14,165,233,0.4)]' : 'shadow-[0_8px_32px_rgba(0,0,0,0.4)]'}
+                    bg-white border border-muted
+                    rounded-2xl p-12 shadow-luxury
+                    transition-luxury
+                    ${isActive ? 'shadow-luxury-intense bg-warm-gray' : 'opacity-60 grayscale hover:grayscale-0'}
                   `}>
-                    {/* Gradient overlay for active card */}
-                    {isActive && (
-                      <div className={`absolute inset-0 bg-gradient-to-br ${faq.color} opacity-30`} />
-                    )}
-
-                    {/* Content */}
                     <div className="relative z-10">
-                      {/* Icon */}
                       <div className={`
-                        text-6xl mb-6 text-center transition-all duration-500
-                        ${isActive ? 'scale-110' : 'scale-100 opacity-60'}
+                        text-5xl mb-10 transition-luxury
+                        ${isActive ? 'scale-110' : 'scale-90 opacity-40'}
                       `}>
                         {faq.icon}
                       </div>
 
-                      {/* Question */}
                       <h3 className={`
-                        text-xl font-bold mb-4 text-center min-h-[60px] flex items-center justify-center
-                        transition-all duration-300
-                        ${isActive ? 'text-white' : 'text-white/60'}
+                        text-2xl font-bold mb-6 font-serif tracking-tight leading-tight
+                        transition-luxury
+                        ${isActive ? 'text-foreground' : 'text-muted-foreground'}
                       `}>
                         {faq.question}
                       </h3>
 
-                      {/* Answer - only show on active card with smooth transition */}
                       <div className={`
-                        text-mist/90 text-center leading-relaxed text-[15px]
-                        transition-all duration-500 ease-in-out
+                        text-muted-foreground leading-relaxed text-base font-medium tracking-tight
+                        transition-luxury
                         ${isActive
-                          ? 'opacity-100 max-h-[200px] mt-4'
+                          ? 'opacity-100 max-h-[250px] mt-6'
                           : 'opacity-0 max-h-0 overflow-hidden mt-0'
                         }
                       `}>
@@ -230,10 +167,9 @@ const FAQSection = () => {
                       </div>
                     </div>
 
-                    {/* Active indicator */}
                     {isActive && (
-                      <div className="absolute top-4 right-4">
-                        <div className="w-3 h-3 bg-sky rounded-full animate-pulse" />
+                      <div className="absolute top-8 right-8">
+                        <div className="w-2 h-2 bg-blue rounded-full animate-pulse" aria-hidden="true" />
                       </div>
                     )}
                   </div>
@@ -243,78 +179,37 @@ const FAQSection = () => {
           </div>
         </div>
 
-        {/* Mobile: Swipeable Cards with solid background */}
-        <div className="md:hidden relative h-[480px] mb-8">
+        {/* Mobile View Implementation */}
+        <div className="md:hidden relative h-[520px] mb-12">
           <AnimatePresence initial={false} custom={direction} mode="wait">
             <motion.div
               key={currentIndex}
               custom={direction}
-              variants={variants}
-              initial="enter"
-              animate="center"
-              exit="exit"
-              transition={{
-                x: { type: "spring", stiffness: 200, damping: 25 },
-                opacity: { duration: 0.4 },
-                scale: { duration: 0.4 },
-              }}
-              drag="x"
-              dragConstraints={{ left: 0, right: 0 }}
-              dragElastic={0.2}
-              onDragEnd={handleDragEnd}
-              className="absolute inset-0 flex items-center justify-center"
+              className="absolute inset-0 flex items-center justify-center p-4"
             >
-              <div className="w-full max-w-sm mx-4">
-                {/* Solid card with gradient accent */}
-                <div className="relative overflow-hidden bg-[#0f1d35] border-2 border-sky/60 rounded-3xl p-8 shadow-2xl shadow-[0_0_50px_rgba(14,165,233,0.4)]">
-                  {/* Gradient overlay */}
-                  <div className={`absolute inset-0 bg-gradient-to-br ${currentFaq.color} opacity-30`} />
-
-                  {/* Content */}
-                  <div className="relative z-10">
-                    {/* Icon */}
-                    <div className="text-7xl mb-6 text-center">
-                      {currentFaq.icon}
-                    </div>
-
-                    {/* Question */}
-                    <h3 className="text-xl font-bold text-white mb-6 text-center min-h-[60px] flex items-center justify-center">
-                      {currentFaq.question}
-                    </h3>
-
-                    {/* Answer */}
-                    <p className="text-mist/90 text-center leading-relaxed text-[15px]">
-                      {currentFaq.answer}
-                    </p>
-                  </div>
-
-                  {/* Swipe hint */}
-                  <div className="absolute bottom-4 left-1/2 -translate-x-1/2">
-                    <div className="flex gap-1">
-                      <div className="w-1 h-1 bg-sky/40 rounded-full" />
-                      <div className="w-1 h-1 bg-sky/40 rounded-full" />
-                      <div className="w-1 h-1 bg-sky/40 rounded-full" />
-                    </div>
-                  </div>
-                </div>
+              <div className="w-full bg-warm-gray border border-muted rounded-2xl p-10 shadow-luxury-intense">
+                <div className="text-6xl mb-10 text-center">{currentFaq.icon}</div>
+                <h3 className="text-2xl font-bold text-foreground mb-6 text-center font-serif tracking-tight leading-tight">
+                  {currentFaq.question}
+                </h3>
+                <p className="text-muted-foreground text-center leading-relaxed text-base font-medium tracking-tight">
+                  {currentFaq.answer}
+                </p>
               </div>
             </motion.div>
           </AnimatePresence>
         </div>
 
-        {/* Navigation Controls */}
-        <div className="flex items-center justify-center gap-6">
-          {/* Previous Button */}
+        <div className="flex items-center justify-center gap-12">
           <button
             onClick={() => paginate(-1)}
-            className="w-12 h-12 rounded-full bg-[#0f1d35] border-2 border-sky/30 flex items-center justify-center hover:bg-sky/20 hover:border-sky/60 transition-all duration-300 group shadow-lg"
+            className="w-14 h-14 rounded-full border border-muted flex items-center justify-center hover:bg-warm-gray transition-luxury group"
             aria-label="Previous question"
           >
-            <ChevronLeft className="w-6 h-6 text-sky/70 group-hover:text-sky transition-colors" />
+            <ChevronLeft className="w-6 h-6 text-muted-foreground group-hover:text-blue transition-luxury" />
           </button>
 
-          {/* Dots Indicator with better visual feedback */}
-          <div className="flex gap-2">
+          <div className="flex gap-4" role="tablist">
             {faqs.map((_, index) => (
               <button
                 key={index}
@@ -323,32 +218,24 @@ const FAQSection = () => {
                   setCurrentIndex(index);
                 }}
                 className={`
-                  h-2 rounded-full transition-all duration-500
+                  h-1.5 rounded-full transition-luxury
                   ${index === currentIndex
-                    ? 'w-8 bg-sky shadow-[0_0_8px_rgba(14,165,233,0.6)]'
-                    : 'w-2 bg-white/20 hover:bg-white/40 hover:w-3'
+                    ? 'w-10 bg-blue'
+                    : 'w-1.5 bg-muted hover:bg-muted-foreground'
                   }
                 `}
-                aria-label={`Go to question ${index + 1}`}
+                aria-selected={index === currentIndex}
               />
             ))}
           </div>
 
-          {/* Next Button */}
           <button
             onClick={() => paginate(1)}
-            className="w-12 h-12 rounded-full bg-[#0f1d35] border-2 border-sky/30 flex items-center justify-center hover:bg-sky/20 hover:border-sky/60 transition-all duration-300 group shadow-lg"
+            className="w-14 h-14 rounded-full border border-muted flex items-center justify-center hover:bg-warm-gray transition-luxury group"
             aria-label="Next question"
           >
-            <ChevronRight className="w-6 h-6 text-sky/70 group-hover:text-sky transition-colors" />
+            <ChevronRight className="w-6 h-6 text-muted-foreground group-hover:text-blue transition-luxury" />
           </button>
-        </div>
-
-        {/* Counter with better styling */}
-        <div className="text-center mt-6">
-          <span className="text-mist/60 text-sm font-medium">
-            Question {currentIndex + 1} of {faqs.length}
-          </span>
         </div>
       </div>
     </section>

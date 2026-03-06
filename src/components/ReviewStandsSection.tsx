@@ -56,15 +56,28 @@ const ReviewStandsSection = () => {
         full: "Complete freedom, no restrictions. This option comes with no Wave Link logo—the entire stand is 100% customized based on your brand identity and design choice. Best for businesses that want total personalization."
     };
 
-    // Manual Autoplay
+    // Manual Autoplay — paused when tab is not visible to save battery on mobile
     useEffect(() => {
         if (!api) return;
 
-        const intervalId = setInterval(() => {
-            api.scrollNext();
-        }, 3000);
+        let intervalId: ReturnType<typeof setInterval>;
 
-        return () => clearInterval(intervalId);
+        const start = () => {
+            intervalId = setInterval(() => api.scrollNext(), 3000);
+        };
+        const stop = () => clearInterval(intervalId);
+
+        const onVisibilityChange = () => {
+            document.hidden ? stop() : start();
+        };
+
+        start();
+        document.addEventListener("visibilitychange", onVisibilityChange);
+
+        return () => {
+            stop();
+            document.removeEventListener("visibilitychange", onVisibilityChange);
+        };
     }, [api]);
 
     const scrollToOrder = () => {
@@ -81,23 +94,23 @@ const ReviewStandsSection = () => {
 
             <div className="container mx-auto px-4 relative z-10">
                 <div className="text-center mb-12 animate-fade-in">
-                    <div className="inline-flex items-center gap-2 bg-primary/10 px-4 py-2 rounded-full mb-4">
-                        <Star className="w-4 h-4 text-primary" />
-                        <span className="text-sm font-semibold text-primary">New Arrival</span>
+                    <div className="inline-flex items-center gap-2 bg-accent/20 px-4 py-2 rounded-full mb-4 border border-accent/30">
+                        <Zap className="w-4 h-4 text-accent fill-accent" aria-hidden="true" />
+                        <span className="text-[10px] md:text-xs font-bold text-accent uppercase tracking-widest">Growth Engine</span>
                     </div>
                     <h2 className="text-4xl md:text-6xl font-bold text-foreground mb-4 font-serif">
-                        NFC Enabled Review Stands
+                        Reputation Acceleration
                     </h2>
-                    <p className="text-xl md:text-2xl font-medium text-foreground/80 max-w-3xl mx-auto mb-2 font-serif">
-                        "Double your Google/WhatsApp reviews with a single tap at checkout"
+                    <p className="text-xl md:text-2xl font-medium text-foreground/80 max-w-3xl mx-auto mb-2 font-serif px-4">
+                        "Your Review Stand Compounds the Proof"
                     </p>
-                    <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-                        Instant feedback while the customer is still in front of you.
+                    <p className="text-base md:text-lg text-muted-foreground max-w-2xl mx-auto px-4">
+                        Deploy global-grade reputation towers instantly. Capture trust precisely where it's built: at the first physical interaction.
                     </p>
 
                     {/* Region Switcher */}
                     <div className="flex justify-center mt-8">
-                        <div className="flex bg-secondary/20 p-1 rounded-full border border-primary/20">
+                        <div className="flex bg-secondary/20 p-1 rounded-full border border-primary/20" role="group" aria-label="Select Region">
                             {[
                                 { id: "BD", label: "Bangladesh" },
                                 { id: "USA", label: "USA" },
@@ -107,6 +120,7 @@ const ReviewStandsSection = () => {
                                 <button
                                     key={r.id}
                                     onClick={() => setRegion(r.id)}
+                                    aria-current={region === r.id ? "true" : undefined}
                                     className={`px-4 py-1.5 rounded-full text-xs font-bold transition-all ${region === r.id
                                         ? "bg-primary text-white shadow-lg"
                                         : "text-muted-foreground hover:text-primary"
@@ -122,12 +136,13 @@ const ReviewStandsSection = () => {
                 <div className="grid md:grid-cols-2 gap-12 items-center max-w-6xl mx-auto">
                     {/* Carousel Section */}
                     <div className="w-full relative group">
-                        <div className="absolute inset-0 bg-gradient-to-r from-primary/20 to-sky/20 rounded-2xl blur-lg transform group-hover:scale-105 transition-transform duration-500"></div>
+                        <div className="absolute inset-0 bg-gradient-to-r from-primary/20 to-accent/20 rounded-2xl blur-lg transform group-hover:scale-105 transition-transform duration-500"></div>
                         <Card className="border-0 bg-transparent shadow-none relative overflow-hidden rounded-2xl">
                             <CardContent className="p-0">
                                 <Carousel
                                     setApi={setApi}
                                     className="w-full"
+                                    aria-label="Review Stand Product Images"
                                     opts={{
                                         loop: true,
                                     }}
@@ -140,6 +155,10 @@ const ReviewStandsSection = () => {
                                                         <img
                                                             src={image}
                                                             alt={`Wavelink NFC Review Stand View ${index + 1}`}
+                                                            loading="lazy"
+                                                            decoding="async"
+                                                            width={600}
+                                                            height={600}
                                                             className="w-full h-full object-cover transform hover:scale-110 transition-transform duration-700"
                                                         />
                                                     </div>
@@ -147,8 +166,8 @@ const ReviewStandsSection = () => {
                                             </CarouselItem>
                                         ))}
                                     </CarouselContent>
-                                    <CarouselPrevious className="left-4 bg-background/50 hover:bg-background/80 text-foreground border-none backdrop-blur-sm" />
-                                    <CarouselNext className="right-4 bg-background/50 hover:bg-background/80 text-foreground border-none backdrop-blur-sm" />
+                                    <CarouselPrevious aria-label="Previous slide" className="left-4 bg-background/50 hover:bg-background/80 text-foreground border-none backdrop-blur-sm" />
+                                    <CarouselNext aria-label="Next slide" className="right-4 bg-background/50 hover:bg-background/80 text-foreground border-none backdrop-blur-sm" />
                                 </Carousel>
                             </CardContent>
                         </Card>
@@ -174,13 +193,13 @@ const ReviewStandsSection = () => {
                                             <TabsList className="grid w-full grid-cols-2 bg-transparent h-auto p-0 gap-2">
                                                 <TabsTrigger
                                                     value="semi"
-                                                    className="rounded-full py-3 text-sm font-semibold text-muted-foreground data-[state=active]:bg-white data-[state=active]:text-primary data-[state=active]:shadow-md transition-all duration-300"
+                                                    className="rounded-full py-3 text-sm font-semibold text-muted-foreground data-[state=active]:bg-white data-[state=active]:text-primary data-[state=active]:shadow-sm transition-all duration-300"
                                                 >
                                                     Semi Custom
                                                 </TabsTrigger>
                                                 <TabsTrigger
                                                     value="full"
-                                                    className="rounded-full py-3 text-sm font-semibold text-muted-foreground data-[state=active]:bg-white data-[state=active]:text-primary data-[state=active]:shadow-md transition-all duration-300"
+                                                    className="rounded-full py-3 text-sm font-semibold text-muted-foreground data-[state=active]:bg-white data-[state=active]:text-primary data-[state=active]:shadow-sm transition-all duration-300"
                                                 >
                                                     Full Custom
                                                 </TabsTrigger>
@@ -196,11 +215,12 @@ const ReviewStandsSection = () => {
                                                 <div className="grid grid-cols-2 gap-4">
                                                     <button
                                                         onClick={() => setMaterial("white")}
+                                                        aria-label="Select White Material"
                                                         className={`relative overflow-hidden group p-4 rounded-2xl border transition-all duration-300 text-left ${material === "white" ? "border-primary/50 bg-white shadow-lg shadow-primary/5 ring-1 ring-primary/20" : "border-transparent bg-white/60 hover:bg-white hover:border-primary/20"}`}
                                                     >
                                                         <div className="flex items-center justify-between mb-2">
                                                             <div className="w-6 h-6 rounded-full border border-gray-100 bg-gradient-to-br from-white to-gray-50 shadow-sm"></div>
-                                                            {material === "white" && <div className="w-2 h-2 rounded-full bg-primary animate-scale-in"></div>}
+                                                            {material === "white" && <div className="w-2 h-2 rounded-full bg-primary animate-scale-in" aria-hidden="true"></div>}
                                                         </div>
                                                         <span className={`font-serif font-bold text-lg block ${material === "white" ? "text-primary" : "text-gray-600"}`}>White</span>
                                                         <span className="text-xs text-muted-foreground">Minimalist & Clean</span>
@@ -209,11 +229,12 @@ const ReviewStandsSection = () => {
 
                                                     <button
                                                         onClick={() => setMaterial("black")}
+                                                        aria-label="Select Black Material"
                                                         className={`relative overflow-hidden group p-4 rounded-2xl border transition-all duration-300 text-left ${material === "black" ? "border-primary/50 bg-gray-900 shadow-lg shadow-black/20 ring-1 ring-primary/20" : "border-transparent bg-white/60 hover:bg-white hover:border-primary/20"}`}
                                                     >
                                                         <div className="flex items-center justify-between mb-2">
                                                             <div className="w-6 h-6 rounded-full border border-gray-700 bg-gradient-to-br from-gray-800 to-black shadow-sm"></div>
-                                                            {material === "black" && <div className="w-2 h-2 rounded-full bg-primary animate-scale-in"></div>}
+                                                            {material === "black" && <div className="w-2 h-2 rounded-full bg-primary animate-scale-in" aria-hidden="true"></div>}
                                                         </div>
                                                         <span className={`font-serif font-bold text-lg block ${material === "black" ? "text-white" : "text-gray-600"}`}>Black</span>
                                                         <span className={`text-xs ${material === "black" ? "text-gray-400" : "text-muted-foreground"}`}>Bold & Professional</span>
@@ -255,7 +276,7 @@ const ReviewStandsSection = () => {
                                 <div className="space-y-6 mt-8 border-t border-border/40 pt-6">
                                     <div className="flex flex-wrap gap-2">
                                         <span className="bg-primary/10 text-primary font-bold text-xs px-3 py-1.5 rounded-full border border-primary/20">NFC Enabled</span>
-                                        <span className="bg-sky/10 text-sky-700 font-bold text-xs px-3 py-1.5 rounded-full border border-sky/20">QR Code Backup</span>
+                                        <span className="bg-accent/10 text-accent font-bold text-xs px-3 py-1.5 rounded-full border border-accent/20">QR Code Backup</span>
                                         <span className="bg-green-500/10 text-green-700 font-bold text-xs px-3 py-1.5 rounded-full border border-green-500/20">Waterproof</span>
                                     </div>
 
@@ -267,8 +288,8 @@ const ReviewStandsSection = () => {
                                             "No monthly subscription fees"
                                         ].map((feature, i) => (
                                             <li key={i} className="flex items-center gap-3">
-                                                <div className="w-6 h-6 rounded-full bg-primary/10 flex items-center justify-center shrink-0">
-                                                    <Zap className="w-3 h-3 text-primary" />
+                                                <div className="w-6 h-6 rounded-full bg-accent/10 flex items-center justify-center shrink-0">
+                                                    <Zap className="w-3 h-3 text-accent" aria-hidden="true" />
                                                 </div>
                                                 <span className="text-foreground/80 font-medium text-sm">{feature}</span>
                                             </li>
@@ -277,7 +298,7 @@ const ReviewStandsSection = () => {
 
                                     <Button
                                         onClick={scrollToOrder}
-                                        className="w-full py-6 bg-primary hover:bg-primary/90 text-white text-lg font-bold rounded-xl shadow-lg hover:shadow-primary/50 transition-all duration-300 group"
+                                        className="w-full py-6 bg-accent hover:bg-accent/90 text-navy text-lg font-bold rounded-xl shadow-lg shadow-accent/20 hover:shadow-accent/40 transition-all duration-300 group"
                                     >
                                         Order Review Stand
                                         <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" />

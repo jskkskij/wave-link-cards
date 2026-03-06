@@ -17,6 +17,8 @@ const CompanyProfile = lazy(() => import("./pages/CompanyProfile"));
 const PrivacyPolicy = lazy(() => import("./pages/PrivacyPolicy"));
 const TermsOfService = lazy(() => import("./pages/TermsOfService"));
 const DataProcessingAgreement = lazy(() => import("./pages/DataProcessingAgreement"));
+const Investors = lazy(() => import("./pages/Investors"));
+const InvestorDeck = lazy(() => import("./pages/InvestorDeck"));
 
 const queryClient = new QueryClient();
 
@@ -80,6 +82,22 @@ const App = () => {
               element={
                 <Suspense fallback={<RouteLoader />}>
                   <DataProcessingAgreement />
+                </Suspense>
+              }
+            />
+            <Route
+              path="/investors"
+              element={
+                <Suspense fallback={<RouteLoader />}>
+                  <Investors />
+                </Suspense>
+              }
+            />
+            <Route
+              path="/investor-deck"
+              element={
+                <Suspense fallback={<RouteLoader />}>
+                  <InvestorDeck />
                 </Suspense>
               }
             />

@@ -2,8 +2,14 @@ import { Card } from "@/components/ui/card";
 import { Smartphone, Zap, Globe } from "lucide-react";
 import { motion, Variants } from "framer-motion";
 import { useState } from "react";
+import { translations, Language } from "@/lib/translations";
 
-const AboutSection = () => {
+interface AboutSectionProps {
+  lang?: Language;
+}
+
+const AboutSection = ({ lang = "en" }: AboutSectionProps) => {
+  const t = translations[lang];
   const [hoveredStates, setHoveredStates] = useState([false, false, false]);
 
   const handleHover = (index: number) => {
@@ -70,9 +76,9 @@ const AboutSection = () => {
 
   return (
     <section className="py-20 bg-background relative overflow-hidden" id="about">
-      {/* Decorative Background Elements - Vibrant Blue Glows */}
-      <div className="absolute top-0 right-0 w-96 h-96 bg-sky/20 rounded-full blur-[120px] -z-10 animate-pulse-subtle" />
-      <div className="absolute bottom-0 left-0 w-96 h-96 bg-[#0066ff]/10 rounded-full blur-[120px] -z-10 animate-float" />
+      {/* Decorative Background Elements - Trust Infrastructure Glows */}
+      <div className="absolute top-0 right-0 w-96 h-96 bg-glow-wave opacity-40 rounded-full blur-[120px] -z-10 animate-pulse-subtle" />
+      <div className="absolute bottom-0 left-0 w-96 h-96 bg-glow-teal opacity-20 rounded-full blur-[120px] -z-10 animate-float" />
 
       <div className="container mx-auto px-4">
         <motion.div
@@ -86,13 +92,15 @@ const AboutSection = () => {
             className="text-4xl md:text-5xl font-bold text-foreground mb-4"
             variants={itemVariants}
           >
-            What is Wavelink?
+            {lang === "en" ? "Engineered for Global Growth" : "বৈশ্বিক প্রবৃদ্ধির জন্য নির্মিত"}
           </motion.h2>
           <motion.p
             className="text-lg text-muted-foreground max-w-3xl mx-auto leading-relaxed"
             variants={itemVariants}
           >
-            Wavelink is a next-generation networking solution that leverages Near Field Communication (NFC) technology to bridge the gap between physical connections and digital presence. Our smart cards allow you to instantly share your contact details, social media profiles, and professional portfolio with a single tap.
+            {lang === "en"
+              ? "WaveLink provides the infrastructure businesses need to bridge the physical-digital gap and build instant, global trust at the first interaction."
+              : "ওয়েভলিঙ্ক এমন একটি অবকাঠামো প্রদান করে যা ব্যবসার শারীরিক ও ডিজিটাল পার্থক্য দূর করতে এবং প্রথম যোগাযোগেই তাৎক্ষণিক বৈশ্বিক আস্থা তৈরি করতে সহায়তা করে।"}
           </motion.p>
         </motion.div>
 
@@ -102,99 +110,85 @@ const AboutSection = () => {
           whileInView="visible"
           viewport={{ once: true, margin: "-100px" }}
           variants={containerVariants}
+          role="list"
+          aria-label="Core Value Propositions"
         >
-          {/* No App Required */}
-          <motion.div variants={itemVariants}>
+          {/* Universal Compatibility */}
+          <motion.div variants={itemVariants} role="listitem">
             <Card
               onMouseEnter={() => handleHover(0)}
-              className="group p-8 text-center hover:shadow-2xl hover:shadow-primary/5 transition-all duration-500 bg-card/50 backdrop-blur-sm border-border/50 relative overflow-hidden"
+              className="group p-8 text-center hover:shadow-2xl hover:shadow-accent/5 transition-all duration-500 bg-card border-border/50 relative overflow-hidden min-h-[320px] flex flex-col items-center justify-center"
             >
               <motion.div
-                className="w-20 h-20 bg-gradient-primary rounded-full flex items-center justify-center mx-auto mb-6 relative shadow-luxury-glow"
+                className="w-20 h-20 bg-navy rounded-full flex items-center justify-center mx-auto mb-6 relative shadow-[0_0_20px_rgba(75,207,181,0.3)] border border-white/10"
                 variants={iconContainerVariants}
                 initial="initial"
                 animate={hoveredStates[0] ? "active" : "initial"}
                 whileHover="hover"
               >
-                <motion.div
-                  className="absolute inset-0 bg-sky-400/40 rounded-full blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"
-                  variants={pulseVariants}
-                  animate="animate"
+                <div
+                  className="absolute inset-0 bg-accent/20 rounded-full blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"
+                  aria-hidden="true"
                 />
-                <motion.div
-                  animate={{ rotate: [0, -5, 5, -5, 0] }}
-                  transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
-                  className="relative z-10"
-                >
-                  <Smartphone className="w-10 h-10 text-white filter drop-shadow-md" />
-                </motion.div>
+                <Smartphone className="w-10 h-10 text-accent relative z-10" aria-hidden="true" />
               </motion.div>
-              <h3 className={`text-xl font-semibold mb-3 transition-colors duration-300 ${hoveredStates[0] ? 'text-primary' : 'text-card-foreground group-hover:text-primary'}`}>Universal Compatibility</h3>
-              <p className="text-muted-foreground leading-relaxed">
-                Wavelink cards work seamlessly with any NFC-enabled smartphone (iOS & Android). The recipient doesn't need to install any third-party apps or software to receive your information.
+              <h3 className={`text-xl font-bold mb-3 transition-colors duration-300 font-serif ${hoveredStates[0] ? 'text-accent' : 'text-card-foreground group-hover:text-accent'}`}>{t.about.feature1Title}</h3>
+              <p className="text-muted-foreground text-sm leading-relaxed">
+                {t.about.feature1Desc}
               </p>
             </Card>
           </motion.div>
 
-          {/* Instant Sharing */}
-          <motion.div variants={itemVariants}>
+          {/* Trust Infrastructure */}
+          <motion.div variants={itemVariants} role="listitem">
             <Card
               onMouseEnter={() => handleHover(1)}
-              className="group p-8 text-center hover:shadow-2xl hover:shadow-primary/5 transition-all duration-500 bg-card/50 backdrop-blur-sm border-border/50 relative overflow-hidden"
+              className="group p-8 text-center hover:shadow-2xl hover:shadow-accent/5 transition-all duration-500 bg-card border-border/50 relative overflow-hidden min-h-[320px] flex flex-col items-center justify-center"
             >
               <motion.div
-                className="w-20 h-20 bg-gradient-primary rounded-full flex items-center justify-center mx-auto mb-6 relative shadow-luxury-glow"
+                className="w-20 h-20 bg-navy rounded-full flex items-center justify-center mx-auto mb-6 relative shadow-[0_0_20px_rgba(75,207,181,0.3)] border border-white/10"
                 variants={iconContainerVariants}
                 initial="initial"
                 animate={hoveredStates[1] ? "active" : "initial"}
                 whileHover="hover"
               >
-                <motion.div
-                  className={`absolute inset-0 bg-sky-400/40 rounded-full transition-opacity duration-500 blur-xl ${hoveredStates[1] ? 'opacity-100' : 'opacity-0 group-hover:opacity-100'}`}
-                  animate={{ scale: [1, 1.2, 1] }}
-                  transition={{ duration: 2, repeat: Infinity }}
-                />
-                <motion.div
-                  animate={{ y: [0, -2, 0] }}
-                  transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
-                  className="relative z-10"
-                >
-                  <Zap className="w-10 h-10 text-white filter drop-shadow-md" />
-                </motion.div>
+                <div className={`absolute inset-0 bg-accent/20 rounded-full transition-opacity duration-500 blur-xl ${hoveredStates[1] ? 'opacity-100' : 'opacity-0 group-hover:opacity-100'}`} aria-hidden="true" />
+                <Zap className="w-10 h-10 text-accent relative z-10" aria-hidden="true" />
               </motion.div>
-              <h3 className={`text-xl font-semibold mb-3 transition-colors duration-300 ${hoveredStates[1] ? 'text-primary' : 'text-card-foreground group-hover:text-primary'}`}>High-Speed Networking</h3>
-              <p className="text-muted-foreground leading-relaxed">
-                Accelerate your professional growth by sharing comprehensive digital profiles, including LinkedIn, portfolios, and contact files (vCard), in less than a second.
+              <h3 className={`text-xl font-bold mb-3 transition-colors duration-300 font-serif ${hoveredStates[1] ? 'text-accent' : 'text-card-foreground group-hover:text-accent'}`}>
+                {lang === "en" ? "Trust Infrastructure" : "আস্থা অবকাঠামো"}
+              </h3>
+              <p className="text-muted-foreground text-sm leading-relaxed">
+                {lang === "en"
+                  ? "Build credibility end-to-end. Your reputation compounds across every physical touchpoint, engineered for verification."
+                  : "প্রান্ত থেকে প্রান্তে বিশ্বাসযোগ্যতা তৈরি করুন। আপনার সুনাম প্রতিটি শারীরিক স্পর্শবিন্দুতে বৃদ্ধি পাবে, যা যাচাইয়ের জন্য তৈরি।"}
               </p>
             </Card>
           </motion.div>
 
-          {/* Digital First */}
-          <motion.div variants={itemVariants}>
+          {/* Global Market Access */}
+          <motion.div variants={itemVariants} role="listitem">
             <Card
               onMouseEnter={() => handleHover(2)}
-              className="group p-8 text-center hover:shadow-2xl hover:shadow-primary/5 transition-all duration-500 bg-card/50 backdrop-blur-sm border-border/50 relative overflow-hidden"
+              className="group p-8 text-center hover:shadow-2xl hover:shadow-accent/5 transition-all duration-500 bg-card border-border/50 relative overflow-hidden min-h-[320px] flex flex-col items-center justify-center"
             >
               <motion.div
-                className="w-20 h-20 bg-gradient-primary rounded-full flex items-center justify-center mx-auto mb-6 relative shadow-luxury-glow"
+                className="w-20 h-20 bg-navy rounded-full flex items-center justify-center mx-auto mb-6 relative shadow-[0_0_20px_rgba(75,207,181,0.3)] border border-white/10"
                 variants={iconContainerVariants}
                 initial="initial"
                 animate={hoveredStates[2] ? "active" : "initial"}
                 whileHover="hover"
               >
-                <div className={`absolute inset-0 bg-sky-400/30 rounded-full blur-xl transition-opacity duration-500 ${hoveredStates[2] ? 'opacity-100' : 'opacity-0 group-hover:opacity-100'}`} />
-                <motion.div
-                  animate={{ rotate: 360 }}
-                  transition={{ duration: hoveredStates[2] ? 5 : 20, repeat: Infinity, ease: "linear" }}
-                  whileHover={{ rotate: 360, transition: { duration: 5, repeat: Infinity, ease: "linear" } }}
-                  className="relative z-10"
-                >
-                  <Globe className="w-10 h-10 text-white filter drop-shadow-md" />
-                </motion.div>
+                <div className={`absolute inset-0 bg-accent/20 rounded-full blur-xl transition-opacity duration-500 ${hoveredStates[2] ? 'opacity-100' : 'opacity-0 group-hover:opacity-100'}`} aria-hidden="true" />
+                <Globe className="w-10 h-10 text-accent relative z-10" aria-hidden="true" />
               </motion.div>
-              <h3 className={`text-xl font-semibold mb-3 transition-colors duration-300 ${hoveredStates[2] ? 'text-primary' : 'text-card-foreground group-hover:text-primary'}`}>Sustainable Identity</h3>
-              <p className="text-muted-foreground leading-relaxed">
-                Embrace the future of eco-friendly networking. One Wavelink card eliminates the need for thousands of paper business cards, reducing environmental waste and printing costs.
+              <h3 className={`text-xl font-bold mb-3 transition-colors duration-300 font-serif ${hoveredStates[2] ? 'text-accent' : 'text-card-foreground group-hover:text-accent'}`}>
+                {lang === "en" ? "Global Market Access" : "বৈশ্বিক বাজারে প্রবেশ"}
+              </h3>
+              <p className="text-muted-foreground text-sm leading-relaxed">
+                {lang === "en"
+                  ? "Emerging-market businesses deploy global-grade experiences instantly. Geography stops being a limitation."
+                  : "উদীয়মান বাজারের ব্যবসায়ীরা তাতক্ষণিকভাবে বৈশ্বিক মানের অভিজ্ঞতা স্থাপন করে। ভূগোল আর কোনো বাধা রবে না।"}
               </p>
             </Card>
           </motion.div>

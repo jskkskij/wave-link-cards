@@ -72,7 +72,7 @@ export const ReviewCard = ({ review, index }: ReviewCardProps) => {
       <CardContent className="p-6 relative z-10">
         {/* Header with Avatar and Name */}
         <div className="flex items-start gap-4 mb-4">
-          <div className={`w-14 h-14 rounded-full bg-gradient-primary flex items-center justify-center text-white font-bold text-xl flex-shrink-0 transition-all duration-500 shadow-luxury-glow ${isHovered ? 'scale-110 rotate-3 shadow-luxury-intense' : ''
+          <div className={`w-14 h-14 rounded-full bg-accent flex items-center justify-center text-navy font-bold text-xl flex-shrink-0 transition-all duration-500 shadow-luxury-glow ${isHovered ? 'scale-110 rotate-3 shadow-luxury-intense' : ''
             }`}>
             {getInitial(review.name)}
           </div>
@@ -82,12 +82,12 @@ export const ReviewCard = ({ review, index }: ReviewCardProps) => {
                 {review.name}
               </h4>
               {review.verified && (
-                <CheckCircle2 className="w-4 h-4 text-primary flex-shrink-0" />
+                <CheckCircle2 className="w-4 h-4 text-primary flex-shrink-0" aria-hidden="true" />
               )}
             </div>
             {review.verified && (
-              <p className="text-xs text-sky font-bold flex items-center gap-1">
-                <CheckCircle2 size={12} />
+              <p className="text-xs text-primary font-bold flex items-center gap-1">
+                <CheckCircle2 size={12} aria-hidden="true" />
                 Verified Buyer
               </p>
             )}
@@ -107,7 +107,7 @@ export const ReviewCard = ({ review, index }: ReviewCardProps) => {
         </div>
 
         {/* Star Rating */}
-        <div className="flex items-center gap-1 mb-4">
+        <div className="flex items-center gap-1 mb-4" aria-label={`Rating: ${review.rating} out of 5 stars`}>
           {[1, 2, 3, 4, 5].map((star) => (
             <Star
               key={star}
@@ -119,7 +119,6 @@ export const ReviewCard = ({ review, index }: ReviewCardProps) => {
               aria-hidden="true"
             />
           ))}
-          <span className="sr-only">Rating: {review.rating} out of 5 stars</span>
         </div>
 
         {/* Review Text */}

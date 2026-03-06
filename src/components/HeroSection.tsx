@@ -1,11 +1,16 @@
 import { Button } from "@/components/ui/button";
-import heroBackground from "@/assets/hero-bg.jpg";
 import newLogo from "@/assets/wavelink-logo-new.png";
-import { ArrowDown } from "lucide-react";
+import { ArrowDown, Star } from "lucide-react";
 import { useEffect, useRef } from "react";
 import { createPaperToDigitalReveal } from "@/lib/animations";
+import { translations, Language } from "@/lib/translations";
 
-const HeroSection = () => {
+interface HeroSectionProps {
+  lang?: Language;
+}
+
+const HeroSection = ({ lang = "en" }: HeroSectionProps) => {
+  const t = translations[lang];
   const contentRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -21,88 +26,85 @@ const HeroSection = () => {
   return (
     <section
       id="hero"
-      className="relative min-h-screen flex items-center justify-center overflow-hidden bg-background"
+      className="relative min-h-screen flex items-center justify-center overflow-hidden bg-background pt-20"
       aria-label="Hero section"
     >
       {/* 
-        Background Layer: "Water"
-        Deep, calming, providing the void (Negative Space).
+        Background Layer: Enhanced Vibe
+        Subtle logo-aligned glows to bring back the "blue energy".
       */}
-      <div className="absolute inset-0 z-0">
-        <div className="absolute inset-0 bg-navy opacity-95 mix-blend-multiply" />
-        <img
-          src={heroBackground}
-          alt="Hero background"
-          className="w-full h-full object-cover opacity-30"
-        />
-        {/* Zen Gradient Overlay */}
-        <div className="absolute inset-0 bg-gradient-to-b from-navy/50 via-transparent to-background" />
+      <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none" aria-hidden="true">
+        <div className="absolute -top-[10%] -left-[10%] w-[70%] h-[70%] bg-glow-wave blur-[120px] opacity-80 animate-pulse-subtle" />
+        <div className="absolute top-[20%] -right-[5%] w-[50%] h-[50%] bg-glow-teal blur-[100px] opacity-50" />
+        {/* Additional subtle glow for center depth */}
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[80%] h-[40%] bg-glow-wave blur-[150px] opacity-30" />
       </div>
 
-      {/* 
-        Abstract Floating Elements: "Nature/Spirit"
-        Replacing literal icons with ethereal glows and shapes.
-      */}
-      <div className="absolute inset-0 pointer-events-none overflow-hidden">
-        <div className="absolute top-1/4 left-1/4 w-64 h-64 bg-sky/20 rounded-full blur-[100px] animate-pulse-subtle" />
-        <div className="absolute bottom-1/3 right-1/4 w-96 h-96 bg-primary-light/20 rounded-full blur-[120px] animate-float" />
-      </div>
+      <div className="relative z-10 container mx-auto px-6 max-w-7xl">
+        <div ref={contentRef} className="flex flex-col items-center text-center gap-16 md:gap-24">
 
-      {/* 
-        Content Layer: "Structure/Logic"
-        Centered, balanced, typographic focus.
-      */}
-      <div className="relative z-10 container mx-auto px-4 pt-32 md:pt-40">
-        <div ref={contentRef} className="max-w-5xl mx-auto text-center flex flex-col items-center gap-8">
-          {/* Main Headline - Large Serif (Eastern Balance) */}
-          <h1 className="font-serif text-4xl sm:text-5xl md:text-7xl lg:text-8xl text-white leading-[1.2] md:leading-[1.1] animate-fade-in opacity-0" style={{ animationDelay: '0.2s' }}>
-            One Tap <br />
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-sky via-white to-sky animate-shimmer bg-[length:200%_auto]">
-              Endless Connections
-            </span>
-          </h1>
+          {/* Main Headline - Apple-level Display Typography */}
+          <div className="flex flex-col gap-6 md:gap-8">
+            <h1 className="font-serif text-6xl sm:text-7xl md:text-8xl lg:text-[10rem] text-foreground leading-[0.95] md:leading-[0.9] animate-fade-in opacity-0 font-bold tracking-[-0.04em]" style={{ animationDelay: '0.2s' }}>
+              {lang === "en" ? (
+                <>
+                  One Tap. <br />
+                  <span className="text-blue">Endless Connections.</span>
+                </>
+              ) : (
+                <>
+                  এক ট্যাপ। <br />
+                  <span className="text-blue">অফুরন্ত সংযোগ।</span>
+                </>
+              )}
+            </h1>
 
-          {/* Subheading - Clean Sans (Western Logic) */}
-          <p className="text-base md:text-xl text-mist/80 max-w-2xl px-4 md:px-0 leading-relaxed animate-fade-in opacity-0" style={{ animationDelay: '0.4s' }}>
-            A smart card designed to share your digital identity and leave a lasting impression.
-          </p>
+            {/* Subheading - Refined & Clear */}
+            <p className="text-xl md:text-2xl text-muted-foreground max-w-2xl mx-auto leading-tight animate-fade-in opacity-0 font-medium tracking-tight" style={{ animationDelay: '0.4s' }}>
+              {lang === "en"
+                ? "The luxury infrastructure for professional trust. Elevate your presence with engineered NFC excellence."
+                : "পেশাদার আস্থার জন্য বিলাসবহুল অবকাঠামো। আপনার উপস্থিতিকে আরও উন্নত করুন।"
+              }
+            </p>
+          </div>
 
-          {/* 
-             Merged CTA: "Dissolved into Infinite Scroll"
-             Replaces the two distinct buttons with a single, flowing interaction.
-          */}
-          <div className="mt-8 md:mt-12 animate-fade-in opacity-0" style={{ animationDelay: '0.6s' }}>
-            <button
+          {/* Minimalist CTA Cluster */}
+          <div className="animate-fade-in opacity-0 flex flex-col items-center gap-12" style={{ animationDelay: '0.6s' }}>
+            <Button
               onClick={scrollToOrder}
-              className="group flex flex-col items-center gap-4 text-white/90 hover:text-white transition-colors duration-500"
+              size="lg"
+              className="bg-primary hover:bg-primary/95 text-primary-foreground font-bold px-10 py-7 rounded-full text-lg shadow-luxury-intense transition-all active:scale-95 sm:w-auto w-full transition-luxury"
+              aria-label={t.hero.cta}
             >
-              <span className="uppercase tracking-[0.2em] text-xs md:text-sm font-bold group-hover:text-sky transition-colors drop-shadow-md">
-                Begin Journey
-              </span>
+              {t.hero.cta}
+            </Button>
 
-              {/* Custom Scroll Indicator - simulating "infinite scroll" line */}
-              <div className="relative w-[1.5px] h-12 md:h-16 bg-white/20 overflow-hidden">
-                <div className="absolute top-0 left-0 w-full h-1/2 bg-gradient-to-b from-transparent via-sky to-transparent animate-drop" />
-              </div>
-
-              <div className="w-10 h-10 rounded-full border border-white/30 flex items-center justify-center group-hover:border-sky/50 transition-colors bg-white/5 backdrop-blur-sm shadow-lg">
-                <ArrowDown className="w-5 h-5 text-white group-hover:text-sky animate-bounce" />
+            {/* Micro-interaction Scroll Indicator */}
+            <button
+              onClick={() => document.getElementById('about')?.scrollIntoView({ behavior: 'smooth' })}
+              className="group flex flex-col items-center gap-6 text-muted-foreground hover:text-foreground transition-luxury"
+              aria-label="Scroll down to explore"
+            >
+              <div className="w-[1px] h-16 bg-muted relative overflow-hidden" aria-hidden="true">
+                <div className="absolute top-0 left-0 w-full h-1/3 bg-blue animate-drop" />
               </div>
             </button>
           </div>
         </div>
 
         {/* 
-            Visual representation of the card itself 
-            Floating at the bottom, partially cut off to invite scrolling 
+            Visual Moment: The Card
+            Near-monochrome, subtle shadow, 100% refined.
         */}
-        <div className="relative w-[85%] sm:w-full max-w-sm md:max-w-lg mx-auto mt-12 md:mt-16 perspective-1000 animate-fade-in-delayed opacity-0">
-          <div className="w-full aspect-[1.586/1] rounded-xl md:rounded-2xl bg-gradient-to-br from-white/10 via-sky/10 to-white/5 backdrop-blur-xl border border-white/20 shadow-2xl transform rotate-X-12 animate-float-intense flex items-center justify-center overflow-hidden">
-            <div className="absolute inset-0 bg-gradient-to-tr from-transparent via-sky/20 to-transparent skew-x-12" />
+        <div className="relative w-full max-w-sm md:max-w-2xl mx-auto mt-20 md:mt-24 perspective-1000 animate-fade-in-delayed opacity-0 group/card" aria-hidden="true">
+          <div className="w-full aspect-[1.586/1] rounded-2xl bg-white border border-muted shadow-luxury-intense transform rotate-X-12 flex items-center justify-center transition-luxury hover:rotate-X-0 hover:scale-[1.02] hover:shadow-luxury-glow cursor-default">
             <img
               src={newLogo}
               alt="Wavelink Logo"
-              className="w-24 md:w-32 h-auto opacity-80 drop-shadow-[0_0_25px_rgba(0,150,255,0.6)]"
+              width={160}
+              height={160}
+              fetchPriority="high"
+              className="w-28 md:w-40 h-auto opacity-100 transition-luxury group-hover/card:scale-110"
             />
           </div>
         </div>
