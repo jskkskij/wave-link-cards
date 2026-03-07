@@ -51,7 +51,7 @@ const req = https.request(options, (res) => {
         process.stdout.write(d);
     });
 
-    if (res.statusCode === 200) {
+    if (res.statusCode === 200 || res.statusCode === 202) {
         console.log('\nSuccess! Bing has been notified of your URL updates.');
     } else {
         console.error('\nFailed to submit URLs. Check your API key and domain.');
