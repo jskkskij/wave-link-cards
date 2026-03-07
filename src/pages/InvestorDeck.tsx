@@ -502,10 +502,9 @@ const InvestorDeck = () => {
                             <Dialog open={isLeadDialogOpen} onOpenChange={setIsLeadDialogOpen}>
                                 <DialogTrigger asChild>
                                     <Button
-                                        onClick={() => window.location.href = "/#order"}
                                         className="bg-white text-blue-800 px-16 py-10 rounded-full font-black text-2xl hover:bg-blue-50 transition-all hover:scale-105 shadow-2xl shadow-white/10"
                                     >
-                                        BEGIN JOURNEY
+                                        Join the Journey
                                     </Button>
                                 </DialogTrigger>
                                 <DialogContent className="sm:max-w-md bg-white rounded-[2rem] border-none shadow-2xl p-10">

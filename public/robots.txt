@@ -27,4 +27,4 @@ Disallow: /admin/
 Disallow: /test/
 Disallow: /api/
 
-Sitemap: https://wave-link-cards.vercel.app/sitemap.xml
+Sitemap: https://getwaved.ai/sitemap.xml

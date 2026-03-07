@@ -20,8 +20,8 @@ const HeroSection = ({ lang = "en" }: HeroSectionProps) => {
     }
   }, []);
 
-  const scrollToOrder = () => {
-    document.getElementById('order')?.scrollIntoView({ behavior: 'smooth' });
+  const scrollToProducts = () => {
+    document.getElementById('features')?.scrollIntoView({ behavior: 'smooth' });
   };
 
   return (
@@ -78,7 +78,7 @@ const HeroSection = ({ lang = "en" }: HeroSectionProps) => {
           {/* Minimalist CTA Cluster */}
           <div className="animate-fade-in opacity-0 flex flex-col items-center gap-12" style={{ animationDelay: '0.6s' }}>
             <Button
-              onClick={scrollToOrder}
+              onClick={scrollToProducts}
               size="lg"
               className="bg-primary hover:bg-primary/95 text-primary-foreground font-bold px-12 py-8 rounded-full text-xl shadow-luxury-intense transition-all active:scale-95 sm:w-auto w-full border border-white/10"
               aria-label={t.hero.cta}

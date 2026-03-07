@@ -10,7 +10,7 @@
 const https = require('https');
 
 const API_KEY = process.argv[2];
-const HOST = 'wave-link-cards.vercel.app'; // Change to your production domain
+const HOST = 'getwaved.ai'; // Change to your production domain
 const KEY_LOCATION = `https://${HOST}/${API_KEY}.txt`;
 
 if (!API_KEY) {
