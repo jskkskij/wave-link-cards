@@ -62,8 +62,10 @@ const Index = () => {
 
   // --- Phase Detection (throttled with RAF) ---
   const [activePhase, setActivePhase] = useState(1);
+  const [showActiveTooltip, setShowActiveTooltip] = useState(true);
   const [hoveredPhase, setHoveredPhase] = useState<number | null>(null);
   const phaseTicking = useRef(false);
+  const tooltipTimeout = useRef<NodeJS.Timeout | null>(null);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -76,7 +78,15 @@ const Index = () => {
           if (element) {
             const rect = element.getBoundingClientRect();
             if (rect.top <= window.innerHeight / 2 && rect.bottom >= window.innerHeight / 2) {
-              setActivePhase(i + 1);
+              const newPhase = i + 1;
+              if (newPhase !== activePhase) {
+                setActivePhase(newPhase);
+                setShowActiveTooltip(true);
+                // Clear existing timeout
+                if (tooltipTimeout.current) clearTimeout(tooltipTimeout.current);
+                // Set new timeout to hide the active tooltip after 3 seconds
+                tooltipTimeout.current = setTimeout(() => setShowActiveTooltip(false), 3000);
+              }
               break;
             }
           }
@@ -86,8 +96,11 @@ const Index = () => {
     };
 
     window.addEventListener("scroll", handleScroll, { passive: true });
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+      if (tooltipTimeout.current) clearTimeout(tooltipTimeout.current);
+    };
+  }, [activePhase]);
 
   // --- Language Detection ---
   useEffect(() => {
@@ -147,18 +160,18 @@ const Index = () => {
                 <phase.icon className={`w-5 h-5 md:w-6 md:h-6 ${activePhase === phase.id ? "text-white" : "text-blue/40 group-hover/btn:text-blue"}`} />
               </button>
 
-              {/* Tooltip: High-contrast vibrant blue for maximum readability during onboarding */}
+              {/* Tooltip: Glassmorphism and dynamic visibility */}
               <div
-                className={`absolute right-full mr-4 top-1/2 -translate-y-1/2 px-5 py-3 bg-blue text-white rounded-2xl whitespace-nowrap shadow-luxury-intense pointer-events-none
-                    transition-all duration-300 ease-out z-50
-                    ${(hoveredPhase === phase.id || activePhase === phase.id)
+                className={`absolute right-full mr-4 top-1/2 -translate-y-1/2 px-5 py-3 bg-blue/40 backdrop-blur-md text-white rounded-2xl whitespace-nowrap shadow-luxury border border-white/20 pointer-events-none
+                    transition-all duration-500 ease-out z-50 hidden md:block
+                    ${(hoveredPhase === phase.id || (activePhase === phase.id && showActiveTooltip))
                     ? "opacity-100 translate-x-0"
                     : "opacity-0 translate-x-5"}`}
                 aria-hidden="true"
               >
                 <p className="text-[10px] font-black tracking-[0.2em] uppercase opacity-90 mb-1 leading-none">{phase.name}</p>
                 <p className="text-sm font-bold tracking-tight">{phase.desc}</p>
-                <div className="absolute right-[-6px] top-1/2 -translate-y-1/2 w-3 h-3 bg-blue rotate-45" />
+                <div className="absolute right-[-6px] top-1/2 -translate-y-1/2 w-3 h-3 bg-blue/40 backdrop-blur-md rotate-45 border-r border-t border-white/20" />
               </div>
             </div>
           ))}

@@ -297,8 +297,8 @@ export const OnboardingTutorial = ({ lang = "en" }: OnboardingTutorialProps) => 
                         initial={{ opacity: 0, scale: 0.9, y: 20 }}
                         animate={{ opacity: 1, scale: 1, y: 0 }}
                         exit={{ opacity: 0, scale: 0.9, y: -20 }}
-                        transition={{ duration: 0.4, ease: "easeOut" }}
-                        className="relative w-full max-w-sm bg-white border border-white/20 rounded-[2.5rem] p-6 sm:p-8 shadow-2xl pointer-events-auto"
+                        transition={{ duration: 0.5, ease: "easeOut" }}
+                        className="relative w-full max-w-sm bg-white/70 backdrop-blur-xl border border-white/40 rounded-[2.5rem] p-6 sm:p-8 shadow-luxury-intense pointer-events-auto mx-auto mb-10 sm:mb-0"
                     >
                         {/* Background Decoration */}
                         <div className="absolute top-0 right-0 w-32 h-32 bg-blue/10 rounded-full blur-[60px] -mr-16 -mt-16" />
