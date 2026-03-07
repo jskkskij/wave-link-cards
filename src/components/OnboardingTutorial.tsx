@@ -283,7 +283,7 @@ export const OnboardingTutorial = ({ lang = "en" }: OnboardingTutorialProps) => 
                     y="0"
                     width="100%"
                     height="100%"
-                    fill="rgba(2, 6, 23, 0.7)"
+                    fill="rgba(2, 6, 23, 0.4)"
                     mask="url(#spotlight-mask)"
                     className="backdrop-blur-[2px]"
                 />
@@ -298,7 +298,7 @@ export const OnboardingTutorial = ({ lang = "en" }: OnboardingTutorialProps) => 
                         animate={{ opacity: 1, scale: 1, y: 0 }}
                         exit={{ opacity: 0, scale: 0.9, y: -20 }}
                         transition={{ duration: 0.5, ease: "easeOut" }}
-                        className="relative w-full max-w-sm bg-white/70 backdrop-blur-xl border border-white/40 rounded-[2.5rem] p-6 sm:p-8 shadow-luxury-intense pointer-events-auto mx-auto mb-10 sm:mb-0"
+                        className="relative w-full max-w-sm bg-white/40 backdrop-blur-2xl border border-white/40 rounded-[2.5rem] p-6 sm:p-8 shadow-luxury-intense pointer-events-auto mx-auto mb-10 sm:mb-0"
                     >
                         {/* Background Decoration */}
                         <div className="absolute top-0 right-0 w-32 h-32 bg-blue/10 rounded-full blur-[60px] -mr-16 -mt-16" />

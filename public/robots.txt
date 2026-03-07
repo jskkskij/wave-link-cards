@@ -10,6 +10,18 @@ Allow: /
 User-agent: Google-Extended
 Allow: /
 
+User-Agent: PerplexityBot
+Allow: /
+
+User-Agent: YouBot
+Allow: /
+
+User-Agent: OAI-SearchBot
+Allow: /
+
+User-Agent: BraveBot
+Allow: /
+
 User-agent: *
 Disallow: /admin/
 Disallow: /test/

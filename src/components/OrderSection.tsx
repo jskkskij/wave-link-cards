@@ -179,7 +179,7 @@ const OrderSection = ({ lang = "en" }: OrderSectionProps) => {
           >
             {lang === "en" ? "Global Infrastructure" : "গ্লোবাল ইনফ্রাস্ট্রাকচার"}
           </motion.div>
-          <h2 className="text-5xl md:text-7xl font-serif text-foreground mb-8 font-bold leading-[1.1] tracking-[-0.04em]">
+          <h2 className="text-4xl sm:text-5xl md:text-7xl font-serif text-foreground mb-8 font-bold leading-[1.1] tracking-[-0.04em]">
             {lang === "en" ? "Begin the Connection." : "শুরু হোক আপনার নতুন যাত্রা।"}
           </h2>
           <p className="text-xl md:text-2xl text-muted-foreground leading-tight tracking-tight font-medium max-w-2xl">
@@ -189,7 +189,7 @@ const OrderSection = ({ lang = "en" }: OrderSectionProps) => {
 
         <div className="grid lg:grid-cols-12 gap-16 items-start">
           {/* Form Column */}
-          <div className="lg:col-span-7 bg-white border border-muted p-10 md:p-14 rounded-2xl shadow-luxury">
+          <div className="lg:col-span-7 bg-white border border-muted p-6 sm:p-10 md:p-14 rounded-2xl shadow-luxury">
             <form onSubmit={handleSubmit} className="space-y-10" aria-label="Order Information Form">
               <div className="grid md:grid-cols-2 gap-8">
                 <div className="space-y-3">
@@ -288,7 +288,7 @@ const OrderSection = ({ lang = "en" }: OrderSectionProps) => {
               <Button
                 type="submit"
                 disabled={isSubmitting}
-                className="w-full h-20 bg-primary hover:bg-primary/95 text-primary-foreground text-xl font-bold rounded-2xl shadow-luxury-glow transition-luxury group"
+                className="w-full h-16 sm:h-20 bg-primary hover:bg-primary/95 text-primary-foreground text-lg sm:text-xl font-bold rounded-2xl shadow-luxury-glow transition-luxury group"
               >
                 {isSubmitting ? (
                   <Loader2 className="animate-spin" />

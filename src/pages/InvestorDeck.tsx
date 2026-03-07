@@ -154,7 +154,7 @@ const InvestorDeck = () => {
                             <span className="text-sm font-medium tracking-wider uppercase">Verified by WaveLink</span>
                         </div>
 
-                        <h1 className="text-6xl md:text-8xl font-bold mb-6 leading-tight tracking-tighter text-white">
+                        <h1 className="text-4xl sm:text-6xl md:text-8xl font-bold mb-6 leading-tight tracking-tighter text-white">
                             Trusted Feedback<br />
                             <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-400">for High-Traffic</span><br />
                             Businesses
@@ -186,8 +186,8 @@ const InvestorDeck = () => {
                         whileInView={{ opacity: 1 }}
                         className="text-center max-w-4xl mx-auto mb-20"
                     >
-                        <h2 className="text-5xl md:text-6xl font-bold mb-8 tracking-tight">The <span className="text-red-500">Trust Gap</span> in Physical Businesses</h2>
-                        <p className="text-xl text-slate-600 leading-relaxed">
+                        <h2 className="text-3xl sm:text-5xl md:text-6xl font-bold mb-8 tracking-tight">The <span className="text-red-500">Trust Gap</span> in Physical Businesses</h2>
+                        <p className="text-lg sm:text-xl text-slate-600 leading-relaxed">
                             Businesses struggle to capture verified feedback. In Bangladesh, millions of transactions happen daily, but <span className="font-bold text-slate-900 underline decoration-red-500/30">80% of customer sentiment</span> is lost to the "Analog Void."
                         </p>
                     </motion.div>
@@ -221,8 +221,8 @@ const InvestorDeck = () => {
                 <div className="container mx-auto px-8">
                     <div className="mb-16">
                         <div className="w-1.5 h-16 bg-blue-600 mb-8 rounded-full" />
-                        <h2 className="text-5xl md:text-6xl font-bold mb-6 tracking-tight">Built for Trust-Sensitive<br />Businesses</h2>
-                        <p className="text-2xl text-slate-500 font-medium tracking-tight">One tap. Verified feedback. Measurable growth.</p>
+                        <h2 className="text-3xl sm:text-5xl md:text-6xl font-bold mb-6 tracking-tight">Built for Trust-Sensitive<br />Businesses</h2>
+                        <p className="text-xl sm:text-2xl text-slate-500 font-medium tracking-tight">One tap. Verified feedback. Measurable growth.</p>
                     </div>
 
                     <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
@@ -271,9 +271,9 @@ const InvestorDeck = () => {
             <section className="min-h-screen w-full flex items-center justify-center bg-gradient-to-br from-slate-50 to-blue-50 py-20">
                 <div className="container mx-auto px-8 max-w-7xl">
                     <div className="mb-16">
-                        <span className="text-blue-600 font-bold tracking-[0.3em] uppercase text-xs mb-4 block">Market Intelligence</span>
-                        <h2 className="text-5xl md:text-7xl font-bold mt-2 mb-6 tracking-tighter">The Real TAM: <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-700 to-cyan-500">First Principles</span></h2>
-                        <p className="text-xl text-slate-600 max-w-3xl leading-relaxed">
+                        <span className="text-blue-600 font-bold tracking-[0.3em] uppercase text-[10px] sm:text-xs mb-4 block">Market Intelligence</span>
+                        <h2 className="text-4xl sm:text-5xl md:text-7xl font-bold mt-2 mb-6 tracking-tighter">The Real TAM: <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-700 to-cyan-500">First Principles</span></h2>
+                        <p className="text-lg sm:text-xl text-slate-600 max-w-3xl leading-relaxed">
                             Transparent market sizing combining official registration data with ground-truth industry intelligence.
                             Our 400K+ TAM represents the <span className="font-bold text-slate-900 border-b-2 border-blue-600/20">3-5 year digital transition opportunity</span>.
                         </p>
@@ -281,7 +281,7 @@ const InvestorDeck = () => {
 
                     <div className="grid lg:grid-cols-12 gap-12">
                         {/* Chart Area */}
-                        <div className="lg:col-span-8 space-y-8 bg-white p-12 rounded-[2.5rem] shadow-2xl border border-white">
+                        <div className="lg:col-span-8 space-y-8 bg-white p-6 sm:p-10 md:p-12 rounded-[2.5rem] shadow-2xl border border-white">
                             <div className="flex flex-col md:flex-row md:items-center justify-between gap-6 mb-8">
                                 <h3 className="font-bold text-xl text-slate-800">Market Size: Registered vs. Capacity</h3>
                                 <div className="flex gap-6 text-xs font-bold uppercase tracking-widest">
@@ -309,7 +309,7 @@ const InvestorDeck = () => {
                                             <span className="text-slate-400 text-[10px] font-black uppercase tracking-widest">{bar.meta}</span>
                                         </div>
                                     </div>
-                                    <div className="relative h-14 bg-slate-50 rounded-2xl overflow-hidden border border-slate-100 flex items-center">
+                                    <div className="relative h-12 md:h-14 bg-slate-50 rounded-2xl overflow-hidden border border-slate-100 flex items-center">
                                         <motion.div
                                             initial={{ width: 0 }}
                                             whileInView={{ width: bar.width }}
@@ -334,7 +334,7 @@ const InvestorDeck = () => {
                             >
                                 <div className="absolute top-0 right-0 w-32 h-32 bg-white/5 rounded-full -translate-y-1/2 translate-x-1/2 group-hover:scale-150 transition-transform duration-700" />
                                 <div className="text-slate-400 text-[10px] font-black uppercase tracking-[0.3em] mb-4">Core Serviceable</div>
-                                <div className="text-6xl font-bold mb-2 tracking-tighter">~120k</div>
+                                <div className="text-4xl sm:text-6xl font-bold mb-2 tracking-tighter">~120k</div>
                                 <div className="text-slate-400 text-sm font-medium">Verified establishments (2025)</div>
                             </motion.div>
 
@@ -344,7 +344,7 @@ const InvestorDeck = () => {
                             >
                                 <div className="absolute top-0 right-0 w-32 h-32 bg-white/10 rounded-full -translate-y-1/2 translate-x-1/2 group-hover:scale-150 transition-transform duration-700" />
                                 <div className="text-blue-200 text-[10px] font-black uppercase tracking-[0.3em] mb-4">Long-Term TAM</div>
-                                <div className="text-6xl font-bold mb-2 tracking-tighter">400k+</div>
+                                <div className="text-4xl sm:text-6xl font-bold mb-2 tracking-tighter">400k+</div>
                                 <div className="text-blue-100 text-sm font-medium">Digital transition opportunity</div>
                             </motion.div>
 
@@ -370,7 +370,7 @@ const InvestorDeck = () => {
             <section className="min-h-screen w-full flex items-center justify-center bg-[#020617] text-white py-20">
                 <div className="container mx-auto px-8">
                     <div className="text-center mb-24">
-                        <h2 className="text-5xl md:text-7xl font-bold mb-6 tracking-tighter text-white">Measurable Impact</h2>
+                        <h2 className="text-4xl sm:text-5xl md:text-7xl font-bold mb-6 tracking-tighter text-white">Measurable Impact</h2>
                         <p className="text-2xl text-slate-400 font-medium tracking-tight">Real results across our primary verticals</p>
                     </div>
 
@@ -387,7 +387,7 @@ const InvestorDeck = () => {
                                 transition={{ delay: i * 0.1 }}
                                 className="bg-white/5 backdrop-blur-xl rounded-[2.5rem] p-12 text-center border border-white/10 group hover:bg-white/10 transition-all duration-500 shadow-2xl"
                             >
-                                <div className={`text-7xl font-bold text-${metric.color}-400 mb-6 group-hover:scale-110 transition-transform duration-500 tracking-tighter`}>{metric.val}</div>
+                                <div className={`text-5xl sm:text-7xl font-bold text-${metric.color}-400 mb-6 group-hover:scale-110 transition-transform duration-500 tracking-tighter`}>{metric.val}</div>
                                 <h3 className="text-2xl font-bold mb-3 text-white">{metric.title}</h3>
                                 <p className="text-slate-300 text-base font-semibold">{metric.tag}</p>
                             </motion.div>
@@ -475,7 +475,7 @@ const InvestorDeck = () => {
                             <span className="font-bold tracking-[0.2em] uppercase text-xs">Investment Opportunity</span>
                         </div>
 
-                        <h2 className="text-7xl md:text-9xl font-bold mb-10 leading-[0.9] tracking-tighter text-white">
+                        <h2 className="text-5xl sm:text-7xl md:text-9xl font-bold mb-10 leading-[0.9] tracking-tighter text-white">
                             Capture the<br />
                             <span className="text-blue-300">Analog Void</span>
                         </h2>
@@ -492,8 +492,8 @@ const InvestorDeck = () => {
                             ].map((box, i) => (
                                 <div key={i} className="bg-white/10 backdrop-blur-xl rounded-3xl p-8 border border-white/10 group hover:bg-white/20 transition-all duration-500">
                                     <box.icon className="w-8 h-8 text-blue-300 mb-6 group-hover:rotate-12 transition-transform" />
-                                    <div className="text-5xl font-bold mb-2 tracking-tighter">{box.val}</div>
-                                    <div className="text-blue-200 text-sm font-bold uppercase tracking-widest">{box.label}</div>
+                                    <div className="text-4xl sm:text-5xl font-bold mb-2 tracking-tighter">{box.val}</div>
+                                    <div className="text-blue-200 text-[10px] sm:text-sm font-bold uppercase tracking-widest">{box.label}</div>
                                 </div>
                             ))}
                         </div>
@@ -502,9 +502,10 @@ const InvestorDeck = () => {
                             <Dialog open={isLeadDialogOpen} onOpenChange={setIsLeadDialogOpen}>
                                 <DialogTrigger asChild>
                                     <Button
+                                        onClick={() => window.location.href = "/#order"}
                                         className="bg-white text-blue-800 px-16 py-10 rounded-full font-black text-2xl hover:bg-blue-50 transition-all hover:scale-105 shadow-2xl shadow-white/10"
                                     >
-                                        Join the Journey
+                                        BEGIN JOURNEY
                                     </Button>
                                 </DialogTrigger>
                                 <DialogContent className="sm:max-w-md bg-white rounded-[2rem] border-none shadow-2xl p-10">

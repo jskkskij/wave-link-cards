@@ -61,7 +61,7 @@ const PricingSection = () => {
             <TrendingUp className="w-4 h-4 text-accent" aria-hidden="true" />
             <span className="text-sm font-semibold text-accent">Join 500+ Professionals</span>
           </div>
-          <h2 className="text-4xl md:text-6xl font-bold text-foreground mb-4 font-serif">
+          <h2 className="text-3xl sm:text-4xl md:text-6xl font-bold text-foreground mb-4 font-serif">
             Simple, Affordable Pricing
           </h2>
           <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
@@ -77,7 +77,7 @@ const PricingSection = () => {
 
           {/* Pricing Card - Conversion Optimized */}
           <div className="order-2 md:order-2">
-            <Card className="relative p-8 border-2 border-accent/40 shadow-luxury bg-gradient-to-br from-card to-card/50 backdrop-blur-sm animate-fade-in-up overflow-visible">
+            <Card className="relative p-5 sm:p-8 border-2 border-accent/40 shadow-luxury bg-gradient-to-br from-card to-card/50 backdrop-blur-sm animate-fade-in-up overflow-visible">
               {/* Urgency Banner - Top */}
               <div className="absolute -top-4 left-1/2 -translate-x-1/2 z-10">
                 <div className="bg-gradient-to-r from-red-600 to-orange-600 text-white px-6 py-2 rounded-full shadow-luxury-glow flex items-center gap-2 animate-pulse">
@@ -124,10 +124,10 @@ const PricingSection = () => {
                     <span className="text-sm bg-red-100 text-red-700 px-3 py-1 rounded-full font-bold">Save 54%</span>
                   </div>
                   <div className="flex items-baseline justify-center gap-2">
-                    <span className="text-6xl md:text-8xl font-bold text-navy">
+                    <span className="text-4xl sm:text-6xl md:text-8xl font-bold text-navy">
                       {currentPricing.symbol}{currentPricing.current}
                     </span>
-                    <span className="text-xl text-muted-foreground">{currentPricing.currencyCode}</span>
+                    <span className="text-lg sm:text-xl text-muted-foreground">{currentPricing.currencyCode}</span>
                   </div>
                   <div className="flex flex-wrap justify-center gap-x-4 gap-y-1 mt-3">
                     <p className="text-xs font-semibold text-muted-foreground flex items-center gap-1">

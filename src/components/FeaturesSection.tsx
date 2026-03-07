@@ -77,7 +77,7 @@ const FeaturesSection = () => {
             The Infrastructure
           </div>
           <motion.h2
-            className="text-5xl md:text-7xl font-bold text-foreground mb-8 font-serif leading-[1.1] tracking-[-0.04em]"
+            className="text-4xl sm:text-5xl md:text-7xl font-bold text-foreground mb-8 font-serif leading-[1.1] tracking-[-0.04em]"
             variants={itemVariants}
           >
             Engineering Proof <br /> of Credibility.
@@ -102,7 +102,7 @@ const FeaturesSection = () => {
           {features.map((feature, index) => (
             <motion.div key={index} variants={itemVariants} role="listitem">
               <div
-                className="group p-12 bg-white transition-luxury hover:bg-warm-gray flex flex-col items-start text-left min-h-[400px] justify-between relative"
+                className="group p-8 md:p-12 bg-white transition-luxury hover:bg-warm-gray flex flex-col items-start text-left min-h-[350px] sm:min-h-[400px] justify-between relative"
               >
                 <div className="flex flex-col gap-8">
                   <div className="w-12 h-12 flex items-center justify-start">

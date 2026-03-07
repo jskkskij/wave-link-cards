@@ -162,16 +162,16 @@ const Index = () => {
 
               {/* Tooltip: Glassmorphism and dynamic visibility */}
               <div
-                className={`absolute right-full mr-4 top-1/2 -translate-y-1/2 px-5 py-3 bg-blue/40 backdrop-blur-md text-white rounded-2xl whitespace-nowrap shadow-luxury border border-white/20 pointer-events-none
-                    transition-all duration-500 ease-out z-50 hidden md:block
+                className={`absolute right-full mr-4 top-1/2 -translate-y-1/2 px-5 py-3 bg-white/10 backdrop-blur-lg text-blue rounded-2xl whitespace-nowrap shadow-luxury border border-white/20 pointer-events-none
+                    transition-all duration-500 ease-out z-50 hidden lg:block
                     ${(hoveredPhase === phase.id || (activePhase === phase.id && showActiveTooltip))
                     ? "opacity-100 translate-x-0"
                     : "opacity-0 translate-x-5"}`}
                 aria-hidden="true"
               >
-                <p className="text-[10px] font-black tracking-[0.2em] uppercase opacity-90 mb-1 leading-none">{phase.name}</p>
-                <p className="text-sm font-bold tracking-tight">{phase.desc}</p>
-                <div className="absolute right-[-6px] top-1/2 -translate-y-1/2 w-3 h-3 bg-blue/40 backdrop-blur-md rotate-45 border-r border-t border-white/20" />
+                <p className="text-[10px] font-black tracking-[0.2em] uppercase text-blue/60 mb-1 leading-none">{phase.name}</p>
+                <p className="text-sm font-bold tracking-tight text-blue">{phase.desc}</p>
+                <div className="absolute right-[-6px] top-1/2 -translate-y-1/2 w-3 h-3 bg-white/10 backdrop-blur-lg rotate-45 border-r border-t border-white/20" />
               </div>
             </div>
           ))}
@@ -189,7 +189,7 @@ const Index = () => {
               <div className="absolute top-[10%] -left-[5%] w-[50%] h-[40%] bg-glow-wave opacity-0 group-hover/section:opacity-60 transition-opacity duration-1000 blur-[120px]" />
               <div className="absolute bottom-[20%] -right-[5%] w-[40%] h-[40%] bg-glow-teal opacity-0 group-hover/section:opacity-40 transition-opacity duration-1000 blur-[100px]" />
             </div>
-            <div className="relative z-10 space-y-20 lg:space-y-32 py-20 lg:py-32">
+            <div className="relative z-10 space-y-20 lg:space-y-32 py-20 lg:py-32 px-4 sm:px-6">
               <Suspense fallback={<SectionLoader />}>
                 <AboutSection lang={lang} />
               </Suspense>
@@ -211,7 +211,7 @@ const Index = () => {
             <div className="absolute inset-0 pointer-events-none z-0">
               <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-full bg-glow-wave opacity-20 blur-[150px]" />
             </div>
-            <div className="relative z-10 space-y-20 lg:space-y-32 py-20 lg:py-32">
+            <div className="relative z-10 space-y-20 lg:space-y-32 py-20 lg:py-32 px-4 sm:px-6">
               <Suspense fallback={<SectionLoader />}>
                 <FeaturesSection />
               </Suspense>
@@ -231,7 +231,7 @@ const Index = () => {
               <div className="absolute bottom-0 left-0 w-[60%] h-[40%] bg-glow-wave opacity-40 blur-[120px]" />
               <div className="absolute top-0 right-0 w-[40%] h-[30%] bg-glow-teal opacity-20 blur-[100px]" />
             </div>
-            <div className="relative z-10 space-y-20 lg:space-y-32 py-20 lg:py-32">
+            <div className="relative z-10 space-y-20 lg:space-y-32 py-20 lg:py-32 px-4 sm:px-6">
               <Suspense fallback={<SectionLoader />}>
                 <OrderSection lang={lang} />
               </Suspense>

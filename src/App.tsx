@@ -10,6 +10,8 @@ import CookieConsent from "./components/CookieConsent";
 import { AgeVerification } from "./components/AgeVerification";
 import { initSecurityMonitoring } from "@/lib/security-monitor";
 import HangingSign from "@/components/HangingSign";
+import Schema from "@/components/Schema";
+import { HelmetProvider } from "react-helmet-async";
 
 // Lazy load pages for performance
 const ThankYou = lazy(() => import("./pages/ThankYou"));
@@ -37,78 +39,81 @@ const App = () => {
   }, []);
 
   return (
-    <QueryClientProvider client={queryClient}>
-      <TooltipProvider>
-        <Toaster />
-        <Sonner />
-        <BrowserRouter>
-          <HangingSign />
-          <Routes>
-            <Route path="/" element={<Index />} />
-            <Route
-              path="/thank-you"
-              element={
-                <Suspense fallback={<RouteLoader />}>
-                  <ThankYou />
-                </Suspense>
-              }
-            />
-            <Route
-              path="/company-profile"
-              element={
-                <Suspense fallback={<RouteLoader />}>
-                  <CompanyProfile />
-                </Suspense>
-              }
-            />
-            <Route
-              path="/privacy-policy"
-              element={
-                <Suspense fallback={<RouteLoader />}>
-                  <PrivacyPolicy />
-                </Suspense>
-              }
-            />
-            <Route
-              path="/terms-of-service"
-              element={
-                <Suspense fallback={<RouteLoader />}>
-                  <TermsOfService />
-                </Suspense>
-              }
-            />
-            <Route
-              path="/dpa"
-              element={
-                <Suspense fallback={<RouteLoader />}>
-                  <DataProcessingAgreement />
-                </Suspense>
-              }
-            />
-            <Route
-              path="/investors"
-              element={
-                <Suspense fallback={<RouteLoader />}>
-                  <Investors />
-                </Suspense>
-              }
-            />
-            <Route
-              path="/investor-deck"
-              element={
-                <Suspense fallback={<RouteLoader />}>
-                  <InvestorDeck />
-                </Suspense>
-              }
-            />
-            {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
-            <Route path="*" element={<NotFound />} />
-          </Routes>
-          <CookieConsent />
-          <AgeVerification />
-        </BrowserRouter>
-      </TooltipProvider>
-    </QueryClientProvider>
+    <HelmetProvider>
+      <QueryClientProvider client={queryClient}>
+        <TooltipProvider>
+          <Toaster />
+          <Sonner />
+          <BrowserRouter>
+            <Schema />
+            <HangingSign />
+            <Routes>
+              <Route path="/" element={<Index />} />
+              <Route
+                path="/thank-you"
+                element={
+                  <Suspense fallback={<RouteLoader />}>
+                    <ThankYou />
+                  </Suspense>
+                }
+              />
+              <Route
+                path="/company-profile"
+                element={
+                  <Suspense fallback={<RouteLoader />}>
+                    <CompanyProfile />
+                  </Suspense>
+                }
+              />
+              <Route
+                path="/privacy-policy"
+                element={
+                  <Suspense fallback={<RouteLoader />}>
+                    <PrivacyPolicy />
+                  </Suspense>
+                }
+              />
+              <Route
+                path="/terms-of-service"
+                element={
+                  <Suspense fallback={<RouteLoader />}>
+                    <TermsOfService />
+                  </Suspense>
+                }
+              />
+              <Route
+                path="/dpa"
+                element={
+                  <Suspense fallback={<RouteLoader />}>
+                    <DataProcessingAgreement />
+                  </Suspense>
+                }
+              />
+              <Route
+                path="/investors"
+                element={
+                  <Suspense fallback={<RouteLoader />}>
+                    <Investors />
+                  </Suspense>
+                }
+              />
+              <Route
+                path="/investor-deck"
+                element={
+                  <Suspense fallback={<RouteLoader />}>
+                    <InvestorDeck />
+                  </Suspense>
+                }
+              />
+              {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
+              <Route path="*" element={<NotFound />} />
+            </Routes>
+            <CookieConsent />
+            <AgeVerification />
+          </BrowserRouter>
+        </TooltipProvider>
+      </QueryClientProvider>
+    </HelmetProvider>
   );
 };
 
