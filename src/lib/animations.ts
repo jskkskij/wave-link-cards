@@ -19,28 +19,27 @@ export const createPaperToDigitalReveal = (
 
   // Set initial state
   element.style.willChange = 'transform, opacity, filter';
-  element.style.transform = 'scaleY(0.1) scaleX(0.95) rotateX(90deg)';
-  element.style.opacity = '0';
-  element.style.filter = 'blur(4px)';
+  element.style.transform = 'scaleY(0.9) scaleX(0.98) rotateX(20deg)';
+  element.style.opacity = '0.01';
+  element.style.filter = 'blur(2px)';
   element.style.transformOrigin = 'center center';
 
-  // Force reflow
-  void element.offsetHeight;
-
-  // Animate to final state
+  // Animate to final state using double RAF to ensure style flushing without forced reflow
   requestAnimationFrame(() => {
-    element.style.transition = `transform ${duration}ms ${easing}, opacity ${duration}ms ${easing}, filter ${duration}ms ${easing}`;
-    
-    setTimeout(() => {
-      element.style.transform = 'scaleY(1) scaleX(1) rotateX(0deg)';
-      element.style.opacity = '1';
-      element.style.filter = 'blur(0px)';
+    requestAnimationFrame(() => {
+      element.style.transition = `transform ${duration}ms ${easing}, opacity ${duration}ms ${easing}, filter ${duration}ms ${easing}`;
 
-      // Clean up will-change after animation
       setTimeout(() => {
-        element.style.willChange = 'auto';
-      }, duration);
-    }, delay);
+        element.style.transform = 'scaleY(1) scaleX(1) rotateX(0deg)';
+        element.style.opacity = '1';
+        element.style.filter = 'blur(0px)';
+
+        // Clean up will-change after animation
+        setTimeout(() => {
+          element.style.willChange = 'auto';
+        }, duration);
+      }, delay);
+    });
   });
 };
 

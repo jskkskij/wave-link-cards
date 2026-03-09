@@ -6,12 +6,14 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Index from "./pages/Index";
 import NotFound from "./pages/NotFound";
-import CookieConsent from "./components/CookieConsent";
-import { AgeVerification } from "./components/AgeVerification";
 import { initSecurityMonitoring } from "@/lib/security-monitor";
-import HangingSign from "@/components/HangingSign";
-import Schema from "@/components/Schema";
 import { HelmetProvider } from "react-helmet-async";
+
+// Lazy load components
+const CookieConsent = lazy(() => import("./components/CookieConsent"));
+const AgeVerification = lazy(() => import("./components/AgeVerification").then(m => ({ default: m.AgeVerification })));
+const HangingSign = lazy(() => import("@/components/HangingSign"));
+const Schema = lazy(() => import("@/components/Schema"));
 
 // Lazy load pages for performance
 const ThankYou = lazy(() => import("./pages/ThankYou"));
@@ -45,8 +47,10 @@ const App = () => {
           <Toaster />
           <Sonner />
           <BrowserRouter>
-            <Schema />
-            <HangingSign />
+            <Suspense fallback={null}>
+              <Schema />
+              <HangingSign />
+            </Suspense>
             <Routes>
               <Route path="/" element={<Index />} />
               <Route
@@ -108,8 +112,10 @@ const App = () => {
               {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
               <Route path="*" element={<NotFound />} />
             </Routes>
-            <CookieConsent />
-            <AgeVerification />
+            <Suspense fallback={null}>
+              <CookieConsent />
+              <AgeVerification />
+            </Suspense>
           </BrowserRouter>
         </TooltipProvider>
       </QueryClientProvider>

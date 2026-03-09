@@ -66,6 +66,24 @@ const OrderSection = ({ lang = "en" }: OrderSectionProps) => {
     }
   };
 
+  // --- Aggressive Performance: Dynamic Turnstile Loading ---
+  const [turnstileLoaded, setTurnstileLoaded] = useState(false);
+  const turnstileInjected = useRef(false);
+
+  const injectTurnstile = () => {
+    if (turnstileInjected.current) return;
+    turnstileInjected.current = true;
+
+    const script = document.createElement('script');
+    script.src = "https://challenges.cloudflare.com/turnstile/v0/api.js";
+    script.async = true;
+    script.defer = true;
+    script.onload = () => setTurnstileLoaded(true);
+    document.body.appendChild(script);
+
+    logSecurityEvent('TURNSTILE_DYNAMIC_INJECTION', { form: 'order' }, 'info');
+  };
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
@@ -190,7 +208,13 @@ const OrderSection = ({ lang = "en" }: OrderSectionProps) => {
         <div className="grid lg:grid-cols-12 gap-16 items-start">
           {/* Form Column */}
           <div className="lg:col-span-7 bg-white border border-muted p-6 sm:p-10 md:p-14 rounded-2xl shadow-luxury">
-            <form onSubmit={handleSubmit} className="space-y-10" aria-label="Order Information Form">
+            <form
+              onSubmit={handleSubmit}
+              className="space-y-10"
+              aria-label="Order Information Form"
+              onFocus={injectTurnstile}
+              onMouseEnter={injectTurnstile}
+            >
               <div className="grid md:grid-cols-2 gap-8">
                 <div className="space-y-3">
                   <Label htmlFor="name" className="text-[13px] font-bold text-foreground uppercase tracking-widest px-1">Full Name</Label>
@@ -252,7 +276,7 @@ const OrderSection = ({ lang = "en" }: OrderSectionProps) => {
                   {selectedImage ? (
                     <div className="flex flex-col items-center">
                       <div className="relative w-full h-64 mb-6 rounded-xl overflow-hidden shadow-luxury">
-                        <img src={selectedImage} alt="Preview" className="w-full h-full object-contain bg-white" />
+                        <img src={selectedImage} alt="Preview" className="w-full h-full object-contain bg-white" width={500} height={256} />
                         <button type="button" onClick={(e) => { e.stopPropagation(); removeImage(); }} className="absolute top-4 right-4 p-2 bg-foreground text-white rounded-full hover:bg-red-500 transition-luxury">
                           <X size={18} />
                         </button>
@@ -284,6 +308,9 @@ const OrderSection = ({ lang = "en" }: OrderSectionProps) => {
 
               {/* Honeypot field */}
               <input type="text" name="website" tabIndex={-1} autoComplete="off" value={formData.website} onChange={handleInputChange} className="hidden" aria-hidden="true" />
+
+              {/* Turnstile Container - Managed injection */}
+              <div className="cf-turnstile" data-sitekey="0x4AAAAAAA4O8o_D_N6GfXyH"></div>
 
               <Button
                 type="submit"

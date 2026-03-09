@@ -112,8 +112,12 @@ export const OnboardingTutorial = ({ lang = "en" }: OnboardingTutorialProps) => 
         const forceTutorial = urlParams.get('tutorial') === 'true';
 
         if (!hasSeenTutorial || forceTutorial) {
-            const timer = setTimeout(() => setIsOpen(true), 1000);
-            return () => clearTimeout(timer);
+            // Aggressive performance: Wait for main thread to be idle before preparing the tutorial
+            const scheduler = (window as any).requestIdleCallback || ((cb: any) => setTimeout(cb, 5000));
+            scheduler(() => {
+                const timer = setTimeout(() => setIsOpen(true), 1500);
+                return () => clearTimeout(timer);
+            });
         }
     }, []);
 

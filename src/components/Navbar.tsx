@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Link, useNavigate, useLocation } from "react-router-dom";
-import wavelinkLogo from "@/assets/wavelink-logo-new.png";
+const wavelinkLogo = "/assets/wavelink-logo-new.png";
 import companyProfilePdf from "@/assets/WaveLinkCompanyProfile.pdf";
 import { Menu, X, ShoppingBag, FileDown } from "lucide-react";
 import { cn } from "@/lib/utils";
@@ -75,9 +75,10 @@ const Navbar = ({ lang = "en" }: NavbarProps) => {
             <img
               src={wavelinkLogo}
               alt="Wavelink Logo"
-              width={100}
-              height={28}
-              className="h-7 w-auto object-contain grayscale group-hover:grayscale-0 transition-luxury"
+              width={112}
+              height={32}
+              className="h-8 w-auto object-contain grayscale group-hover:grayscale-0 transition-luxury"
+              loading="eager"
             />
             <span className="font-serif font-bold text-lg tracking-tight text-foreground hidden sm:block">
               Wavelink

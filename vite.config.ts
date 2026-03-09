@@ -40,8 +40,15 @@ export default defineConfig(({ mode }) => ({
     },
     rollupOptions: {
       output: {
+        manualChunks(id) {
+          if (id.includes('framer-motion')) return 'vendor-motion';
+          if (id.includes('lucide-react')) return 'vendor-lucide';
+          if (id.includes('@radix-ui')) return 'vendor-ui';
+          if (id.includes('node_modules')) return 'vendor';
+        },
         assetFileNames: (assetInfo) => {
-          const info = assetInfo.name.split(".");
+          const name = assetInfo.name || '';
+          const info = name.split(".");
           const ext = info[info.length - 1];
           if (/png|jpe?g|svg|gif|tiff|bmp|ico|webp/i.test(ext)) {
             return `assets/images/[name]-[hash][extname]`;

@@ -42,6 +42,8 @@ const AffiliateSection = () => {
                                     src={affiliateImage}
                                     alt="Affiliate Marketing Program"
                                     className="w-full h-auto"
+                                    width={800}
+                                    height={500}
                                 />
                             </div>
                         </motion.div>

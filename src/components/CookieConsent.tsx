@@ -45,21 +45,21 @@ const CookieConsent = () => {
                             <div className="flex-1">
                                 <div className="flex items-center justify-between mb-2">
                                     <h3 className="text-lg font-bold text-white flex items-center gap-2">
-                                        Privacy Choice
+                                        Data Privacy & Consent
                                         <ShieldCheck className="w-4 h-4 text-primary" />
                                     </h3>
-                                    <span className="text-xs font-bold text-primary" dir="rtl">خيارات الخصوصية</span>
+                                    <span className="text-[10px] font-bold text-primary tracking-wider" dir="ltr">ডাটা প্রাইভেসি</span>
                                 </div>
 
                                 <div className="space-y-3 mb-6">
                                     <p className="text-xs text-mist/80 leading-relaxed font-medium">
-                                        Following UAE Federal Laws, we require your explicit consent for non-essential cookies. Tracking is disabled by default.
+                                        In compliance with the Bangladesh Data Protection Laws (2025), we require your explicit consent to process non-essential cookies. Your data is secure.
                                     </p>
-                                    <p className="text-xs text-mist/80 leading-relaxed font-medium text-right" dir="rtl">
-                                        وفقاً للقوانين الاتحادية في الإمارات، نطلب موافقتك الصريحة لملفات تعريف الارتباط غير الأساسية. التتبع معطل افتراضياً.
+                                    <p className="text-xs text-mist/80 leading-relaxed font-medium text-left" dir="ltr">
+                                        বাংলাদেশ ডেটা সুরক্ষা আইন (২০২৫) অনুযায়ী, আমরা আপনার সম্মতি চাচ্ছি। আপনার তথ্য সম্পূর্ণ নিরাপদ।
                                     </p>
                                     <Link to="/privacy-policy" className="inline-block text-[10px] text-primary hover:underline font-bold uppercase tracking-wider">
-                                        Transparency Report / تقرير الشفافية
+                                        Transparency Report / ট্রান্সপারেন্সি রিপোর্ট
                                     </Link>
                                 </div>
 
@@ -69,7 +69,7 @@ const CookieConsent = () => {
                                         className="w-full rounded-2xl bg-primary hover:bg-primary/90 text-white font-bold h-12 shadow-luxury-glow hover:scale-[1.02] transition-all flex justify-between px-6"
                                     >
                                         <span>Accept All</span>
-                                        <span dir="rtl">قبول الكل</span>
+                                        <span dir="ltr">সব গ্রহণ করুন</span>
                                     </Button>
                                     <div className="grid grid-cols-2 gap-2">
                                         <Button
@@ -77,7 +77,7 @@ const CookieConsent = () => {
                                             onClick={() => handleAction(false)}
                                             className="rounded-xl border-white/10 hover:bg-white/5 text-mist font-medium h-10 text-xs"
                                         >
-                                            Reject / رفض
+                                            Reject / বাতিল
                                         </Button>
                                         <Button
                                             variant="ghost"
@@ -85,7 +85,7 @@ const CookieConsent = () => {
                                             onClick={() => setIsVisible(false)}
                                             className="rounded-xl hover:bg-primary/10 hover:text-primary text-mist/60 text-xs"
                                         >
-                                            Close / إغلاق
+                                            Close / بند کر
                                         </Button>
                                     </div>
                                 </div>

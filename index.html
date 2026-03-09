@@ -17,36 +17,23 @@
   <meta name="google-site-verification" content="5442Wu3_FmS-1xgXtI1BdCkOFABmJpfnxlvruWff1DI" />
   <link rel="help" type="text/markdown" href="/llms.txt" title="AI-Friendly Summary">
 
-  <!-- dns-prefetch for third-party origins (cheap, helps mobile) -->
-  <link rel="dns-prefetch" href="https://pagead2.googlesyndication.com">
-  <link rel="dns-prefetch" href="https://challenges.cloudflare.com">
+  <!-- essential preconnects only (Lighthouse optimal) -->
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preconnect" href="https://pagead2.googlesyndication.com">
+  <link rel="preconnect" href="https://challenges.cloudflare.com">
 
-  <meta property="og:type" content="website" />
-  <meta property="og:url" content="https://getwaved.ai/" />
-  <meta property="og:image"
-    content="https://storage.googleapis.com/gpt-engineer-file-uploads/jt4HEykceThci75UK4oKKqTRoFW2/social-images/social-1761125812886-Untitled design (8).png">
-
-  <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:image"
-    content="https://storage.googleapis.com/gpt-engineer-file-uploads/jt4HEykceThci75UK4oKKqTRoFW2/social-images/social-1761125812886-Untitled design (8).png">
-  <meta property="og:title" content="Wavelink | Global Trust Infrastructure">
-  <meta name="twitter:title" content="Wavelink | Global Trust Infrastructure">
-  <meta property="og:description"
-    content="Deploy verifiable trust instantly. Wavelink NFC cards are the gateway to global business growth. Bridge the physical and digital worlds with a single tap.">
-  <meta name="twitter:description"
-    content="Deploy verifiable trust instantly. Wavelink NFC cards are the gateway to global business growth. Bridge the physical and digital worlds with a single tap.">
-  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
-  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
-  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
-  <link rel="manifest" href="/site.webmanifest">
-
-  <!-- Premium Typography - Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link
     href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@300;400;500;600;700&display=swap"
-    rel="stylesheet">
-  <link rel="preload" as="image" href="/src/assets/wavelink-logo-new.png" fetchpriority="high">
+    rel="stylesheet" media="print" onload="this.media='all'">
+  <noscript>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet">
+  </noscript>
+  <link rel="preload" as="image" href="/assets/hero-bg.jpg" fetchpriority="high">
+  <link rel="preload" as="image" href="/assets/wavelink-logo-new.png" fetchpriority="high">
 
   <!-- AEO Structured Data (JSON-LD @graph) - Optimized for LLMs -->
   <script type="application/ld+json">
@@ -144,17 +131,11 @@
 </head>
 
 <body>
-  <div id="root">
-    <h1
-      style="position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0, 0, 0, 0); border: 0;">
-      Wavelink | Global Trust Infrastructure & NFC Business Cards</h1>
-  </div>
+  <div id="root"></div>
   <script type="module" src="/src/main.tsx"></script>
   <!-- AdSense: loaded after app bundle to avoid main-thread contention during LCP -->
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6185927994614530"
     crossorigin="anonymous"></script>
-  <!-- Cloudflare Turnstile: defer until after app mount -->
-  <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
 </body>
 
 </html>

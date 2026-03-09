@@ -1,6 +1,6 @@
 import { Button } from "@/components/ui/button";
 import newLogo from "@/assets/wavelink-logo-new.png";
-import heroBg from "@/assets/hero-bg.jpg";
+const heroBg = "/assets/hero-bg.jpg";
 import { ArrowDown, Star } from "lucide-react";
 import { useEffect, useRef } from "react";
 import { createPaperToDigitalReveal } from "@/lib/animations";
@@ -39,6 +39,10 @@ const HeroSection = ({ lang = "en" }: HeroSectionProps) => {
           alt=""
           className="w-full h-full object-cover opacity-60"
           aria-hidden="true"
+          fetchPriority="high"
+          loading="eager"
+          width={1920}
+          height={1080}
         />
         <div className="absolute inset-0 bg-gradient-to-b from-slate-950/40 via-transparent to-slate-950/80" />
 

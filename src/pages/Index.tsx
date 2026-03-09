@@ -1,7 +1,7 @@
 import { lazy, Suspense, useState, useEffect, useRef } from "react";
 import Navbar from "@/components/Navbar";
 import HeroSection from "@/components/HeroSection";
-import { OnboardingTutorial } from "@/components/OnboardingTutorial";
+const OnboardingTutorial = lazy(() => import("@/components/OnboardingTutorial").then(m => ({ default: m.OnboardingTutorial })));
 import { Sparkles, Zap, Star } from "lucide-react";
 import { translations, Language } from "@/lib/translations";
 
@@ -60,47 +60,47 @@ const Index = () => {
     };
   }, []);
 
-  // --- Phase Detection (throttled with RAF) ---
+  // --- Phase Detection (IntersectionObserver) ---
   const [activePhase, setActivePhase] = useState(1);
   const [showActiveTooltip, setShowActiveTooltip] = useState(true);
   const [hoveredPhase, setHoveredPhase] = useState<number | null>(null);
-  const phaseTicking = useRef(false);
   const tooltipTimeout = useRef<NodeJS.Timeout | null>(null);
 
   useEffect(() => {
-    const handleScroll = () => {
-      if (phaseTicking.current) return;
-      phaseTicking.current = true;
-      requestAnimationFrame(() => {
-        const phaseIds = ["phase-1", "phase-2", "phase-3"];
-        for (let i = 0; i < phaseIds.length; i++) {
-          const element = document.getElementById(phaseIds[i]);
-          if (element) {
-            const rect = element.getBoundingClientRect();
-            if (rect.top <= window.innerHeight / 2 && rect.bottom >= window.innerHeight / 2) {
-              const newPhase = i + 1;
-              if (newPhase !== activePhase) {
-                setActivePhase(newPhase);
-                setShowActiveTooltip(true);
-                // Clear existing timeout
-                if (tooltipTimeout.current) clearTimeout(tooltipTimeout.current);
-                // Set new timeout to hide the active tooltip after 3 seconds
-                tooltipTimeout.current = setTimeout(() => setShowActiveTooltip(false), 3000);
-              }
-              break;
-            }
+    const options = {
+      root: null,
+      rootMargin: '-50% 0px -50% 0px', // Center-of-viewport trigger
+      threshold: 0
+    };
+
+    const callback = (entries: IntersectionObserverEntry[]) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const id = entry.target.id;
+          const phaseMatch = id.match(/phase-(\d)/);
+          if (phaseMatch) {
+            const newPhase = parseInt(phaseMatch[1]);
+            setActivePhase(newPhase);
+            setShowActiveTooltip(true);
+
+            if (tooltipTimeout.current) clearTimeout(tooltipTimeout.current);
+            tooltipTimeout.current = setTimeout(() => setShowActiveTooltip(false), 3000);
           }
         }
-        phaseTicking.current = false;
       });
     };
 
-    window.addEventListener("scroll", handleScroll, { passive: true });
+    const observer = new IntersectionObserver(callback, options);
+    ["phase-1", "phase-2", "phase-3"].forEach(id => {
+      const el = document.getElementById(id);
+      if (el) observer.observe(el);
+    });
+
     return () => {
-      window.removeEventListener("scroll", handleScroll);
+      observer.disconnect();
       if (tooltipTimeout.current) clearTimeout(tooltipTimeout.current);
     };
-  }, [activePhase]);
+  }, []);
 
   // --- Language Detection ---
   useEffect(() => {
@@ -118,6 +118,24 @@ const Index = () => {
     }
   };
 
+  // --- Performance: Deferred AdSense Loading ---
+  const [showAd, setShowAd] = useState(false);
+  const adTriggerRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    if (!hasConsent || showAd) return;
+
+    const observer = new IntersectionObserver((entries) => {
+      if (entries[0].isIntersecting) {
+        setShowAd(true);
+        observer.disconnect();
+      }
+    }, { rootMargin: '400px' });
+
+    if (adTriggerRef.current) observer.observe(adTriggerRef.current);
+    return () => observer.disconnect();
+  }, [hasConsent, showAd]);
+
   const phases = [
     { id: 1, name: t.phases.phase1, desc: t.phases.phase1Desc, icon: Sparkles },
     { id: 2, name: t.phases.phase2, desc: t.phases.phase2Desc, icon: Zap },
@@ -126,7 +144,9 @@ const Index = () => {
 
   return (
     <div className="min-h-screen bg-background text-foreground overflow-x-hidden selection:bg-sky/20 selection:text-navy">
-      <OnboardingTutorial lang={lang} />
+      <Suspense fallback={null}>
+        <OnboardingTutorial lang={lang} />
+      </Suspense>
       <Navbar lang={lang} />
 
       {/* Vertical Side-Sticky Navigation — pure CSS transitions, no framer-motion */}
@@ -177,6 +197,9 @@ const Index = () => {
           ))}
         </div>
       </nav>
+
+      {/* Invisible trigger for AdSense */}
+      <div ref={adTriggerRef} className="h-1 absolute top-[2000px] pointer-events-none" aria-hidden="true" />
 
       <main className="w-full">
         <HeroSection lang={lang} />
@@ -239,11 +262,13 @@ const Index = () => {
                 <Suspense fallback={<SectionLoader />}>
                   <ReviewsSection />
                 </Suspense>
-                {hasConsent && (
+
+                {showAd && (
                   <Suspense fallback={null}>
                     <AdSenseBanner />
                   </Suspense>
                 )}
+
                 <Suspense fallback={<SectionLoader />}>
                   <AffiliateSection />
                 </Suspense>
