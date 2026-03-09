@@ -47,7 +47,7 @@ export function logSecurityEvent(
 
     // Send critical events to backend
     if (severity === 'critical') {
-        fetch('/api/security-alert', {
+        fetch('https://vmlbmtvjkyokryovncyu.supabase.co/functions/v1/csp-report', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(event)
