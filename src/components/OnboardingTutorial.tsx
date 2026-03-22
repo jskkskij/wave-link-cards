@@ -113,10 +113,13 @@ export const OnboardingTutorial = ({ lang = "en" }: OnboardingTutorialProps) => 
 
         if (!hasSeenTutorial || forceTutorial) {
             // Aggressive performance: Wait for main thread to be idle before preparing the tutorial
-            const scheduler = (window as any).requestIdleCallback || ((cb: any) => setTimeout(cb, 5000));
+            const scheduler = (window as any).requestIdleCallback || ((cb: any) => setTimeout(cb, 3000));
             scheduler(() => {
-                const timer = setTimeout(() => setIsOpen(true), 1500);
-                return () => clearTimeout(timer);
+                // Only show on tablet/desktop (md breakpoint and up)
+                if (window.innerWidth >= 768) {
+                    const timer = setTimeout(() => setIsOpen(true), 1500);
+                    return () => clearTimeout(timer);
+                }
             });
         }
     }, []);
@@ -255,7 +258,7 @@ export const OnboardingTutorial = ({ lang = "en" }: OnboardingTutorialProps) => 
     if (!isOpen) return null;
 
     return (
-        <div className="fixed inset-0 z-[100] overflow-hidden">
+        <div className="fixed inset-0 z-[100] overflow-hidden hidden md:block">
             {/* Spotlight Overlay */}
             <svg className="absolute inset-0 w-full h-full pointer-events-none">
                 <defs>
