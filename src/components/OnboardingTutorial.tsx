@@ -111,12 +111,25 @@ export const OnboardingTutorial = ({ lang = "en" }: OnboardingTutorialProps) => 
         const urlParams = new URLSearchParams(window.location.search);
         const forceTutorial = urlParams.get('tutorial') === 'true';
 
+        // Strict mobile check function
+        const isMobileDevice = () => {
+            if (typeof window === 'undefined') return false;
+            const isNarrow = window.innerWidth < 1024; // Treat anything below desktop as mobile/tablet to be safe
+            const isMobileUA = /Mobi|Android|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+            return isNarrow || isMobileUA;
+        };
+
+        // If it's a mobile device, we explicitly do NOT want to show the tutorial
+        if (isMobileDevice() && !forceTutorial) {
+             return; // abort completely
+        }
+
         if (!hasSeenTutorial || forceTutorial) {
             // Aggressive performance: Wait for main thread to be idle before preparing the tutorial
             const scheduler = (window as any).requestIdleCallback || ((cb: any) => setTimeout(cb, 3000));
             scheduler(() => {
-                // Only show on tablet/desktop (md breakpoint and up)
-                if (window.innerWidth >= 768) {
+                // Ensure we haven't resized to mobile in the meantime
+                if (!isMobileDevice() || forceTutorial) {
                     const timer = setTimeout(() => setIsOpen(true), 1500);
                     return () => clearTimeout(timer);
                 }
@@ -258,7 +271,7 @@ export const OnboardingTutorial = ({ lang = "en" }: OnboardingTutorialProps) => 
     if (!isOpen) return null;
 
     return (
-        <div className="fixed inset-0 z-[100] overflow-hidden hidden md:block">
+        <div className="fixed inset-0 z-[100] overflow-hidden hidden lg:block">
             {/* Spotlight Overlay */}
             <svg className="absolute inset-0 w-full h-full pointer-events-none">
                 <defs>
