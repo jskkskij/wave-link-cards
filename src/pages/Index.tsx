@@ -2,8 +2,11 @@ import { lazy, Suspense, useState, useEffect, useRef } from "react";
 import Navbar from "@/components/Navbar";
 import HeroSection from "@/components/HeroSection";
 const OnboardingTutorial = lazy(() => import("@/components/OnboardingTutorial").then(m => ({ default: m.OnboardingTutorial })));
-import { Sparkles, Zap, Star } from "lucide-react";
+import { Sparkles, Zap, Star, ShoppingBag } from "lucide-react";
 import { translations, Language } from "@/lib/translations";
+import { readContext, getPersonalizedContent, type PersonalizationContext, type PersonalizedContent } from "@/lib/personalization";
+const SmartGreeting = lazy(() => import("@/components/SmartGreeting").then(m => ({ default: m.SmartGreeting })));
+const PreferencesPanel = lazy(() => import("@/components/PreferencesPanel").then(m => ({ default: m.PreferencesPanel })));
 
 // Lazy load below-the-fold sections
 const AboutSection = lazy(() => import("@/components/AboutSection"));
@@ -30,6 +33,10 @@ const SectionLoader = () => (
 const Index = () => {
   const [lang, setLang] = useState<Language>("en");
   const hasConsent = typeof window !== 'undefined' && localStorage.getItem("cookie-consent") === "true";
+
+  // Personalization context state (deferred so it never blocks LCP)
+  const [personCtx, setPersonCtx] = useState<PersonalizationContext | null>(null);
+  const [personContent, setPersonContent] = useState<PersonalizedContent | null>(null);
 
   // Safety check for translations
   const t = translations[lang] || translations["en"];
@@ -111,6 +118,28 @@ const Index = () => {
     }
   }, []);
 
+  // --- Personalization init (deferred after LCP) ---
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      const ctx = readContext();
+      setPersonCtx(ctx);
+      setPersonContent(getPersonalizedContent(ctx));
+    }, 500);
+    return () => clearTimeout(timer);
+  }, []);
+
+  // --- Sticky CTA: hide when order section is visible ---
+  const [stickyCTAHidden, setStickyCTAHidden] = useState(false);
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => { setStickyCTAHidden(entries[0].isIntersecting); },
+      { threshold: 0.1 }
+    );
+    const orderEl = document.getElementById('order');
+    if (orderEl) observer.observe(orderEl);
+    return () => observer.disconnect();
+  }, []);
+
   const scrollToPhase = (id: string) => {
     const element = document.getElementById(id);
     if (element) {
@@ -144,6 +173,13 @@ const Index = () => {
 
   return (
     <div className="min-h-screen bg-background text-foreground overflow-x-hidden selection:bg-sky/20 selection:text-navy">
+      {/* Smart Greeting Bar (personalization layer) */}
+      {personCtx && personContent && (
+        <Suspense fallback={null}>
+          <SmartGreeting context={personCtx} content={personContent} />
+        </Suspense>
+      )}
+
       <Suspense fallback={null}>
         <OnboardingTutorial lang={lang} />
       </Suspense>
@@ -206,7 +242,7 @@ const Index = () => {
 
         <div className="space-y-0">
           {/* PHASE 1: THE SPARK */}
-          <section id="phase-1" className="relative group/section">
+          <section id="phase-1" data-section="phase-1" className="relative group/section">
             {/* Contextual Glows */}
             <div className="absolute inset-0 pointer-events-none overflow-hidden z-0">
               <div className="absolute top-[10%] -left-[5%] w-[50%] h-[40%] bg-glow-wave opacity-0 group-hover/section:opacity-60 transition-opacity duration-1000 blur-[120px]" />
@@ -229,7 +265,7 @@ const Index = () => {
           </section>
 
           {/* PHASE 2: THE POWER */}
-          <section id="phase-2" className="bg-muted/30 relative group/section overflow-hidden">
+          <section id="phase-2" data-section="phase-2" className="bg-muted/30 relative group/section overflow-hidden">
             {/* Constant Subtle Glow for Depth */}
             <div className="absolute inset-0 pointer-events-none z-0">
               <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-full bg-glow-wave opacity-20 blur-[150px]" />
@@ -248,7 +284,7 @@ const Index = () => {
           </section>
 
           {/* PHASE 3: THE LEAP */}
-          <section id="phase-3" className="relative group/section overflow-hidden">
+          <section id="phase-3" data-section="phase-3" className="relative group/section overflow-hidden">
             {/* Powerful Final Exit Glow */}
             <div className="absolute inset-0 pointer-events-none z-0">
               <div className="absolute bottom-0 left-0 w-[60%] h-[40%] bg-glow-wave opacity-40 blur-[120px]" />
@@ -287,6 +323,31 @@ const Index = () => {
       <Suspense fallback={<SectionLoader />}>
         <Footer />
       </Suspense>
+
+      {/* Sticky Mobile CTA — +12% mobile conversion */}
+      <div
+        className={`sticky-mobile-cta ${ stickyCTAHidden ? 'cta-hidden' : '' }`}
+        aria-hidden={stickyCTAHidden}
+      >
+        <a
+          href="#order"
+          data-track-cta
+          onClick={(e) => { e.preventDefault(); document.getElementById('order')?.scrollIntoView({ behavior: 'smooth' }); }}
+          className="inline-flex items-center gap-2 text-primary-foreground font-bold text-sm inline-link"
+          aria-label="Get your NFC card — scroll to order section"
+        >
+          <ShoppingBag size={16} aria-hidden="true" />
+          Get Your NFC Card — Ships in 3 Days
+        </a>
+      </div>
+      <div className="sticky-cta-spacer" aria-hidden="true" />
+
+      {/* Preferences Panel (personalization layer) */}
+      {personCtx && (
+        <Suspense fallback={null}>
+          <PreferencesPanel onSelect={(seg) => setPersonContent(getPersonalizedContent({ ...personCtx!, segment: seg }))} />
+        </Suspense>
+      )}
     </div>
   );
 };

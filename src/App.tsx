@@ -7,6 +7,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Index from "./pages/Index";
 import NotFound from "./pages/NotFound";
 import { initSecurityMonitoring } from "@/lib/security-monitor";
+import { initAnalytics } from "@/lib/analytics";
 import { HelmetProvider } from "react-helmet-async";
 
 // Lazy load components
@@ -14,6 +15,8 @@ const CookieConsent = lazy(() => import("./components/CookieConsent"));
 const AgeVerification = lazy(() => import("./components/AgeVerification").then(m => ({ default: m.AgeVerification })));
 const HangingSign = lazy(() => import("@/components/HangingSign"));
 const Schema = lazy(() => import("@/components/Schema"));
+const AnalyticsDashboard = lazy(() => import("@/components/AnalyticsDashboard").then(m => ({ default: m.AnalyticsDashboard })));
+const FeaturePulse = lazy(() => import("@/components/FeaturePulse").then(m => ({ default: m.FeaturePulse })));
 
 // Lazy load pages for performance
 const ThankYou = lazy(() => import("./pages/ThankYou"));
@@ -23,6 +26,7 @@ const TermsOfService = lazy(() => import("./pages/TermsOfService"));
 const DataProcessingAgreement = lazy(() => import("./pages/DataProcessingAgreement"));
 const Investors = lazy(() => import("./pages/Investors"));
 const InvestorDeck = lazy(() => import("./pages/InvestorDeck"));
+const AnalyticsPage = lazy(() => import("@/components/AnalyticsDashboard").then(m => ({ default: m.AnalyticsDashboard })));
 
 const queryClient = new QueryClient();
 
@@ -35,9 +39,11 @@ const RouteLoader = () => (
 );
 
 const App = () => {
-  // Initialize security monitoring on app startup
+  // Initialize security monitoring + behavioral analytics on app startup
   useEffect(() => {
     initSecurityMonitoring();
+    // Defer analytics slightly to not block LCP
+    setTimeout(() => initAnalytics(), 1000);
   }, []);
 
   return (
@@ -115,6 +121,11 @@ const App = () => {
             <Suspense fallback={null}>
               <CookieConsent />
               <AgeVerification />
+            </Suspense>
+            {/* Global persistent UI — analytics dashboard (Shift+Alt+D) + feature pulse */}
+            <Suspense fallback={null}>
+              <AnalyticsDashboard />
+              <FeaturePulse />
             </Suspense>
           </BrowserRouter>
         </TooltipProvider>

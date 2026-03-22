@@ -117,7 +117,7 @@ const Navbar = ({ lang = "en" }: NavbarProps) => {
             <Button
               onClick={() => scrollToSection('#order')}
               size="sm"
-              className="hidden lg:flex bg-primary hover:bg-primary/95 text-primary-foreground font-semibold rounded-full px-6 py-2 transition-luxury shadow-luxury border-none"
+              className="hidden lg:flex bg-primary hover:bg-primary/95 text-primary-foreground font-semibold rounded-full px-6 py-2 transition-luxury shadow-luxury border-none above-fold-cta"
             >
               <span className="tracking-tight text-[14px]">Get Card</span>
               <ShoppingBag size={18} className="ml-2.5 stroke-[2.5]" />
@@ -126,8 +126,11 @@ const Navbar = ({ lang = "en" }: NavbarProps) => {
             <Button
               variant="ghost"
               size="icon"
-              className="lg:hidden text-foreground hover:bg-muted-foreground/10 rounded-full"
+              className="lg:hidden text-foreground hover:bg-muted-foreground/10 rounded-full w-[44px] h-[44px] tap-target"
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+              aria-expanded={isMobileMenuOpen}
+              aria-controls="mobile-nav-menu"
+              aria-label={isMobileMenuOpen ? 'Close navigation menu' : 'Open navigation menu'}
             >
               {isMobileMenuOpen ? <X size={20} /> : <Menu size={20} />}
             </Button>
@@ -139,19 +142,23 @@ const Navbar = ({ lang = "en" }: NavbarProps) => {
       <AnimatePresence>
         {isMobileMenuOpen && (
           <motion.div
+            id="mobile-nav-menu"
+            role="dialog"
+            aria-label="Navigation menu"
+            aria-modal="true"
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -20 }}
-            className="fixed inset-0 z-50 lg:hidden flex flex-col items-center justify-center bg-white/95 backdrop-blur-2xl px-8"
+            className="fixed inset-0 z-50 lg:hidden flex flex-col items-center justify-center bg-white/95 backdrop-blur-2xl px-8 pb-20"
           >
-            <div className="flex flex-col items-center gap-8 w-full max-w-sm">
+            <div className="flex flex-col items-center gap-6 w-full max-w-sm">
               {navLinks.map((link) => (
                 link.isRoute ? (
                   <Link
                     key={link.name}
                     to={link.href}
                     onClick={() => setIsMobileMenuOpen(false)}
-                    className="text-2xl font-serif font-bold text-foreground hover:text-blue transition-luxury"
+                    className="text-2xl font-serif font-bold text-foreground hover:text-blue transition-luxury min-h-[44px] flex items-center"
                   >
                     {link.name}
                   </Link>
@@ -161,19 +168,28 @@ const Navbar = ({ lang = "en" }: NavbarProps) => {
                     onClick={() => {
                       scrollToSection(link.href);
                     }}
-                    className="text-2xl font-serif font-bold text-foreground hover:text-blue transition-luxury"
+                    className="text-2xl font-serif font-bold text-foreground hover:text-blue transition-luxury min-h-[44px] flex items-center tap-target"
                   >
                     {link.name}
                   </button>
                 )
               ))}
               <Button
-                onClick={() => scrollToSection('#order')}
-                className="w-full mt-8 bg-primary hover:bg-primary/95 text-primary-foreground font-bold rounded-full py-6 text-lg transition-luxury shadow-xl border-none"
+                onClick={() => { scrollToSection('#order'); setIsMobileMenuOpen(false); }}
+                className="w-full mt-4 bg-primary hover:bg-primary/95 text-primary-foreground font-bold rounded-full py-6 text-lg transition-luxury shadow-xl border-none above-fold-cta"
               >
-                <span>Get Started</span>
+                <span>Get Your NFC Card</span>
                 <ShoppingBag size={20} className="ml-3" />
               </Button>
+              <a
+                href={companyProfilePdf}
+                target="_blank"
+                rel="noopener noreferrer"
+                onClick={() => setIsMobileMenuOpen(false)}
+                className="flex items-center gap-2 text-sm font-bold text-muted-foreground hover:text-foreground transition-luxury min-h-[44px]"
+              >
+                <FileDown size={16} /> Company Profile
+              </a>
             </div>
           </motion.div>
         )}
