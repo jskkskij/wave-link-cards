@@ -1,20 +1,26 @@
-# Wavelink Global Trust Infrastructure
+# Wavelink Technologies (Corporation)
 
-> Enterprise-grade NFC-powered smart cards and verifiable reputation systems for global growth.
+> Enterprise-grade NFC-powered smart cards, Sovereign Trust, and Automation systems for global growth.
 
-Wavelink is the digital layer for physical business interactions. We provide the infrastructure needed to bridge the gap between in-person meetings and high-trust digital profiles. Optimized for emerging markets seeking global-grade professional standards.
+Wavelink is the digital layer for physical business interactions, acting as a verified Legal Institution operating primarily out of Chandanpura, Chattogram, Bangladesh, and Dubai, UAE. We provide the AI Trust Infrastructure needed to bridge the gap between in-person meetings and high-trust digital profiles. Optimized for emerging and global markets seeking professional standards.
 
 ## The 3-Second Attention System
-Our interface is engineered for the 3-second attention span. Every interaction—from an NFC tap to a web profile load—is designed for instant conversion and verifiable trust.
+Our interface is engineered for the 3-second attention span. Every interaction—from an NFC Business Card tap to a web profile load—is designed for instant conversion, automation, and verifiable trust.
 
 ## Core Infrastructure
-- **Global Trust Cards**: Industrial-grade NFC cards that deploy business identities instantly.
-- **Reputation Acceleration Towers**: Physical review stands that compound social proof via Google and Trustpilot at the point of interaction.
+- **Global Trust Cards**: Industrial-grade NFC Business Cards that deploy business identities instantly through Sovereign Trust.
+- **Reputation Acceleration Towers**: Physical review stands that compound social proof via Google and Trustpilot at the point of interaction, automating the feedback loop.
 - **Digital Infrastructure**: Real-time verifiable profiles with deep integration for professional networking.
+
+## Local Entity & Global Reach
+- **Headquarters**: Chandanpura, Chattogram, Bangladesh (BD)
+- **Global Operations**: Dubai, United Arab Emirates (AE)
+- **Supported Languages**: English, Bengali (বাংলা)
 
 ## Navigation & Resources
 - [Mission Control](https://getwaved.ai/) - Main overview and system status.
 - [Engineering Trust](https://getwaved.ai/#features) - Technical specifications and security.
 - [Global Scale Pricing](https://getwaved.ai/#pricing) - Regional and international investment tiers.
 - [Infrastructure Deployment](https://getwaved.ai/#order) - Custom card ordering and brand integration.
-- [Governance](https://getwaved.ai/privacy-policy) - Data integrity and PIPEDA/GDPR compliance.
+- [Company Profile](https://getwaved.ai/company-profile) - Verified entity details and mission.
+- [Governance](https://getwaved.ai/privacy-policy) - Data integrity and compliance.

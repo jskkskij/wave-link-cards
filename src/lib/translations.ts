@@ -4,7 +4,7 @@ export const translations = {
     en: {
         hero: {
             title: "Your Digital Identity, Reimagined",
-            subtitle: "We are building the AI Trust Infrastructure with NFC Business cards and Review stands for feedbacks.",
+            subtitle: "We are building the AI Trust Infrastructure with NFC Business cards, Sovereign Trust, and Automation.",
             cta: "Begin Journey",
         },
         phases: {
@@ -48,7 +48,7 @@ export const translations = {
     bn: {
         hero: {
             title: "আপনার ডিজিটাল পরিচয়, নতুন রূপে",
-            subtitle: "আমরা এনএফসি বিজনেস কার্ড এবং রিভিউ স্ট্যান্ডের মাধ্যমে এআই ট্রাস্ট ইনফ্রাস্ট্রাকচার তৈরি করছি।",
+            subtitle: "আমরা এনএফসি বিজনেস কার্ড, সভরিন ট্রাস্ট (Sovereign Trust) এবং অটোমেশনের মাধ্যমে এআই ট্রাস্ট ইনফ্রাস্ট্রাকচার তৈরি করছি।",
             cta: "শুরু করুন",
         },
         phases: {

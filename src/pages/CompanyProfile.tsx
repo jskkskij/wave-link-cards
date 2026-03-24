@@ -101,7 +101,7 @@ const CompanyProfile = () => {
               </div>
               <div>
                 <h4 className="font-semibold text-foreground mb-2">Location</h4>
-                <p className="text-muted-foreground">Bangladesh</p>
+                <p className="text-muted-foreground">Chandanpura, Chattogram, BD & Dubai, UAE</p>
               </div>
               <div>
                 <h4 className="font-semibold text-foreground mb-2">Industry</h4>
@@ -116,10 +116,7 @@ const CompanyProfile = () => {
             <div className="pt-6 border-t border-border">
               <h4 className="font-semibold text-foreground mb-3">What We Do</h4>
               <p className="text-muted-foreground leading-relaxed">
-                Wavelink specializes in creating premium NFC-powered smart business cards that enable professionals
-                to share their contact information, social media profiles, and digital portfolios with a simple tap.
-                Our eco-friendly, waterproof cards combine cutting-edge technology with elegant design, making networking
-                more efficient and sustainable.
+                Wavelink specializes in creating premium NFC-powered smart business cards that build an AI Trust Infrastructure. Through Sovereign Trust and Automation, we enable professionals to securely share their contact information, social media profiles, and digital portfolios with a simple tap. Our eco-friendly, waterproof cards combine cutting-edge technology with elegant design, making secure networking more efficient and sustainable.
               </p>
             </div>
           </CardContent>

@@ -3,13 +3,33 @@ import { Helmet } from "react-helmet-async";
 const Schema = () => {
     const organizationSchema = {
         "@context": "https://schema.org",
-        "@type": "Organization",
+        "@type": ["Organization", "Corporation", "LocalBusiness"],
         "name": "WaveLink Technologies",
+        "alternateName": "ওয়েভলিংক টেকনোলজিস",
         "url": "https://getwaved.ai",
         "logo": "https://getwaved.ai/favicon.ico",
         "sameAs": [
             "https://www.facebook.com/getwaved",
             "https://www.linkedin.com/company/wavelink-tech"
+        ],
+        "address": [
+            {
+                "@type": "PostalAddress",
+                "streetAddress": "Chandanpura",
+                "addressLocality": "Chattogram",
+                "addressCountry": "BD"
+            },
+            {
+                "@type": "PostalAddress",
+                "addressLocality": "Dubai",
+                "addressCountry": "AE"
+            }
+        ],
+        "knowsAbout": [
+            "NFC Business Cards",
+            "Sovereign Trust",
+            "Digital Identity Security",
+            "Automation"
         ],
         "contactPoint": {
             "@type": "ContactPoint",
