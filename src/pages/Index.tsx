@@ -41,6 +41,16 @@ const Index = () => {
   // Safety check for translations
   const t = translations[lang] || translations["en"];
 
+  const [isMobile, setIsMobile] = useState(
+    typeof window !== 'undefined' ? window.innerWidth < 768 || /Mobi|Android|iPhone|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) : false
+  );
+
+  useEffect(() => {
+    const handleResize = () => setIsMobile(window.innerWidth < 768);
+    window.addEventListener('resize', handleResize, { passive: true });
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
+
   // --- Scroll Progress Bar (replaces framer-motion useScroll/useSpring) ---
   const progressBarRef = useRef<HTMLDivElement>(null);
 
@@ -180,9 +190,11 @@ const Index = () => {
         </Suspense>
       )}
 
-      <Suspense fallback={null}>
-        <OnboardingTutorial lang={lang} />
-      </Suspense>
+      {!isMobile && (
+        <Suspense fallback={null}>
+          <OnboardingTutorial lang={lang} />
+        </Suspense>
+      )}
       <Navbar lang={lang} />
 
       {/* Vertical Side-Sticky Navigation — pure CSS transitions, no framer-motion */}
