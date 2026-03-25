@@ -62,7 +62,7 @@ const ReviewsSection = () => {
         </div>
 
         {/* Video Reviews */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-16 max-w-5xl mx-auto mb-16 md:mb-24 px-4">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-8 lg:gap-16 max-w-5xl mx-auto mb-12 md:mb-20 lg:mb-24 px-0">
           {videoReviews.map((review, index) => {
             const videoId = getYouTubeId(review.videoUrl);
             const isPlaying = playingVideoId === review.id;

@@ -59,22 +59,22 @@ const GrowthFunnel = ({ lang = "en" }: { lang?: Language }) => {
     ];
 
     return (
-        <section className="py-32 bg-background relative" id="funnel">
-            <div className="container mx-auto px-6 max-w-7xl relative z-10">
-                <div className="max-w-3xl mb-24 md:mb-32">
+        <section className="py-12 lg:py-32 bg-background relative" id="funnel">
+            <div className="container mx-auto px-4 sm:px-6 max-w-7xl relative z-10">
+                <div className="max-w-3xl mb-12 md:mb-20 lg:mb-24">
                     <motion.div
                         initial={{ opacity: 0, scale: 0.95 }}
                         whileInView={{ opacity: 1, scale: 1 }}
                         viewport={{ once: true }}
                         transition={{ duration: 0.6 }}
-                        className="text-blue font-bold uppercase tracking-[0.3em] text-[10px] md:text-xs mb-8"
+                        className="text-blue font-bold uppercase tracking-[0.3em] text-[9px] sm:text-[10px] md:text-xs mb-3 sm:mb-4 md:mb-6"
                     >
                         {lang === "en" ? "The Methodology" : "কার্যপ্রণালী"}
                     </motion.div>
-                    <h2 className="text-5xl md:text-7xl font-serif text-foreground mb-8 leading-[1.1] font-bold tracking-[-0.04em]">
+                    <h2 className="text-2xl sm:text-3xl md:text-5xl lg:text-7xl font-serif text-foreground mb-4 md:mb-8 leading-[1.1] font-bold tracking-[-0.04em]">
                         {lang === "en" ? "The Growth Infrastructure." : "বিকাশের অবকাঠামো।"}
                     </h2>
-                    <p className="text-xl md:text-2xl text-muted-foreground leading-tight tracking-tight font-medium max-w-2xl">
+                    <p className="text-xs sm:text-sm md:text-lg lg:text-2xl text-muted-foreground leading-tight tracking-tight font-medium max-w-2xl">
                         {lang === "en"
                             ? "A world-class process engineered to transform every physical interaction into a lasting digital asset."
                             : "প্রতিটি শারীরিক টাচপয়েন্টকে একটি দীর্ঘস্থায়ী ডিজিটাল সম্পদে রূপান্তর করার জন্য একটি উন্নত প্রক্রিয়া।"}
@@ -82,14 +82,14 @@ const GrowthFunnel = ({ lang = "en" }: { lang?: Language }) => {
                 </div>
 
                 {/* Minimalist Grid Implementation */}
-                <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-px bg-muted/30 border border-muted mb-32">
+                <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-px bg-muted/30 border border-muted mb-12 md:mb-20 lg:mb-32">
                     {funnelSteps.map((step, idx) => (
                         <FunnelStep key={idx} {...step} index={idx} />
                     ))}
                 </div>
 
                 {/* Advanced Performance Moment */}
-                <div className="bg-warm-gray border border-muted p-12 md:p-20 relative overflow-hidden transition-luxury">
+                <div className="bg-warm-gray border border-muted p-6 md:p-12 lg:p-20 relative overflow-hidden transition-luxury">
                     <div className="relative z-10">
                         <div className="flex flex-wrap items-center gap-6 mb-16">
                             <span className="text-foreground font-bold text-[10px] uppercase tracking-[0.3em] border-b border-blue pb-1">

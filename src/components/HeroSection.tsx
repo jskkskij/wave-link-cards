@@ -54,12 +54,12 @@ const HeroSection = ({ lang = "en" }: HeroSectionProps) => {
         </div>
       </div>
 
-      <div className="relative z-10 container mx-auto px-6 max-w-7xl">
+      <div className="relative z-10 container mx-auto px-4 sm:px-6 max-w-7xl">
         <div ref={contentRef} className="flex flex-col items-center text-center gap-12 md:gap-16">
 
           {/* Main Headline - Apple-level Display Typography */}
           <div className="flex flex-col gap-6 md:gap-8">
-            <h1 className="font-serif text-6xl sm:text-7xl md:text-8xl lg:text-[9rem] text-white leading-[0.95] md:leading-[0.9] animate-fade-in opacity-0 font-bold tracking-[-0.04em]" style={{ animationDelay: '0.2s', textShadow: '0 4px 20px rgba(0,0,0,0.3)' }}>
+            <h1 className="font-serif text-3xl sm:text-4xl md:text-7xl lg:text-8xl text-white leading-[0.95] md:leading-[0.9] animate-fade-in opacity-0 font-bold tracking-[-0.04em]" style={{ animationDelay: '0.2s', textShadow: '0 4px 20px rgba(0,0,0,0.3)' }}>
               {lang === "en" ? (
                 <>
                   One Tap. <br />
@@ -74,7 +74,7 @@ const HeroSection = ({ lang = "en" }: HeroSectionProps) => {
             </h1>
 
             {/* Subheading - Refined & Clear */}
-            <p className="text-xl md:text-2xl text-slate-300 max-w-3xl mx-auto leading-tight animate-fade-in opacity-0 font-medium tracking-tight mt-4" style={{ animationDelay: '0.4s' }}>
+            <p className="text-xs sm:text-sm md:text-lg lg:text-2xl text-slate-300 max-w-3xl mx-auto leading-tight animate-fade-in opacity-0 font-medium tracking-tight mt-2 sm:mt-3 md:mt-4" style={{ animationDelay: '0.4s' }}>
               We are building the AI Trust Infrastructure with NFC Business cards and Review stands for feedbacks.
             </p>
           </div>

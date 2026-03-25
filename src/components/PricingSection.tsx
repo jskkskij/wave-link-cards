@@ -48,7 +48,7 @@ const PricingSection = () => {
   };
 
   return (
-    <section className="py-20 bg-gradient-to-b from-background via-secondary/10 to-background relative overflow-hidden" id="pricing">
+    <section className="py-12 lg:py-32 bg-gradient-to-b from-background via-secondary/10 to-background relative overflow-hidden" id="pricing">
       {/* Background decorative elements */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none" aria-hidden="true">
         <div className="absolute top-20 right-10 w-96 h-96 bg-primary/5 rounded-full blur-3xl"></div>
@@ -61,7 +61,7 @@ const PricingSection = () => {
             <TrendingUp className="w-4 h-4 text-accent" aria-hidden="true" />
             <span className="text-sm font-semibold text-accent">Join 500+ Professionals</span>
           </div>
-          <h2 className="text-3xl sm:text-4xl md:text-6xl font-bold text-foreground mb-4 font-serif">
+          <h2 className="text-2xl sm:text-3xl md:text-6xl font-bold text-foreground mb-3 sm:mb-4 md:mb-6 font-serif">
             Simple, Affordable Pricing
           </h2>
           <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
@@ -77,7 +77,7 @@ const PricingSection = () => {
 
           {/* Pricing Card - Conversion Optimized */}
           <div className="order-2 md:order-2">
-            <Card className="relative p-5 sm:p-8 border-2 border-accent/40 shadow-luxury bg-gradient-to-br from-card to-card/50 backdrop-blur-sm animate-fade-in-up overflow-visible">
+            <Card className="relative p-4 sm:p-6 md:p-8 lg:p-10 border-2 border-accent/40 shadow-luxury bg-gradient-to-br from-card to-card/50 backdrop-blur-sm animate-fade-in-up overflow-visible">
               {/* Urgency Banner - Top */}
               <div className="absolute -top-4 left-1/2 -translate-x-1/2 z-10">
                 <div className="bg-gradient-to-r from-red-600 to-orange-600 text-white px-6 py-2 rounded-full shadow-luxury-glow flex items-center gap-2 animate-pulse">

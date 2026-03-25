@@ -156,8 +156,7 @@ const Index = () => {
       element.scrollIntoView({ behavior: "smooth", block: "start" });
     }
   };
-
-  // --- Performance: Deferred AdSense Loading ---
+// --- Performance: Deferred AdSense Loading ---
   const [showAd, setShowAd] = useState(false);
   const adTriggerRef = useRef<HTMLDivElement>(null);
 
@@ -175,6 +174,7 @@ const Index = () => {
     return () => observer.disconnect();
   }, [hasConsent, showAd]);
 
+  
   const phases = [
     { id: 1, name: t.phases.phase1, desc: t.phases.phase1Desc, icon: Sparkles },
     { id: 2, name: t.phases.phase2, desc: t.phases.phase2Desc, icon: Zap },
@@ -225,7 +225,7 @@ const Index = () => {
                 aria-label={`Go to ${phase.name}`}
                 aria-current={activePhase === phase.id ? "true" : undefined}
               >
-                <phase.icon className={`w-5 h-5 md:w-6 md:h-6 ${activePhase === phase.id ? "text-white" : "text-blue/40 group-hover/btn:text-blue"}`} />
+                <phase.icon className={`w-5 h-5 md:w-6 md:h-6 ${activePhase === phase.id ? "text-white animate-pulse" : "text-blue/40 group-hover/btn:text-blue animate-bounce"}`} />
               </button>
 
               {/* Tooltip: Glassmorphism and dynamic visibility */}
@@ -260,7 +260,7 @@ const Index = () => {
               <div className="absolute top-[10%] -left-[5%] w-[50%] h-[40%] bg-glow-wave opacity-0 group-hover/section:opacity-60 transition-opacity duration-1000 blur-[120px]" />
               <div className="absolute bottom-[20%] -right-[5%] w-[40%] h-[40%] bg-glow-teal opacity-0 group-hover/section:opacity-40 transition-opacity duration-1000 blur-[100px]" />
             </div>
-            <div className="relative z-10 space-y-20 lg:space-y-32 py-20 lg:py-32 px-4 sm:px-6">
+            <div className="relative z-10 space-y-12 lg:space-y-20 py-12 lg:py-32 px-4 sm:px-6">
               <Suspense fallback={<SectionLoader />}>
                 <AboutSection lang={lang} />
               </Suspense>
@@ -282,7 +282,7 @@ const Index = () => {
             <div className="absolute inset-0 pointer-events-none z-0">
               <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-full bg-glow-wave opacity-20 blur-[150px]" />
             </div>
-            <div className="relative z-10 space-y-20 lg:space-y-32 py-20 lg:py-32 px-4 sm:px-6">
+            <div className="relative z-10 space-y-12 lg:space-y-20 py-12 lg:py-32 px-4 sm:px-6">
               <Suspense fallback={<SectionLoader />}>
                 <FeaturesSection />
               </Suspense>

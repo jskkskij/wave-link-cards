@@ -186,8 +186,8 @@ const OrderSection = ({ lang = "en" }: OrderSectionProps) => {
   };
 
   return (
-    <section className="py-32 bg-background relative overflow-hidden" id="order">
-      <div className="container mx-auto px-6 max-w-7xl relative z-10">
+    <section className="py-12 lg:py-32 bg-background relative overflow-hidden" id="order">
+      <div className="container mx-auto px-4 sm:px-6 max-w-7xl relative z-10">
         <div className="max-w-3xl mb-24 md:mb-32">
           <motion.div
             initial={{ opacity: 0, scale: 0.95 }}
@@ -197,17 +197,17 @@ const OrderSection = ({ lang = "en" }: OrderSectionProps) => {
           >
             {lang === "en" ? "Global Infrastructure" : "গ্লোবাল ইনফ্রাস্ট্রাকচার"}
           </motion.div>
-          <h2 className="text-4xl sm:text-5xl md:text-7xl font-serif text-foreground mb-8 font-bold leading-[1.1] tracking-[-0.04em]">
+          <h2 className="text-2xl sm:text-3xl md:text-5xl lg:text-7xl font-serif text-foreground mb-3 sm:mb-4 md:mb-8 font-bold leading-[1.1] tracking-[-0.04em]">
             {lang === "en" ? "Begin the Connection." : "শুরু হোক আপনার নতুন যাত্রা।"}
           </h2>
-          <p className="text-xl md:text-2xl text-muted-foreground leading-tight tracking-tight font-medium max-w-2xl">
+          <p className="text-xs sm:text-sm md:text-lg lg:text-2xl text-muted-foreground leading-tight tracking-tight font-medium max-w-2xl">
             {lang === "en" ? "Deploy your professional presence with our luxury NFC hardware and intelligent software ecosystem." : "আমাদের লাক্সারি এনএফসি হার্ডওয়্যার এবং ইন্টেলিজেন্ট সফটওয়্যার ইকোসিস্টেমের মাধ্যমে আপনার পেশাদার পরিচিতি বিশ্বব্যাপী ছড়িয়ে দিন।"}
           </p>
         </div>
 
-        <div className="grid lg:grid-cols-12 gap-16 items-start">
+        <div className="grid lg:grid-cols-12 gap-6 md:gap-8 lg:gap-16 items-start">
           {/* Form Column */}
-          <div className="lg:col-span-7 bg-white border border-muted p-6 sm:p-10 md:p-14 rounded-2xl shadow-luxury">
+          <div className="lg:col-span-7 bg-white border border-muted p-4 sm:p-6 md:p-8 lg:p-14 rounded-2xl shadow-luxury">
             <form
               onSubmit={handleSubmit}
               className="space-y-10"
@@ -215,9 +215,9 @@ const OrderSection = ({ lang = "en" }: OrderSectionProps) => {
               onFocus={injectTurnstile}
               onMouseEnter={injectTurnstile}
             >
-              <div className="grid md:grid-cols-2 gap-8">
+              <div className="grid md:grid-cols-2 gap-4 md:gap-6 lg:gap-8">
                 <div className="space-y-3">
-                  <Label htmlFor="name" className="text-[13px] font-bold text-foreground uppercase tracking-widest px-1">Full Name</Label>
+                  <Label htmlFor="name" className="text-[12px] sm:text-[13px] font-bold text-foreground uppercase tracking-widest px-1">Full Name</Label>
                   <Input
                     id="name" name="name" required placeholder="John Doe"
                     value={formData.name} onChange={handleInputChange}
@@ -225,7 +225,7 @@ const OrderSection = ({ lang = "en" }: OrderSectionProps) => {
                   />
                 </div>
                 <div className="space-y-3">
-                  <Label htmlFor="phone" className="text-[13px] font-bold text-foreground uppercase tracking-widest px-1">Phone Number</Label>
+                  <Label htmlFor="phone" className="text-[12px] sm:text-[13px] font-bold text-foreground uppercase tracking-widest px-1">Phone</Label>
                   <Input
                     id="phone" name="phone" required placeholder="+880..."
                     value={formData.phone} onChange={handleInputChange}
@@ -235,7 +235,7 @@ const OrderSection = ({ lang = "en" }: OrderSectionProps) => {
               </div>
 
               <div className="space-y-3">
-                <Label htmlFor="email" className="text-[13px] font-bold text-foreground uppercase tracking-widest px-1">Email Address</Label>
+                <Label htmlFor="email" className="text-[12px] sm:text-[13px] font-bold text-foreground uppercase tracking-widest px-1">Email Address</Label>
                 <Input
                   id="email" name="email" type="email" required placeholder="john@example.com"
                   value={formData.email} onChange={handleInputChange}
@@ -243,9 +243,9 @@ const OrderSection = ({ lang = "en" }: OrderSectionProps) => {
                 />
               </div>
 
-              <div className="grid md:grid-cols-2 gap-8">
+              <div className="grid md:grid-cols-2 gap-4 md:gap-6 lg:gap-8">
                 <div className="space-y-3">
-                  <Label htmlFor="product" className="text-[13px] font-bold text-foreground uppercase tracking-widest px-1">Infrastructure Component</Label>
+                  <Label htmlFor="product" className="text-[12px] sm:text-[13px] font-bold text-foreground uppercase tracking-widest px-1">Infrastructure Component</Label>
                   <select
                     id="product" name="product"
                     value={formData.product} onChange={(e) => setFormData({ ...formData, product: e.target.value })}
@@ -256,7 +256,7 @@ const OrderSection = ({ lang = "en" }: OrderSectionProps) => {
                   </select>
                 </div>
                 <div className="space-y-3">
-                  <Label htmlFor="quantity" className="text-[13px] font-bold text-foreground uppercase tracking-widest px-1">Volume</Label>
+                  <Label htmlFor="quantity" className="text-[12px] sm:text-[13px] font-bold text-foreground uppercase tracking-widest px-1">Volume</Label>
                   <Input
                     id="quantity" name="quantity" type="number" min="1" required
                     value={formData.quantity} onChange={handleInputChange}
@@ -266,11 +266,11 @@ const OrderSection = ({ lang = "en" }: OrderSectionProps) => {
               </div>
 
               <div className="space-y-3">
-                <Label className="text-[13px] font-bold text-foreground uppercase tracking-widest px-1">Bespoke Design (Optional)</Label>
+                <Label className="text-[12px] sm:text-[13px] font-bold text-foreground uppercase tracking-widest px-1">Bespoke Design (Optional)</Label>
                 <div
                   onClick={() => fileInputRef.current?.click()}
                   role="button"
-                  className={`border-2 border-dashed rounded-2xl p-8 transition-luxury text-center hover:bg-warm-gray/30 group ${selectedImage ? 'border-blue/30 bg-blue/5' : 'border-muted'}`}
+                  className={`border-2 border-dashed rounded-2xl p-4 md:p-8 transition-luxury text-center hover:bg-warm-gray/30 group ${selectedImage ? 'border-blue/30 bg-blue/5' : 'border-muted'}`}
                 >
                   <input type="file" ref={fileInputRef} className="hidden" accept="image/*" onChange={handleImageUpload} />
                   {selectedImage ? (
@@ -298,7 +298,7 @@ const OrderSection = ({ lang = "en" }: OrderSectionProps) => {
               </div>
 
               <div className="space-y-3">
-                <Label htmlFor="address" className="text-[13px] font-bold text-foreground uppercase tracking-widest px-1">Delivery Logistics</Label>
+                <Label htmlFor="address" className="text-[12px] sm:text-[13px] font-bold text-foreground uppercase tracking-widest px-1">Delivery Logistics</Label>
                 <Textarea
                   id="address" name="address" required placeholder="Enter your deployment address..."
                   value={formData.address} onChange={handleInputChange}

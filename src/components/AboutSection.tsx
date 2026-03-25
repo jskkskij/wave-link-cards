@@ -105,7 +105,7 @@ const AboutSection = ({ lang = "en" }: AboutSectionProps) => {
         </motion.div>
 
         <motion.div
-          className="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto"
+          className="grid md:grid-cols-3 gap-4 md:gap-6 lg:gap-8 max-w-5xl mx-auto"
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, margin: "-100px" }}
@@ -117,7 +117,7 @@ const AboutSection = ({ lang = "en" }: AboutSectionProps) => {
           <motion.div variants={itemVariants} role="listitem">
             <Card
               onMouseEnter={() => handleHover(0)}
-              className="group p-8 text-center hover:shadow-2xl hover:shadow-accent/5 transition-all duration-500 bg-card border-border/50 relative overflow-hidden min-h-[320px] flex flex-col items-center justify-center"
+              className="group p-4 sm:p-6 md:p-8 text-center hover:shadow-2xl hover:shadow-accent/5 transition-all duration-500 bg-card border-border/50 relative overflow-hidden min-h-[320px] flex flex-col items-center justify-center"
             >
               <motion.div
                 className="w-20 h-20 bg-navy rounded-full flex items-center justify-center mx-auto mb-6 relative shadow-[0_0_20px_rgba(75,207,181,0.3)] border border-white/10"

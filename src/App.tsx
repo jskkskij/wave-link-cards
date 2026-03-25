@@ -13,7 +13,6 @@ import { HelmetProvider } from "react-helmet-async";
 // Lazy load components
 const CookieConsent = lazy(() => import("./components/CookieConsent"));
 const AgeVerification = lazy(() => import("./components/AgeVerification").then(m => ({ default: m.AgeVerification })));
-const HangingSign = lazy(() => import("@/components/HangingSign"));
 const Schema = lazy(() => import("@/components/Schema"));
 const AnalyticsDashboard = lazy(() => import("@/components/AnalyticsDashboard").then(m => ({ default: m.AnalyticsDashboard })));
 const FeaturePulse = lazy(() => import("@/components/FeaturePulse").then(m => ({ default: m.FeaturePulse })));
@@ -55,7 +54,6 @@ const App = () => {
           <BrowserRouter>
             <Suspense fallback={null}>
               <Schema />
-              <HangingSign />
             </Suspense>
             <Routes>
               <Route path="/" element={<Index />} />

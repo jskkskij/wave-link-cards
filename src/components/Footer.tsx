@@ -26,9 +26,9 @@ const Footer = () => {
   }, []);
 
   return (
-    <footer className="bg-warm-gray text-foreground py-32 border-t border-muted relative overflow-hidden">
-      <div className="container mx-auto px-6 max-w-7xl relative z-10">
-        <div className="grid lg:grid-cols-12 gap-20 mb-32">
+    <footer className="bg-warm-gray text-foreground py-12 lg:py-32 border-t border-muted relative overflow-hidden">
+      <div className="container mx-auto px-4 sm:px-6 max-w-7xl relative z-10">
+        <div className="grid lg:grid-cols-12 gap-12 md:gap-16 lg:gap-20 mb-12 md:mb-20 lg:mb-32">
           {/* Brand Column */}
           <div className="lg:col-span-4 space-y-8">
             <h3 className="text-3xl font-serif font-bold tracking-tight">Wavelink</h3>
@@ -57,7 +57,7 @@ const Footer = () => {
           </div>
 
           {/* Links Grid */}
-          <div className="lg:col-span-8 grid sm:grid-cols-3 gap-16">
+          <div className="lg:col-span-8 grid sm:grid-cols-3 gap-8 md:gap-12 lg:gap-16">
             <div className="space-y-8">
               <h4 className="text-[12px] font-bold uppercase tracking-[0.3em] text-foreground">Infrastructure</h4>
               <ul className="space-y-4 text-muted-foreground font-medium" role="list">
