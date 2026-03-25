@@ -44,7 +44,7 @@ const HeroSection = ({ lang = "en" }: HeroSectionProps) => {
           width={1920}
           height={1080}
         />
-        <div className="absolute inset-0 bg-gradient-to-b from-slate-950/40 via-transparent to-slate-950/80" />
+        <div className="absolute inset-0 bg-gradient-to-b from-slate-950/70 via-slate-950/40 to-slate-950/90" />
 
         {/* Subtle Brand Glows */}
         <div className="absolute inset-0 pointer-events-none">

@@ -47,7 +47,7 @@ export function logSecurityEvent(
 
     // Send critical events to backend
     if (severity === 'critical') {
-        fetch('https://vmlbmtvjkyokryovncyu.supabase.co/functions/v1/csp-report', {
+        fetch('https://kavopwutcyqxdoplmvqg.supabase.co/functions/v1/csp-report', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(event)
@@ -89,7 +89,10 @@ export function initScriptIntegrityMonitoring(): void {
         'https://vitals.vercel-insights.com',
         'https://pagead2.googlesyndication.com',
         'https://googleads.g.doubleclick.net',
-        'https://ep2.adtrafficquality.google'
+        'https://ep1.adtrafficquality.google',
+        'https://ep2.adtrafficquality.google',
+        'https://static.cloudflareinsights.com',
+        'https://www.googletagmanager.com'
     ]);
 
     const observer = new MutationObserver((mutations) => {

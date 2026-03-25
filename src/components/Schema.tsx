@@ -101,18 +101,18 @@ const Schema = () => {
 
     return (
         <Helmet>
-            <script type="application/ld+json">
-                {JSON.stringify(organizationSchema)}
-            </script>
-            <script type="application/ld+json">
-                {JSON.stringify(productSchema)}
-            </script>
-            <script type="application/ld+json">
-                {JSON.stringify(softwareSchema)}
-            </script>
-            <script type="application/ld+json">
-                {JSON.stringify(faqSchema)}
-            </script>
+            <script type="application/ld+json">{`
+                ${JSON.stringify(organizationSchema)}
+            `}</script>
+            <script type="application/ld+json">{`
+                ${JSON.stringify(productSchema)}
+            `}</script>
+            <script type="application/ld+json">{`
+                ${JSON.stringify(softwareSchema)}
+            `}</script>
+            <script type="application/ld+json">{`
+                ${JSON.stringify(faqSchema)}
+            `}</script>
         </Helmet>
     );
 };

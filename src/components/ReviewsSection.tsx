@@ -87,6 +87,12 @@ const ReviewsSection = () => {
                         {/* High Quality Thumbnail */}
                         <img
                           src={`https://img.youtube.com/vi/${videoId}/maxresdefault.jpg`}
+                          onError={(e) => {
+                            const target = e.target as HTMLImageElement;
+                            if (!target.src.includes('hqdefault')) {
+                              target.src = `https://img.youtube.com/vi/${videoId}/hqdefault.jpg`;
+                            }
+                          }}
                           alt={`Video thumbnail for ${review.customerName}`}
                           className="absolute inset-0 w-full h-full object-cover opacity-90 group-hover/play:opacity-100 transition-opacity duration-300"
                         />
