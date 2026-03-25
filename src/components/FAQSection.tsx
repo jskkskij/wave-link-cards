@@ -167,13 +167,13 @@ const FAQSection = ({ lang = "en" }: FAQSectionProps) => {
                       </h3>
 
                       <div className={`
-                        text-slate-300 leading-relaxed text-lg font-medium tracking-tight
-                        transition-luxury
+                        text-slate-200 leading-relaxed text-lg font-medium tracking-tight
+                        transition-all duration-500
                         ${isActive
-                          ? 'opacity-100 max-h-[300px] mt-8'
-                          : 'opacity-0 max-h-0 overflow-hidden mt-0'
+                          ? 'opacity-100 max-h-[400px] mt-8 transform translate-y-0'
+                          : 'opacity-0 max-h-0 overflow-hidden mt-0 transform -translate-y-4'
                         }
-                      `}>
+                      `} aria-expanded={isActive}>
                         {faq.answer}
                       </div>
                     </div>
@@ -209,10 +209,10 @@ const FAQSection = ({ lang = "en" }: FAQSectionProps) => {
         <div className="flex items-center justify-center gap-12 mt-20">
           <button
             onClick={() => paginate(-1)}
-            className="w-16 h-16 rounded-full border border-white/10 flex items-center justify-center hover:bg-white/5 transition-luxury group"
+            className="w-16 h-16 rounded-full border border-white/20 flex items-center justify-center hover:bg-white/10 transition-luxury group active:scale-95"
             aria-label="Previous question"
           >
-            <ChevronLeft className="w-8 h-8 text-slate-500 group-hover:text-blue-400 transition-luxury" />
+            <ChevronLeft className="w-8 h-8 text-slate-300 group-hover:text-blue-400 transition-luxury" />
           </button>
 
           <div className="flex gap-4" role="tablist">
@@ -237,10 +237,10 @@ const FAQSection = ({ lang = "en" }: FAQSectionProps) => {
 
           <button
             onClick={() => paginate(1)}
-            className="w-16 h-16 rounded-full border border-white/10 flex items-center justify-center hover:bg-white/5 transition-luxury group"
+            className="w-16 h-16 rounded-full border border-white/10 flex items-center justify-center hover:bg-white/10 transition-luxury group active:scale-95"
             aria-label="Next question"
           >
-            <ChevronRight className="w-8 h-8 text-slate-500 group-hover:text-blue-400 transition-luxury" />
+            <ChevronRight className="w-8 h-8 text-slate-300 group-hover:text-blue-400 transition-luxury" />
           </button>
         </div>
       </div>

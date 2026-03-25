@@ -36,7 +36,7 @@ const HeroSection = ({ lang = "en" }: HeroSectionProps) => {
       <div className="absolute inset-0 z-0">
         <img
           src={heroBg}
-          alt=""
+          alt="Premium NFC Business Cards and Review Stands"
           className="w-full h-full object-cover opacity-60"
           aria-hidden="true"
           fetchPriority="high"
@@ -59,7 +59,7 @@ const HeroSection = ({ lang = "en" }: HeroSectionProps) => {
 
           {/* Main Headline - Apple-level Display Typography */}
           <div className="flex flex-col gap-6 md:gap-8">
-            <h1 className="font-serif text-3xl sm:text-4xl md:text-7xl lg:text-8xl text-white leading-[0.95] md:leading-[0.9] animate-fade-in opacity-0 font-bold tracking-[-0.04em]" style={{ animationDelay: '0.2s', textShadow: '0 4px 20px rgba(0,0,0,0.3)' }}>
+            <h1 className="font-serif text-[clamp(2.5rem,10vw,8rem)] text-white leading-[1.0] animate-fade-in opacity-0 font-bold tracking-[-0.04em] text-balance" style={{ animationDelay: '0.2s', textShadow: '0 4px 30px rgba(0,0,0,0.5)' }}>
               {lang === "en" ? (
                 <>
                   One Tap. <br />
@@ -74,7 +74,7 @@ const HeroSection = ({ lang = "en" }: HeroSectionProps) => {
             </h1>
 
             {/* Subheading - Refined & Clear */}
-            <p className="text-xs sm:text-sm md:text-lg lg:text-2xl text-slate-300 max-w-3xl mx-auto leading-tight animate-fade-in opacity-0 font-medium tracking-tight mt-2 sm:mt-3 md:mt-4" style={{ animationDelay: '0.4s' }}>
+            <p className="text-sm md:text-lg lg:text-2xl text-slate-300 max-w-2xl mx-auto leading-tight animate-fade-in opacity-0 font-medium tracking-tight mt-4 text-balance" style={{ animationDelay: '0.4s' }}>
               We are building the AI Trust Infrastructure with NFC Business cards and Review stands for feedbacks.
             </p>
           </div>
@@ -84,7 +84,7 @@ const HeroSection = ({ lang = "en" }: HeroSectionProps) => {
             <Button
               onClick={scrollToProducts}
               size="lg"
-              className="bg-primary hover:bg-primary/95 text-primary-foreground font-bold px-12 py-8 rounded-full text-xl shadow-luxury-intense transition-all active:scale-95 sm:w-auto w-full border border-white/10"
+              className="bg-primary hover:bg-primary/95 text-primary-foreground font-bold px-10 md:px-12 py-7 md:py-8 rounded-full text-lg md:text-xl shadow-luxury-intense transition-all active:scale-95 sm:w-auto w-full border border-white/10 glass-morphism-blue"
               aria-label={t.hero.cta}
             >
               BEGIN JOURNEY
@@ -95,6 +95,7 @@ const HeroSection = ({ lang = "en" }: HeroSectionProps) => {
               onClick={() => document.getElementById('about')?.scrollIntoView({ behavior: 'smooth' })}
               className="group flex flex-col items-center gap-6 text-slate-400 hover:text-white transition-luxury mt-8"
               aria-label="Scroll down to explore"
+              title="Explore Wavelink Infrastructure"
             >
               <div className="w-[1px] h-20 bg-white/20 relative overflow-hidden" aria-hidden="true">
                 <div className="absolute top-0 left-0 w-full h-1/3 bg-blue-400 animate-drop" />

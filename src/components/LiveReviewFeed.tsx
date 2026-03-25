@@ -44,28 +44,30 @@ const LiveReviewFeed = () => {
                 <div className="absolute bottom-[10%] left-[-5%] w-[30%] h-[30%] bg-glow-teal opacity-20 blur-[100px]" />
             </div>
             <div className="container mx-auto px-4">
-                <div className="flex flex-col md:flex-row justify-between items-end mb-12 gap-6">
+                <div className="flex flex-col lg:flex-row justify-between items-start lg:items-end mb-12 gap-8">
                     <div className="max-w-xl text-left">
-                        <div className="flex items-center gap-2 text-accent font-bold tracking-widest text-[10px] uppercase mb-4">
-                            <Star className="fill-accent text-accent" size={12} />
+                        <div className="flex items-center gap-2 text-accent font-bold tracking-[0.2em] text-[10px] uppercase mb-4">
+                            <Star className="fill-accent text-accent animate-pulse" size={14} />
                             Compounding Proof
                         </div>
-                        <h2 className="text-4xl md:text-5xl font-bold text-foreground font-serif">
+                        <h2 className="text-[clamp(2rem,6vw,3.5rem)] font-bold text-foreground font-serif leading-tight">
                             Latest Global Growth Signals
                         </h2>
                     </div>
-                    <div className="flex items-center gap-4 bg-accent/5 border border-accent/10 px-6 py-3 rounded-2xl">
-                        <div className="text-right">
-                            <div className="flex items-center gap-1 justify-end text-accent">
-                                {[1, 2, 3, 4, 5].map((s) => <Star key={s} size={12} className="fill-accent" />)}
+                    <div className="flex items-center gap-5 bg-white/40 backdrop-blur-xl border border-accent/10 p-5 md:px-6 md:py-3 rounded-2xl shadow-luxury w-full lg:w-auto">
+                        <div className="text-left md:text-right flex-1">
+                            <div className="flex items-center gap-1 justify-start md:justify-end text-accent mb-1">
+                                {[1, 2, 3, 4, 5].map((s) => <Star key={s} size={14} className="fill-accent" />)}
                             </div>
-                            <p className="text-xs font-bold text-navy">Verified Trust: 4.8/5</p>
+                            <p className="text-[11px] font-black text-navy uppercase tracking-wider">Verified Trust: 4.8/5</p>
                         </div>
-                        <div className="h-10 w-[1px] bg-accent/20" />
-                        <div className="flex -space-x-2">
-                            {[1, 2, 3].map((i) => (
-                                <div key={i} className="w-8 h-8 rounded-full border-2 border-background bg-accent flex items-center justify-center text-[10px] text-navy font-bold">
-                                    {String.fromCharCode(64 + i)}
+                        <div className="h-10 w-[1px] bg-accent/20 hidden md:block" />
+                        <div className="flex -space-x-3">
+                            {[1, 2, 3, 4].map((i) => (
+                                <div key={i} className="w-10 h-10 rounded-full border-2 border-background bg-gradient-vibrant p-0.5 shadow-luxury">
+                                    <div className="w-full h-full rounded-full bg-navy flex items-center justify-center text-[10px] text-white font-black uppercase">
+                                        {String.fromCharCode(64 + i)}
+                                    </div>
                                 </div>
                             ))}
                         </div>
@@ -81,36 +83,36 @@ const LiveReviewFeed = () => {
                 </div>
 
                 {/* Trust & QR Code Section */}
-                <div className="mt-16 p-8 rounded-[2rem] bg-gradient-to-br from-navy to-[#1a2b4a] border border-white/10 shadow-luxury overflow-hidden relative">
-                    <div className="absolute top-0 right-0 w-64 h-64 bg-accent/10 rounded-full blur-3xl -z-10" aria-hidden="true" />
-                    <div className="flex flex-col md:flex-row items-center justify-between gap-12">
-                        <div className="text-center md:text-left space-y-4 max-w-md">
-                            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-accent text-navy text-[10px] font-bold uppercase tracking-wider">
+                <div className="mt-16 p-6 md:p-12 rounded-[2rem] bg-gradient-to-br from-navy via-navy to-[#0a1525] border border-white/10 shadow-luxury overflow-hidden relative group/rep-card">
+                    <div className="absolute top-0 right-0 w-96 h-96 bg-accent/10 rounded-full blur-[120px] -z-10 group-hover/rep-card:bg-accent/20 transition-all duration-1000" aria-hidden="true" />
+                    <div className="flex flex-col md:flex-row items-center justify-between gap-10 md:gap-16">
+                        <div className="text-center md:text-left space-y-6 max-w-lg">
+                            <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-accent/20 border border-accent/40 text-accent text-[10px] font-black uppercase tracking-[0.2em] shadow-luxury-glow animate-pulse">
                                 <QrCode size={12} aria-hidden="true" />
                                 Infrastructure Access
                             </div>
-                            <h3 className="text-3xl font-serif font-bold text-white">Compound Your Reputation</h3>
-                            <p className="text-mist/80 text-sm leading-relaxed">
+                            <h3 className="text-3xl md:text-4xl lg:text-5xl font-serif font-bold text-white leading-tight tracking-tight">Compound Your Reputation</h3>
+                            <p className="text-slate-300 text-base md:text-lg leading-relaxed font-medium tracking-tight">
                                 Join the global growth system. Scan to verify your experience and help us scale elite business standards worldwide.
                             </p>
-                            <div className="flex flex-wrap justify-center md:justify-start items-center gap-8 pt-4 grayscale opacity-40" aria-label="Trust certificates">
-                                <span className="text-xl font-bold font-serif italic text-white">Verified</span>
-                                <span className="text-xl font-bold font-serif text-white">Global Growth</span>
+                            <div className="flex flex-wrap justify-center md:justify-start items-center gap-8 pt-4" aria-label="Trust certificates">
+                                <span className="text-xl md:text-2xl font-bold font-serif italic text-white/40 hover:text-white transition-luxury hover:scale-105 cursor-default select-none">Verified</span>
+                                <span className="text-xl md:text-2xl font-bold font-serif text-white/40 hover:text-white transition-luxury hover:scale-105 cursor-default select-none tracking-tight">Global Growth</span>
                             </div>
                         </div>
 
-                        <div className="relative group">
-                            <div className="absolute -inset-4 bg-gradient-to-tr from-accent/20 to-primary/20 rounded-3xl blur-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500" aria-hidden="true" />
-                            <div className="relative p-4 bg-white rounded-3xl shadow-luxury-intense border border-white/20 transform group-hover:scale-105 transition-transform duration-500">
+                        <div className="relative group/qr">
+                            <div className="absolute -inset-6 bg-gradient-vibrant rounded-full blur-3xl opacity-20 group-hover/qr:opacity-40 transition-opacity duration-1000 animate-pulse" aria-hidden="true" />
+                            <div className="relative p-5 md:p-6 bg-white rounded-3xl shadow-luxury-intense border border-white/20 transform group-hover/qr:scale-[1.02] transition-transform duration-700">
                                 <img
                                     src={googleQr}
                                     alt="Scan to leave a Google Review for Wavelink"
-                                    width={192}
-                                    height={192}
-                                    className="w-40 h-40 md:w-48 md:h-48 rounded-xl"
+                                    width={224}
+                                    height={224}
+                                    className="w-44 h-44 md:w-56 md:h-56 rounded-xl"
                                 />
-                                <div className="absolute -bottom-3 -right-3 w-12 h-12 bg-navy rounded-2xl flex items-center justify-center shadow-luxury border border-white/10">
-                                    <Star size={20} className="fill-accent text-accent" aria-hidden="true" />
+                                <div className="absolute -bottom-4 -right-4 w-14 h-14 bg-navy rounded-2xl flex items-center justify-center shadow-luxury border border-white/10 rotate-12 group-hover/qr:rotate-0 transition-transform duration-500">
+                                    <Star size={24} className="fill-accent text-accent animate-pulse" aria-hidden="true" />
                                 </div>
                             </div>
                         </div>

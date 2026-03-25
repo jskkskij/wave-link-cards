@@ -98,7 +98,7 @@ const ReviewStandsSection = () => {
                         <Zap className="w-4 h-4 text-accent fill-accent" aria-hidden="true" />
                         <span className="text-[10px] md:text-xs font-bold text-accent uppercase tracking-widest">Growth Engine</span>
                     </div>
-                    <h2 className="text-4xl md:text-6xl font-bold text-foreground mb-4 font-serif">
+                    <h2 className="text-[clamp(2rem,8vw,4rem)] font-bold text-foreground mb-4 font-serif leading-tight">
                         Reputation Acceleration
                     </h2>
                     <p className="text-xl md:text-2xl font-medium text-foreground/80 max-w-3xl mx-auto mb-2 font-serif px-4">
@@ -211,36 +211,35 @@ const ReviewStandsSection = () => {
                                             <div className="space-y-4">
                                                 <div className="flex items-center justify-between">
                                                     <label className="text-sm font-bold text-foreground/80 tracking-wide uppercase text-[11px]">Choose Material</label>
-                                                </div>
-                                                <div className="grid grid-cols-2 gap-4">
+                                                                                                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                                                     <button
                                                         onClick={() => setMaterial("white")}
                                                         aria-label="Select White Material"
-                                                        className={`relative overflow-hidden group p-4 rounded-2xl border transition-all duration-300 text-left ${material === "white" ? "border-primary/50 bg-white shadow-lg shadow-primary/5 ring-1 ring-primary/20" : "border-transparent bg-white/60 hover:bg-white hover:border-primary/20"}`}
+                                                        className={`relative overflow-hidden group p-5 rounded-2xl border transition-all duration-300 text-left ${material === "white" ? "border-primary/50 bg-white shadow-lg shadow-primary/5 ring-1 ring-primary/20" : "border-transparent bg-white/60 hover:bg-white hover:border-primary/20"}`}
                                                     >
-                                                        <div className="flex items-center justify-between mb-2">
-                                                            <div className="w-6 h-6 rounded-full border border-gray-100 bg-gradient-to-br from-white to-gray-50 shadow-sm"></div>
-                                                            {material === "white" && <div className="w-2 h-2 rounded-full bg-primary animate-scale-in" aria-hidden="true"></div>}
+                                                        <div className="flex items-center justify-between mb-3">
+                                                            <div className="w-8 h-8 rounded-full border border-gray-100 bg-gradient-to-br from-white to-gray-50 shadow-sm"></div>
+                                                            {material === "white" && <div className="w-2.5 h-2.5 rounded-full bg-primary animate-scale-in" aria-hidden="true"></div>}
                                                         </div>
-                                                        <span className={`font-serif font-bold text-lg block ${material === "white" ? "text-primary" : "text-gray-600"}`}>White</span>
-                                                        <span className="text-xs text-muted-foreground">Minimalist & Clean</span>
+                                                        <span className={`font-serif font-bold text-xl block ${material === "white" ? "text-primary" : "text-gray-600"}`}>White</span>
+                                                        <span className="text-sm text-muted-foreground font-medium">Minimalist & Clean</span>
                                                         <div className={`absolute inset-0 border-2 border-primary rounded-2xl opacity-0 transition-opacity duration-300 ${material === "white" ? "opacity-100" : "group-hover:opacity-10"}`}></div>
                                                     </button>
-
                                                     <button
                                                         onClick={() => setMaterial("black")}
                                                         aria-label="Select Black Material"
-                                                        className={`relative overflow-hidden group p-4 rounded-2xl border transition-all duration-300 text-left ${material === "black" ? "border-primary/50 bg-gray-900 shadow-lg shadow-black/20 ring-1 ring-primary/20" : "border-transparent bg-white/60 hover:bg-white hover:border-primary/20"}`}
+                                                        className={`relative overflow-hidden group p-5 rounded-2xl border transition-all duration-300 text-left ${material === "black" ? "border-primary/50 bg-gray-900 shadow-lg shadow-black/20 ring-1 ring-primary/20" : "border-transparent bg-white/60 hover:bg-white hover:border-primary/20"}`}
                                                     >
-                                                        <div className="flex items-center justify-between mb-2">
-                                                            <div className="w-6 h-6 rounded-full border border-gray-700 bg-gradient-to-br from-gray-800 to-black shadow-sm"></div>
-                                                            {material === "black" && <div className="w-2 h-2 rounded-full bg-primary animate-scale-in" aria-hidden="true"></div>}
+                                                        <div className="flex items-center justify-between mb-3">
+                                                            <div className="w-8 h-8 rounded-full border border-gray-700 bg-gradient-to-br from-gray-800 to-black shadow-sm"></div>
+                                                            {material === "black" && <div className="w-2.5 h-2.5 rounded-full bg-primary animate-scale-in" aria-hidden="true"></div>}
                                                         </div>
-                                                        <span className={`font-serif font-bold text-lg block ${material === "black" ? "text-white" : "text-gray-600"}`}>Black</span>
-                                                        <span className={`text-xs ${material === "black" ? "text-gray-400" : "text-muted-foreground"}`}>Bold & Professional</span>
+                                                        <span className={`font-serif font-bold text-xl block ${material === "black" ? "text-white" : "text-gray-600"}`}>Black</span>
+                                                        <span className={`text-sm font-medium ${material === "black" ? "text-gray-400" : "text-muted-foreground"}`}>Bold & Professional</span>
                                                         <div className={`absolute inset-0 border-2 border-primary rounded-2xl opacity-0 transition-opacity duration-300 ${material === "black" ? "opacity-100" : "group-hover:opacity-10"}`}></div>
                                                     </button>
                                                 </div>
+</div>
                                             </div>
 
                                             {/* Price Display */}
@@ -252,14 +251,14 @@ const ReviewStandsSection = () => {
                                                             {region === "BD" ? "Includes Tax" : region === "USA" ? "Excl. Taxes" : "Market Price"}
                                                         </p>
                                                     </div>
-                                                    <div className="text-right">
-                                                        <span className="block text-5xl font-serif font-bold text-primary tracking-tight">
-                                                            <span className={`text-2xl align-top mr-1 opacity-60 ${region === "UAE" ? "text-lg" : ""}`}>
+                                                    <div className="text-right flex-1">
+                                                        <span className="block text-[clamp(2.5rem,10vw,4rem)] font-serif font-bold text-primary tracking-tight leading-none">
+                                                            <span className={`text-[0.5em] align-top mr-1 opacity-60 ${region === "UAE" ? "text-[0.4em]" : ""}`}>
                                                                 {currentPricing.symbol}
                                                             </span>
                                                             {currentPricing[customization][material]}
                                                         </span>
-                                                        <span className="text-xs font-bold text-muted-foreground/60">{currentPricing.currency}</span>
+                                                        <span className="text-xs font-black text-navy/40 uppercase tracking-widest">{currentPricing.currency}</span>
                                                     </div>
                                                 </div>
                                             </div>

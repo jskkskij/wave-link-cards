@@ -23,6 +23,7 @@ User-Agent: BraveBot
 Allow: /
 
 User-agent: *
+Allow: /
 Disallow: /admin/
 Disallow: /test/
 Disallow: /api/

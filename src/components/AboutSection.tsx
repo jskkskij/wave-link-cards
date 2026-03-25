@@ -88,8 +88,8 @@ const AboutSection = ({ lang = "en" }: AboutSectionProps) => {
           viewport={{ once: true, margin: "-100px" }}
           variants={containerVariants}
         >
-          <motion.h2
-            className="text-4xl md:text-5xl font-bold text-foreground mb-4"
+            <motion.h2
+            className="text-[clamp(2rem,7vw,3.5rem)] font-bold text-foreground mb-6 leading-tight text-balance"
             variants={itemVariants}
           >
             {lang === "en" ? "Engineered for Global Growth" : "বৈশ্বিক প্রবৃদ্ধির জন্য নির্মিত"}
@@ -155,7 +155,7 @@ const AboutSection = ({ lang = "en" }: AboutSectionProps) => {
                 <div className={`absolute inset-0 bg-accent/20 rounded-full transition-opacity duration-500 blur-xl ${hoveredStates[1] ? 'opacity-100' : 'opacity-0 group-hover:opacity-100'}`} aria-hidden="true" />
                 <Zap className="w-10 h-10 text-accent relative z-10" aria-hidden="true" />
               </motion.div>
-              <h3 className={`text-xl font-bold mb-3 transition-colors duration-300 font-serif ${hoveredStates[1] ? 'text-accent' : 'text-card-foreground group-hover:text-accent'}`}>
+              <h3 className={`text-[clamp(1.25rem,4vw,1.75rem)] font-bold mb-3 transition-colors duration-300 font-serif ${hoveredStates[1] ? 'text-accent' : 'text-card-foreground group-hover:text-accent'}`}>
                 {lang === "en" ? "Trust Infrastructure" : "আস্থা অবকাঠামো"}
               </h3>
               <p className="text-muted-foreground text-sm leading-relaxed">

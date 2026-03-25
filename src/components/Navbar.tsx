@@ -56,8 +56,8 @@ const Navbar = ({ lang = "en" }: NavbarProps) => {
         <div
           className={cn(
             "relative flex items-center justify-between transition-luxury",
-            "bg-white/80 backdrop-blur-xl border border-muted shadow-luxury rounded-full px-8 py-3",
-            "w-[90%] sm:w-[85%] md:w-[80%] lg:w-[65%]"
+            "bg-white/60 backdrop-blur-2xl border border-white/20 shadow-luxury rounded-full px-6 md:px-8 py-2.5 md:py-3",
+            "w-[94%] sm:w-[90%] md:w-[80%] lg:w-[65%]"
           )}
         >
           {/* Logo Section */}
@@ -74,11 +74,12 @@ const Navbar = ({ lang = "en" }: NavbarProps) => {
           >
             <img
               src={wavelinkLogo}
-              alt="Wavelink Logo"
+              alt="Wavelink Logo - Your Smart Networking Infrastructure"
               width={112}
               height={32}
               className="h-8 w-auto object-contain grayscale group-hover:grayscale-0 transition-luxury"
               loading="eager"
+              fetchPriority="high"
             />
             <span className="font-serif font-bold text-lg tracking-tight text-foreground hidden sm:block">
               Wavelink
@@ -158,7 +159,7 @@ const Navbar = ({ lang = "en" }: NavbarProps) => {
                     key={link.name}
                     to={link.href}
                     onClick={() => setIsMobileMenuOpen(false)}
-                    className="text-2xl font-serif font-bold text-foreground hover:text-blue transition-luxury min-h-[44px] flex items-center"
+                    className="text-3xl font-serif font-bold text-foreground hover:text-accent transition-luxury min-h-[48px] flex items-center tracking-tight"
                   >
                     {link.name}
                   </Link>
@@ -168,7 +169,7 @@ const Navbar = ({ lang = "en" }: NavbarProps) => {
                     onClick={() => {
                       scrollToSection(link.href);
                     }}
-                    className="text-2xl font-serif font-bold text-foreground hover:text-blue transition-luxury min-h-[44px] flex items-center tap-target"
+                    className="text-3xl font-serif font-bold text-foreground hover:text-accent transition-luxury min-h-[48px] flex items-center tap-target tracking-tight"
                   >
                     {link.name}
                   </button>

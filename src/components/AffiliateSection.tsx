@@ -23,7 +23,7 @@ const AffiliateSection = () => {
                         <h2 className="text-4xl md:text-5xl font-bold text-foreground mb-4 font-serif">
                             Affiliate Marketing Program
                         </h2>
-                        <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+                        <p className="text-lg text-slate-300 max-w-2xl mx-auto">
                             Join the Wavelink Affiliate Program today! Start earning attractive commissions by promoting our innovative Smart NFC Business Cards.
                         </p>
                     </motion.div>
@@ -62,7 +62,7 @@ const AffiliateSection = () => {
                                     </div>
                                     <div>
                                         <h3 className="text-xl font-bold mb-2">Attractive Commissions</h3>
-                                        <p className="text-muted-foreground text-sm">
+                                        <p className="text-slate-200 text-sm">
                                             Earn competitive commissions on every sale you generate through your unique affiliate link.
                                         </p>
                                     </div>
@@ -76,7 +76,7 @@ const AffiliateSection = () => {
                                     </div>
                                     <div>
                                         <h3 className="text-xl font-bold mb-2">Leverage Your Network</h3>
-                                        <p className="text-muted-foreground text-sm">
+                                        <p className="text-slate-200 text-sm">
                                             Share a product that truly stands out and helps professionals modernize their networking.
                                         </p>
                                     </div>
@@ -90,7 +90,7 @@ const AffiliateSection = () => {
                                     </div>
                                     <div>
                                         <h3 className="text-xl font-bold mb-2">Passive Income Potential</h3>
-                                        <p className="text-muted-foreground text-sm">
+                                        <p className="text-slate-200 text-sm">
                                             Build a sustainable income stream by promoting premium NFC business cards to your audience.
                                         </p>
                                     </div>

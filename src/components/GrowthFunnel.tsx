@@ -71,7 +71,7 @@ const GrowthFunnel = ({ lang = "en" }: { lang?: Language }) => {
                     >
                         {lang === "en" ? "The Methodology" : "কার্যপ্রণালী"}
                     </motion.div>
-                    <h2 className="text-2xl sm:text-3xl md:text-5xl lg:text-7xl font-serif text-foreground mb-4 md:mb-8 leading-[1.1] font-bold tracking-[-0.04em]">
+                    <h2 className="text-[clamp(2.5rem,8vw,5rem)] font-serif text-foreground mb-6 md:mb-8 leading-[1.1] font-bold tracking-[-0.04em] text-balance">
                         {lang === "en" ? "The Growth Infrastructure." : "বিকাশের অবকাঠামো।"}
                     </h2>
                     <p className="text-xs sm:text-sm md:text-lg lg:text-2xl text-muted-foreground leading-tight tracking-tight font-medium max-w-2xl">

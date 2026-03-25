@@ -200,7 +200,7 @@ const OrderSection = ({ lang = "en" }: OrderSectionProps) => {
           <h2 className="text-2xl sm:text-3xl md:text-5xl lg:text-7xl font-serif text-foreground mb-3 sm:mb-4 md:mb-8 font-bold leading-[1.1] tracking-[-0.04em]">
             {lang === "en" ? "Begin the Connection." : "শুরু হোক আপনার নতুন যাত্রা।"}
           </h2>
-          <p className="text-xs sm:text-sm md:text-lg lg:text-2xl text-muted-foreground leading-tight tracking-tight font-medium max-w-2xl">
+          <p className="text-xs sm:text-sm md:text-lg lg:text-2xl text-slate-300 leading-tight tracking-tight font-medium max-w-2xl">
             {lang === "en" ? "Deploy your professional presence with our luxury NFC hardware and intelligent software ecosystem." : "আমাদের লাক্সারি এনএফসি হার্ডওয়্যার এবং ইন্টেলিজেন্ট সফটওয়্যার ইকোসিস্টেমের মাধ্যমে আপনার পেশাদার পরিচিতি বিশ্বব্যাপী ছড়িয়ে দিন।"}
           </p>
         </div>

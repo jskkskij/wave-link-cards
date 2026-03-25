@@ -11,7 +11,6 @@ const PreferencesPanel = lazy(() => import("@/components/PreferencesPanel").then
 // Lazy load below-the-fold sections
 const AboutSection = lazy(() => import("@/components/AboutSection"));
 const DemoVideoSection = lazy(() => import("@/components/DemoVideoSection"));
-const FeaturesSection = lazy(() => import("@/components/FeaturesSection"));
 const PricingSection = lazy(() => import("@/components/PricingSection"));
 const OrderSection = lazy(() => import("@/components/OrderSection"));
 const ReviewsSection = lazy(() => import("@/components/ReviewsSection"));
@@ -22,7 +21,6 @@ const ContactSection = lazy(() => import("@/components/ContactSection"));
 const ReviewStandsSection = lazy(() => import("@/components/ReviewStandsSection"));
 const Footer = lazy(() => import("@/components/Footer"));
 const LiveReviewFeed = lazy(() => import("@/components/LiveReviewFeed"));
-const GrowthFunnel = lazy(() => import("@/components/GrowthFunnel"));
 
 const SectionLoader = () => (
   <div className="min-h-[400px] flex items-center justify-center py-20" aria-label="Loading section">
@@ -270,9 +268,6 @@ const Index = () => {
               <Suspense fallback={<SectionLoader />}>
                 <LiveReviewFeed />
               </Suspense>
-              <Suspense fallback={<SectionLoader />}>
-                <GrowthFunnel lang={lang} />
-              </Suspense>
             </div>
           </section>
 
@@ -283,9 +278,6 @@ const Index = () => {
               <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-full bg-glow-wave opacity-20 blur-[150px]" />
             </div>
             <div className="relative z-10 space-y-12 lg:space-y-20 py-12 lg:py-32 px-4 sm:px-6">
-              <Suspense fallback={<SectionLoader />}>
-                <FeaturesSection />
-              </Suspense>
               <Suspense fallback={<SectionLoader />}>
                 <ReviewStandsSection />
               </Suspense>
