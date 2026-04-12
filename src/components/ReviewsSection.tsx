@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { Card, CardContent } from "./ui/card";
+import { CONFIG } from "@/lib/config";
 import { MessageSquareQuote, Mail, Play } from "lucide-react";
 
 // Video review interface
@@ -151,7 +152,7 @@ const ReviewsSection = () => {
         {/* Bottom CTA */}
         <div className="flex justify-center animate-fade-in-delayed">
           <a
-            href="mailto:waavelink@gmail.com"
+            href={`mailto:${CONFIG.SUPPORT_EMAIL}`}
             className="group relative inline-flex items-center gap-4 px-10 py-5 bg-white shadow-2xl border border-sky/10 rounded-2xl hover:scale-105 transition-all duration-300 cursor-pointer hover:border-sky/30"
           >
             <div className="w-12 h-12 rounded-full bg-sky/10 flex items-center justify-center group-hover:bg-sky/20 transition-colors shrink-0">

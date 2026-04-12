@@ -3,6 +3,7 @@ import { Button } from "@/components/ui/button";
 import { Check, ShieldCheck, Lock, Users, Clock, TrendingUp, Zap, ArrowRight, Info, Building2 } from "lucide-react";
 import InteractiveCardDisplay from "./InteractiveCardDisplay";
 import { useState, useEffect } from "react";
+import { CONFIG } from "@/lib/config";
 
 const PricingSection = () => {
   const [timeLeft, setTimeLeft] = useState({ hours: 23, minutes: 59, seconds: 59 });
@@ -203,7 +204,7 @@ const PricingSection = () => {
                     </p>
                     <p className="text-xs text-muted-foreground mb-2">For bulk orders & corporate solutions in Canada</p>
                     <a
-                      href="mailto:waavelink@gmail.com"
+                      href={`mailto:${CONFIG.SUPPORT_EMAIL}`}
                       className="text-xs font-bold text-navy hover:underline flex items-center justify-center gap-1"
                     >
                       Contact Us <ArrowRight className="w-3 h-3 group-hover:translate-x-0.5 transition-transform" aria-hidden="true" />

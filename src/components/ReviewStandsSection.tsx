@@ -52,8 +52,8 @@ const ReviewStandsSection = () => {
     const currentPricing = pricingData[region as keyof typeof pricingData];
 
     const descriptions = {
-        semi: "A perfect balance of branding and flexibility. The bottom section will feature the Wave Link logo and QR code, while the remaining area can be fully customized by the owner according to their preference. Ideal for a neat, branded, and professional look.",
-        full: "Complete freedom, no restrictions. This option comes with no Wave Link logo—the entire stand is 100% customized based on your brand identity and design choice. Best for businesses that want total personalization."
+        semi: "A perfect balance of branding and flexibility. The bottom section will feature the Wavelink logo and QR code, while the remaining area can be fully customized by the owner according to their preference. Ideal for a neat, branded, and professional look.",
+        full: "Complete freedom, no restrictions. This option comes with no Wavelink logo—the entire stand is 100% customized based on your brand identity and design choice. Best for businesses that want total personalization."
     };
 
     // Manual Autoplay — paused when tab is not visible to save battery on mobile
@@ -154,7 +154,7 @@ const ReviewStandsSection = () => {
                                                     <div className="overflow-hidden rounded-xl aspect-square relative shadow-2xl border border-white/10">
                                                         <img
                                                             src={image}
-                                                            alt={`Wavelink NFC Review Stand View ${index + 1}`}
+                                                            alt={`Wavelink Digital Review Stand view ${index + 1}`}
                                                             loading="lazy"
                                                             decoding="async"
                                                             width={600}

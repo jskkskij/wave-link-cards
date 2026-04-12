@@ -105,7 +105,7 @@ export const ReviewFormDialog = ({
         <DialogHeader>
           <DialogTitle className="text-2xl font-bold">Write a Review</DialogTitle>
           <DialogDescription>
-            Share your experience with WaveLink products
+            Share your experience with Wavelink products
           </DialogDescription>
         </DialogHeader>
 

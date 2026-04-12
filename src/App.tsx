@@ -25,6 +25,8 @@ const TermsOfService = lazy(() => import("./pages/TermsOfService"));
 const DataProcessingAgreement = lazy(() => import("./pages/DataProcessingAgreement"));
 const Investors = lazy(() => import("./pages/Investors"));
 const InvestorDeck = lazy(() => import("./pages/InvestorDeck"));
+const IntelligenceReport = lazy(() => import("./pages/IntelligenceReport"));
+const Shop = lazy(() => import("./pages/Shop"));
 const AnalyticsPage = lazy(() => import("@/components/AnalyticsDashboard").then(m => ({ default: m.AnalyticsDashboard })));
 
 const queryClient = new QueryClient();
@@ -110,6 +112,22 @@ const App = () => {
                 element={
                   <Suspense fallback={<RouteLoader />}>
                     <InvestorDeck />
+                  </Suspense>
+                }
+              />
+              <Route
+                path="/drops/bangladesh-2035"
+                element={
+                  <Suspense fallback={<RouteLoader />}>
+                    <IntelligenceReport />
+                  </Suspense>
+                }
+              />
+              <Route
+                path="/shop"
+                element={
+                  <Suspense fallback={<RouteLoader />}>
+                    <Shop />
                   </Suspense>
                 }
               />

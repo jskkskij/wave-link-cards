@@ -99,7 +99,7 @@ const AboutSection = ({ lang = "en" }: AboutSectionProps) => {
             variants={itemVariants}
           >
             {lang === "en"
-              ? "WaveLink provides the infrastructure businesses need to bridge the physical-digital gap and build instant, global trust at the first interaction."
+              ? "Wavelink provides the infrastructure businesses need to bridge the physical-digital gap and build instant, global trust at the first interaction."
               : "ওয়েভলিঙ্ক এমন একটি অবকাঠামো প্রদান করে যা ব্যবসার শারীরিক ও ডিজিটাল পার্থক্য দূর করতে এবং প্রথম যোগাযোগেই তাৎক্ষণিক বৈশ্বিক আস্থা তৈরি করতে সহায়তা করে।"}
           </motion.p>
         </motion.div>

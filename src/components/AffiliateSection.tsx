@@ -3,6 +3,7 @@ import { Button } from "@/components/ui/button";
 import { DollarSign, Users, TrendingUp, Mail } from "lucide-react";
 import { motion } from "framer-motion";
 import affiliateImage from "@/assets/affiliate-program.png";
+import { CONFIG } from "@/lib/config";
 
 const AffiliateSection = () => {
     return (
@@ -120,7 +121,7 @@ const AffiliateSection = () => {
                                         asChild
                                         className="bg-gradient-to-r from-sky to-primary text-white hover:opacity-90 rounded-full px-8 py-6 text-lg shadow-luxury transition-all duration-300 hover:scale-105"
                                     >
-                                        <a href="mailto:waavelink@gmail.com?subject=Affiliate Program Inquiry">
+                                        <a href={`mailto:${CONFIG.SUPPORT_EMAIL}?subject=Affiliate Program Inquiry`}>
                                             Join Now
                                         </a>
                                     </Button>

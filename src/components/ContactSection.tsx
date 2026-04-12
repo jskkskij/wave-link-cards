@@ -135,7 +135,7 @@ const ContactSection = () => {
                                     allowFullScreen={true}
                                     loading="lazy"
                                     referrerPolicy="no-referrer-when-downgrade"
-                                    title="Wave Link Physical Location"
+                                    title="Wavelink physical location"
                                     className="grayscale-[0.2] hover:grayscale-0 transition-all duration-500"
                                 ></iframe>
                             ) : (

@@ -2,6 +2,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Shield, Lock, Eye, FileCheck, UserCircle, Scale, Database, RefreshCw, Info, AlertTriangle } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useNavigate } from "react-router-dom";
+import { CONFIG } from "@/lib/config";
 
 const PrivacyPolicy = () => {
   const navigate = useNavigate();
@@ -104,7 +105,7 @@ const PrivacyPolicy = () => {
             <div className="space-y-6 text-sm">
               <div>
                 <h4 className="font-bold text-foreground mb-1 uppercase tracking-tighter text-xs">A. Contractual Necessity</h4>
-                <p className="text-muted-foreground">We process name, address, and payment info to fulfill your orders and deliver your WaveLink cards.</p>
+                <p className="text-muted-foreground">We process name, address, and payment info to fulfill your orders and deliver your Wavelink cards.</p>
               </div>
               <div>
                 <h4 className="font-bold text-foreground mb-1 uppercase tracking-tighter text-xs">B. Legitimate Interests</h4>
@@ -251,7 +252,7 @@ const PrivacyPolicy = () => {
               </div>
               <div className="bg-primary/5 p-5 rounded-2xl border border-primary/10 flex-1">
                 <p className="text-[10px] uppercase tracking-widest text-primary mb-1">Inquiry Channel</p>
-                <a href="mailto:waavelink@gmail.com" className="text-xl font-bold font-serif text-primary hover:underline">waavelink@gmail.com</a>
+                <a href={`mailto:${CONFIG.SUPPORT_EMAIL}`} className="text-xl font-bold font-serif text-primary hover:underline">{CONFIG.SUPPORT_EMAIL}</a>
               </div>
             </div>
             <p className="text-xs text-muted-foreground">

@@ -1,6 +1,5 @@
 import { lazy, Suspense, useState, useEffect, useRef } from "react";
 import Navbar from "@/components/Navbar";
-import Schema from "@/components/Schema";
 import HeroSection from "@/components/HeroSection";
 const OnboardingTutorial = lazy(() => import("@/components/OnboardingTutorial").then(m => ({ default: m.OnboardingTutorial })));
 import { Sparkles, Zap, Star, ShoppingBag } from "lucide-react";
@@ -182,7 +181,6 @@ const Index = () => {
 
   return (
     <div className="min-h-screen bg-background text-foreground overflow-x-hidden selection:bg-sky/20 selection:text-navy">
-      <Schema />
       {/* Smart Greeting Bar (personalization layer) */}
       {personCtx && personContent && (
         <Suspense fallback={null}>
