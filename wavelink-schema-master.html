@@ -1,0 +1,598 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>Wavelink — master JSON-LD (copy-paste reference)</title>
+  <meta name="robots" content="noindex,nofollow" />
+  <style>
+    body { font-family: system-ui, sans-serif; max-width: 960px; margin: 2rem auto; padding: 0 1rem; line-height: 1.5; color: #111; }
+    h1 { font-size: 1.35rem; }
+    h2 { font-size: 1.1rem; margin-top: 2rem; border-bottom: 1px solid #ddd; padding-bottom: 0.25rem; }
+    .rule { background: #fff8e6; border-left: 4px solid #e6a800; padding: 0.75rem 1rem; margin: 1rem 0; font-size: 0.9rem; }
+    .label { font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.06em; color: #555; margin-bottom: 0.35rem; }
+    pre { background: #f4f4f5; padding: 1rem; overflow-x: auto; font-size: 0.78rem; border-radius: 6px; white-space: pre-wrap; word-break: break-word; }
+    code { font-family: ui-monospace, monospace; }
+    table { border-collapse: collapse; width: 100%; font-size: 0.85rem; margin: 1rem 0; }
+    th, td { border: 1px solid #ccc; padding: 0.45rem 0.6rem; text-align: left; vertical-align: top; }
+    th { background: #f0f0f0; }
+    ul { padding-left: 1.2rem; }
+  </style>
+</head>
+<body>
+
+<h1>Wavelink / getwaved.ai — production JSON-LD master file</h1>
+
+<p>
+  This file is your <strong>working reference</strong>: each block below is a self-contained
+  <code>&lt;script type="application/ld+json"&gt;</code> you can paste into your CMS <code>&lt;head&gt;</code>
+  (or inject per route). <strong>Schema 5</strong> is not JSON-LD — it is the Wikidata creation guide.
+</p>
+
+<div class="rule">
+  <strong>Non-negotiable before go-live:</strong> validate <em>every</em> block in
+  <a href="https://search.google.com/test/rich-results" rel="noopener noreferrer">Google Rich Results Test</a>.
+  Invalid structured data can reduce trust signals from search and AI surfaces.
+</div>
+
+<p>
+  <strong>Deployment map:</strong> 2 global blocks (Organization + LocalBusiness) + 3 page-specific AggregateRating blocks + 5 page-specific FAQ blocks = <strong>10 JSON-LD scripts</strong>, plus the Wikidata guide.
+</p>
+
+<!-- =============================================================================
+     SCHEMA 1 — Organization  |  EVERY PAGE (root identity)
+     Update sameAs with your real profiles. After Wikidata entity exists, add
+     "https://www.wikidata.org/wiki/Q########" to sameAs.
+     ============================================================================= -->
+<h2>Schema 1 — Organization (every page)</h2>
+<div class="label">Paste in: &lt;head&gt; on all URLs under https://getwaved.ai/</div>
+<pre><code>&lt;script type="application/ld+json"&gt;
+{
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "@id": "https://getwaved.ai/#organization",
+  "name": "Wavelink",
+  "alternateName": ["Wavelink Technologies", "ওয়েভলিংক টেকনোলজিস"],
+  "url": "https://getwaved.ai/",
+  "logo": "https://getwaved.ai/favicon.ico",
+  "image": "https://getwaved.ai/assets/og-card.png",
+  "description": "NFC smart business cards and digital review stands for professionals — tap-to-share profiles and high-intent customer reviews without forcing app installs.",
+  "email": "official@getwaved.ai",
+  "foundingDate": "2024",
+  "sameAs": [
+    "https://www.facebook.com/profile.php?id=61582857699324",
+    "https://www.instagram.com/__wave_link__/",
+    "https://www.tiktok.com/@mohammadabir68",
+    "https://www.linkedin.com/company/wavelink-tech",
+    "https://www.facebook.com/getwaved"
+  ],
+  "knowsAbout": [
+    "NFC business cards",
+    "Digital business cards",
+    "Customer review acquisition",
+    "Google Business Profile",
+    "Trust and identity infrastructure"
+  ]
+}
+&lt;/script&gt;</code></pre>
+<p><em>Action:</em> Remove duplicate or stale social URLs from <code>sameAs</code> so the list matches only profiles you control. When your Wikidata item is published, append its URI (e.g. <code>https://www.wikidata.org/wiki/Q123456789</code>).</p>
+
+<!-- =============================================================================
+     SCHEMA 2 — LocalBusiness  |  EVERY PAGE
+     CRITICAL: streetAddress, addressLocality, postalCode, telephone MUST match
+     your Google Business Profile exactly (character level). Mismatch = NAP drift.
+     Replace every REPLACE_* placeholder from GBP / Search Console business data.
+     ============================================================================= -->
+<h2>Schema 2 — LocalBusiness (every page)</h2>
+<div class="label">Paste in: &lt;head&gt; on all pages (single primary location per GBP; add a second JSON-LD only if you have a second verified listing)</div>
+<pre><code>&lt;script type="application/ld+json"&gt;
+{
+  "@context": "https://schema.org",
+  "@type": "LocalBusiness",
+  "@id": "https://getwaved.ai/#localbusiness",
+  "name": "Wavelink",
+  "image": "https://getwaved.ai/assets/og-card.png",
+  "url": "https://getwaved.ai/",
+  "telephone": "REPLACE_WITH_GBP_PHONE_E164",
+  "email": "official@getwaved.ai",
+  "priceRange": "$$",
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "REPLACE_WITH_GBP_STREET_LINE",
+    "addressLocality": "REPLACE_WITH_GBP_CITY",
+    "addressRegion": "REPLACE_WITH_GBP_REGION_OR_EMPTY",
+    "postalCode": "REPLACE_WITH_GBP_POSTAL",
+    "addressCountry": "BD"
+  },
+  "geo": {
+    "@type": "GeoCoordinates",
+    "latitude": "REPLACE_WITH_GBP_LAT",
+    "longitude": "REPLACE_WITH_GBP_LNG"
+  },
+  "openingHoursSpecification": {
+    "@type": "OpeningHoursSpecification",
+    "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+    "opens": "09:00",
+    "closes": "18:00"
+  },
+  "areaServed": {
+    "@type": "Country",
+    "name": "Bangladesh"
+  }
+}
+&lt;/script&gt;</code></pre>
+<p><em>Action:</em> Copy phone and address from your live Google Business Profile edit screen. Opening hours must match GBP hours. If you also list Dubai without a separate GBP, do <strong>not</strong> add a second address here unless it is verified the same way.</p>
+
+<!-- =============================================================================
+     SCHEMA 3 — AggregateRating (three variants)
+     Update ratingValue, ratingCount, reviewCount monthly from live Google totals.
+     Replace sample Review text with two real, permissioned, verbatim reviews that
+     appear on the same URL you attach this script to (policy: visible on page).
+     ============================================================================= -->
+<h2>Schema 3 — AggregateRating</h2>
+<p>Three separate scripts. Only place each script on the URL shown — do not duplicate the same aggregate on unrelated URLs.</p>
+
+<h3>Variant A — Homepage</h3>
+<div class="label">Page: https://getwaved.ai/</div>
+<pre><code>&lt;script type="application/ld+json"&gt;
+{
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "@id": "https://getwaved.ai/#organization",
+  "aggregateRating": {
+    "@type": "AggregateRating",
+    "ratingValue": "4.8",
+    "bestRating": "5",
+    "worstRating": "1",
+    "ratingCount": "REPLACE_MONTHLY_FROM_GOOGLE",
+    "reviewCount": "REPLACE_MONTHLY_FROM_GOOGLE"
+  }
+}
+&lt;/script&gt;</code></pre>
+<p><em>Note:</em> Uses the same <code>@id</code> as Schema 1 so compliant consumers merge this rating onto your full Organization node. Deploy Schema 1 + this block together on the homepage.</p>
+
+<h3>Variant B — NFC smart card (product-focused URL)</h3>
+<div class="label">Page: use your real product URL (e.g. https://getwaved.ai/shop or dedicated landing — must match where buyers land)</div>
+<pre><code>&lt;script type="application/ld+json"&gt;
+{
+  "@context": "https://schema.org",
+  "@type": "Product",
+  "@id": "https://getwaved.ai/#product-nfc-card",
+  "name": "Wavelink NFC Smart Business Card",
+  "description": "Tap-to-share NFC business card — opens your profile in the phone browser; no app required for recipients.",
+  "image": "https://getwaved.ai/assets/og-card.png",
+  "brand": { "@type": "Brand", "name": "Wavelink" },
+  "sku": "WL-NFC-CARD",
+  "aggregateRating": {
+    "@type": "AggregateRating",
+    "ratingValue": "4.8",
+    "bestRating": "5",
+    "worstRating": "1",
+    "ratingCount": "REPLACE_MONTHLY_FROM_GOOGLE",
+    "reviewCount": "REPLACE_MONTHLY_FROM_GOOGLE"
+  },
+  "review": [
+    {
+      "@type": "Review",
+      "reviewRating": { "@type": "Rating", "ratingValue": "5", "bestRating": "5" },
+      "author": { "@type": "Person", "name": "REPLACE_REAL_CUSTOMER_NAME" },
+      "reviewBody": "REPLACE_VERBATIM_REVIEW_TEXT_FROM_CUSTOMER_1"
+    },
+    {
+      "@type": "Review",
+      "reviewRating": { "@type": "Rating", "ratingValue": "5", "bestRating": "5" },
+      "author": { "@type": "Person", "name": "REPLACE_REAL_CUSTOMER_NAME" },
+      "reviewBody": "REPLACE_VERBATIM_REVIEW_TEXT_FROM_CUSTOMER_2"
+    }
+  ]
+}
+&lt;/script&gt;</code></pre>
+
+<h3>Variant C — Digital review stand</h3>
+<div class="label">Page: your review-stand product or section URL (dedicated page recommended)</div>
+<pre><code>&lt;script type="application/ld+json"&gt;
+{
+  "@context": "https://schema.org",
+  "@type": "Product",
+  "@id": "https://getwaved.ai/#product-review-stand",
+  "name": "Wavelink Digital Review Stand",
+  "description": "NFC-powered stand — customer taps phone to open your Google or Trustpilot review flow at point of service.",
+  "image": "https://getwaved.ai/assets/og-card.png",
+  "brand": { "@type": "Brand", "name": "Wavelink" },
+  "sku": "WL-REVIEW-STAND",
+  "aggregateRating": {
+    "@type": "AggregateRating",
+    "ratingValue": "4.8",
+    "bestRating": "5",
+    "worstRating": "1",
+    "ratingCount": "REPLACE_MONTHLY_FROM_GOOGLE",
+    "reviewCount": "REPLACE_MONTHLY_FROM_GOOGLE"
+  },
+  "review": [
+    {
+      "@type": "Review",
+      "reviewRating": { "@type": "Rating", "ratingValue": "5", "bestRating": "5" },
+      "author": { "@type": "Person", "name": "REPLACE_REAL_CUSTOMER_NAME" },
+      "reviewBody": "REPLACE_VERBATIM_REVIEW_TEXT_STAND_BUYER_1"
+    },
+    {
+      "@type": "Review",
+      "reviewRating": { "@type": "Rating", "ratingValue": "5", "bestRating": "5" },
+      "author": { "@type": "Person", "name": "REPLACE_REAL_CUSTOMER_NAME" },
+      "reviewBody": "REPLACE_VERBATIM_REVIEW_TEXT_STAND_BUYER_2"
+    }
+  ]
+}
+&lt;/script&gt;</code></pre>
+<p><em>Reminder:</em> Google expects reviews you mark up to be <strong>visible</strong> on that page and to reflect genuine customers. Refresh counts on the 1st of each month (or when you run a structured-data audit).</p>
+
+<!-- =============================================================================
+     SCHEMA 4 — FAQPage (five blocks, one per page)
+     Swap real prices where noted. Questions use buyer / searcher phrasing.
+     ============================================================================= -->
+<h2>Schema 4 — FAQPage (five pages)</h2>
+
+<h3>FAQ block 1 — Homepage</h3>
+<div class="label">Page: https://getwaved.ai/</div>
+<pre><code>&lt;script type="application/ld+json"&gt;
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Do I need an app for an NFC business card to work?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No. Wavelink cards use standard NFC tags. When someone taps with a modern smartphone, the phone opens your link in the default browser. Recipients do not install a Wavelink app to view your profile."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Does iPhone read NFC business cards?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes on supported models — the recipient holds the top of the iPhone near the card until a notification appears, then taps to open your page. Android typically opens the URL automatically after a tap."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What happens when someone taps my Wavelink card?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "The tag opens your Wavelink profile URL with your contact links, socials, and content you choose to show — one tap from in-person meeting to your digital presence."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Is a digital NFC card better than paper business cards?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "For many professionals, yes: one card can be updated anytime, you avoid reprints, and taps are faster than typing a URL or handling paper. It also fits positioning around sustainability and a modern brand."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can I update my contact info after I buy the card?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. Your printed NFC card keeps the same tap behavior while you update the destination profile and links from your account so job changes or new campaigns do not require a new physical card."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How is Wavelink different from a QR code on a card?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "NFC is tap-to-open without opening the camera app; QR still works for people who prefer scanning. Wavelink focuses on NFC-first flow with optional QR where you deploy both."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Do you ship Wavelink cards outside Bangladesh?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Wavelink serves multiple regions with listed shipping and currency options on the site. Check the order section for your country, delivery estimate, and any duty or tax notes before checkout."
+      }
+    }
+  ]
+}
+&lt;/script&gt;</code></pre>
+
+<h3>FAQ block 2 — Pricing / order (aligned with live Terms of Service)</h3>
+<div class="label">Page: pricing or checkout URL (e.g. https://getwaved.ai/#order or https://getwaved.ai/shop)</div>
+<pre><code>&lt;script type="application/ld+json"&gt;
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "How much does a Wavelink NFC card cost in Bangladesh?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "The pricing section on getwaved.ai shows current Bangladesh pricing (including promotional ৳599 when offered), deposit, and whether tax is inclusive for the domestic tier. All prices are in BDT (৳) and are subject to change without prior notice."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Is there a monthly fee for the digital profile?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Standard profile hosting for the card is included without a recurring subscription for the baseline product. If you add paid tiers or add-ons later, list them on this same page and mirror them here."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How do ordering and payment work?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Orders are confirmed upon receipt of 50% advance payment via Bkash. The remaining balance is due upon order completion. All prices are in BDT (৳) and are subject to change without prior notice."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How long does shipping and delivery take?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Delivery times vary based on customization requirements. Standard delivery is 7-14 business days after order confirmation. We will provide tracking information once your order is ready for shipment."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can I order more than one card for my team?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. Use the quantity field on the order form or contact official@getwaved.ai for bulk and branding options. Larger orders may have custom lead times."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What is your return, refund, and warranty policy?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Due to the customized nature of our products, returns are only accepted for manufacturing defects. Refunds are processed within 14 business days. The 6-month warranty covers software-related issues with proof of purchase. All Wavelink cards come with a 6-month warranty covering software-related issues. Physical damage, loss, or misuse is not covered. Warranty claims require proof of purchase and must be reported via our official WhatsApp number."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Do Bangladesh prices on the site include shipping?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "The regional pricing table on getwaved.ai shows shipping for each market (for example free shipping on the Bangladesh tier when that line is displayed). Always match the exact line shown next to your country before checkout."
+      }
+    }
+  ]
+}
+&lt;/script&gt;</code></pre>
+
+<h3>FAQ block 3 — Review stand buyers</h3>
+<div class="label">Page: review stand landing URL</div>
+<pre><code>&lt;script type="application/ld+json"&gt;
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "How does an NFC review stand get more Google reviews?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "The stand encodes a short URL that opens your Google review (or Trustpilot) flow. Customers tap right after service when satisfaction is highest, which typically lifts completion versus asking them to search your business later."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Do customers need Google Maps installed?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "They need a normal mobile browser session; the tap resolves to your configured review URL. Most phones handle Google review links without a separate app install."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can I point the stand to Trustpilot instead of Google?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes — during setup you choose the destination review URL. Use the platform your business actively monitors and responds on."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Will the stand work on my shop's metal counter?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Metal can detune NFC antennas. Mount the stand on non-metal surfaces or use the included spacer / standoff if provided; test tap distance with iPhone and Android before final placement."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Is the review stand reusable if I change business name?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "You reprogram or replace the encoded target URL from your Wavelink dashboard or support process. Physical hardware can stay if the new URL is allowed under your plan."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Is asking for reviews with a stand allowed by Google?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "You may ask genuine customers for reviews; you may not pay for reviews or use selective gating that violates platform policies. Follow Google and Trustpilot guidelines and only ask real customers."
+      }
+    }
+  ]
+}
+&lt;/script&gt;</code></pre>
+
+<h3>FAQ block 4 — Company profile / trust</h3>
+<div class="label">Page: https://getwaved.ai/company-profile</div>
+<pre><code>&lt;script type="application/ld+json"&gt;
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Who owns Wavelink and where is the company based?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Wavelink operates with presence in Chandanpura, Chattogram, Bangladesh and Dubai, UAE. The company profile page lists registered business context and downloadable verification materials where applicable."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How do I verify Wavelink is a real business?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Use the trade license and company profile PDF linked from the company profile page. For orders, use official channels only: getwaved.ai and official@getwaved.ai."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What does Wavelink actually build?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Wavelink builds NFC-based smart cards and review hardware plus the digital profile layer so professionals and venues can share identity and collect reviews with minimal friction."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Does Wavelink store my contacts' personal data when they tap?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "A tap opens a web profile you control. Data practices depend on what you embed (forms, analytics). See the privacy policy for how Wavelink processes account and site data."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How do I contact Wavelink for partnerships or press?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Email official@getwaved.ai with partnership or media in the subject line. For investor relations, use the Investors and Investor Deck routes linked from the site."
+      }
+    }
+  ]
+}
+&lt;/script&gt;</code></pre>
+
+<h3>FAQ block 5 — Privacy / data</h3>
+<div class="label">Page: https://getwaved.ai/privacy-policy</div>
+<pre><code>&lt;script type="application/ld+json"&gt;
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Who is responsible for my personal data at Wavelink?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Wavelink designates a privacy contact (Data Protection Officer) listed on the privacy policy page. Reach them at official@getwaved.ai for access, correction, or deletion requests where applicable law applies."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What personal data do you collect when I order a card?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Typically name, phone, email, shipping address, and payment-related metadata handled by processors. Exact categories are defined in the full privacy policy tables — this FAQ summarizes; the policy governs."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Do you sell my email to third-party advertisers?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Wavelink does not sell email lists for unrelated advertising. Marketing email requires consent where required by law; you can withdraw consent per the policy."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How long do you keep order records?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Retention follows tax, fraud-prevention, and legal requirements described in the privacy policy. Some logs may be kept longer in anonymized or aggregated form."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can I request a copy or deletion of my data?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes where GDPR, PIPEDA, Law 25, or similar rights apply. Email the DPO channel with your request; response timelines are described in the policy."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Do you use cookies or analytics on getwaved.ai?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "The site may use cookies and analytics for performance, security, and consent-managed marketing. Your cookie banner and policy describe categories and controls."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Where is data processed?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Depending on services used (hosting, email, payments), processing may occur in multiple countries. The privacy policy references subprocessors and transfer mechanisms where required."
+      }
+    }
+  ]
+}
+&lt;/script&gt;</code></pre>
+
+<!-- =============================================================================
+     SCHEMA 5 — Wikidata entity guide (not JSON-LD)
+     ============================================================================= -->
+<h2>Schema 5 — Wikidata entity guide (manual steps)</h2>
+
+<p>
+  Create a <strong>new item</strong> only when you have <strong>independent references</strong> (see checklist below).
+  Use <a href="https://www.wikidata.org/wiki/Special:NewItem" rel="noopener noreferrer">Special:NewItem</a>.
+  After creation, add <code>https://www.wikidata.org/wiki/Q########</code> to Organization <code>sameAs</code> (Schema 1).
+</p>
+
+<h3>Core statements (property → value type → notes)</h3>
+<table>
+  <thead>
+    <tr><th>Property</th><th>ID</th><th>Value for Wavelink</th><th>Reference requirement</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>instance of</td><td>P31</td><td>business (Q4830453) or technology company (Q936518) — pick best fit</td><td>Must cite serious source</td></tr>
+    <tr><td>official website</td><td>P856</td><td>https://getwaved.ai/</td><td>Cite page or reputable directory that lists URL</td></tr>
+    <tr><td>official name</td><td>P1448</td><td>Wavelink</td><td>Match trade name in official doc</td></tr>
+    <tr><td>country</td><td>P17</td><td>Bangladesh (Q902)</td><td>Registration or independent profile</td></tr>
+    <tr><td>headquarters location</td><td>P159</td><td>Chattogram item if exists, else city as text note on talk page</td><td>Address on official PDF / gov registry</td></tr>
+    <tr><td>inception</td><td>P571</td><td>2024</td><td>Year in company profile / filing</td></tr>
+    <tr><td>industry</td><td>P452</td><td>information technology (Q11661) or narrower NFC-related if sourced</td><td>Source must mention industry</td></tr>
+    <tr><td>email address</td><td>P968</td><td>official@getwaved.ai</td><td>Listed on official site (cite getwaved.ai contact)</td></tr>
+    <tr><td>Facebook ID</td><td>P2013</td><td>numeric ID or full URL per Wikidata convention</td><td>Link from official site footer</td></tr>
+    <tr><td>Instagram username</td><td>P2003</td><td>__wave_link__</td><td>Same</td></tr>
+    <tr><td>TikTok username</td><td>P7085</td><td>mohammadabir68</td><td>Same</td></tr>
+    <tr><td>LinkedIn company ID</td><td>P4264</td><td>company slug from URL</td><td>Same</td></tr>
+  </tbody>
+</table>
+
+<h3>Suggested labels &amp; descriptions</h3>
+<ul>
+  <li><strong>en label:</strong> Wavelink</li>
+  <li><strong>en description:</strong> Bangladesh-based company producing NFC smart business cards and digital review hardware (keep under Wikidata style guidelines; neutral tone).</li>
+  <li>Add <strong>bn</strong> label/description if you have native speakers — improves local graph quality.</li>
+</ul>
+
+<h3>Notability checklist (avoid speedy deletion)</h3>
+<ul>
+  <li>At least <strong>two serious, independent</strong> sources (news, government registry, major industry publication) — not only your own site or social.</li>
+  <li>Sources must discuss <strong>the organization as the subject</strong>, not only a passing mention in a product list.</li>
+  <li>Prefer references that include <strong>legal name / location / what the company does</strong>.</li>
+  <li>Do not create the item until those references exist; draft in userspace / spreadsheet first.</li>
+</ul>
+
+<p><em>Optional later:</em> link Wikipedia article via P9736 if one exists; add logo (P154) once file is uploaded to Commons with correct licensing.</p>
+
+<hr />
+<p style="font-size:0.85rem;color:#555;">File: wavelink-schema-master.html — maintain alongside CMS deployment. Re-validate after any pricing, NAP, or review count change.</p>
+
+</body>
+</html>
