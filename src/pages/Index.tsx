@@ -21,6 +21,8 @@ const ContactSection = lazy(() => import("@/components/ContactSection"));
 const ReviewStandsSection = lazy(() => import("@/components/ReviewStandsSection"));
 const Footer = lazy(() => import("@/components/Footer"));
 const LiveReviewFeed = lazy(() => import("@/components/LiveReviewFeed"));
+const PackagingSection = lazy(() => import("@/components/PackagingSection"));
+
 
 const SectionLoader = () => (
   <div className="min-h-[400px] flex items-center justify-center py-20" aria-label="Loading section">
@@ -282,6 +284,9 @@ const Index = () => {
             <div className="relative z-10 space-y-12 lg:space-y-20 py-12 lg:py-32 px-4 sm:px-6">
               <Suspense fallback={<SectionLoader />}>
                 <ReviewStandsSection />
+              </Suspense>
+              <Suspense fallback={<SectionLoader />}>
+                <PackagingSection lang={lang} />
               </Suspense>
               <Suspense fallback={<SectionLoader />}>
                 <PricingSection />

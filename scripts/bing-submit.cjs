@@ -27,7 +27,8 @@ const data = JSON.stringify({
         `https://${HOST}/`,
         `https://${HOST}/company-profile`,
         `https://${HOST}/investors`,
-        `https://${HOST}/investor-deck`
+        `https://${HOST}/investor-deck`,
+        `https://${HOST}/drops/bangladesh-2035`
     ]
 });
 

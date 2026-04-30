@@ -30,7 +30,7 @@ const Navbar = ({ lang = "en" }: NavbarProps) => {
     { name: "Methodology", href: "#funnel" },
     { name: "FAQ", href: "#faq" },
     { name: "Affiliate", href: "#affiliate" },
-    { name: "Investors", href: "/investors", isRoute: true },
+    { name: "Investors", href: "/investor-deck", isRoute: true },
   ];
 
   const scrollToSection = (href: string) => {

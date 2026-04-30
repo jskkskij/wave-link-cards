@@ -6,7 +6,6 @@ import { useState, useEffect } from "react";
 import { CONFIG } from "@/lib/config";
 
 const PricingSection = () => {
-  const [timeLeft, setTimeLeft] = useState({ hours: 23, minutes: 59, seconds: 59 });
   const [ordersToday, setOrdersToday] = useState(47); // Simulated live counter
   const [region, setRegion] = useState("BD"); // "BD", "USA", "CA"
 
@@ -19,19 +18,6 @@ const PricingSection = () => {
   const currentPricing = pricingData[region as keyof typeof pricingData];
 
   useEffect(() => {
-    // Countdown timer
-    const timer = setInterval(() => {
-      setTimeLeft((prev) => {
-        if (prev.seconds > 0) {
-          return { ...prev, seconds: prev.seconds - 1 };
-        } else if (prev.minutes > 0) {
-          return { ...prev, minutes: prev.minutes - 1, seconds: 59 };
-        } else if (prev.hours > 0) {
-          return { hours: prev.hours - 1, minutes: 59, seconds: 59 };
-        }
-        return { hours: 23, minutes: 59, seconds: 59 };
-      });
-    }, 1000);
 
     // Simulate orders counter (updates every 30 seconds)
     const orderTimer = setInterval(() => {
@@ -39,7 +25,6 @@ const PricingSection = () => {
     }, 30000);
 
     return () => {
-      clearInterval(timer);
       clearInterval(orderTimer);
     };
   }, []);
@@ -79,16 +64,6 @@ const PricingSection = () => {
           {/* Pricing Card - Conversion Optimized */}
           <div className="order-2 md:order-2">
             <Card className="relative p-4 sm:p-6 md:p-8 lg:p-10 border-2 border-accent/40 shadow-luxury bg-gradient-to-br from-card to-card/50 backdrop-blur-sm animate-fade-in-up overflow-visible">
-              {/* Urgency Banner - Top */}
-              <div className="absolute -top-4 left-1/2 -translate-x-1/2 z-10">
-                <div className="bg-gradient-to-r from-red-600 to-orange-600 text-white px-6 py-2 rounded-full shadow-luxury-glow flex items-center gap-2 animate-pulse">
-                  <Clock className="w-4 h-4" aria-hidden="true" />
-                  <span className="text-sm font-bold">
-                    Offer Ends In: {String(timeLeft.hours).padStart(2, '0')}:{String(timeLeft.minutes).padStart(2, '0')}:{String(timeLeft.seconds).padStart(2, '0')}
-                  </span>
-                </div>
-              </div>
-
               {/* Social Proof - Live Counter */}
               <div className="flex flex-col items-center gap-4 mb-6 pt-4">
                 {/* Region Switcher */}
@@ -118,12 +93,6 @@ const PricingSection = () => {
               {/* Price with Value Anchoring */}
               <div className="text-center mb-6">
                 <div className="mb-4">
-                  <div className="flex items-center justify-center gap-3 mb-2">
-                    <span className="text-2xl text-muted-foreground line-through">
-                      {currentPricing.symbol}{currentPricing.original}
-                    </span>
-                    <span className="text-sm bg-red-100 text-red-700 px-3 py-1 rounded-full font-bold">Save 54%</span>
-                  </div>
                   <div className="flex items-baseline justify-center gap-2">
                     <span className="text-4xl sm:text-6xl md:text-8xl font-bold text-navy">
                       {currentPricing.symbol}{currentPricing.current}

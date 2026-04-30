@@ -315,3 +315,271 @@
     gap: 16px;
   }
 }
+
+/* ─── INVESTOR DECK PRINT / PDF EXPORT STYLES ─── */
+/* Supports iOS Safari (Share > Print), Chrome, and all browsers */
+/* Works in both portrait and landscape orientations */
+@media print {
+  /* ── Global Print Reset ── */
+  *,
+  *::before,
+  *::after {
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+    color-adjust: exact !important;
+    animation: none !important;
+    transition: none !important;
+  }
+
+  html {
+    scroll-behavior: auto !important;
+    font-size: 14px !important;
+  }
+
+  body {
+    background: #04080F !important;
+    -webkit-print-color-adjust: exact !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    width: 100% !important;
+    overflow: visible !important;
+  }
+
+  /* ── Page Setup: auto adapts to portrait/landscape chosen in print dialog ── */
+  @page {
+    size: auto;
+    margin: 0;
+  }
+
+  /* ── Hide all non-content UI ── */
+  nav,
+  .print\:hidden,
+  .print\:\!hidden,
+  [class*="fixed"][class*="right-"],
+  [class*="fixed"][class*="top-"],
+  [role="dialog"],
+  [data-radix-portal],
+  [data-state="open"],
+  .cookie-consent,
+  .age-verification,
+  .analytics-dashboard,
+  .feature-pulse,
+  .sonner-toast-wrapper,
+  [class*="Toaster"],
+  #special-offer-popup,
+  #special-offer-popup + div {
+    display: none !important;
+    visibility: hidden !important;
+    height: 0 !important;
+    overflow: hidden !important;
+  }
+
+  /* ── Slide Layout — each section = one page ── */
+  .investor-deck {
+    display: block !important;
+    width: 100% !important;
+    overflow: visible !important;
+    background: #04080F !important;
+  }
+
+  .deck-slide {
+    page-break-after: always !important;
+    break-after: page !important;
+    page-break-inside: avoid !important;
+    break-inside: avoid !important;
+    min-height: 100vh !important;
+    height: 100vh !important;
+    width: 100% !important;
+    overflow: hidden !important;
+    position: relative !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    padding: 32px !important;
+    box-sizing: border-box !important;
+  }
+
+  .deck-slide:last-child {
+    page-break-after: auto !important;
+    break-after: auto !important;
+  }
+
+  /* ── Preserve Background Colors ── */
+  .deck-slide-dark {
+    background-color: #04080F !important;
+    color: white !important;
+  }
+
+  .deck-slide-light {
+    background-color: #ffffff !important;
+    color: #000000 !important;
+  }
+
+  .deck-slide-blue {
+    background-color: hsl(210 100% 45%) !important;
+    color: white !important;
+  }
+
+  [class*="bg-\[#04080F\]"] {
+    background-color: #04080F !important;
+  }
+
+  [class*="bg-blue"] {
+    background-color: hsl(210 100% 45%) !important;
+  }
+
+  [class*="bg-white"] {
+    background-color: white !important;
+  }
+
+  [class*="bg-slate-50"] {
+    background-color: #f8fafc !important;
+  }
+
+  [class*="bg-black\/5"] {
+    background-color: rgba(0, 0, 0, 0.05) !important;
+  }
+
+  [class*="bg-white\/5"] {
+    background-color: rgba(255, 255, 255, 0.08) !important;
+  }
+
+  [class*="bg-white\/\[0"] {
+    background-color: rgba(255, 255, 255, 0.05) !important;
+  }
+
+  /* ── Preserve Text Colors ── */
+  .deck-slide-dark .text-white,
+  .deck-slide-dark h1,
+  .deck-slide-dark h2,
+  .deck-slide-blue h2 {
+    color: white !important;
+  }
+
+  .deck-slide-light h2,
+  .deck-slide-light h4 {
+    color: #000000 !important;
+  }
+
+  .text-white { color: white !important; }
+  .text-black { color: black !important; }
+
+  [class*="text-blue"] {
+    color: hsl(210 100% 45%) !important;
+  }
+
+  [class*="text-white\/60"] { color: rgba(255,255,255,0.6) !important; }
+  [class*="text-white\/40"] { color: rgba(255,255,255,0.4) !important; }
+  [class*="text-white\/30"] { color: rgba(255,255,255,0.3) !important; }
+  [class*="text-white\/20"] { color: rgba(255,255,255,0.2) !important; }
+  [class*="text-black\/60"] { color: rgba(0,0,0,0.6) !important; }
+  [class*="text-black\/40"] { color: rgba(0,0,0,0.4) !important; }
+
+  /* ── Preserve Borders ── */
+  [class*="border-white\/10"] { border-color: rgba(255,255,255,0.1) !important; }
+  [class*="border-white\/5"]  { border-color: rgba(255,255,255,0.05) !important; }
+  [class*="border-black\/5"]  { border-color: rgba(0,0,0,0.05) !important; }
+
+  /* ── Layout Fixes ── */
+  .container {
+    max-width: 100% !important;
+    width: 100% !important;
+    padding-left: 16px !important;
+    padding-right: 16px !important;
+  }
+
+  .grid { display: grid !important; }
+  .flex { display: flex !important; }
+
+  /* Ensure grids stack on small print (portrait phone) */
+  .grid-cols-1 { grid-template-columns: 1fr !important; }
+
+  /* ── Remove Effects Unsupported in Print ── */
+  [class*="blur"] {
+    filter: none !important;
+    -webkit-filter: none !important;
+  }
+
+  [class*="backdrop-blur"] {
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+  }
+
+  [class*="overflow-hidden"],
+  [class*="overflow-x-hidden"] {
+    overflow: visible !important;
+  }
+
+  /* ── SVG Icons ── */
+  svg {
+    display: inline-block !important;
+    width: auto !important;
+    height: auto !important;
+  }
+
+  /* ── Framer Motion — force visible ── */
+  [style*="opacity: 0"],
+  [style*="opacity:0"] {
+    opacity: 1 !important;
+  }
+
+  [style*="transform"] {
+    transform: none !important;
+  }
+
+  /* ── Typography Scaling for Print ── */
+  /* Scale down massive headings so they fit on paper */
+  h1 {
+    font-size: 3.5rem !important;
+    line-height: 0.85 !important;
+  }
+
+  h2 {
+    font-size: 2.5rem !important;
+    line-height: 0.9 !important;
+  }
+
+  h4 {
+    font-size: 1.25rem !important;
+  }
+
+  /* The big "2s" metric */
+  .deck-slide-light [class*="text-\[12rem\]"],
+  .deck-slide-light [class*="text-\[10rem\]"],
+  [class*="text-7xl"] {
+    font-size: 5rem !important;
+    line-height: 1 !important;
+  }
+
+  /* Large stats */
+  [class*="text-4xl"] {
+    font-size: 2rem !important;
+  }
+
+  [class*="text-3xl"] {
+    font-size: 1.5rem !important;
+  }
+
+  /* Body text */
+  [class*="text-xl"],
+  [class*="text-2xl"] {
+    font-size: 1rem !important;
+    line-height: 1.4 !important;
+  }
+
+  [class*="text-lg"] {
+    font-size: 0.875rem !important;
+  }
+
+  /* ── Table Styles ── */
+  table {
+    width: 100% !important;
+    border-collapse: collapse !important;
+    page-break-inside: avoid !important;
+  }
+
+  th, td {
+    padding: 8px 6px !important;
+    font-size: 0.75rem !important;
+  }
+}

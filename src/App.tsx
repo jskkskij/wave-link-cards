@@ -3,7 +3,7 @@ import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import Index from "./pages/Index";
 import NotFound from "./pages/NotFound";
 import { initSecurityMonitoring } from "@/lib/security-monitor";
@@ -11,11 +11,11 @@ import { initAnalytics } from "@/lib/analytics";
 import { HelmetProvider } from "react-helmet-async";
 
 // Lazy load components
-const CookieConsent = lazy(() => import("./components/CookieConsent"));
-const AgeVerification = lazy(() => import("./components/AgeVerification").then(m => ({ default: m.AgeVerification })));
+const UnifiedConsent = lazy(() => import("./components/UnifiedConsent"));
 const Schema = lazy(() => import("@/components/Schema"));
 const AnalyticsDashboard = lazy(() => import("@/components/AnalyticsDashboard").then(m => ({ default: m.AnalyticsDashboard })));
 const FeaturePulse = lazy(() => import("@/components/FeaturePulse").then(m => ({ default: m.FeaturePulse })));
+const SpecialOfferPopup = lazy(() => import("@/components/SpecialOfferPopup"));
 
 // Lazy load pages for performance
 const ThankYou = lazy(() => import("./pages/ThankYou"));
@@ -101,11 +101,7 @@ const App = () => {
               />
               <Route
                 path="/investors"
-                element={
-                  <Suspense fallback={<RouteLoader />}>
-                    <Investors />
-                  </Suspense>
-                }
+                element={<Navigate to="/investor-deck" replace />}
               />
               <Route
                 path="/investor-deck"
@@ -135,8 +131,8 @@ const App = () => {
               <Route path="*" element={<NotFound />} />
             </Routes>
             <Suspense fallback={null}>
-              <CookieConsent />
-              <AgeVerification />
+              <UnifiedConsent />
+              <SpecialOfferPopup />
             </Suspense>
             {/* Global persistent UI — analytics dashboard (Shift+Alt+D) + feature pulse */}
             <Suspense fallback={null}>

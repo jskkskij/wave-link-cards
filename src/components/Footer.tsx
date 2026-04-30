@@ -27,6 +27,13 @@ const Footer = () => {
 
   return (
     <footer className="bg-warm-gray text-foreground py-12 lg:py-32 border-t border-muted relative overflow-hidden">
+      {/* Live Intelligence Feed - Backlink for Dwell Time signaling */}
+      <div className="border-b border-muted py-4 mb-12 bg-white/40 backdrop-blur-md">
+        <div className="container mx-auto px-4 sm:px-6 max-w-7xl flex items-center justify-center gap-4 text-xs font-bold tracking-widest uppercase text-blue">
+          <div className="w-2 h-2 bg-blue rounded-full animate-pulse" />
+          <span>LATEST: <Link to="/drops/bangladesh-2035" className="underline decoration-blue/30 hover:decoration-blue transition-all">The Sovereign Trust Layer - Bangladesh Market Thesis (Read Now)</Link></span>
+        </div>
+      </div>
       <div className="container mx-auto px-4 sm:px-6 max-w-7xl relative z-10">
         <div className="grid lg:grid-cols-12 gap-12 md:gap-16 lg:gap-20 mb-12 md:mb-20 lg:mb-32">
           {/* Brand Column */}
@@ -81,6 +88,22 @@ const Footer = () => {
                     </Link>
                   </li>
                 ))}
+              </ul>
+            </div>
+
+            <div className="space-y-8">
+              <h4 className="text-[12px] font-bold uppercase tracking-[0.3em] text-foreground">Ecosystem</h4>
+              <ul className="space-y-4 text-muted-foreground font-medium" role="list">
+                <li>
+                  <a href="https://aialchemist-ab1r.vercel.app" target="_blank" rel="noopener noreferrer" className="hover:text-foreground transition-luxury">
+                    AI Alchemist
+                  </a>
+                </li>
+                <li>
+                  <a href="/drops/bangladesh-2035" className="hover:text-foreground transition-luxury">
+                    Intelligence Drops
+                  </a>
+                </li>
               </ul>
             </div>
 
