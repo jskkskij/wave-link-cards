@@ -312,20 +312,33 @@ const OrderSection = ({ lang = "en" }: OrderSectionProps) => {
               {/* Turnstile Container - Managed injection */}
               <div className="cf-turnstile" data-sitekey="0x4AAAAAAA4O8o_D_N6GfXyH"></div>
 
-              <Button
-                type="submit"
-                disabled={isSubmitting}
-                className="w-full h-16 sm:h-20 bg-primary hover:bg-primary/95 text-primary-foreground text-lg sm:text-xl font-bold rounded-2xl shadow-luxury-glow transition-luxury group"
-              >
-                {isSubmitting ? (
-                  <Loader2 className="animate-spin" />
-                ) : (
-                  <>
-                    <Send className="mr-3 group-hover:translate-x-1 group-hover:-translate-y-1 transition-luxury" size={24} />
-                    Deploy Order via WhatsApp
-                  </>
-                )}
-              </Button>
+              <div className="space-y-4">
+                <div className="bg-green-50 border border-green-200 rounded-xl p-4 flex gap-3">
+                  <ShieldCheck className="w-5 h-5 text-green-600 shrink-0 mt-0.5" />
+                  <div>
+                    <p className="text-sm font-bold text-green-800">100% Satisfaction Guarantee</p>
+                    <p className="text-xs text-green-700/80">If you're not happy with the design, we'll redesign it for free. 7-day easy returns after delivery.</p>
+                  </div>
+                </div>
+
+                <Button
+                  type="submit"
+                  disabled={isSubmitting}
+                  className="w-full h-16 sm:h-20 bg-primary hover:bg-primary/95 text-primary-foreground text-lg sm:text-xl font-bold rounded-2xl shadow-luxury-glow transition-luxury group"
+                >
+                  {isSubmitting ? (
+                    <Loader2 className="animate-spin" />
+                  ) : (
+                    <>
+                      <Send className="mr-3 group-hover:translate-x-1 group-hover:-translate-y-1 transition-luxury" size={24} />
+                      Deploy Order via WhatsApp
+                    </>
+                  )}
+                </Button>
+                <p className="text-center text-[10px] text-muted-foreground uppercase tracking-widest font-bold">
+                  ⚡ Secure Transaction • No Hidden Fees • Real-time Support
+                </p>
+              </div>
             </form>
           </div>
 

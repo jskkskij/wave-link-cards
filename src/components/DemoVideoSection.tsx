@@ -72,14 +72,16 @@ const DemoVideoSection = () => {
                 ) : (
                   /* Lightweight placeholder until IO fires */
                   <div
-                    className="absolute top-0 left-0 w-full h-full rounded-lg bg-muted/30 flex items-center justify-center"
+                    className="absolute top-0 left-0 w-full h-full rounded-lg bg-slate-900 flex flex-col items-center justify-center p-8 text-center"
                     aria-label="Video loading…"
                   >
-                    <div className="w-20 h-20 bg-primary/20 backdrop-blur-sm rounded-full flex items-center justify-center border-2 border-primary/50">
-                      <svg className="w-10 h-10 text-primary ml-1" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                    <div className="w-24 h-24 bg-primary/20 backdrop-blur-md rounded-full flex items-center justify-center border-2 border-primary/50 shadow-luxury-glow mb-6 animate-pulse">
+                      <svg className="w-12 h-12 text-primary ml-1" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                         <path d="M8 5v14l11-7z" />
                       </svg>
                     </div>
+                    <p className="text-white font-bold text-lg tracking-tight">Watch the Tap in Action</p>
+                    <p className="text-slate-400 text-sm mt-2">Zero friction. Instant connection.</p>
                   </div>
                 )}
               </div>

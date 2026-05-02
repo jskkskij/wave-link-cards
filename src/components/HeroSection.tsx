@@ -73,21 +73,23 @@ const HeroSection = ({ lang = "en" }: HeroSectionProps) => {
               )}
             </h1>
 
-            {/* Subheading - Refined & Clear */}
+            {/* Subheading - High Clarity & Outcome Focused */}
             <p className="text-sm md:text-lg lg:text-2xl text-slate-300 max-w-2xl mx-auto leading-tight animate-fade-in opacity-0 font-medium tracking-tight mt-4 text-balance" style={{ animationDelay: '0.4s' }}>
-              We are building the AI Trust Infrastructure with NFC Business cards and Review stands for feedbacks.
+              {lang === "en" 
+                ? "Deploy your professional presence with elite NFC Business Cards and Review Stands. Build instant trust with a single tap."
+                : "এলিট এনএফসি বিজনেস কার্ড এবং রিভিউ স্ট্যান্ডের মাধ্যমে আপনার পেশাদার পরিচিতি গড়ে তুলুন। এক ট্যাপেই তৈরি করুন তাৎক্ষণিক বিশ্বাস।"}
             </p>
           </div>
 
           {/* Minimalist CTA Cluster */}
           <div className="animate-fade-in opacity-0 flex flex-col items-center gap-12" style={{ animationDelay: '0.6s' }}>
             <Button
-              onClick={scrollToProducts}
+              onClick={() => document.getElementById('pricing')?.scrollIntoView({ behavior: 'smooth' })}
               size="lg"
               className="bg-primary hover:bg-primary/95 text-primary-foreground font-bold px-10 md:px-12 py-7 md:py-8 rounded-full text-lg md:text-xl shadow-luxury-intense transition-all active:scale-95 sm:w-auto w-full border border-white/10 glass-morphism-blue"
-              aria-label={t.hero.cta}
+              aria-label={lang === "en" ? "Get Your Card Now" : "আপনার কার্ড সংগ্রহ করুন"}
             >
-              BEGIN JOURNEY
+              {lang === "en" ? "GET YOUR CARD NOW" : "আপনার কার্ড সংগ্রহ করুন"}
             </Button>
 
             {/* Micro-interaction Scroll Indicator */}

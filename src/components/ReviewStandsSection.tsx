@@ -211,7 +211,8 @@ const ReviewStandsSection = () => {
                                             <div className="space-y-4">
                                                 <div className="flex items-center justify-between">
                                                     <label className="text-sm font-bold text-foreground/80 tracking-wide uppercase text-[11px]">Choose Material</label>
-                                                                                                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                                                </div>
+                                                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                                                     <button
                                                         onClick={() => setMaterial("white")}
                                                         aria-label="Select White Material"
@@ -222,7 +223,8 @@ const ReviewStandsSection = () => {
                                                             {material === "white" && <div className="w-2.5 h-2.5 rounded-full bg-primary animate-scale-in" aria-hidden="true"></div>}
                                                         </div>
                                                         <span className={`font-serif font-bold text-xl block ${material === "white" ? "text-primary" : "text-gray-600"}`}>White</span>
-                                                        <span className="text-sm text-muted-foreground font-medium">Minimalist & Clean</span>
+                                                        <span className="text-xs text-muted-foreground font-medium block">Standard L-Stand Size: 4" x 6"</span>
+                                                        <span className="text-[10px] text-muted-foreground mt-1 block">Minimalist & Clean</span>
                                                         <div className={`absolute inset-0 border-2 border-primary rounded-2xl opacity-0 transition-opacity duration-300 ${material === "white" ? "opacity-100" : "group-hover:opacity-10"}`}></div>
                                                     </button>
                                                     <button
@@ -235,11 +237,11 @@ const ReviewStandsSection = () => {
                                                             {material === "black" && <div className="w-2.5 h-2.5 rounded-full bg-primary animate-scale-in" aria-hidden="true"></div>}
                                                         </div>
                                                         <span className={`font-serif font-bold text-xl block ${material === "black" ? "text-white" : "text-gray-600"}`}>Black</span>
-                                                        <span className={`text-sm font-medium ${material === "black" ? "text-gray-400" : "text-muted-foreground"}`}>Bold & Professional</span>
+                                                        <span className={`text-xs font-medium block ${material === "black" ? "text-gray-400" : "text-muted-foreground"}`}>Standard L-Stand Size: 4" x 6"</span>
+                                                        <span className={`text-[10px] mt-1 block ${material === "black" ? "text-gray-500" : "text-muted-foreground"}`}>Bold & Professional</span>
                                                         <div className={`absolute inset-0 border-2 border-primary rounded-2xl opacity-0 transition-opacity duration-300 ${material === "black" ? "opacity-100" : "group-hover:opacity-10"}`}></div>
                                                     </button>
                                                 </div>
-</div>
                                             </div>
 
                                             {/* Price Display */}

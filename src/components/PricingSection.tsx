@@ -104,8 +104,15 @@ const PricingSection = () => {
                       <Info className="w-3 h-3" aria-hidden="true" />
                       {currentPricing.tax}
                     </p>
+                    <p className="text-xs font-bold text-green-600 flex items-center gap-1">
+                      <Zap className="w-3 h-3 fill-green-600" aria-hidden="true" />
+                      {currentPricing.shipping === "Free" ? "FREE Express Shipping" : `Shipping: ${currentPricing.symbol}${currentPricing.shipping}`}
+                    </p>
                   </div>
-                  <p className="text-xs text-muted-foreground mt-4">One-time payment • No hidden fees</p>
+                  <p className="text-xs text-muted-foreground mt-4 font-bold flex items-center justify-center gap-1">
+                    <ShieldCheck className="w-3 h-3 text-green-600" />
+                    100% Money-Back Guarantee • No Hidden Fees
+                  </p>
                 </div>
               </div>
 
