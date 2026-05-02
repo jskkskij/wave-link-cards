@@ -2,7 +2,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Building2, Award, Users, Target, Globe, Shield, FileText } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useNavigate } from "react-router-dom";
-import companyProfilePdf from "@/assets/WavelinkCompanyProfile.pdf";
+
 
 const CompanyProfile = () => {
   const navigate = useNavigate();
@@ -166,7 +166,7 @@ const CompanyProfile = () => {
                   className="bg-gradient-primary text-primary-foreground hover:opacity-90 rounded-full px-8 shadow-luxury transition-all duration-300 hover:scale-105"
                 >
                   <a
-                    href={companyProfilePdf}
+                    href="/WavelinkCompanyProfile.pdf"
                     download="Wavelink_Company_Profile.pdf"
                   >
                     Download PDF
