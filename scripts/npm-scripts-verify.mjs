@@ -53,6 +53,17 @@ emit({
 });
 // #endregion
 
+if (phase === "ci") {
+  if (!ok) {
+    console.error(
+      `[ci] scripts.build must use scripts/with-vite.mjs (Debian/Ubuntu /usr/bin/vite is a different program). Got: ${JSON.stringify(build)}`
+    );
+    process.exit(1);
+  }
+  console.log(`[ci] scripts.build OK: ${build}`);
+  process.exit(0);
+}
+
 if (!ok) {
   console.warn(
     `\n[wavelink-cards] (${phase}) package.json scripts.build does NOT use scripts/with-vite.mjs:\n`,
