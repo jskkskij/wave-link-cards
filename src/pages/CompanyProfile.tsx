@@ -166,7 +166,7 @@ const CompanyProfile = () => {
                   className="bg-gradient-primary text-primary-foreground hover:opacity-90 rounded-full px-8 shadow-luxury transition-all duration-300 hover:scale-105"
                 >
                   <a
-                    href="/WavelinkCompanyProfile.pdf"
+                    href="/assets/WavelinkCompanyProfile.pdf"
                     download="Wavelink_Company_Profile.pdf"
                   >
                     Download PDF

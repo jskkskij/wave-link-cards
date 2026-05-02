@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Link, useNavigate, useLocation } from "react-router-dom";
 const wavelinkLogo = "/assets/wavelink-logo-new.png";
-import companyProfilePdf from "@/assets/WavelinkCompanyProfile.pdf";
+const companyProfilePdf = "/assets/WavelinkCompanyProfile.pdf";
 import { Menu, X, ShoppingBag, FileDown } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { motion, AnimatePresence } from "framer-motion";
