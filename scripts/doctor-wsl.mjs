@@ -1,17 +1,26 @@
 /**
  * One-shot check: proves this checkout's package.json + git tip (WSL vs stale terminal).
+ * Uses repo root from this file's path (not process.cwd), so it works if npm changes cwd.
  */
 import { readFileSync } from "fs";
 import { execSync } from "child_process";
+import path from "path";
+import { fileURLToPath } from "url";
+
+const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 
 try {
-  const sha = execSync("git rev-parse --short HEAD", { encoding: "utf8" }).trim();
+  const sha = execSync("git rev-parse --short HEAD", {
+    encoding: "utf8",
+    cwd: root,
+  }).trim();
   console.log("git HEAD (short):", sha);
+  console.log("repo root:", root);
 } catch {
   console.log("git HEAD: unavailable (not a git checkout?)");
 }
 
-const p = JSON.parse(readFileSync("./package.json", "utf8"));
+const p = JSON.parse(readFileSync(path.join(root, "package.json"), "utf8"));
 const build = p.scripts?.build;
 console.log("scripts.build:", build);
 
