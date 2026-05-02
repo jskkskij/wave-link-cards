@@ -10,7 +10,8 @@
     "build": "node scripts/with-vite.mjs build",
     "build:dev": "node scripts/with-vite.mjs build --mode development",
     "lint": "eslint .",
-    "preview": "node scripts/with-vite.mjs preview"
+    "preview": "node scripts/with-vite.mjs preview",
+    "doctor:wsl": "node scripts/doctor-wsl.mjs"
   },
   "dependencies": {
     "@hookform/resolvers": "^3.10.0",
