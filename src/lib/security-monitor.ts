@@ -45,13 +45,21 @@ export function logSecurityEvent(
         console.log(`[SECURITY ${severity.toUpperCase()}] ${type}:`, details);
     }
 
-    // Send critical events to backend
     if (severity === 'critical') {
-        fetch('https://kavopwutcyqxdoplmvqg.supabase.co/functions/v1/csp-report', {
+        const base = import.meta.env.VITE_SUPABASE_URL as string | undefined;
+        const anon = import.meta.env.VITE_SUPABASE_PUBLISHABLE_KEY as string | undefined;
+        if (!base?.trim() || !anon?.trim()) return;
+        const endpoint = `${base.replace(/\/$/, '')}/functions/v1/csp-report`;
+
+        fetch(endpoint, {
             method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify(event)
-        }).catch(err => console.error('Failed to send security alert:', err));
+            headers: {
+                'Content-Type': 'application/json',
+                Authorization: `Bearer ${anon}`,
+                apikey: anon,
+            },
+            body: JSON.stringify(event),
+        }).catch(() => {});
     }
 }
 

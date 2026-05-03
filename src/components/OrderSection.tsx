@@ -3,7 +3,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
-import { MessageCircle, Send, Loader2, CheckCircle2, Upload, X, AlertCircle } from "lucide-react";
+import { MessageCircle, Send, Loader2, CheckCircle2, Upload, X, AlertCircle, ShieldCheck } from "lucide-react";
 import { toast } from "sonner";
 import { CONFIG } from "@/lib/config";
 import { useRateLimit } from "@/hooks/use-rate-limit";

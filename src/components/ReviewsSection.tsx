@@ -87,11 +87,11 @@ const ReviewsSection = () => {
                       >
                         {/* High Quality Thumbnail */}
                         <img
-                          src={`https://img.youtube.com/vi/${videoId}/maxresdefault.jpg`}
+                          src={`https://img.youtube.com/vi/${videoId}/hqdefault.jpg`}
                           onError={(e) => {
                             const target = e.target as HTMLImageElement;
-                            if (!target.src.includes('hqdefault')) {
-                              target.src = `https://img.youtube.com/vi/${videoId}/hqdefault.jpg`;
+                            if (!target.src.includes('mqdefault')) {
+                              target.src = `https://img.youtube.com/vi/${videoId}/mqdefault.jpg`;
                             }
                           }}
                           alt={`Video thumbnail for ${review.customerName}`}
