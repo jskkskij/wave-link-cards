@@ -8,9 +8,14 @@ on:
     branches:
       - main
 
+concurrency:
+  group: pages-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
 jobs:
   deploy:
     runs-on: ubuntu-latest
+    timeout-minutes: 20
     permissions:
       contents: read
       deployments: write
@@ -31,6 +36,8 @@ jobs:
         run: node scripts/npm-scripts-verify.mjs ci
 
       - name: Build project
+        env:
+          VITE_THANK_YOU_URL_KEY: ${{ secrets.VITE_THANK_YOU_URL_KEY }}
         run: npm run build
 
       - name: Debug Wrangler environment
@@ -45,3 +52,4 @@ jobs:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
           command: pages deploy ./dist --project-name=wave-link-cards --branch=main --commit-hash=${{ github.sha }}
+          gitHubToken: ${{ secrets.GITHUB_TOKEN }}
