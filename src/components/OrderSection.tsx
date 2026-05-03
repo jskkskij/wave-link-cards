@@ -3,7 +3,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
-import { MessageCircle, Send, Loader2, CheckCircle2, Upload, X, AlertCircle, ShieldCheck } from "lucide-react";
+import { MessageCircle, Send, Loader2, CheckCircle2, Upload, X } from "lucide-react";
 import { toast } from "sonner";
 import { CONFIG } from "@/lib/config";
 import { useRateLimit } from "@/hooks/use-rate-limit";
@@ -13,6 +13,28 @@ import { OrderFormSchema, validateFormData } from "@/lib/validation";
 
 interface OrderSectionProps {
   lang?: "en" | "bn";
+}
+
+/** Shield + check mark (inline SVG). Avoids lucide `ShieldCheck` being dropped from split chunks in production. */
+function GuaranteeShieldIcon(props: React.SVGProps<SVGSVGElement>) {
+  return (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width="24"
+      height="24"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      aria-hidden
+      {...props}
+    >
+      <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10" />
+      <path d="m9 12 2 2 4-4" />
+    </svg>
+  );
 }
 
 const OrderSection = ({ lang = "en" }: OrderSectionProps) => {
@@ -314,7 +336,7 @@ const OrderSection = ({ lang = "en" }: OrderSectionProps) => {
 
               <div className="space-y-4">
                 <div className="bg-green-50 border border-green-200 rounded-xl p-4 flex gap-3">
-                  <ShieldCheck className="w-5 h-5 text-green-600 shrink-0 mt-0.5" />
+                  <GuaranteeShieldIcon className="w-5 h-5 text-green-600 shrink-0 mt-0.5" />
                   <div>
                     <p className="text-sm font-bold text-green-800">100% Satisfaction Guarantee</p>
                     <p className="text-xs text-green-700/80">If you're not happy with the design, we'll redesign it for free. 7-day easy returns after delivery.</p>
