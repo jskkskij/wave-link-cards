@@ -42,7 +42,9 @@ export default defineConfig(({ mode }) => ({
       output: {
         manualChunks(id) {
           if (id.includes('framer-motion')) return 'vendor-motion';
-          if (id.includes('lucide-react')) return 'vendor-lucide';
+          // Do not split lucide-react into its own chunk: Rollup + terser can drop a
+          // lucide binding from the chunk import while JSX still references the raw
+          // name (e.g. ReferenceError: ShieldCheck is not defined in OrderSection).
           if (id.includes('@radix-ui')) return 'vendor-ui';
           if (id.includes('node_modules')) return 'vendor';
         },
