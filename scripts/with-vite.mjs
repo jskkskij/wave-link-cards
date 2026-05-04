@@ -1,5 +1,5 @@
 /**
- * Launcher: avoids Debian/Ubuntu /usr/bin/vite (Qt); always runs npm's Vite CLI.
+ * Launcher: avoids Debian/Ubuntu /usr/bin/vite (Qt); always runs the Vite CLI from node_modules.
  */
 import { existsSync } from "fs";
 import { spawn } from "child_process";
@@ -11,7 +11,7 @@ const viteBin = path.join(root, "node_modules", "vite", "bin", "vite.js");
 
 if (!existsSync(viteBin)) {
   console.error(
-    `[with-vite] Missing ${viteBin}. Run npm install in this directory (not only on Windows).`
+    `[with-vite] Missing ${viteBin}. Run yarn install in this directory (not only on Windows).`
   );
   process.exit(1);
 }

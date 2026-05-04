@@ -74,8 +74,8 @@ Wavelink adheres to the "Gold Standard" of international data privacy laws:
 ### Local Setup
 1. Clone the repository.
 2. Create a `.env` file based on the provided configuration.
-3. Run `npm install`.
-4. Run `npm run dev`.
+3. Run `corepack enable` once (ships with Node 20+), then `yarn install`.
+4. Run `yarn dev`.
 
 ### Production Audit
 For security audits, please review:

@@ -1,6 +1,6 @@
 /**
  * One-shot check: proves this checkout's package.json + git tip (WSL vs stale terminal).
- * Uses repo root from this file's path (not process.cwd), so it works if npm changes cwd.
+ * Uses repo root from this file's path (not process.cwd), so it works if the package manager changes cwd.
  */
 import { readFileSync } from "fs";
 import { execSync } from "child_process";
@@ -26,7 +26,7 @@ console.log("scripts.build:", build);
 
 if (typeof build !== "string" || !build.includes("with-vite.mjs")) {
   console.error(
-    "\nFix: git pull the latest main (expect f38e0b3 / 88f2d95 or newer), then npm ci.\n",
+    "\nFix: git pull the latest main (expect f38e0b3 / 88f2d95 or newer), then yarn install.\n",
     "Stale checkouts still use bare `vite build` and trigger Debian /usr/bin/vite (Qt crash).\n"
   );
   process.exit(1);

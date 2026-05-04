@@ -13,26 +13,42 @@ concurrency:
   group: pages-${{ github.workflow }}-${{ github.ref }}
   cancel-in-progress: true
 
+# PRs and pushes always run `build_and_verify` first. Cloudflare deploy runs only in
+# `deploy_production`, which needs a fully green build job (no deploy on partial success).
+# Optional: in GitHub → Settings → Environments → production, add a wait timer for soak
+# before deploy (pairs with `environment` below if you uncomment it).
+
 jobs:
-  deploy:
+  build_and_verify:
+    name: Install, verify, and build
     runs-on: ubuntu-latest
-    timeout-minutes: 20
+    timeout-minutes: 25
     permissions:
       contents: read
-      deployments: write
-    # PRs still run build + verify; production deploy only on pushes to main (see step if:).
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
+
+      - name: Enable Corepack (Yarn from package.json packageManager)
+        run: corepack enable
 
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
           node-version: "20"
-          cache: "npm"
+          cache: "yarn"
 
-      - name: Install dependencies
-        run: npm ci
+      - name: Install dependencies (retry on transient registry/network errors)
+        run: |
+          set -e
+          for attempt in 1 2 3; do
+            if yarn install --immutable; then
+              exit 0
+            fi
+            echo "yarn install attempt ${attempt} failed; retrying in 20s..."
+            sleep 20
+          done
+          exit 1
 
       - name: Verify build uses JS Vite (not Debian /usr/bin/vite)
         run: node scripts/npm-scripts-verify.mjs ci
@@ -40,16 +56,43 @@ jobs:
       - name: Build project
         env:
           VITE_THANK_YOU_URL_KEY: ${{ secrets.VITE_THANK_YOU_URL_KEY }}
-        run: npm run build
+        run: yarn build
 
       - name: Debug Wrangler environment
         run: |
           echo "Node version: $(node --version)"
-          echo "NPM version: $(npm --version)"
-          npx --yes wrangler --version
+          echo "Yarn version: $(yarn --version)"
+          yarn dlx wrangler@4 --version
+
+      - name: Upload production bundle
+        uses: actions/upload-artifact@v4
+        with:
+          name: dist
+          path: dist
+          retention-days: 7
+
+  deploy_production:
+    name: Deploy to Cloudflare (main only)
+    needs: build_and_verify
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    if: github.ref == 'refs/heads/main' && (github.event_name == 'push' || github.event_name == 'workflow_dispatch')
+    permissions:
+      contents: read
+      deployments: write
+    # Uncomment to require Environment rules (e.g. wait timer) before wrangler runs:
+    # environment: production
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Download production bundle
+        uses: actions/download-artifact@v4
+        with:
+          name: dist
+          path: dist
 
       - name: Deploy to Cloudflare Pages
-        if: github.ref == 'refs/heads/main' && (github.event_name == 'push' || github.event_name == 'workflow_dispatch')
         uses: cloudflare/wrangler-action@v3
         with:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
