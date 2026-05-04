@@ -26,7 +26,7 @@ console.log("scripts.build:", build);
 
 if (typeof build !== "string" || !build.includes("with-vite.mjs")) {
   console.error(
-    "\nFix: git pull the latest main (expect f38e0b3 / 88f2d95 or newer), then yarn install.\n",
+    "\nFix: git pull the latest main (expect f38e0b3 / 88f2d95 or newer), then npm ci.\n",
     "Stale checkouts still use bare `vite build` and trigger Debian /usr/bin/vite (Qt crash).\n"
   );
   process.exit(1);

@@ -36,7 +36,7 @@ if (!ok) {
     `\n[wavelink-cards] (${phase}) package.json scripts.build does NOT use scripts/with-vite.mjs:\n`,
     `  got: ${JSON.stringify(build)}\n`,
     `  WSL/Ubuntu may run Debian /usr/bin/vite (Qt) and crash with Core.cpp / "Opening the file: build".\n`,
-    `  Fix: sync this repo (git pull / save package.json), then yarn install.\n`
+    `  Fix: sync this repo (git pull / save package.json), then npm install.\n`
   );
 } else if (phase === "prebuild") {
   console.log(`[prebuild] using launcher: ${build}`);

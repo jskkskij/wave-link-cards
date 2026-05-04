@@ -74,8 +74,8 @@ Wavelink adheres to the "Gold Standard" of international data privacy laws:
 ### Local Setup
 1. Clone the repository.
 2. Create a `.env` file based on the provided configuration.
-3. Use **Node.js 22 or newer** (Wrangler 4 and this repo expect it). Run `corepack enable` once, then `yarn install`.
-4. Run `yarn dev`.
+3. Run `npm install`.
+4. Run `npm run dev`.
 
 ### Production Audit
 For security audits, please review:

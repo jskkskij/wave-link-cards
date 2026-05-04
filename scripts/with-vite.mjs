@@ -11,7 +11,7 @@ const viteBin = path.join(root, "node_modules", "vite", "bin", "vite.js");
 
 if (!existsSync(viteBin)) {
   console.error(
-    `[with-vite] Missing ${viteBin}. Run yarn install in this directory (not only on Windows).`
+    `[with-vite] Missing ${viteBin}. Run npm install in this directory (not only on Windows).`
   );
   process.exit(1);
 }
