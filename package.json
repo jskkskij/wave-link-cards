@@ -4,6 +4,9 @@
   "version": "0.0.0",
   "packageManager": "yarn@4.9.1",
   "type": "module",
+  "engines": {
+    "node": ">=22.0.0"
+  },
   "scripts": {
     "postinstall": "node scripts/npm-scripts-verify.mjs postinstall",
     "prebuild": "node scripts/npm-scripts-verify.mjs prebuild",
