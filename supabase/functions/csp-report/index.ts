@@ -1,74 +1,102 @@
-import { serve } from "https://deno.land/std@0.168.0/http/server.ts"
-import { createClient } from "https://esm.sh/@supabase/supabase-js@2.7.1"
+import { serve } from "https://deno.land/std@0.168.0/http/server.ts";
+import { createClient } from "https://esm.sh/@supabase/supabase-js@2.7.1";
 
 const corsHeaders: Record<string, string> = {
-    'Access-Control-Allow-Origin': '*',
-    'Access-Control-Allow-Methods': 'POST, OPTIONS',
-    'Access-Control-Allow-Headers': 'authorization, x-client-info, apikey, content-type',
-    'Access-Control-Max-Age': '86400',
+  "Access-Control-Allow-Origin": "*",
+  "Access-Control-Allow-Methods": "POST, OPTIONS",
+  "Access-Control-Allow-Headers":
+    "authorization, x-client-info, apikey, content-type, baggage, sentry-trace",
+  "Access-Control-Max-Age": "86400",
+};
+
+function jsonResponse(body: unknown, status = 200) {
+  return new Response(JSON.stringify(body), {
+    status,
+    headers: { ...corsHeaders, "Content-Type": "application/json" },
+  });
 }
 
 serve(async (req) => {
-    if (req.method === 'OPTIONS') {
-        return new Response(null, { status: 204, headers: corsHeaders })
+  if (req.method === "OPTIONS") {
+    return new Response(null, { status: 204, headers: corsHeaders });
+  }
+
+  if (req.method !== "POST") {
+    return jsonResponse({ error: "Method not allowed" });
+  }
+
+  try {
+    const supabaseUrl = Deno.env.get("SUPABASE_URL");
+    const supabaseKey = Deno.env.get("SUPABASE_SERVICE_ROLE_KEY");
+
+    if (!supabaseUrl || !supabaseKey) {
+      console.warn("Missing Supabase environment variables for CSP reporting");
+      return jsonResponse({ message: "Received but not logged (missing DB config)" });
     }
 
+    const supabase = createClient(supabaseUrl, supabaseKey);
+
+    let raw: Record<string, unknown> | null = null;
     try {
-        // Initialize Supabase client
-        const supabaseUrl = Deno.env.get('SUPABASE_URL')
-        const supabaseKey = Deno.env.get('SUPABASE_SERVICE_ROLE_KEY')
-
-        // If env vars are missing, still return 200 so the browser stops retrying the report
-        if (!supabaseUrl || !supabaseKey) {
-            console.warn('Missing Supabase environment variables for CSP reporting')
-            return new Response(JSON.stringify({ message: "Received but not logged (missing DB config)" }), {
-                headers: { ...corsHeaders, 'Content-Type': 'application/json' },
-                status: 200,
-            })
-        }
-
-        const supabase = createClient(supabaseUrl, supabaseKey)
-
-        // Parse the body. Browsers send CSP reports as 'application/csp-report' or 'application/json'
-        let payload = null;
-        try {
-            payload = await req.json();
-            // Unnest the standard CSP report structure if present
-            if (payload && payload['csp-report']) {
-                payload = payload['csp-report'];
-            }
-        } catch (e) {
-            console.error("Failed to parse request body:", e);
-            throw new Error("Invalid JSON payload");
-        }
-
-        // Store the report in the database (assuming a 'security_logs' table exists)
-        // If the table doesn't exist, it will just fail gracefully and log to the edge function console.
-        const { error } = await supabase
-            .from('security_logs')
-            .insert({
-                event_type: 'CSP_VIOLATION',
-                severity: 'warning',
-                details: payload,
-                user_agent: req.headers.get('user-agent') || 'Unknown',
-                url: payload.documentUri || payload['document-uri'] || 'Unknown'
-            });
-
-        if (error) {
-            console.error('Error inserting log:', error);
-        }
-
-        // Always return 200 OK so the browser knows the report was received
-        return new Response(JSON.stringify({ message: "Report processed successfully" }), {
-            headers: { ...corsHeaders, 'Content-Type': 'application/json' },
-            status: 200,
-        })
-    } catch (error) {
-        console.error("Unhandled Error processing CSP report:", error.message)
-        // Returning 200 even on error prevents browser retries and noise
-        return new Response(JSON.stringify({ error: error.message }), {
-            headers: { ...corsHeaders, 'Content-Type': 'application/json' },
-            status: 200,
-        })
+      raw = (await req.json()) as Record<string, unknown>;
+    } catch (e) {
+      console.error("Failed to parse request body:", e);
+      return jsonResponse({ error: "Invalid JSON payload" });
     }
-})
+
+    // Browser report-uri / Reporting API shape
+    let details: Record<string, unknown> = raw;
+    let eventType = "CSP_VIOLATION";
+    let severity: string = "warning";
+    let url = "Unknown";
+
+    if (raw && typeof raw["csp-report"] === "object" && raw["csp-report"] !== null) {
+      details = raw["csp-report"] as Record<string, unknown>;
+    } else if (raw && typeof raw.type === "string") {
+      // Client SecurityEvent from security-monitor.ts
+      eventType = String(raw.type);
+      severity = typeof raw.severity === "string" ? raw.severity : "info";
+      details = {
+        ...(typeof raw.details === "object" && raw.details !== null
+          ? (raw.details as Record<string, unknown>)
+          : {}),
+        clientTimestamp: raw.timestamp,
+        clientUrl: raw.url,
+        clientUserAgent: raw.userAgent,
+      };
+      url =
+        typeof raw.url === "string"
+          ? raw.url
+          : typeof details.documentUri === "string"
+            ? (details.documentUri as string)
+            : "Unknown";
+    } else {
+      url =
+        (typeof details["document-uri"] === "string"
+          ? (details["document-uri"] as string)
+          : null) ||
+        (typeof details.documentUri === "string"
+          ? (details.documentUri as string)
+          : null) ||
+        "Unknown";
+    }
+
+    const { error } = await supabase.from("security_logs").insert({
+      event_type: eventType,
+      severity,
+      details,
+      user_agent: req.headers.get("user-agent") || "Unknown",
+      url,
+    });
+
+    if (error) {
+      console.error("Error inserting log:", error);
+    }
+
+    return jsonResponse({ message: "Report processed successfully" });
+  } catch (error) {
+    const message = error instanceof Error ? error.message : String(error);
+    console.error("Unhandled error processing CSP report:", message);
+    return jsonResponse({ error: message });
+  }
+});

@@ -12,6 +12,33 @@ interface SecurityEvent {
     url: string;
 }
 
+let lastCspViolationEdgePost = 0;
+const CSP_VIOLATION_EDGE_MIN_MS = 12_000;
+
+function getSupabaseEdgeReporting(): { base: string; anon: string } | null {
+    const base = (import.meta.env.VITE_SUPABASE_URL as string | undefined)?.trim();
+    const anon = (import.meta.env.VITE_SUPABASE_PUBLISHABLE_KEY as string | undefined)?.trim();
+    if (!base || !anon) return null;
+    return { base: base.replace(/\/$/, ''), anon };
+}
+
+/** POST to Edge function (requires functions/csp-report with verify_jwt=false). */
+function postSecurityEventToEdge(event: SecurityEvent): void {
+    const creds = getSupabaseEdgeReporting();
+    if (!creds) return;
+    const endpoint = `${creds.base}/functions/v1/csp-report`;
+    void fetch(endpoint, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+            Authorization: `Bearer ${creds.anon}`,
+            apikey: creds.anon,
+        },
+        body: JSON.stringify(event),
+        keepalive: true,
+    }).catch(() => {});
+}
+
 /**
  * Log security events for audit trail
  */
@@ -46,20 +73,13 @@ export function logSecurityEvent(
     }
 
     if (severity === 'critical') {
-        const base = import.meta.env.VITE_SUPABASE_URL as string | undefined;
-        const anon = import.meta.env.VITE_SUPABASE_PUBLISHABLE_KEY as string | undefined;
-        if (!base?.trim() || !anon?.trim()) return;
-        const endpoint = `${base.replace(/\/$/, '')}/functions/v1/csp-report`;
-
-        fetch(endpoint, {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-                Authorization: `Bearer ${anon}`,
-                apikey: anon,
-            },
-            body: JSON.stringify(event),
-        }).catch(() => {});
+        postSecurityEventToEdge(event);
+    } else if (type === 'CSP_VIOLATION') {
+        const now = Date.now();
+        if (now - lastCspViolationEdgePost >= CSP_VIOLATION_EDGE_MIN_MS) {
+            lastCspViolationEdgePost = now;
+            postSecurityEventToEdge(event);
+        }
     }
 }
 

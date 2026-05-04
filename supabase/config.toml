@@ -1,1 +1,6 @@
 project_id = "kavopwutcyqxdoplmvqg"
+
+# Browser CSP report-uri cannot send a Supabase JWT; the API gateway rejects that traffic.
+# Client code posts violations with the anon key instead. Keep JWT verification off here.
+[functions.csp-report]
+verify_jwt = false
