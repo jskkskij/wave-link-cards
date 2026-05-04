@@ -29,15 +29,15 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Enable Corepack (Yarn from package.json packageManager)
-        run: corepack enable
-
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
           # Wrangler 4 requires Node.js >= 22
           node-version: "22"
           cache: "yarn"
+
+      - name: Enable Corepack (Yarn from package.json packageManager)
+        run: corepack enable
 
       - name: Install dependencies (retry on transient registry/network errors)
         run: |
@@ -87,15 +87,16 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      # wrangler-action installs Wrangler with `yarn add` when yarn.lock exists; the
-      # runner ships Yarn 1.x unless Corepack activates Yarn from packageManager.
-      - name: Enable Corepack (Yarn 4 from package.json)
-        run: corepack enable
-
       - name: Setup Node.js (Wrangler 4 requires Node.js >= 22)
         uses: actions/setup-node@v4
         with:
           node-version: "22"
+
+      # wrangler-action installs Wrangler with `yarn add` when yarn.lock exists; the
+      # runner ships Yarn 1.x unless Corepack activates Yarn from packageManager.
+      # Run after setup-node so Corepack binds to this Node (not the image default).
+      - name: Enable Corepack (Yarn 4 from package.json)
+        run: corepack enable
 
       - name: Download production bundle
         uses: actions/download-artifact@v4
