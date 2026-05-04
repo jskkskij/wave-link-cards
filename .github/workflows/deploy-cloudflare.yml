@@ -92,21 +92,20 @@ jobs:
         with:
           node-version: "22"
 
-      # wrangler-action installs Wrangler with `yarn add` when yarn.lock exists; the
-      # runner ships Yarn 1.x unless Corepack activates Yarn from packageManager.
-      # Run after setup-node so Corepack binds to this Node (not the image default).
-      - name: Enable Corepack (Yarn 4 from package.json)
-        run: corepack enable
-
       - name: Download production bundle
         uses: actions/download-artifact@v4
         with:
           name: dist
           path: dist
 
+      # wrangler-action auto-picks yarn when yarn.lock exists and then runs the
+      # runner's /usr/local/bin/yarn (Yarn 1), which conflicts with packageManager
+      # yarn@4 in package.json. npm here only installs/runs Wrangler; the app still
+      # builds with Yarn in build_and_verify.
       - name: Deploy to Cloudflare Pages
         uses: cloudflare/wrangler-action@v3
         with:
+          packageManager: npm
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
           wranglerVersion: "4"
