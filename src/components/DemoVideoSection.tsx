@@ -35,6 +35,7 @@ const DemoVideoSection = () => {
     <section
       id="demo"
       ref={sectionRef}
+      aria-labelledby="demo-heading"
       className="py-20 bg-gradient-to-b from-background via-secondary/10 to-background relative overflow-hidden"
     >
       {/* Decorative background elements */}
@@ -44,19 +45,19 @@ const DemoVideoSection = () => {
       </div>
 
       <div className="container mx-auto px-4 relative z-10">
-        <div className="text-center mb-16 animate-fade-in">
-          <h2 className="text-4xl md:text-5xl font-bold text-foreground mb-4 font-serif">
+        <div className="text-center mb-12 md:mb-16 motion-safe:animate-fade-in">
+          <h2 id="demo-heading" className="text-3xl md:text-5xl font-bold text-foreground mb-4 font-serif">
             See Wavelink in Action
           </h2>
-          <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+          <p className="text-base md:text-lg text-foreground/80 max-w-2xl mx-auto">
             Watch how easy it is to share your digital business card
           </p>
         </div>
 
-        <div className="max-w-5xl mx-auto animate-fade-in-up">
+        <div className="max-w-5xl mx-auto motion-safe:animate-fade-in-up">
           <div className="relative group">
             {/* Glow layer */}
-            <div className="absolute -inset-1 bg-gradient-luxury rounded-2xl blur-xl opacity-30 group-hover:opacity-50 transition-opacity duration-500"></div>
+            <div className="absolute -inset-1 bg-gradient-luxury rounded-2xl blur-xl opacity-30 group-hover:opacity-50 transition-opacity duration-500" aria-hidden="true"></div>
 
             <div className="relative bg-background rounded-2xl overflow-hidden shadow-luxury border-2 border-primary/20 p-2">
               <div className="relative w-full" style={{ paddingBottom: "56.25%" }}>
@@ -72,16 +73,16 @@ const DemoVideoSection = () => {
                 ) : (
                   /* Lightweight placeholder until IO fires */
                   <div
-                    className="absolute top-0 left-0 w-full h-full rounded-lg bg-slate-900 flex flex-col items-center justify-center p-8 text-center"
+                    className="absolute top-0 left-0 w-full h-full rounded-lg bg-slate-900 flex flex-col items-center justify-center p-6 md:p-8 text-center"
                     aria-label="Video loading…"
                   >
-                    <div className="w-24 h-24 bg-primary/20 backdrop-blur-md rounded-full flex items-center justify-center border-2 border-primary/50 shadow-luxury-glow mb-6 animate-pulse">
+                    <div className="w-20 h-20 md:w-24 md:h-24 bg-primary/20 backdrop-blur-md rounded-full flex items-center justify-center border-2 border-primary/60 shadow-luxury-glow mb-6 motion-safe:animate-pulse">
                       <svg className="w-12 h-12 text-primary ml-1" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                         <path d="M8 5v14l11-7z" />
                       </svg>
                     </div>
-                    <p className="text-white font-bold text-lg tracking-tight">Watch the Tap in Action</p>
-                    <p className="text-slate-400 text-sm mt-2">Zero friction. Instant connection.</p>
+                    <p className="text-white font-bold text-base md:text-lg tracking-tight">Watch the Tap in Action</p>
+                    <p className="text-slate-200 text-sm mt-2">Zero friction. Instant connection.</p>
                   </div>
                 )}
               </div>
