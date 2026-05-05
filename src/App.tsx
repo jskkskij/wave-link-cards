@@ -27,6 +27,7 @@ const Investors = lazy(() => import("./pages/Investors"));
 const InvestorDeck = lazy(() => import("./pages/InvestorDeck"));
 const IntelligenceReport = lazy(() => import("./pages/IntelligenceReport"));
 const Shop = lazy(() => import("./pages/Shop"));
+const MobileIndex = lazy(() => import("./pages/MobileIndex"));
 const AnalyticsPage = lazy(() => import("@/components/AnalyticsDashboard").then(m => ({ default: m.AnalyticsDashboard })));
 
 const queryClient = new QueryClient();
@@ -59,6 +60,14 @@ const App = () => {
             </Suspense>
             <Routes>
               <Route path="/" element={<Index />} />
+              <Route
+                path="/m"
+                element={
+                  <Suspense fallback={<RouteLoader />}>
+                    <MobileIndex />
+                  </Suspense>
+                }
+              />
               <Route
                 path="/thank-you"
                 element={
