@@ -26,8 +26,8 @@ const Navbar = ({ lang = "en" }: NavbarProps) => {
 
   const navLinks = [
     { name: "About", href: "#about" },
-    { name: "Features", href: "#features" },
-    { name: "Methodology", href: "#funnel" },
+    { name: "Features", href: "#phase-2" },
+    { name: "Pricing", href: "#pricing" },
     { name: "FAQ", href: "#faq" },
     { name: "Affiliate", href: "#affiliate" },
     { name: "Investors", href: "/investor-deck", isRoute: true },

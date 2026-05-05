@@ -4,6 +4,13 @@ import { useEffect, useState } from "react";
 import { CONFIG } from "@/lib/config";
 
 const Footer = () => {
+  const infrastructureLinks = [
+    { name: "Home", href: "#hero" },
+    { name: "Features", href: "#phase-2" },
+    { name: "Pricing", href: "#pricing" },
+    { name: "FAQ", href: "#faq" },
+  ];
+
   const footerLinks = [
     { name: "Company Profile", path: "/company-profile", icon: Building2 },
     { name: "Privacy Policy", path: "/privacy-policy", icon: Shield },
@@ -68,10 +75,10 @@ const Footer = () => {
             <div className="space-y-8">
               <h4 className="text-[12px] font-bold uppercase tracking-[0.3em] text-foreground">Infrastructure</h4>
               <ul className="space-y-4 text-muted-foreground font-medium" role="list">
-                {['Home', 'Features', 'Methodology', 'FAQ'].map((item) => (
-                  <li key={item}>
-                    <a href={`#${item.toLowerCase()}`} className="hover:text-foreground transition-luxury">
-                      {item}
+                {infrastructureLinks.map((item) => (
+                  <li key={item.name}>
+                    <a href={item.href} className="hover:text-foreground transition-luxury">
+                      {item.name}
                     </a>
                   </li>
                 ))}
