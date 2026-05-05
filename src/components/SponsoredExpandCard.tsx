@@ -19,6 +19,12 @@ export const SponsoredExpandCard = ({
   placement,
   ruleVersion,
 }: SponsoredExpandCardProps) => {
+  const primaryMetaLine =
+    "চকরিয়ার বেয়াগগুনরে স্বাগতম! সেরা মানের ঔষধ ও নির্ভরযোগ্য স্বাস্থ্যসেবা।";
+  const trustMetaLine =
+    "চকরিয়ার স্বাস্থ্যসেবায় আস্থার এক অনন্য নাম মেসার্স এ. হোসাইন ফার্মেসী। ১৯৯৯ সাল থেকে আপনাদের সেবায় নিরবচ্ছিন্নভাবে নিয়োজিত আমরা।";
+  const englishFallback =
+    "Trusted pharmacy support in Chakaria since 1999, offering genuine medicines and dependable healthcare guidance.";
   const [state, setState] = useState<SponsoredState>("collapsed");
   const [expandedAt, setExpandedAt] = useState<number | null>(null);
   const hintTrackedRef = useRef(false);
@@ -31,8 +37,8 @@ export const SponsoredExpandCard = ({
     if (state === "hint" && !hintTrackedRef.current) {
       hintTrackedRef.current = true;
       trackSponsoredEvent("sponsored_hint", {
-        target: partner,
-        value: `${placement}|${ruleVersion}`,
+        target: "ahossainpharmacy_campaign",
+        value: `${partner}|${sourceId}|${placement}|${ruleVersion}|hint`,
       });
     }
 
@@ -40,8 +46,8 @@ export const SponsoredExpandCard = ({
       expandTrackedRef.current = true;
       setExpandedAt(Date.now());
       trackSponsoredEvent("sponsored_expand", {
-        target: partner,
-        value: `${sourceId}|${placement}|${ruleVersion}`,
+        target: "ahossainpharmacy_campaign",
+        value: `${partner}|${sourceId}|${placement}|${ruleVersion}|expanded`,
       });
     }
   }, [partner, placement, ruleVersion, sourceId, state]);
@@ -51,18 +57,18 @@ export const SponsoredExpandCard = ({
     markSponsoredDismissal();
     setState("dismissed");
     trackSponsoredEvent("sponsored_dismiss", {
-      target: partner,
+      target: "ahossainpharmacy_campaign",
       duration: dwell,
-      value: `${sourceId}|${placement}|${ruleVersion}`,
+      value: `${partner}|${sourceId}|${placement}|${ruleVersion}|dismissed`,
     });
   };
 
   const onCtaClick = () => {
     const dwell = expandedAt ? Date.now() - expandedAt : 0;
     trackSponsoredEvent("sponsored_cta_click", {
-      target: "Enable Auto-Routing",
+      target: "visit_ahossainpharmacy",
       duration: dwell,
-      value: `${partner}|${sourceId}|${placement}|${ruleVersion}`,
+      value: `${partner}|${sourceId}|${placement}|${ruleVersion}|cta`,
     });
   };
 
@@ -81,10 +87,10 @@ export const SponsoredExpandCard = ({
               Sponsored
             </span>
             <h4 className="mt-3 font-semibold text-foreground">
-              Transit to EU Markets
+              ২৫+ বছর ধরে আপনাদের বিশ্বস্ত মেসার্স এ. হোসাইন ফার্মেসী
             </h4>
             <p className="mt-2 text-sm text-muted-foreground leading-relaxed">
-              Data-guided route support for customs-heavy lanes with a verified logistics partner.
+              {primaryMetaLine}
             </p>
           </div>
           <Sparkles size={18} className="text-accent shrink-0 mt-1" aria-hidden="true" />
@@ -101,7 +107,10 @@ export const SponsoredExpandCard = ({
               Powered by {partner}
             </div>
             <p className="text-sm text-muted-foreground">
-              Save up to 14% on EU-DPP customs clearing and reduce route friction.
+              {trustMetaLine}
+            </p>
+            <p className="text-xs text-muted-foreground/80">
+              {englishFallback}
             </p>
             <div className="flex items-center gap-3">
               <button
@@ -110,7 +119,7 @@ export const SponsoredExpandCard = ({
                 className="inline-flex items-center justify-center rounded-md bg-primary text-primary-foreground px-4 py-2 text-sm font-semibold"
                 onClick={onCtaClick}
               >
-                Enable Auto-Routing
+                ফার্মেসী ভিজিট করুন / Visit AHossain Pharmacy
               </button>
               <button
                 type="button"
@@ -137,7 +146,7 @@ export const SponsoredExpandCard = ({
                 })
               }
             >
-              {isExpanded ? "Hide partner details" : "See partner route savings"}
+              {isExpanded ? "তথ্য লুকান / Hide details" : "বিশ্বস্ত স্বাস্থ্যসেবা দেখুন / View trusted care"}
             </button>
           </div>
         )}
