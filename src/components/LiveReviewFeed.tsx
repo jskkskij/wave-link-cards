@@ -116,8 +116,8 @@ const LiveReviewFeed = () => {
                             return (
                                 <div key={item.id} role="listitem">
                                     <SponsoredExpandCard
-                                        partner="SkyLogistics AI"
-                                        sourceId="EU-TEX-8849"
+                                        partner="মেসার্স এ. হোসাইন ফার্মেসী"
+                                        sourceId="AHP-CHK-1999"
                                         placement={sponsoredDecision.placement}
                                         ruleVersion={sponsoredDecision.ruleVersion}
                                     />
