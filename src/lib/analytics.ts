@@ -1,3 +1,5 @@
+import { initPerformanceClarity } from "@/lib/performance-clarity";
+
 /**
  * analytics.ts — Wavelink Behavioral Analytics Engine
  * =====================================================
@@ -53,6 +55,7 @@ export type AnalyticsEventType =
   | 'sponsored_expand'
   | 'sponsored_dismiss'
   | 'sponsored_cta_click'
+  | 'perf_metric'
   | 'form_start'
   | 'form_abandon'
   | 'time_on_section'
@@ -490,6 +493,12 @@ export function initAnalytics(): void {
     setupFormTracking();
     setupSectionTimer();
     setupExitIntent();
+    initPerformanceClarity((metricName, metricValue) => {
+      trackEvent('perf_metric', {
+        target: metricName,
+        duration: metricValue,
+      });
+    });
   }, { timeout: 3000 });
 
   // Apply hot section highlights for returning visitors
