@@ -168,7 +168,7 @@ const Index = () => {
         setShowAd(true);
         observer.disconnect();
       }
-    }, { rootMargin: '400px' });
+    }, { rootMargin: '200px' });
 
     if (adTriggerRef.current) observer.observe(adTriggerRef.current);
     return () => observer.disconnect();
@@ -248,9 +248,6 @@ const Index = () => {
         </div>
       </nav>
 
-      {/* Invisible trigger for AdSense */}
-      <div ref={adTriggerRef} className="h-1 absolute top-[2000px] pointer-events-none" aria-hidden="true" />
-
       <main className="w-full">
         <HeroSection lang={lang} />
 
@@ -295,6 +292,7 @@ const Index = () => {
           </section>
 
           {/* PHASE 3: THE LEAP */}
+          <div ref={adTriggerRef} className="h-1 pointer-events-none" aria-hidden="true" />
           <section id="phase-3" data-section="phase-3" className="relative group/section overflow-hidden">
             {/* Powerful Final Exit Glow */}
             <div className="absolute inset-0 pointer-events-none z-0">
