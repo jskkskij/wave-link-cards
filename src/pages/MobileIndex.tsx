@@ -10,6 +10,9 @@ const MobileIndex = () => {
   }, []);
 
   const t = useMemo(() => translations[lang] || translations.en, [lang]);
+  const mobileOrderTitle =
+    (t as { order?: { title?: string } }).order?.title ||
+    (lang === "en" ? "Order your Wavelink card" : "আপনার ওয়েভলিংক কার্ড অর্ডার করুন");
 
   return (
     <div className="min-h-screen bg-background text-foreground overflow-x-hidden">
@@ -71,7 +74,7 @@ const MobileIndex = () => {
         </section>
 
         <section id="order" className="px-4 py-10 sm:px-6" aria-label="Mobile quick path">
-          <h2 className="text-2xl font-bold tracking-tight">{t.order.title}</h2>
+          <h2 className="text-2xl font-bold tracking-tight">{mobileOrderTitle}</h2>
           <p className="mt-2 text-muted-foreground">
             {lang === "en"
               ? "Tap below to complete your order on the main checkout flow."
