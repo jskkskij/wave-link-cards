@@ -13,7 +13,7 @@ const MobileIndex = () => {
 
   return (
     <div className="min-h-screen bg-background text-foreground overflow-x-hidden">
-      <header className="sticky top-0 z-20 border-b bg-background/90 backdrop-blur">
+      <header className="sticky top-0 z-20 border-b bg-background">
         <div className="mx-auto flex h-14 max-w-5xl items-center justify-between px-4 sm:px-6">
           <a href="/" className="font-semibold tracking-tight">
             Wavelink
@@ -30,7 +30,7 @@ const MobileIndex = () => {
 
       <main className="mx-auto max-w-5xl">
         <section className="px-4 pb-10 pt-8 sm:px-6">
-          <p className="text-xs font-semibold uppercase tracking-[0.2em] text-primary/80">
+          <p className="text-xs font-semibold uppercase tracking-[0.2em] text-primary">
             {lang === "en" ? "Mobile Experience" : "মোবাইল এক্সপেরিয়েন্স"}
           </p>
           <h1 className="mt-3 text-3xl font-bold leading-tight tracking-tight sm:text-4xl">
@@ -43,16 +43,16 @@ const MobileIndex = () => {
               ? "Built for speed on mobile: quick loading, focused content, and fast path to order your NFC card."
               : "মোবাইলে দ্রুত লোডিং, ফোকাসড কনটেন্ট এবং এনএফসি কার্ড অর্ডারের দ্রুত পথ।"}
           </p>
-          <div className="mt-6 flex flex-wrap gap-3">
+          <div className="mt-6 flex flex-wrap gap-2">
             <a
               href="#order"
-              className="inline-flex rounded-full bg-primary px-6 py-3 text-sm font-semibold text-primary-foreground"
+              className="inline-flex rounded-full bg-primary px-5 py-3 text-sm font-semibold text-primary-foreground"
             >
               {lang === "en" ? "Get your card" : "কার্ড নিন"}
             </a>
             <a
               href="/?view=desktop"
-              className="inline-flex rounded-full border px-6 py-3 text-sm font-semibold"
+              className="inline-flex rounded-full border px-5 py-3 text-sm font-semibold"
             >
               {lang === "en" ? "See full desktop site" : "পূর্ণ ডেস্কটপ সাইট দেখুন"}
             </a>
