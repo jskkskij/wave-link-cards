@@ -46,17 +46,19 @@ const App = () => {
 
   // Initialize security monitoring + behavioral analytics on app startup
   useEffect(() => {
+    if (isMobileRoute) return;
     initSecurityMonitoring();
     // Defer analytics slightly to not block LCP
-    setTimeout(() => initAnalytics(), 1000);
-  }, []);
+    const analyticsTimer = setTimeout(() => initAnalytics(), 1000);
+    return () => clearTimeout(analyticsTimer);
+  }, [isMobileRoute]);
 
   return (
     <HelmetProvider>
       <QueryClientProvider client={queryClient}>
         <TooltipProvider>
-          <Toaster />
-          <Sonner />
+          {!isMobileRoute && <Toaster />}
+          {!isMobileRoute && <Sonner />}
           <BrowserRouter>
             <Suspense fallback={null}>
               <Schema />
