@@ -12,7 +12,7 @@ export const CONFIG = {
   SUPPORT_PHONE_E164: waDigits ? `+${waDigits}` : "+8801410809023",
   SITE_CANONICAL_ORIGIN: "https://getwaved.ai",
   SITE_CANONICAL_URL: "https://getwaved.ai/",
-  OG_IMAGE_URL: "https://getwaved.ai/assets/og-card.png",
+  OG_IMAGE_URL: "https://getwaved.ai/assets/og-card.webp",
   SUPPORT_EMAIL: import.meta.env.VITE_SUPPORT_EMAIL || "official@getwaved.ai",
   TURNSTILE_SITE_KEY: import.meta.env.VITE_TURNSTILE_SITE_KEY || "",
   LEAD_SCRIPT_URL: import.meta.env.VITE_LEAD_SCRIPT_URL || "",

@@ -27,7 +27,7 @@ export default defineConfig(({ mode }) => ({
       "@": path.resolve(__dirname, "./src"),
     },
   },
-  assetsInclude: ["**/*.png", "**/*.jpg", "**/*.jpeg", "**/*.gif", "**/*.svg", "**/*.webp"],
+  assetsInclude: ["**/*.jpg", "**/*.jpeg", "**/*.gif", "**/*.svg", "**/*.webp"],
   build: {
     assetsDir: "assets",
     minify: "terser",
@@ -52,7 +52,7 @@ export default defineConfig(({ mode }) => ({
           const name = assetInfo.name || '';
           const info = name.split(".");
           const ext = info[info.length - 1];
-          if (/png|jpe?g|svg|gif|tiff|bmp|ico|webp/i.test(ext)) {
+          if (/jpe?g|svg|gif|tiff|bmp|ico|webp/i.test(ext)) {
             return `assets/images/[name]-[hash][extname]`;
           }
           return `assets/[name]-[hash][extname]`;

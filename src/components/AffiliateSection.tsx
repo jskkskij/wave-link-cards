@@ -2,7 +2,7 @@ import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { DollarSign, Users, TrendingUp, Mail } from "lucide-react";
 import { motion } from "framer-motion";
-import affiliateImage from "@/assets/affiliate-program.png";
+import affiliateImage from "@/assets/affiliate-program.webp";
 import { CONFIG } from "@/lib/config";
 
 const AffiliateSection = () => {

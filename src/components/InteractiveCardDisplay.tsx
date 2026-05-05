@@ -1,5 +1,5 @@
 import { useState, useRef } from "react";
-import productImage from "@/assets/wavelink-cards.png";
+import productImage from "@/assets/wavelink-cards.webp";
 import { Sparkles, Move3d } from "lucide-react";
 import { motion, AnimatePresence, useMotionValue, useTransform, useSpring } from "framer-motion";
 import { Language } from "@/lib/translations";
