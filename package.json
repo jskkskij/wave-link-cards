@@ -11,7 +11,8 @@
     "build:dev": "node scripts/with-vite.mjs build --mode development",
     "lint": "eslint .",
     "preview": "node scripts/with-vite.mjs preview",
-    "doctor:wsl": "node scripts/doctor-wsl.mjs"
+    "doctor:wsl": "node scripts/doctor-wsl.mjs",
+    "perf:budget": "node scripts/perf-budget-check.mjs"
   },
   "dependencies": {
     "@hookform/resolvers": "^3.10.0",

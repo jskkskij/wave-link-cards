@@ -1,0 +1,7 @@
+[
+  { "target": "first-contentful-paint", "duration": 1200 },
+  { "target": "largest-contentful-paint", "duration": 2100 },
+  { "target": "layout-shift", "duration": 40 },
+  { "target": "event", "duration": 80 },
+  { "target": "longtask", "duration": 120 }
+]
