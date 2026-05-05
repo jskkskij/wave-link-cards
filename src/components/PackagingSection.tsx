@@ -141,23 +141,6 @@ const PackagingSection = ({ lang = "en" }: PackagingSectionProps) => {
                 </div>
               ))}
             </motion.div>
-
-            {/* CTA Button */}
-            <motion.div variants={itemVariants}>
-              <button className="group relative px-10 py-5 bg-navy text-white font-bold rounded-2xl shadow-luxury-glow hover:shadow-luxury transition-all duration-500 overflow-hidden">
-                <span className="relative z-10 flex items-center gap-3 text-lg">
-                  {content.cta}
-                  <motion.span
-                    animate={{ x: [0, 8, 0] }}
-                    transition={{ duration: 1.5, repeat: Infinity }}
-                  >
-                    →
-                  </motion.span>
-                </span>
-                <div className="absolute inset-0 bg-gradient-to-r from-blue/20 to-accent/20 translate-y-[100%] group-hover:translate-y-0 transition-transform duration-500" />
-                <div className="absolute inset-0 bg-navy -z-10" />
-              </button>
-            </motion.div>
           </div>
         </motion.div>
       </div>

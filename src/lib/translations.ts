@@ -47,7 +47,6 @@ export const translations = {
         packaging: {
             title: "Thoughtful Packaging",
             desc: "Because we care about you for the long haul, every box is crafted from 90% post-consumer recycled fiber and 10% biodegradable bio-plastic. It’s designed to protect your order, protect the planet, and even transform into a handy storage organizer after you’ve unboxed.",
-            cta: "Trace Journey",
         },
         order: {
             title: "Order your Wavelink card",
@@ -99,7 +98,6 @@ export const translations = {
         packaging: {
             title: "সতর্ক প্যাকেজিং",
             desc: "আমরা আপনার দীর্ঘমেয়াদী ভালোর কথা ভাবি, তাই প্রতিটি বক্স ৯০% পুনর্ব্যবহৃত ফাইবার এবং ১০% বায়ো-প্লাস্টিক দিয়ে তৈরি। এটি আপনার অর্ডার এবং পৃথিবী উভয়কেই সুরক্ষিত রাখে, এমনকি আনবক্সিংয়ের পর এটি স্টোরেজ অর্গানাইজার হিসেবেও ব্যবহার করা যায়।",
-            cta: "বিস্তারিত দেখুন",
         },
         order: {
             title: "আপনার ওয়েভলিংক কার্ড অর্ডার করুন",
