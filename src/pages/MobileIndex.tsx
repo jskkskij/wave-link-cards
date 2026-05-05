@@ -19,7 +19,7 @@ const MobileIndex = () => {
             Wavelink
           </a>
           <a
-            href="/"
+            href="/?view=desktop"
             className="inline-flex rounded-full border px-3 py-1 text-xs font-semibold"
             aria-label={lang === "en" ? "View desktop site" : "ডেস্কটপ সাইট দেখুন"}
           >
@@ -51,7 +51,7 @@ const MobileIndex = () => {
               {lang === "en" ? "Get your card" : "কার্ড নিন"}
             </a>
             <a
-              href="/"
+              href="/?view=desktop"
               className="inline-flex rounded-full border px-6 py-3 text-sm font-semibold"
             >
               {lang === "en" ? "See full desktop site" : "পূর্ণ ডেস্কটপ সাইট দেখুন"}
