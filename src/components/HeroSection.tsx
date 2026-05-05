@@ -1,6 +1,6 @@
 import { Button } from "@/components/ui/button";
-import newLogo from "@/assets/wavelink-logo-new.png";
-const heroBg = "/assets/hero-bg.jpg";
+import newLogo from "@/assets/wavelink-logo-new.webp";
+const heroBg = "/assets/hero-bg.webp";
 import { ArrowDown, Star } from "lucide-react";
 import { useEffect, useRef } from "react";
 import { createPaperToDigitalReveal } from "@/lib/animations";

@@ -88,7 +88,7 @@ const PackagingSection = ({ lang = "en" }: PackagingSectionProps) => {
               className="relative z-10 w-[80%] h-[80%] rounded-[2.5rem] overflow-hidden shadow-luxury-glow border border-white/10 group"
             >
               <img 
-                src="/assets/packaging.png" 
+                src="/assets/packaging.webp"
                 alt="Wavelink Sustainable Packaging" 
                 className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
               />

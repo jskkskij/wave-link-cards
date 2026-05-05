@@ -10,9 +10,9 @@ import {
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { ArrowRight, Star, Zap } from "lucide-react";
-import stand1 from "@/assets/review-stands/stand-1.jpg";
-import stand2 from "@/assets/review-stands/stand-2.jpg";
-import stand3 from "@/assets/review-stands/stand-3.jpg";
+import stand1 from "@/assets/review-stands/stand-1.webp";
+import stand2 from "@/assets/review-stands/stand-2.webp";
+import stand3 from "@/assets/review-stands/stand-3.webp";
 import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
 
 const ReviewStandsSection = () => {

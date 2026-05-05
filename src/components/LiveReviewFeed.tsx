@@ -1,6 +1,6 @@
 import { ReviewCard } from "./ReviewCard";
 import { Star, QrCode } from "lucide-react";
-import googleQr from "@/assets/google-review-qr.png";
+import googleQr from "@/assets/google-review-qr.webp";
 import { SponsoredExpandCard } from "./SponsoredExpandCard";
 import {
     getSponsoredPlacementDecision,
