@@ -13,7 +13,7 @@ const IntelligenceReport = () => {
       "@context": "https://schema.org",
       "@type": "TechArticle",
       "headline": "Drop 01: Asset Sovereignty & The Circular Economy (2026-2036)",
-      "image": "https://getwaved.ai/assets/wavelink-logo-new.png",
+      "image": "https://getwaved.ai/assets/wavelink-logo-new.webp",
       "author": {
         "@type": "Person",
         "name": "Mohammad Abir Abbas",
@@ -24,7 +24,7 @@ const IntelligenceReport = () => {
         "name": "Wavelink",
         "logo": {
           "@type": "ImageObject",
-          "url": "https://getwaved.ai/assets/wavelink-logo-new.png"
+          "url": "https://getwaved.ai/assets/wavelink-logo-new.webp"
         }
       },
       "datePublished": "2026-03-26",
@@ -98,7 +98,7 @@ const IntelligenceReport = () => {
       <nav className="nav-iq">
         <div className="nav-iq-inner">
           <Link to="/" className="nav-iq-logo">
-            <img src="/assets/wavelink-logo-new.png" alt="Wavelink Logo" style={{ height: "24px" }} />
+            <img src="/assets/wavelink-logo-new.webp" alt="Wavelink Logo" style={{ height: "24px" }} />
             <span className="nav-iq-tag">INTELLIGENCE</span>
           </Link>
           <div className="nav-iq-links">
@@ -269,7 +269,7 @@ const IntelligenceReport = () => {
             <a href="https://getwaved.ai/shop" className="btn-p">Get Started →</a>
           </div>
           <div className="footer-brand">
-            <img className="footer-logo" src="/assets/wavelink-logo-new.png" alt="Wavelink" />
+            <img className="footer-logo" src="/assets/wavelink-logo-new.webp" alt="Wavelink" />
             <div className="footer-tag">Asset Sovereignty &nbsp;·&nbsp; Bangladesh 🇧🇩 &nbsp;·&nbsp; Dubai 🇦🇪</div>
           </div>
         </div>
