@@ -49,6 +49,10 @@ export type AnalyticsEventType =
   | 'scroll_depth'
   | 'click'
   | 'cta_click'
+  | 'sponsored_hint'
+  | 'sponsored_expand'
+  | 'sponsored_dismiss'
+  | 'sponsored_cta_click'
   | 'form_start'
   | 'form_abandon'
   | 'time_on_section'
@@ -108,6 +112,19 @@ export function trackEvent(type: AnalyticsEventType, payload: Partial<AnalyticsE
     ...payload,
   });
   saveEvents(events);
+}
+
+export type SponsoredEventType =
+  | 'sponsored_hint'
+  | 'sponsored_expand'
+  | 'sponsored_dismiss'
+  | 'sponsored_cta_click';
+
+export function trackSponsoredEvent(
+  type: SponsoredEventType,
+  payload: Partial<AnalyticsEvent> = {},
+): void {
+  trackEvent(type, payload);
 }
 
 // ─── SCROLL DEPTH ─────────────────────────────────────────────────────────────

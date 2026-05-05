@@ -1,6 +1,13 @@
 import { ReviewCard } from "./ReviewCard";
 import { Star, QrCode } from "lucide-react";
 import googleQr from "@/assets/google-review-qr.png";
+import { SponsoredExpandCard } from "./SponsoredExpandCard";
+import {
+    getSponsoredPlacementDecision,
+    markSponsoredImpression,
+    readSponsoredSessionState,
+} from "@/lib/sponsored-orchestrator";
+import { useEffect, useMemo } from "react";
 
 const reviews = [
     {
@@ -36,6 +43,35 @@ const reviews = [
 ];
 
 const LiveReviewFeed = () => {
+    const sponsoredDecision = useMemo(
+        () => getSponsoredPlacementDecision(readSponsoredSessionState()),
+        [],
+    );
+
+    useEffect(() => {
+        if (sponsoredDecision.shouldInsert) {
+            markSponsoredImpression();
+        }
+    }, [sponsoredDecision.shouldInsert]);
+
+    const feedItems = useMemo(() => {
+        if (!sponsoredDecision.shouldInsert) {
+            return reviews.map((review) => ({ type: "review" as const, id: review.id, review }));
+        }
+
+        const items = reviews.map((review) => ({ type: "review" as const, id: review.id, review }));
+        const insertIndex = Math.min(
+            sponsoredDecision.insertAfterIndex + 1,
+            items.length,
+        );
+        items.splice(insertIndex, 0, {
+            type: "sponsored" as const,
+            id: `sponsored-${sponsoredDecision.placement}`,
+            review: null,
+        });
+        return items;
+    }, [sponsoredDecision.insertAfterIndex, sponsoredDecision.placement, sponsoredDecision.shouldInsert]);
+
     return (
         <section className="py-20 bg-background relative overflow-hidden">
             {/* Contextual Vibe Glows */}
@@ -75,11 +111,26 @@ const LiveReviewFeed = () => {
                 </div>
 
                 <div className="grid md:grid-cols-3 gap-8" role="list" aria-label="Customer Reviews">
-                    {reviews.map((review, idx) => (
-                        <div key={review.id} role="listitem">
-                            <ReviewCard review={review} index={idx} />
-                        </div>
-                    ))}
+                    {feedItems.map((item, idx) => {
+                        if (item.type === "sponsored") {
+                            return (
+                                <div key={item.id} role="listitem">
+                                    <SponsoredExpandCard
+                                        partner="SkyLogistics AI"
+                                        sourceId="EU-TEX-8849"
+                                        placement={sponsoredDecision.placement}
+                                        ruleVersion={sponsoredDecision.ruleVersion}
+                                    />
+                                </div>
+                            );
+                        }
+
+                        return (
+                            <div key={item.id} role="listitem">
+                                <ReviewCard review={item.review} index={idx} />
+                            </div>
+                        );
+                    })}
                 </div>
 
                 {/* Trust & QR Code Section */}
