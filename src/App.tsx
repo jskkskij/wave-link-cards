@@ -41,6 +41,9 @@ const RouteLoader = () => (
 );
 
 const App = () => {
+  const isMobileRoute =
+    typeof window !== "undefined" && window.location.pathname.startsWith("/m");
+
   // Initialize security monitoring + behavioral analytics on app startup
   useEffect(() => {
     initSecurityMonitoring();
@@ -139,15 +142,18 @@ const App = () => {
               {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
               <Route path="*" element={<NotFound />} />
             </Routes>
-            <Suspense fallback={null}>
-              <UnifiedConsent />
-              <SpecialOfferPopup />
-            </Suspense>
-            {/* Global persistent UI — analytics dashboard (Shift+Alt+D) + feature pulse */}
-            <Suspense fallback={null}>
-              <AnalyticsDashboard />
-              <FeaturePulse />
-            </Suspense>
+            {!isMobileRoute && (
+              <Suspense fallback={null}>
+                <UnifiedConsent />
+                <SpecialOfferPopup />
+              </Suspense>
+            )}
+            {!isMobileRoute && (
+              <Suspense fallback={null}>
+                <AnalyticsDashboard />
+                <FeaturePulse />
+              </Suspense>
+            )}
           </BrowserRouter>
         </TooltipProvider>
       </QueryClientProvider>
