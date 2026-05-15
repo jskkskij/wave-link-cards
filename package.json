@@ -5,7 +5,12 @@
   "type": "module",
   "scripts": {
     "postinstall": "node scripts/npm-scripts-verify.mjs postinstall",
-    "prebuild": "node scripts/npm-scripts-verify.mjs prebuild",
+    "prebuild": "node scripts/npm-scripts-verify.mjs prebuild && node scripts/generate-sitemap.mjs && node scripts/verify-sitemap-complete.mjs",
+    "seo:generate-sitemap": "node scripts/generate-sitemap.mjs",
+    "seo:verify-sitemap": "node scripts/verify-sitemap-complete.mjs",
+    "seo:check-sitemap-drift": "node scripts/check-sitemap-drift.mjs",
+    "seo:fetch-sitemap-urls": "node scripts/fetch-sitemap-urls.mjs",
+    "seo:suggest-internal-links": "node scripts/suggest-internal-links.mjs",
     "dev": "node scripts/with-vite.mjs",
     "build": "node scripts/with-vite.mjs build",
     "build:dev": "node scripts/with-vite.mjs build --mode development",

@@ -1,0 +1,80 @@
+{
+  "pages": [
+    {
+      "path": "/",
+      "title": "Wavelink — NFC networking & review infrastructure",
+      "pillarId": "pillar_nfc_cards",
+      "sourceFile": "src/pages/Index.tsx",
+      "entities": ["NFC", "digital business card", "Google reviews"],
+      "allowOrphanInbound": false
+    },
+    {
+      "path": "/shop",
+      "title": "Shop — Wavelink NFC cards",
+      "pillarId": "pillar_nfc_cards",
+      "sourceFile": "src/pages/Shop.tsx",
+      "entities": ["NFC", "ordering"],
+      "allowOrphanInbound": false
+    },
+    {
+      "path": "/m",
+      "title": "Wavelink mobile landing",
+      "pillarId": "pillar_nfc_cards",
+      "sourceFile": "src/pages/MobileIndex.tsx",
+      "entities": ["mobile", "QR handoff"],
+      "allowOrphanInbound": true,
+      "notes": "Utility entry; QR/handoff surface—few sitewide links expected."
+    },
+    {
+      "path": "/company-profile",
+      "title": "Company profile",
+      "pillarId": "pillar_geo_gcc",
+      "sourceFile": "src/pages/CompanyProfile.tsx",
+      "entities": ["Wavelink Ltd", "credentials"],
+      "allowOrphanInbound": false
+    },
+    {
+      "path": "/investor-deck",
+      "title": "Investor deck",
+      "pillarId": "pillar_investor",
+      "sourceFile": "src/pages/InvestorDeck.tsx",
+      "entities": ["fundraising", "traction"],
+      "allowOrphanInbound": false
+    },
+    {
+      "path": "/drops/bangladesh-2035",
+      "title": "Intelligence — Bangladesh trust thesis",
+      "pillarId": "pillar_trust_infra",
+      "sourceFile": "src/pages/IntelligenceReport.tsx",
+      "entities": ["trust layer", "Bangladesh market"],
+      "allowOrphanInbound": false
+    },
+    {
+      "path": "/privacy-policy",
+      "title": "Privacy policy",
+      "pillarId": "pillar_trust_infra",
+      "sourceFile": "src/pages/PrivacyPolicy.tsx",
+      "entities": ["privacy"],
+      "allowOrphanInbound": true,
+      "notes": "Governance; footer links satisfy baseline discovery."
+    },
+    {
+      "path": "/terms-of-service",
+      "title": "Terms of service",
+      "pillarId": "pillar_trust_infra",
+      "sourceFile": "src/pages/TermsOfService.tsx",
+      "entities": ["terms"],
+      "allowOrphanInbound": true,
+      "notes": "Governance; footer links satisfy baseline discovery."
+    },
+    {
+      "path": "/dpa",
+      "title": "Data processing agreement",
+      "pillarId": "pillar_trust_infra",
+      "sourceFile": "src/pages/DataProcessingAgreement.tsx",
+      "entities": ["DPA", "GDPR-adjacent wording"],
+      "allowOrphanInbound": true,
+      "notes": "Governance; footer links satisfy baseline discovery."
+    }
+  ]
+}

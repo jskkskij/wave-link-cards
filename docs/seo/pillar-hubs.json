@@ -1,0 +1,56 @@
+{
+  "moneyPages": [
+    { "path": "/", "notes": "Primary conversion hub; anchors #order and #review-stands." },
+    { "path": "/shop", "notes": "Commercial NFC / ordering surface." }
+  ],
+  "conversionAnchors": ["#order", "#review-stands"],
+  "pillars": [
+    {
+      "id": "pillar_nfc_cards",
+      "label": "NFC digital business cards",
+      "hubPaths": ["/shop"],
+      "moneyTargets": ["/shop", "/", "#order"],
+      "satelliteExamples": ["/m", "/company-profile"]
+    },
+    {
+      "id": "pillar_review_stand",
+      "label": "Google review stand / reputation hardware",
+      "hubPaths": ["/"],
+      "moneyTargets": ["/", "#review-stands", "/shop"],
+      "satelliteExamples": ["/company-profile"]
+    },
+    {
+      "id": "pillar_trust_infra",
+      "label": "Trust infrastructure / sovereign trust narrative",
+      "hubPaths": ["/drops/bangladesh-2035"],
+      "moneyTargets": ["/investor-deck", "/drops/bangladesh-2035"],
+      "satelliteExamples": ["/company-profile", "/privacy-policy"]
+    },
+    {
+      "id": "pillar_geo_bd",
+      "label": "Bangladesh growth engine",
+      "hubPaths": ["/drops/bangladesh-2035"],
+      "moneyTargets": ["/", "/drops/bangladesh-2035", "#order"],
+      "satelliteExamples": ["/shop", "/company-profile"]
+    },
+    {
+      "id": "pillar_geo_gcc",
+      "label": "GCC expansion / premium SMB",
+      "hubPaths": ["/company-profile"],
+      "moneyTargets": ["/investor-deck", "/company-profile", "/shop"],
+      "satelliteExamples": ["/drops/bangladesh-2035"]
+    },
+    {
+      "id": "pillar_investor",
+      "label": "Investor narrative",
+      "hubPaths": ["/investor-deck"],
+      "moneyTargets": ["/investor-deck", "/company-profile"],
+      "satelliteExamples": ["/drops/bangladesh-2035"]
+    }
+  ],
+  "linkingRules": {
+    "satellite": "Each satellite content URL must link upward to its pillar, sideways to 2–4 related satellites, and downward to a money target (/shop, /, or #order).",
+    "pillar": "Pillar hubs link only to money pages plus their strongest satellites—avoid diluting authority with excessive sitewide links.",
+    "canonicalOrigin": "Use CONFIG.SITE_CANONICAL_ORIGIN (https://getwaved.ai) for absolute URLs in structured data; prefer React Router <Link> for internal navigation."
+  }
+}

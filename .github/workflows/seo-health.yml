@@ -1,0 +1,84 @@
+name: SEO health
+
+# Staggered UTC times (off-peak-ish, non-round minutes) — avoids identical clock-aligned pings every week.
+# Scheduled runs also apply a random sleep before hitting production (see jitter step). Manual runs skip jitter.
+on:
+  schedule:
+    - cron: "41 2 * * 1" # Monday ~02:41 UTC
+    - cron: "27 3 * * 4" # Thursday ~03:27 UTC
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  sitemap_and_live_urls:
+    if: github.event_name == 'workflow_dispatch' || github.event.schedule == '41 2 * * 1'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout (full history for sitemap lastmod drift check)
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
+      - name: Verify sitemap matches generator output
+        run: node scripts/check-sitemap-drift.mjs
+
+      - name: Verify canonical routes present in sitemap.xml
+        run: node scripts/verify-sitemap-complete.mjs
+
+      # Random 2–17 min delay before outbound checks (scheduled only). Bills Actions minutes while sleeping.
+      - name: Random jitter before production fetch (scheduled only)
+        if: github.event_name == 'schedule'
+        run: |
+          SEC=$((120 + RANDOM % 901))
+          echo "Jitter: sleeping ${SEC}s before live URL checks"
+          sleep "$SEC"
+
+      - name: Fetch live URLs from production sitemap
+        env:
+          BASE_URL: https://getwaved.ai
+        run: node scripts/fetch-sitemap-urls.mjs
+
+      # Optional: Search Console API — add repo secrets then uncomment.
+      # - name: GSC smoke (optional)
+      #   env:
+      #     GSC_SITE_URL: https://getwaved.ai/
+      #     GSA_JSON: ${{ secrets.GSC_SERVICE_ACCOUNT_JSON }}
+      #   run: node scripts/gsc-placeholder.mjs
+
+  internal_link_orphans:
+    if: github.event_name == 'workflow_dispatch' || github.event.schedule == '27 3 * * 4'
+    runs-on: ubuntu-latest
+    env:
+      # Repository variable STRICT_INTERNAL_LINKS=1 fails job on unresolved orphans (optional).
+      STRICT_INTERNAL_LINKS: ${{ vars.STRICT_INTERNAL_LINKS }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
+      # Repo-only scan; short jitter only (keeps billed minutes low).
+      - name: Random micro-jitter (scheduled only)
+        if: github.event_name == 'schedule'
+        run: |
+          SEC=$((10 + RANDOM % 111))
+          echo "Micro-jitter: sleeping ${SEC}s"
+          sleep "$SEC"
+
+      - name: Internal link orphan report
+        run: |
+          if [ "$STRICT_INTERNAL_LINKS" = "1" ]; then
+            node scripts/suggest-internal-links.mjs --strict
+          else
+            node scripts/suggest-internal-links.mjs
+          fi

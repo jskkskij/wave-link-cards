@@ -1,0 +1,15 @@
+{
+  "origin": "https://getwaved.ai",
+  "routes": [
+    { "path": "/", "priority": "1.0", "changefreq": "weekly", "gitPath": "src/pages/Index.tsx" },
+    { "path": "/shop", "priority": "0.95", "changefreq": "weekly", "gitPath": "src/pages/Shop.tsx" },
+    { "path": "/m", "priority": "0.85", "changefreq": "weekly", "gitPath": "src/pages/MobileIndex.tsx" },
+    { "path": "/company-profile", "priority": "0.8", "changefreq": "monthly", "gitPath": "src/pages/CompanyProfile.tsx" },
+    { "path": "/investor-deck", "priority": "0.9", "changefreq": "monthly", "gitPath": "src/pages/InvestorDeck.tsx" },
+    { "path": "/drops/bangladesh-2035", "priority": "0.85", "changefreq": "monthly", "gitPath": "src/pages/IntelligenceReport.tsx" },
+    { "path": "/privacy-policy", "priority": "0.5", "changefreq": "yearly", "gitPath": "src/pages/PrivacyPolicy.tsx" },
+    { "path": "/terms-of-service", "priority": "0.5", "changefreq": "yearly", "gitPath": "src/pages/TermsOfService.tsx" },
+    { "path": "/dpa", "priority": "0.45", "changefreq": "yearly", "gitPath": "src/pages/DataProcessingAgreement.tsx" }
+  ],
+  "excludeFromSitemapNote": "/investors redirects to /investor-deck; /thank-you omitted as conversion thin-page."
+}

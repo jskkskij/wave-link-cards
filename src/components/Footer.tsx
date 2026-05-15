@@ -102,6 +102,11 @@ const Footer = () => {
               <h4 className="text-[12px] font-bold uppercase tracking-[0.3em] text-foreground">Ecosystem</h4>
               <ul className="space-y-4 text-muted-foreground font-medium" role="list">
                 <li>
+                  <Link to="/shop" className="hover:text-foreground transition-luxury">
+                    Shop NFC cards
+                  </Link>
+                </li>
+                <li>
                   <a href="https://aialchemist-ab1r.vercel.app" target="_blank" rel="noopener noreferrer" className="hover:text-foreground transition-luxury">
                     AI Alchemist
                   </a>

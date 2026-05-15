@@ -104,7 +104,7 @@ const IntelligenceReport = () => {
           <div className="nav-iq-links">
             <a href="#roi-simulator">ROI Simulator</a>
             <a href="#circular-engine">Circular Engine</a>
-            <a href="https://getwaved.ai/shop" className="btn-p" style={{ padding: "8px 18px", fontSize: "12px", boxShadow: "none" }}>Order Nodes</a>
+            <Link to="/shop" className="btn-p" style={{ padding: "8px 18px", fontSize: "12px", boxShadow: "none" }}>Order Nodes</Link>
           </div>
         </div>
       </nav>
@@ -266,7 +266,7 @@ const IntelligenceReport = () => {
           <h2>Secure your <strong>Asset Sovereignty</strong><br />in the Circular Economy</h2>
           <p>One tap. Zero friction. 100% compliant. Wavelink is the digital identity layer for the sustainable future.</p>
           <div className="hero-actions" style={{ justifyContent: "center" }}>
-            <a href="https://getwaved.ai/shop" className="btn-p">Get Started →</a>
+            <Link to="/shop" className="btn-p">Get Started →</Link>
           </div>
           <div className="footer-brand">
             <img className="footer-logo" src="/assets/wavelink-logo-new.webp" alt="Wavelink" />

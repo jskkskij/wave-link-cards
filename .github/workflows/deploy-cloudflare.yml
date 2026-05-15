@@ -24,6 +24,8 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
 
       - name: Setup Node.js
         uses: actions/setup-node@v4
@@ -33,6 +35,9 @@ jobs:
 
       - name: Install dependencies
         run: npm ci
+
+      - name: Verify committed sitemap matches generator (git lastmod)
+        run: node scripts/check-sitemap-drift.mjs
 
       - name: Verify build uses JS Vite (not Debian /usr/bin/vite)
         run: node scripts/npm-scripts-verify.mjs ci
