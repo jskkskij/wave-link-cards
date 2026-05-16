@@ -26,8 +26,9 @@ npm run verify:mobile-routing:live     # production redirect trace
 
 ## After deploying routing changes
 
-1. **Purge Cloudflare cache** for `getwaved.ai` (Caching → Configuration → Purge Everything), or the homepage may stay `cf-cache-status: HIT` and ignore `wl_view` cookies.
-2. Run `npm run verify:mobile-routing:live` — desktop `/m` should **302 → /**, cookie `/` + `wl_view=mobile` should **302 → /m**.
+If behavior looks old, **purge cache** once: Cloudflare → **Caching → Purge Everything**.
+
+Optional local check: `npm run verify:mobile-routing:live`
 
 ## Share links
 
