@@ -1,5 +1,6 @@
 import { Language, translations } from "@/lib/translations";
 import { useEffect, useMemo, useState } from "react";
+import { Link } from "react-router-dom";
 
 const MobileIndex = () => {
   const [lang, setLang] = useState<Language>("en");
@@ -15,9 +16,9 @@ const MobileIndex = () => {
     <div className="min-h-screen bg-background text-foreground overflow-x-hidden">
       <header className="sticky top-0 z-20 border-b bg-background">
         <div className="mx-auto flex h-14 max-w-5xl items-center justify-between px-4 sm:px-6">
-          <a href="/" className="font-semibold tracking-tight">
+          <Link to="/" className="font-semibold tracking-tight">
             Wavelink
-          </a>
+          </Link>
           <a
             href="/?view=desktop"
             className="inline-flex rounded-full border px-3 py-1 text-xs font-semibold"

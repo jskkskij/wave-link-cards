@@ -1,0 +1,89 @@
+[
+  {
+    "name": "iPhone home — no forced redirect (shared link safe)",
+    "pathname": "/",
+    "searchView": null,
+    "userAgent": "Mozilla/5.0 (iPhone; CPU iPhone OS 17_0 like Mac OS X)",
+    "cookieHeader": null,
+    "expect": "next"
+  },
+  {
+    "name": "Android home — no forced redirect",
+    "pathname": "/",
+    "searchView": null,
+    "userAgent": "Mozilla/5.0 (Linux; Android 14) Mobile",
+    "cookieHeader": null,
+    "expect": "next"
+  },
+  {
+    "name": "WhatsApp preview bot — no redirect",
+    "pathname": "/",
+    "searchView": null,
+    "userAgent": "WhatsApp/2.0",
+    "cookieHeader": null,
+    "expect": "next"
+  },
+  {
+    "name": "opt-in mobile cookie on home → /m",
+    "pathname": "/",
+    "searchView": null,
+    "userAgent": "Mozilla/5.0 (Windows NT 10.0)",
+    "cookieHeader": "wl_view=mobile",
+    "expect": "redirect",
+    "expectUrlSuffix": "/m"
+  },
+  {
+    "name": "?view=mobile on home → /m + cookie",
+    "pathname": "/",
+    "searchView": "mobile",
+    "userAgent": "Mozilla/5.0 (iPhone)",
+    "cookieHeader": null,
+    "expect": "redirect",
+    "expectUrlSuffix": "/m",
+    "expectCookie": "mobile"
+  },
+  {
+    "name": "?view=desktop on /m → / + cookie",
+    "pathname": "/m",
+    "searchView": "desktop",
+    "userAgent": "Mozilla/5.0 (iPhone)",
+    "cookieHeader": null,
+    "expect": "redirect",
+    "expectUrlSuffix": "/",
+    "expectCookie": "desktop"
+  },
+  {
+    "name": "desktop on /m without opt-in → /",
+    "pathname": "/m",
+    "searchView": null,
+    "userAgent": "Mozilla/5.0 (Windows NT 10.0)",
+    "cookieHeader": null,
+    "expect": "redirect",
+    "expectUrlSuffix": "/"
+  },
+  {
+    "name": "mobile on /m — stays",
+    "pathname": "/m",
+    "searchView": null,
+    "userAgent": "Mozilla/5.0 (iPhone)",
+    "cookieHeader": null,
+    "expect": "next"
+  },
+  {
+    "name": "opt-in desktop cookie on /m → /",
+    "pathname": "/m",
+    "searchView": null,
+    "userAgent": "Mozilla/5.0 (iPhone)",
+    "cookieHeader": "wl_view=desktop",
+    "expect": "redirect",
+    "expectUrlSuffix": "/"
+  },
+  {
+    "name": "deep route /shop — never touched",
+    "pathname": "/shop",
+    "searchView": null,
+    "userAgent": "Mozilla/5.0 (iPhone)",
+    "cookieHeader": null,
+    "expect": "next"
+  }
+]

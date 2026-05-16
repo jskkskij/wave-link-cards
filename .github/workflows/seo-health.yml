@@ -45,6 +45,11 @@ jobs:
           BASE_URL: https://getwaved.ai
         run: node scripts/fetch-sitemap-urls.mjs
 
+      - name: Verify production mobile redirect policy
+        env:
+          BASE_URL: https://getwaved.ai
+        run: node scripts/verify-mobile-redirects.mjs --live
+
       # Optional: Search Console API — add repo secrets then uncomment.
       # - name: GSC smoke (optional)
       #   env:

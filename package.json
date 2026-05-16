@@ -5,7 +5,9 @@
   "type": "module",
   "scripts": {
     "postinstall": "node scripts/npm-scripts-verify.mjs postinstall",
-    "prebuild": "node scripts/npm-scripts-verify.mjs prebuild && node scripts/generate-sitemap.mjs && node scripts/verify-sitemap-complete.mjs",
+    "prebuild": "node scripts/npm-scripts-verify.mjs prebuild && node scripts/generate-sitemap.mjs && node scripts/verify-sitemap-complete.mjs && node scripts/verify-mobile-redirects.mjs",
+    "verify:mobile-routing": "node scripts/verify-mobile-redirects.mjs",
+    "verify:mobile-routing:live": "node scripts/verify-mobile-redirects.mjs --live",
     "seo:generate-sitemap": "node scripts/generate-sitemap.mjs",
     "seo:verify-sitemap": "node scripts/verify-sitemap-complete.mjs",
     "seo:check-sitemap-drift": "node scripts/check-sitemap-drift.mjs",
