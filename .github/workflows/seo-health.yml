@@ -26,10 +26,7 @@ jobs:
         with:
           node-version: "20"
 
-      - name: Verify sitemap matches generator output
-        run: node scripts/check-sitemap-drift.mjs
-
-      - name: Verify canonical routes present in sitemap.xml
+      - name: Verify canonical routes (in-memory from seo-canonical-routes.json)
         run: node scripts/verify-sitemap-complete.mjs
 
       # Random 2–17 min delay before outbound checks (scheduled only). Bills Actions minutes while sleeping.

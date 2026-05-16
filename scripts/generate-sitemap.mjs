@@ -1,60 +1,31 @@
 #!/usr/bin/env node
 /**
- * Generates public/sitemap.xml from scripts/seo-canonical-routes.json using git last-modified when available.
+ * Writes sitemap.xml at build time (default: dist/sitemap.xml).
+ * Not committed to git — generated on every `npm run build` from seo-canonical-routes.json.
+ *
+ * Usage:
+ *   node scripts/generate-sitemap.mjs
+ *   node scripts/generate-sitemap.mjs --out dist/sitemap.xml
  */
 import fs from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
-import { execSync } from "node:child_process";
+import { buildSitemapXml, loadSitemapConfig } from "./sitemap-builder.mjs";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const repoRoot = path.resolve(__dirname, "..");
 const cfgPath = path.join(__dirname, "seo-canonical-routes.json");
-const outPath = path.join(repoRoot, "public", "sitemap.xml");
 
-function gitLastIso(relPath) {
-  try {
-    const out = execSync(`git log -1 --format=%cI -- "${relPath}"`, {
-      cwd: repoRoot,
-      encoding: "utf8",
-      stdio: ["ignore", "pipe", "ignore"],
-    }).trim();
-    if (out) return out;
-  } catch {
-    /* ignore */
-  }
-  return new Date().toISOString();
+function parseOutArg() {
+  const i = process.argv.indexOf("--out");
+  if (i !== -1 && process.argv[i + 1]) return path.resolve(process.argv[i + 1]);
+  return path.join(repoRoot, "dist", "sitemap.xml");
 }
 
-function escapeXml(s) {
-  return String(s)
-    .replace(/&/g, "&amp;")
-    .replace(/</g, "&lt;")
-    .replace(/>/g, "&gt;")
-    .replace(/"/g, "&quot;");
-}
+const outPath = parseOutArg();
+const cfg = loadSitemapConfig(cfgPath);
+const xml = buildSitemapXml(cfg, repoRoot);
 
-function main() {
-  const cfg = JSON.parse(fs.readFileSync(cfgPath, "utf8"));
-  const origin = cfg.origin.replace(/\/$/, "");
-  const lines = ['<?xml version="1.0" encoding="UTF-8"?>', '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">'];
-
-  for (const r of cfg.routes) {
-    const loc = `${origin}${r.path === "/" ? "/" : r.path}`;
-    const lastmod = gitLastIso(r.gitPath);
-    const prio = r.priority || "0.5";
-    const cf = r.changefreq || "weekly";
-    lines.push("  <url>");
-    lines.push(`    <loc>${escapeXml(loc)}</loc>`);
-    lines.push(`    <lastmod>${escapeXml(lastmod)}</lastmod>`);
-    lines.push(`    <changefreq>${escapeXml(cf)}</changefreq>`);
-    lines.push(`    <priority>${escapeXml(prio)}</priority>`);
-    lines.push("  </url>");
-  }
-
-  lines.push("</urlset>");
-  fs.writeFileSync(outPath, lines.join("\n") + "\n", "utf8");
-  console.log(`Wrote ${outPath} (${cfg.routes.length} URLs)`);
-}
-
-main();
+fs.mkdirSync(path.dirname(outPath), { recursive: true });
+fs.writeFileSync(outPath, xml, "utf8");
+console.log(`Wrote ${outPath} (${cfg.routes.length} URLs)`);

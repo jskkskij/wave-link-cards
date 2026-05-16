@@ -27,3 +27,9 @@ npm run verify:mobile-routing:live     # production redirect trace
 ## Share links
 
 Prefer **`https://getwaved.ai/`** for marketing. Lightweight mobile UI: **`https://getwaved.ai/?view=mobile`** (sets opt-in cookie).
+
+## If live test shows `308` from `/m` → `/`
+
+1. **Deploy latest `main`** — build must run `postbuild-spa-paths.mjs` (creates `dist/m/index.html`).
+2. **Cloudflare dashboard** → **Rules** → **Redirect Rules** — remove any rule that sends `/m` to `/` (308 is almost always a zone rule, not our 302 function).
+3. Re-run: `npm run verify:mobile-routing:live`

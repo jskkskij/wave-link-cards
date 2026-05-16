@@ -224,10 +224,11 @@ async function runLiveTests() {
       maxRedirects: 0,
     },
     {
-      name: "live iPhone /m — stays",
+      name: "live iPhone /m — stays (200 on /m, no 308 to /)",
       url: `${BASE}/m`,
       ua: IPHONE_UA,
       maxRedirects: 0,
+      expectFinalPath: "/m",
     },
     {
       name: "live desktop /m — one hop to /",
@@ -240,7 +241,9 @@ async function runLiveTests() {
       url: `${BASE}/`,
       ua: DESKTOP_UA,
       cookie: "wl_view=mobile",
+      minRedirects: 1,
       maxRedirects: 1,
+      expectFinalPath: "/m",
     },
   ];
 
@@ -270,6 +273,26 @@ async function runLiveTests() {
       console.error(`FAIL [live] ${tc.name}: final status ${finalStatus}`, chain);
       failed++;
       continue;
+    }
+    if (tc.minRedirects != null && redirectCount < tc.minRedirects) {
+      console.error(
+        `FAIL [live] ${tc.name}: expected ≥${tc.minRedirects} redirect(s), got ${redirectCount}`,
+        chain
+      );
+      failed++;
+      continue;
+    }
+    if (tc.expectFinalPath) {
+      const finalPath = new URL(chain[chain.length - 1]?.url || tc.url).pathname.replace(/\/$/, "") || "/";
+      const want = tc.expectFinalPath.replace(/\/$/, "") || "/";
+      if (finalPath !== want) {
+        console.error(
+          `FAIL [live] ${tc.name}: final path ${finalPath} !== ${want}`,
+          chain
+        );
+        failed++;
+        continue;
+      }
     }
     console.log(`OK   [live] ${tc.name} (${redirectCount} redirect(s), status ${finalStatus})`);
   }

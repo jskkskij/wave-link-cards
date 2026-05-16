@@ -1,1 +1,4 @@
-/:path /index.html 200
+# Explicit SPA shells (must be before catch-all). Physical dist/m/index.html is created at build time.
+/m      /m/index.html     200
+/m/     /m/index.html     200
+/:path  /index.html       200

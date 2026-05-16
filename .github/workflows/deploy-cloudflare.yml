@@ -36,9 +36,6 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
-      - name: Verify committed sitemap matches generator (git lastmod)
-        run: node scripts/check-sitemap-drift.mjs
-
       - name: Verify mobile routing rules (unit + chain, no production fetch)
         run: node scripts/verify-mobile-redirects.mjs
 
@@ -49,6 +46,9 @@ jobs:
         env:
           VITE_THANK_YOU_URL_KEY: ${{ secrets.VITE_THANK_YOU_URL_KEY }}
         run: npm run build
+
+      - name: Verify sitemap deploy artifact
+        run: node scripts/check-sitemap-artifact.mjs
 
       - name: Debug Wrangler environment
         run: |

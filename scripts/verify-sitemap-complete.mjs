@@ -1,18 +1,25 @@
 #!/usr/bin/env node
 /**
- * Ensures every route in seo-canonical-routes.json appears as <loc> in public/sitemap.xml
+ * Ensures seo-canonical-routes.json matches sitemap <loc> entries.
+ * Default: builds XML in memory (no file required). Use --file dist/sitemap.xml after build.
  */
 import fs from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
+import { buildSitemapXml, loadSitemapConfig } from "./sitemap-builder.mjs";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const repoRoot = path.resolve(__dirname, "..");
+const cfgPath = path.join(__dirname, "seo-canonical-routes.json");
 
-const cfg = JSON.parse(fs.readFileSync(path.join(__dirname, "seo-canonical-routes.json"), "utf8"));
-const xml = fs.readFileSync(path.join(repoRoot, "public", "sitemap.xml"), "utf8");
+const fileArgIdx = process.argv.indexOf("--file");
+const cfg = loadSitemapConfig(cfgPath);
+const xml =
+  fileArgIdx !== -1 && process.argv[fileArgIdx + 1]
+    ? fs.readFileSync(path.resolve(process.argv[fileArgIdx + 1]), "utf8")
+    : buildSitemapXml(cfg, repoRoot);
+
 const origin = cfg.origin.replace(/\/$/, "");
-
 const locs = [...xml.matchAll(/<loc>([^<]+)<\/loc>/g)].map((m) => m[1].trim());
 
 function norm(u) {
@@ -27,7 +34,6 @@ function norm(u) {
 }
 
 const locSet = new Set(locs.map(norm));
-
 const missing = [];
 for (const r of cfg.routes) {
   const expected = r.path === "/" ? `${origin}/` : `${origin}${r.path}`;

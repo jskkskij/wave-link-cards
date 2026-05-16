@@ -10,6 +10,8 @@ lerna-debug.log*
 node_modules
 dist
 dist-ssr
+# Generated at build time (source of truth: scripts/seo-canonical-routes.json)
+public/sitemap.xml
 *.local
 
 # Editor directories and files
