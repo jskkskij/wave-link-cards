@@ -44,6 +44,11 @@ In **Cloudflare Dashboard** → **Security** → **WAF** (or Bot Fight Mode):
 
 Link **previews** use `facebookexternalhit` (allowed in our bot list). In-app browsers use a full WebKit UA and may be blocked.
 
+## Architecture (current)
+
+- **`functions/_middleware.js`** — all redirects (inlined, no imports, try/catch).
+- **`public/_redirects`** — `/m` and `/m/` rewrite to `/index.html` (no `dist/m/` folder — that caused **308 → /m/**).
+
 ## If live test shows `308` from `/m` → `/`
 
 1. **Deploy latest `main`** — build must run `postbuild-spa-paths.mjs` (creates `dist/m/index.html`).

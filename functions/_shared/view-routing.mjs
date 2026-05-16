@@ -1,5 +1,6 @@
 /**
- * Shared mobile/desktop routing rules for Cloudflare Pages and local verification.
+ * Shared mobile/desktop routing rules for local verification (unit tests).
+ * Production uses the same logic inlined in functions/_middleware.js — keep in sync.
  * Policy: never auto-bounce mobile visitors away from `/` (shared links must work).
  * `/m` is opt-in via ?view=mobile or wl_view=mobile cookie only.
  */

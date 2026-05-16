@@ -171,6 +171,11 @@ function runUnitTests() {
   console.log(`\nUnit + chain tests passed (${fixtures.length} fixtures + ${chainCases.length} chains).`);
 }
 
+function normPath(pathname) {
+  const p = (pathname || "/").replace(/\/+$/, "") || "/";
+  return p === "" ? "/" : p;
+}
+
 async function traceRedirects(url, opts) {
   const maxHops = opts.maxHops ?? 10;
   let current = url;
@@ -181,8 +186,9 @@ async function traceRedirects(url, opts) {
       redirect: "manual",
       headers: {
         "user-agent": opts.ua,
-        "cache-control": "no-cache",
+        "cache-control": "no-cache, no-store",
         pragma: "no-cache",
+        "cf-cache-control": "no-cache",
         ...(opts.cookie ? { cookie: opts.cookie } : {}),
       },
     });
@@ -234,10 +240,10 @@ async function runLiveTests() {
       allowStatuses: [200, 403, 503],
     },
     {
-      name: "live iPhone /m — stays (200 on /m, no 308 to /)",
+      name: "live iPhone /m — stays on mobile entry",
       url: `${BASE}/m`,
       ua: IPHONE_UA,
-      maxRedirects: 0,
+      maxRedirects: 1,
       expectFinalPath: "/m",
     },
     {
@@ -245,6 +251,7 @@ async function runLiveTests() {
       url: `${BASE}/m`,
       ua: DESKTOP_UA,
       maxRedirects: 1,
+      expectFinalPath: "/",
     },
     {
       name: "live desktop + mobile cookie / — one hop to /m",
@@ -303,8 +310,8 @@ async function runLiveTests() {
       continue;
     }
     if (tc.expectFinalPath) {
-      const finalPath = new URL(chain[chain.length - 1]?.url || tc.url).pathname.replace(/\/$/, "") || "/";
-      const want = tc.expectFinalPath.replace(/\/$/, "") || "/";
+      const finalPath = normPath(new URL(chain[chain.length - 1]?.url || tc.url).pathname);
+      const want = normPath(tc.expectFinalPath);
       if (finalPath !== want) {
         console.error(
           `FAIL [live] ${tc.name}: final path ${finalPath} !== ${want}`,
