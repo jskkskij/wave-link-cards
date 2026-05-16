@@ -66,23 +66,34 @@ jobs:
           command: pages deploy ./dist --project-name=wave-link-cards --branch=main --commit-hash=${{ github.sha }}
           gitHubToken: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Purge homepage cache (optional — needs CLOUDFLARE_ZONE_ID secret)
+      - name: Purge edge cache for routing URLs
         if: github.ref == 'refs/heads/main' && (github.event_name == 'push' || github.event_name == 'workflow_dispatch')
         continue-on-error: true
         env:
           CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
           CLOUDFLARE_ZONE_ID: ${{ secrets.CLOUDFLARE_ZONE_ID }}
         run: |
-          if [ -z "$CLOUDFLARE_ZONE_ID" ]; then
-            echo "Skip purge: set CLOUDFLARE_ZONE_ID repo secret for automatic cache bust after deploy."
-            exit 0
+          set -e
+          purge_zone() {
+            curl -fsS -X POST "https://api.cloudflare.com/client/v4/zones/${CLOUDFLARE_ZONE_ID}/purge_cache" \
+              -H "Authorization: Bearer ${CLOUDFLARE_API_TOKEN}" \
+              -H "Content-Type: application/json" \
+              --data '{"files":["https://getwaved.ai/","https://getwaved.ai/m","https://getwaved.ai/m/"]}'
+          }
+          if [ -n "$CLOUDFLARE_ZONE_ID" ]; then
+            purge_zone
+            echo "Purged via CLOUDFLARE_ZONE_ID."
+          else
+            echo "CLOUDFLARE_ZONE_ID not set — resolving zone for getwaved.ai..."
+            ZONE_ID=$(curl -fsS -G "https://api.cloudflare.com/client/v4/zones" \
+              -H "Authorization: Bearer ${CLOUDFLARE_API_TOKEN}" \
+              --data-urlencode "name=getwaved.ai" \
+              --data-urlencode "account.id=${CLOUDFLARE_ACCOUNT_ID}" | node -e "let d='';process.stdin.on('data',c=>d+=c);process.stdin.on('end',()=>{const j=JSON.parse(d);const z=j.result&&j.result[0]&&j.result[0].id;if(!z){process.exit(1)};process.stdout.write(z)})")
+            CLOUDFLARE_ZONE_ID="$ZONE_ID" purge_zone
+            echo "Purged via resolved zone ${ZONE_ID}."
           fi
-          curl -fsS -X POST "https://api.cloudflare.com/client/v4/zones/${CLOUDFLARE_ZONE_ID}/purge_cache" \
-            -H "Authorization: Bearer ${CLOUDFLARE_API_TOKEN}" \
-            -H "Content-Type: application/json" \
-            --data '{"files":["https://getwaved.ai/","https://getwaved.ai/m","https://getwaved.ai/m/"]}'
-          echo "Purged / and /m from CDN cache."
-          sleep 20
+          sleep 25
 
       - name: Verify production mobile redirects (post-deploy)
         if: github.ref == 'refs/heads/main' && (github.event_name == 'push' || github.event_name == 'workflow_dispatch')
