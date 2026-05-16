@@ -28,6 +28,17 @@ npm run verify:mobile-routing:live     # production redirect trace
 
 Prefer **`https://getwaved.ai/`** for marketing. Lightweight mobile UI: **`https://getwaved.ai/?view=mobile`** (sets opt-in cookie).
 
+## Facebook / Messenger in-app browser returns 403
+
+That is usually **Cloudflare Bot Fight Mode or WAF**, not the view-routing function (our code never returns 403).
+
+In **Cloudflare Dashboard** → **Security** → **WAF** (or Bot Fight Mode):
+
+- Add a **skip** rule for URI Path equals `/` when User Agent contains `FBAN` or `FBAV`, **or**
+- Lower bot sensitivity for `getwaved.ai`
+
+Link **previews** use `facebookexternalhit` (allowed in our bot list). In-app browsers use a full WebKit UA and may be blocked.
+
 ## If live test shows `308` from `/m` → `/`
 
 1. **Deploy latest `main`** — build must run `postbuild-spa-paths.mjs` (creates `dist/m/index.html`).

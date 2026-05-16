@@ -14,6 +14,16 @@ export const BOT_UA_RE =
 export const STATIC_PATH_RE =
   /^\/(assets\/|favicon|apple-touch-icon|site\.webmanifest|robots\.txt|sitemap\.xml)/i;
 
+/** @param {string} pathname */
+export function isMobileEntryPath(pathname) {
+  return pathname === "/m" || pathname === "/m/";
+}
+
+/** @param {string} pathname */
+export function isHomePath(pathname) {
+  return pathname === "/" || pathname === "";
+}
+
 /**
  * @param {string | null} cookieHeader
  * @returns {"mobile" | "desktop" | null}
@@ -49,9 +59,9 @@ export function decideViewRoute(input) {
     const clean = new URL(`${origin}${pathname}`);
     clean.searchParams.delete("view");
     const target =
-      searchView === "mobile" && pathname === "/"
+      searchView === "mobile" && isHomePath(pathname)
         ? `${origin}/m`
-        : searchView === "desktop" && pathname === "/m"
+        : searchView === "desktop" && isMobileEntryPath(pathname)
           ? `${origin}/`
           : clean.toString();
     return { action: "redirect", url: target, setViewCookie: searchView };
@@ -67,21 +77,34 @@ export function decideViewRoute(input) {
   const forceDesktop = cookieOverride === "desktop";
 
   // Explicit opt-in only: cookie set via ?view=mobile — not raw mobile UA.
-  if (forceMobile && !forceDesktop && pathname === "/") {
+  if (forceMobile && !forceDesktop && isHomePath(pathname)) {
     return { action: "redirect", url: `${origin}/m` };
   }
 
-  if (forceDesktop && pathname === "/m") {
+  if (forceDesktop && isMobileEntryPath(pathname)) {
     return { action: "redirect", url: `${origin}/` };
   }
 
   // Desktop visitors hitting /m without opting into mobile view.
   const isMobileUA = MOBILE_UA_RE.test(ua);
-  if (!isMobileUA && !forceMobile && pathname === "/m") {
+  if (!isMobileUA && !forceMobile && isMobileEntryPath(pathname)) {
     return { action: "redirect", url: `${origin}/` };
   }
 
   return { action: "next" };
+}
+
+/**
+ * Whether /m should be served as the lightweight mobile shell (not redirect to /).
+ * @param {string} pathname
+ * @param {string} userAgent
+ * @param {string | null} cookieHeader
+ */
+export function shouldServeMobileShell(pathname, userAgent, cookieHeader) {
+  if (!isMobileEntryPath(pathname)) return false;
+  if (readViewCookie(cookieHeader) === "mobile") return true;
+  if (readViewCookie(cookieHeader) === "desktop") return false;
+  return MOBILE_UA_RE.test(userAgent || "");
 }
 
 /**

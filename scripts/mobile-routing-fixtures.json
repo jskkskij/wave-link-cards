@@ -85,5 +85,14 @@
     "userAgent": "Mozilla/5.0 (iPhone)",
     "cookieHeader": null,
     "expect": "next"
+  },
+  {
+    "name": "desktop on /m/ trailing slash → /",
+    "pathname": "/m/",
+    "searchView": null,
+    "userAgent": "Mozilla/5.0 (Windows NT 10.0)",
+    "cookieHeader": null,
+    "expect": "redirect",
+    "expectUrlSuffix": "/"
   }
 ]
