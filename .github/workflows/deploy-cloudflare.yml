@@ -66,6 +66,24 @@ jobs:
           command: pages deploy ./dist --project-name=wave-link-cards --branch=main --commit-hash=${{ github.sha }}
           gitHubToken: ${{ secrets.GITHUB_TOKEN }}
 
+      - name: Purge homepage cache (optional — needs CLOUDFLARE_ZONE_ID secret)
+        if: github.ref == 'refs/heads/main' && (github.event_name == 'push' || github.event_name == 'workflow_dispatch')
+        continue-on-error: true
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          CLOUDFLARE_ZONE_ID: ${{ secrets.CLOUDFLARE_ZONE_ID }}
+        run: |
+          if [ -z "$CLOUDFLARE_ZONE_ID" ]; then
+            echo "Skip purge: set CLOUDFLARE_ZONE_ID repo secret for automatic cache bust after deploy."
+            exit 0
+          fi
+          curl -fsS -X POST "https://api.cloudflare.com/client/v4/zones/${CLOUDFLARE_ZONE_ID}/purge_cache" \
+            -H "Authorization: Bearer ${CLOUDFLARE_API_TOKEN}" \
+            -H "Content-Type: application/json" \
+            --data '{"files":["https://getwaved.ai/","https://getwaved.ai/m","https://getwaved.ai/m/"]}'
+          echo "Purged / and /m from CDN cache."
+          sleep 20
+
       - name: Verify production mobile redirects (post-deploy)
         if: github.ref == 'refs/heads/main' && (github.event_name == 'push' || github.event_name == 'workflow_dispatch')
         run: node scripts/verify-mobile-redirects.mjs --live

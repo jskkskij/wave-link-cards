@@ -20,6 +20,11 @@
   X-Frame-Options: SAMEORIGIN
   Referrer-Policy: strict-origin-when-cross-origin
 
+# Homepage must not be cached without Vary — breaks wl_view cookie redirects (Functions).
+/
+  Cache-Control: private, no-store, must-revalidate
+  Vary: Cookie, User-Agent
+
 /m
   Cache-Control: private, no-store, must-revalidate
   Vary: Cookie, User-Agent
