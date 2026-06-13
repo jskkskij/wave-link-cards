@@ -17,7 +17,7 @@ const IntelligenceReport = () => {
       "author": {
         "@type": "Person",
         "name": "Mohammad Abir Abbas",
-        "url": "https://aialchemist-abir.vercel.app"
+        "url": "https://abir.getwaved.ai"
       },
       "publisher": {
         "@type": "Organization",
