@@ -29,6 +29,9 @@ const IntelligenceReport = lazy(() => import("./pages/IntelligenceReport"));
 const Shop = lazy(() => import("./pages/Shop"));
 const MobileIndex = lazy(() => import("./pages/MobileIndex"));
 const AnalyticsPage = lazy(() => import("@/components/AnalyticsDashboard").then(m => ({ default: m.AnalyticsDashboard })));
+const UAE = lazy(() => import("./pages/UAE"));
+const Qatar = lazy(() => import("./pages/Qatar"));
+const Bahrain = lazy(() => import("./pages/Bahrain"));
 
 const queryClient = new QueryClient();
 
@@ -138,6 +141,31 @@ const App = () => {
                 element={
                   <Suspense fallback={<RouteLoader />}>
                     <Shop />
+                  </Suspense>
+                }
+              />
+              {/* GCC Market Landing Pages */}
+              <Route
+                path="/ae"
+                element={
+                  <Suspense fallback={<RouteLoader />}>
+                    <UAE />
+                  </Suspense>
+                }
+              />
+              <Route
+                path="/qa"
+                element={
+                  <Suspense fallback={<RouteLoader />}>
+                    <Qatar />
+                  </Suspense>
+                }
+              />
+              <Route
+                path="/bh"
+                element={
+                  <Suspense fallback={<RouteLoader />}>
+                    <Bahrain />
                   </Suspense>
                 }
               />

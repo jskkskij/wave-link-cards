@@ -4,48 +4,74 @@ import { ChevronLeft, ChevronRight, Sparkles } from "lucide-react";
 import { Language, translations } from "@/lib/translations";
 
 const faqs = [
+  // ── Bangladesh ────────────────────────────────────────────────────────
   {
-    question: "এটা কি এবং কিভাবে কাজ করে? (What is this?)",
-    answer: "এটা একটা স্মার্ট কার্ড। আপনার ভিজিটিং কার্ডের মতো, কিন্তু এটা মোবাইলে টাচ করলেই আপনার সব তথ্য (ফোন নাম্বার, ফেসবুক, লিঙ্ক) অন্য ফোনে অটোমেটিক চলে যাবে। কোনো অ্যাপ লাগে না।",
+    question: "এটা কি এবং কিভাবে কাজ করে? (What is Wavelink?)",
+    answer: "Wavelink হলো বাংলাদেশের প্রথম NFC ট্রাস্ট ইনফ্রাস্ট্রাকচার কোম্পানি। এটা একটা স্মার্ট কার্ড — মোবাইলে টাচ করলেই আপনার সব তথ্য (ফোন নম্বর, ফেসবুক, লিঙ্ক) অন্য ফোনে অটোম্যাটিক চলে যাবে। কোনো অ্যাপ লাগে না। ২০২৪ সালে চট্টগ্রামে প্রতিষ্ঠিত, এখন ১,৩৫০+ পেশাদার Wavelink ব্যবহার করছেন।",
     icon: "🤝",
     color: "from-sky-400/20 to-blue-400/20"
   },
   {
     question: "রিভিউ স্ট্যান্ড দিয়ে কি গুগল রিভিউ বাড়ানো সম্ভব? (Boost Google Reviews?)",
-    answer: "হ্যাঁ! আমাদের রিভিউ স্ট্যান্ড ব্যবহার করে খুব সহজেই কাস্টমারদের থেকে গুগল রিভিউ সংগ্রহ করতে পারবেন। কাস্টমার শুধু স্ট্যান্ডে ফোন টাচ করবে আর সরাসরি আপনার গুগল রিভিউ পেজ ওপেন হবে।",
+    answer: "হ্যাঁ! Wavelink রিভিউ স্ট্যান্ড কাউন্টারে রাখুন। কাস্টমার শুধু ফোন টাচ করবে, সরাসরি আপনার Google Business Review পেজ ওপেন হবে — কোনো অ্যাপ, কোনো টাইপিং নেই। রেস্তোরাঁ, ক্লিনিক, দোকান সব জায়গায় কাজ করে।",
     icon: "🚀",
     color: "from-yellow-400/20 to-orange-400/20"
   },
   {
-    question: "আমার ফোনে কি চলবে? (Will it work on my phone?)",
-    answer: "হ্যাঁ, সব স্মার্টফোনেই চলবে। নতুন ফোনে টাচ করলেই হবে, আর পুরাতন ফোনের জন্য কার্ডের পিছনে একটা কিউআর (QR) কোড আছে যা স্ক্যান করলেই হবে।",
+    question: "আমার ফোনে কি চলবে? (Compatible phones?)",
+    answer: "হ্যাঁ, সব আধুনিক স্মার্টফোনে চলবে (iOS 13+ এবং Android)। নতুন ফোনে টাচ করলেই হবে। পুরাতন ফোনের জন্য কার্ডের পিছনে QR কোড আছে — স্ক্যান করলেই হবে।",
     icon: "📱",
     color: "from-emerald-400/20 to-teal-400/20"
   },
   {
-    question: "অর্ডার করবো কিভাবে? (How to order?)",
-    answer: "খুবই সহজ! 'অর্ডার' বাটনে ক্লিক করে আপনার নাম-ঠিকানা দিন। আমরা আপনাকে হোয়াটসঅ্যাপে (WhatsApp) নক দেবো এবং আপনার কার্ডের ডিজাইন ঠিক করে দেবো।",
+    question: "অর্ডার করবো কিভাবে? (How to order in Bangladesh?)",
+    answer: "'Order' বাটনে ক্লিক করে নাম-ঠিকানা দিন। আমরা WhatsApp-এ যোগাযোগ করবো এবং কার্ডের ডিজাইন ঠিক করবো। ৫০% অ্যাডভান্স Bkash-এ পাঠান, বাকিটা ডেলিভারিতে। সারা বাংলাদেশে ৩–৪ দিনে পৌঁছে যাবে।",
     icon: "🛍️",
     color: "from-orange-400/20 to-amber-400/20"
   },
   {
+    question: "মাসিক সাবস্ক্রিপশন ফি আছে কি? (Monthly fee?)",
+    answer: "না। Wavelink একবার কিনলেই হয়, আর কোনো মাসিক ফি নেই। ডিজিটাল প্রোফাইল ইনফ্রাস্ট্রাকচার সারাজীবনের জন্য বিনামূল্যে।",
+    icon: "💎",
+    color: "from-violet-400/20 to-purple-400/20"
+  },
+  {
     question: "নিরাপদ তো? (Is it safe?)",
-    answer: "একদম নিরাপদ। আপনি যা তথ্য সেভ করবেন, শুধু সেগুলোই মানুষ দেখতে পাবে। আপনার ফোনের কোনো গোপন তথ্য কেউ নিতে পারবে না।",
+    answer: "একদম নিরাপদ। আপনি যা তথ্য সেভ করবেন, শুধু সেগুলোই দেখা যাবে। আপনার ফোনের কোনো গোপন তথ্য কেউ নিতে পারবে না। NFC শুধু একমুখী তথ্য শেয়ার করে।",
     icon: "🛡️",
     color: "from-rose-400/20 to-pink-400/20"
   },
   {
-    question: "ইন্টারনেট লাগবে কি? (Do I need internet?)",
-    answer: "হ্যাঁ, তথ্যগুলো দেখানোর জন্য ফোনে ইন্টারনেট সংযোগ থাকতে হবে।",
-    icon: "🌐",
-    color: "from-cyan-400/20 to-sky-400/20"
-  },
-  {
-    question: "কত দিন লাগবে পেতে? (Delivery time?)",
-    answer: "কুরিয়ার সার্ভিসের উপর ভিত্তি করে আমরা সর্বোচ্চ ৩-৪ দিনের মধ্যে পাঠিয়ে দেব।",
+    question: "কত দিন লাগবে পেতে? (Delivery time Bangladesh?)",
+    answer: "কুরিয়ার সার্ভিস অনুযায়ী ৩–৪ কার্যদিবসের মধ্যে ডেলিভারি। ঢাকা ও চট্টগ্রামে আরো দ্রুত হতে পারে। ডেলিভারির সময় ট্র্যাকিং তথ্য WhatsApp-এ জানানো হবে।",
     icon: "🚚",
     color: "from-purple-400/20 to-indigo-400/20"
-  }
+  },
+  // ── GCC / English ──────────────────────────────────────────────────────
+  {
+    question: "Is Wavelink available in Dubai and the UAE?",
+    answer: "Yes. Wavelink ships NFC smart business cards and Google Review Stands to Dubai, Abu Dhabi, Ajman, and across the UAE. Cards start at AED 29 — no subscription fee. Popular among South Asian expat professionals and local businesses. WhatsApp us to order.",
+    icon: "🇦🇪",
+    color: "from-green-400/20 to-emerald-400/20"
+  },
+  {
+    question: "How does Wavelink compare to Popl, HiHello, or Dot?",
+    answer: "Wavelink wins on three points: (1) No app required — works on native NFC on any smartphone. (2) No subscription fee — one-time purchase, lifetime free profile. (3) Local pricing — BDT 599 in Bangladesh, AED 29 in UAE vs. Western brands that charge 3–5× more with monthly fees. Wavelink also offers Bangla and Arabic language support.",
+    icon: "⚡",
+    color: "from-amber-400/20 to-yellow-400/20"
+  },
+  {
+    question: "Does Wavelink deliver to Qatar and Bahrain?",
+    answer: "Yes. Wavelink NFC cards and Review Stands ship to Qatar (Doha) and Bahrain (Manama). QAR and BHD pricing available on request. The brand is popular in Bahrain’s fintech sector and among Bangladeshi diaspora across the GCC. Contact via WhatsApp for shipping rates.",
+    icon: "🇶🇦",
+    color: "from-red-400/20 to-rose-400/20"
+  },
+  {
+    question: "What is Wavelink’s Digital Product Passport (DPP) capability?",
+    answer: "Wavelink’s NFC trust layer is designed to support EU ESPR 2026 Digital Product Passport (DPP) standards. Each NFC card can carry verifiable product identity data, enabling enterprises to track asset lifecycle and prove circular economy compliance. See our Drop 01 market thesis at getwaved.ai/intelligence for details.",
+    icon: "📜",
+    color: "from-cyan-400/20 to-sky-400/20"
+  },
 ];
 
 interface FAQSectionProps {
