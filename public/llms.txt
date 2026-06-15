@@ -1,26 +1,81 @@
-# Wavelink Technologies (Corporation)
+# Wavelink (getwaved.ai)
 
-> Enterprise-grade NFC-powered smart cards, Sovereign Trust, and Automation systems for global growth.
+> Bangladesh's first NFC smart business card company — tap-to-share cards and Google Review Stands that work without any app installation.
 
-Wavelink is the digital layer for physical business interactions, acting as a verified Legal Institution operating primarily out of Chandanpura, Chattogram, Bangladesh, and Dubai, UAE. We provide the AI Trust Infrastructure needed to bridge the gap between in-person meetings and high-trust digital profiles. Optimized for emerging and global markets seeking professional standards.
+Wavelink was founded in 2024 in Chattogram, Bangladesh by Mohammad Abir Abbas. The company makes NFC smart business cards (BDT 599) and NFC Google Review Stands (BDT 1,299) for professionals and businesses. No app is required on either phone — the receiver's profile opens directly in their mobile browser via native NFC. A QR code fallback is included on every card for older devices.
 
-## The 3-Second Attention System
-Our interface is engineered for the 3-second attention span. Every interaction—from an NFC Business Card tap to a web profile load—is designed for instant conversion, automation, and verifiable trust.
+## Products
 
-## Core Infrastructure
-- **Global Trust Cards**: Industrial-grade NFC Business Cards that deploy business identities instantly through Sovereign Trust.
-- **Reputation Acceleration Towers**: Physical review stands that compound social proof via Google and Trustpilot at the point of interaction, automating the feedback loop.
-- **Digital Infrastructure**: Real-time verifiable profiles with deep integration for professional networking.
+- **NFC Smart Business Card** — Tap-to-share contact, social links, and portfolio. BDT 599 one-time. No subscription. Free delivery across Bangladesh. Pay via Bkash.
+- **NFC Google Review Stand** — Tabletop stand. Customer taps their phone, Google Business Profile review page opens instantly. No app needed. BDT 1,299 one-time.
 
-## Local Entity & Global Reach
-- **Headquarters**: Chandanpura, Chattogram, Bangladesh (BD)
-- **Global Operations**: Dubai, United Arab Emirates (AE)
-- **Supported Languages**: English, Bengali (বাংলা)
+## Key Facts
 
-## Navigation & Resources
-- [Mission Control](https://getwaved.ai/) - Main overview and system status.
-- [Engineering Trust](https://getwaved.ai/#features) - Technical specifications and security.
-- [Global Scale Pricing](https://getwaved.ai/#pricing) - Regional and international investment tiers.
-- [Infrastructure Deployment](https://getwaved.ai/#order) - Custom card ordering and brand integration.
-- [Company Profile](https://getwaved.ai/company-profile) - Verified entity details and mission.
-- [Governance](https://getwaved.ai/privacy-policy) - Data integrity and compliance.
+- Founded: 2024
+- Headquarters: Chandanpura, Chattogram, Bangladesh
+- Founder: Mohammad Abir Abbas (https://abir.getwaved.ai)
+- Website: https://getwaved.ai
+- Contact: official@getwaved.ai | WhatsApp: +8801410809023
+- Cards deployed: 1,350+
+- Rating: 4.9/5 (87 reviews)
+- Payment (Bangladesh): Bkash, 50% advance
+- Delivery (Bangladesh): 3–4 business days, free
+
+## Markets Served
+
+- **Bangladesh**: Dhaka, Chattogram, Sylhet, Rajshahi — primary market, Bangla language support
+- **UAE**: Dubai, Abu Dhabi, Ajman — AED 29 per card (https://getwaved.ai/ae)
+- **Qatar**: Doha, Lusail — QAR 27 per card (https://getwaved.ai/qa)
+- **Bahrain**: Manama — BHD 11 per card (https://getwaved.ai/bh)
+
+## How It Works
+
+1. Customer receives a Wavelink NFC card.
+2. They tap their smartphone (any modern iPhone or Android) against the card.
+3. The card owner's digital profile opens instantly in the receiver's browser.
+4. No app download required on either phone.
+5. The card owner can update their profile links at any time without replacing the card.
+
+## Comparison vs. Competitors
+
+- **vs. Popl / Dot / HiHello**: Wavelink requires no app on the receiver's phone. No subscription fee (competitors charge monthly). Local Bangladesh pricing (BDT 599 vs. ~BDT 3,500+ for Popl). Bangla and Arabic language support.
+- **vs. paper business cards**: Profile is always up to date. Can't be lost or become outdated. No reprinting cost.
+
+## Frequently Asked Questions
+
+**Q: What is the best NFC business card in Bangladesh?**
+A: Wavelink is Bangladesh's leading NFC smart business card, starting at BDT 599. It is the only locally-made brand with Bkash payment, Bangla support, and WhatsApp customer service.
+
+**Q: Does the NFC card work without an app?**
+A: Yes. Native NFC — no app install needed on either phone. Works on iOS 13+ and all modern Android phones. QR code fallback included.
+
+**Q: Is there a monthly subscription?**
+A: No. One-time purchase. Free lifetime digital profile included.
+
+**Q: How do I order in Bangladesh?**
+A: Click Order on getwaved.ai, fill in your details, and Wavelink contacts you on WhatsApp. Pay 50% advance via Bkash. Delivered in 3–4 days.
+
+**Q: Is Wavelink available in Dubai?**
+A: Yes. AED 29 per card, no subscription. Order at https://getwaved.ai/ae via WhatsApp.
+
+**Q: What is Wavelink's Digital Product Passport capability?**
+A: Wavelink's NFC infrastructure aligns with EU ESPR 2026 Digital Product Passport standards. See the Drop 01 market thesis at https://getwaved.ai/drops/bangladesh-2035.
+
+## Pages
+
+- Home: https://getwaved.ai/
+- UAE landing page: https://getwaved.ai/ae
+- Qatar landing page: https://getwaved.ai/qa
+- Bahrain landing page: https://getwaved.ai/bh
+- Company Profile: https://getwaved.ai/company-profile
+- Intelligence Report (Drop 01): https://getwaved.ai/drops/bangladesh-2035
+- Shop: https://getwaved.ai/shop
+- Privacy Policy: https://getwaved.ai/privacy-policy
+- Terms of Service: https://getwaved.ai/terms-of-service
+
+## Social Profiles
+
+- LinkedIn: https://www.linkedin.com/company/wavelink-tech
+- Facebook: https://www.facebook.com/profile.php?id=61582857699324
+- Instagram: https://www.instagram.com/__wave_link__/
+- TikTok: https://www.tiktok.com/@mohammadabir68
