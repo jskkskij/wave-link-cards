@@ -163,6 +163,17 @@ export const GCCLandingPage = ({ market }: { market: GCCMarketConfig }) => {
           `Google review stand ${market.countryShort}`,
           ...market.localKeywords,
         ].join(", ")} />
+        {/* hreflang: English and Arabic variants for this market */}
+        <link rel="alternate" hreflang="en" href={canonical} />
+        <link rel="alternate" hreflang={`ar-${market.countryCode.toUpperCase()}`} href={canonical} />
+        <link rel="alternate" hreflang="x-default" href={`${origin}/`} />
+        {/* Geo signals for local search engines and LLM crawlers */}
+        <meta name="geo.region" content={market.countryCode.toUpperCase()} />
+        <meta name="geo.placename" content={market.cities[0]} />
+        {/* Open Graph locale */}
+        <meta property="og:locale" content={`ar_${market.countryCode.toUpperCase()}`} />
+        <meta property="og:locale:alternate" content="en_US" />
+        <meta property="og:site_name" content="Wavelink" />
         <script type="application/ld+json">{JSON.stringify(localBusinessSchema)}</script>
         <script type="application/ld+json">{JSON.stringify(productSchema)}</script>
         <script type="application/ld+json">{JSON.stringify(faqSchema)}</script>
