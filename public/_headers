@@ -33,6 +33,14 @@
   Cache-Control: private, no-store, must-revalidate
   Vary: Cookie, User-Agent
 
+/sitemap.xml
+  Content-Type: application/xml; charset=utf-8
+  Cache-Control: public, max-age=3600, must-revalidate
+
+/llms.txt
+  Content-Type: text/plain; charset=utf-8
+  Cache-Control: public, max-age=3600, must-revalidate
+
 /yandex_1801bbd12ca78d12.html
   Content-Type: text/html; charset=utf-8
 
