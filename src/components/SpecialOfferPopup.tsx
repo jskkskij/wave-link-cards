@@ -26,14 +26,14 @@ const TICKER = [
 
 // ── Bulk tiers — ≥50% gross margin on all ────────────────────────────────────
 const TIERS = [
-  { id: "trio",  label: "Trio",        emoji: "⚽",  qty: 3,  bundlePrice: 1599, originalTotal: 1797, tag: null,           unlock: null },
-  { id: "xi",    label: "Starting XI", emoji: "🏆",  qty: 5,  bundlePrice: 2599, originalTotal: 2995, tag: "Most Popular", unlock: "Best per-card rate for small teams" },
-  { id: "squad", label: "Full Squad",  emoji: "👑",  qty: 10, bundlePrice: 4999, originalTotal: 5990, tag: "Best Value",   unlock: "Maximum savings unlocked!" },
+  { id: "trio",  label: "Trio",        emoji: "⚽",  qty: 3,  bundlePrice: 1649, originalTotal: 1797, tag: null,           unlock: null },
+  { id: "xi",    label: "Starting XI", emoji: "🏆",  qty: 5,  bundlePrice: 2749, originalTotal: 2995, tag: "Most Popular", unlock: "Best per-card rate for small teams" },
+  { id: "squad", label: "Full Squad",  emoji: "👑",  qty: 10, bundlePrice: 5499, originalTotal: 5990, tag: "Best Value",   unlock: "Maximum savings unlocked!" },
 ] as const;
 type TierId = typeof TIERS[number]["id"];
 
 const STAND_ORIGINAL = 1212;
-const STAND_WITH_PACK = 999;
+const STAND_WITH_PACK = 1099;
 
 // ── Confetti burst ────────────────────────────────────────────────────────────
 const launchConfetti = () => {
