@@ -32,6 +32,8 @@ const AnalyticsPage = lazy(() => import("@/components/AnalyticsDashboard").then(
 const UAE = lazy(() => import("./pages/UAE"));
 const Qatar = lazy(() => import("./pages/Qatar"));
 const Bahrain = lazy(() => import("./pages/Bahrain"));
+const ImpactIndex = lazy(() => import("./pages/ImpactIndex"));
+const GCCBanner = lazy(() => import("./components/GCCBanner"));
 
 const queryClient = new QueryClient();
 
@@ -169,11 +171,20 @@ const App = () => {
                   </Suspense>
                 }
               />
+              <Route
+                path="/impact"
+                element={
+                  <Suspense fallback={<RouteLoader />}>
+                    <ImpactIndex />
+                  </Suspense>
+                }
+              />
               {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
               <Route path="*" element={<NotFound />} />
             </Routes>
             {!isMobileRoute && (
               <Suspense fallback={null}>
+                <GCCBanner />
                 <UnifiedConsent />
                 <SpecialOfferPopup />
               </Suspense>

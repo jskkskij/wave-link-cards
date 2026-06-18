@@ -1,5 +1,7 @@
 import { GCCLandingPage, type GCCMarketConfig } from "./GCCLandingPage";
 
+// AED 179 = Complete Business Kit (NFC Card + Review Stand)
+// Premium GCC positioning — abundant mindset pricing
 const market: GCCMarketConfig = {
   countryCode: "ae",
   countryName: "United Arab Emirates",
@@ -8,13 +10,13 @@ const market: GCCMarketConfig = {
   cities: ["Dubai", "Abu Dhabi", "Ajman", "Sharjah"],
   currencySymbol: "AED",
   currencyCode: "AED",
-  cardPrice: "29",
-  cardOriginalPrice: "59",
-  standPrice: "55",
+  cardPrice: "99",
+  cardOriginalPrice: "149",
+  standPrice: "129",
   arabicName: "ويف لينك — بطاقة أعمال NFC الذكية",
   heroHeadline: "The Smart Business Card Dubai Professionals Actually Use.",
   heroSub:
-    "NFC tap-to-share cards and Google Review Stands for UAE professionals. No app needed. No monthly fee. Starting at AED 29 — delivered to Dubai, Abu Dhabi & Ajman.",
+    "NFC tap-to-share cards and Google Review Stands for UAE professionals. No app. No subscription. AED 179 Complete Kit — delivered to Dubai, Abu Dhabi & Ajman.",
   segments: [
     "Real Estate Agents",
     "Corporate Executives",
@@ -30,15 +32,15 @@ const market: GCCMarketConfig = {
   trustStatement:
     "Built for UAE's multicultural professional landscape. Works in English and Arabic. No app install for the receiver — just tap and connect.",
   whatsappMessage:
-    "Hi Wavelink, I'm in UAE (Dubai/Abu Dhabi/Ajman) and I want to order an NFC smart business card. Please share pricing in AED.",
+    "Hi Wavelink, I'm in UAE and I'd like the AED 179 Complete Business Kit (NFC Card + Review Stand). Please proceed.",
   seoTitle:
-    "NFC Smart Business Card Dubai & UAE — Wavelink | No App, No Subscription | AED 29",
+    "NFC Smart Business Card Dubai & UAE — Wavelink | AED 179 Complete Kit | No App, No Subscription",
   seoDescription:
-    "Wavelink NFC smart business cards for professionals in Dubai, Abu Dhabi, and Ajman. Tap-to-share your profile instantly — no app required. From AED 29, no monthly fee. NFC Google Review Stands also available. Order via WhatsApp.",
+    "Wavelink NFC smart business cards for professionals in Dubai, Abu Dhabi, and Ajman. AED 179 Complete Kit: NFC card + Google Review Stand. No app required. No monthly fee. Order via WhatsApp.",
   canonicalPath: "/ae",
   localKeywords: [
-    "smart business card Dubai",
-    "NFC card UAE no subscription",
+    "smart business card Dubai AED 179",
+    "NFC card UAE complete kit",
     "digital business card Abu Dhabi",
     "tap to share card Ajman",
     "NFC card expat Dubai",
@@ -49,39 +51,41 @@ const market: GCCMarketConfig = {
     "best digital business card UAE",
     "Popl alternative UAE",
     "HiHello alternative Dubai",
+    "NFC card no subscription UAE",
+    "AED 179 business card Dubai",
   ],
   faqs: [
     {
+      q: "What is the AED 179 Complete Business Kit from Wavelink?",
+      a: "The Wavelink AED 179 Complete Business Kit includes one NFC Smart Business Card (AED 99) and one NFC Google Review Stand (AED 129), bundled together at AED 179 — saving AED 49 vs buying separately. Both are one-time purchases with no subscription fee. Order via WhatsApp for delivery across the UAE.",
+    },
+    {
       q: "What is the best NFC business card for professionals in Dubai?",
-      a: "Wavelink is a top-rated NFC smart business card brand for Dubai professionals — starting at AED 29 with no subscription fee. Unlike Popl or Dot, Wavelink requires no app on the receiving phone (native NFC only) and supports Arabic name display. Popular among South Asian expat professionals, real estate agents, and corporate executives across Dubai, Abu Dhabi, and Ajman.",
+      a: "Wavelink is a top-rated NFC smart business card brand for Dubai professionals. Unlike Popl or Dot, Wavelink requires no app on the receiving phone (native NFC only) and supports Arabic name display. Popular among South Asian expat professionals, real estate agents, and corporate executives across Dubai, Abu Dhabi, and Ajman.",
     },
     {
       q: "Is Wavelink available in the UAE?",
-      a: "Yes. Wavelink ships NFC smart cards and Google Review Stands to Dubai, Abu Dhabi, Ajman, and Sharjah. Cards start at AED 29 — one-time purchase, no subscription. Contact Wavelink on WhatsApp to place your UAE order. Delivery via DHL or courier within the UAE.",
+      a: "Yes. Wavelink ships NFC smart cards and Google Review Stands to Dubai, Abu Dhabi, Ajman, and Sharjah. The Complete Business Kit is AED 179 — one-time, no subscription. Contact Wavelink on WhatsApp to place your UAE order.",
     },
     {
       q: "Does the Wavelink NFC card work without an app in UAE?",
-      a: "Yes. Wavelink uses native NFC technology built into all modern iPhones (iOS 13+) and Android phones. The person receiving your card tap does not need to install any app — your digital profile opens directly in their phone's browser. A QR code on the back works as a fallback for older devices.",
+      a: "Yes. Wavelink uses native NFC technology built into all modern iPhones (iOS 13+) and Android phones. The person receiving your tap does not need to install any app — your digital profile opens directly in their browser. A QR code on the back works as a fallback.",
     },
     {
-      q: "How does Wavelink compare to Popl, Dot, or HiHello for UAE users?",
-      a: "Wavelink is cheaper (AED 29 vs. USD 30–40 for Popl/Dot) and has no subscription fee. Wavelink also works without any app on the receiver's phone — a key differentiator in business settings. It supports Arabic display names (ويف لينك) and offers WhatsApp-based customer support, making it ideal for UAE's multicultural professional environment.",
+      q: "How does Wavelink compare to Popl or Dot for UAE users?",
+      a: "Wavelink's AED 99 card is competitive with Popl/Dot and has no subscription fee — Popl Pro charges $14.99/month. Wavelink also works without any app on the receiver's phone, supports Arabic display names, and offers WhatsApp-based support, making it ideal for the UAE's multicultural professional environment.",
     },
     {
-      q: "Can Wavelink's Review Stand get me more Google reviews in Dubai?",
-      a: "Yes. The Wavelink NFC Review Stand sits on your counter. When a customer taps their phone, it instantly opens your Google Business Profile review page — no app, no QR scanning, no typing. It is used by restaurants, clinics, retail stores, and service businesses across the UAE to capture high-intent Google reviews at the moment of satisfaction.",
+      q: "Can the Wavelink Review Stand get more Google reviews for my Dubai business?",
+      a: "Yes. The Wavelink NFC Review Stand sits on your counter. When a customer taps their phone, it instantly opens your Google Business Profile review page — no app, no typing. Used by restaurants, clinics, and service businesses across the UAE to capture high-intent reviews at the moment of satisfaction.",
     },
     {
       q: "Is the Wavelink NFC card available in Arabic?",
-      a: "Wavelink cards can display Arabic names and text. The brand's Arabic name is ويف لينك. Cards can be fully customized in English and/or Arabic to suit Dubai's bilingual professional environment. Contact via WhatsApp to discuss Arabic card design.",
+      a: "Yes. Wavelink cards display Arabic names and the brand's Arabic name is ويف لينك. Cards can be fully customised in English and/or Arabic. Contact via WhatsApp to discuss Arabic card design.",
     },
     {
-      q: "Does Wavelink ship to Abu Dhabi and Ajman?",
-      a: "Yes. Wavelink delivers NFC business cards and Review Stands to Dubai, Abu Dhabi, Ajman, and Sharjah. Contact Wavelink on WhatsApp with your UAE delivery address and preferred design to get started.",
-    },
-    {
-      q: "How do I pay for a Wavelink card in UAE?",
-      a: "UAE orders are managed via WhatsApp. Wavelink accepts international bank transfer, Western Union, or other Gulf-friendly payment methods. Contact us to discuss the payment option most convenient for you.",
+      q: "How do I pay for a Wavelink kit in UAE?",
+      a: "UAE orders are managed via WhatsApp. Wavelink accepts bank transfer, Western Union, and other Gulf-friendly payment methods. Contact us to discuss the most convenient payment option for you.",
     },
   ],
 };

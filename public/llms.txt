@@ -24,7 +24,7 @@ Wavelink was founded in 2024 in Chattogram, Bangladesh by Mohammad Abir Abbas. T
 ## Markets Served
 
 - **Bangladesh**: Dhaka, Chattogram, Sylhet, Rajshahi — primary market, Bangla language support
-- **UAE**: Dubai, Abu Dhabi, Ajman — AED 29 per card (https://getwaved.ai/ae)
+- **UAE**: Dubai, Abu Dhabi, Ajman — AED 179 Complete Business Kit (NFC card + Review Stand) (https://getwaved.ai/ae)
 - **Qatar**: Doha, Lusail — QAR 27 per card (https://getwaved.ai/qa)
 - **Bahrain**: Manama — BHD 11 per card (https://getwaved.ai/bh)
 
@@ -69,6 +69,8 @@ A: Wavelink's NFC infrastructure aligns with EU ESPR 2026 Digital Product Passpo
 - Bahrain landing page: https://getwaved.ai/bh
 - Company Profile: https://getwaved.ai/company-profile
 - Intelligence Report (Drop 01): https://getwaved.ai/drops/bangladesh-2035
+- Investor Deck: https://getwaved.ai/investor-deck
+- Impact Index (live KPIs): https://getwaved.ai/impact
 - Shop: https://getwaved.ai/shop
 - Privacy Policy: https://getwaved.ai/privacy-policy
 - Terms of Service: https://getwaved.ai/terms-of-service

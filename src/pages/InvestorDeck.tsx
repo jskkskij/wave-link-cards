@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { Helmet } from "react-helmet-async";
 import {
   ArrowLeft, Download, Loader2, CheckCircle,
   Zap, Shield, MapPin,
@@ -56,6 +57,16 @@ const InvestorDeck = () => {
 
   return (
     <div className="bg-[#04080F] text-white font-sans">
+      <Helmet>
+        <title>Wavelink Investor Deck — Trust Infrastructure for the Real Economy | Pre-seed/Seed 2026</title>
+        <meta name="description" content="Wavelink is building the trust layer for the real economy — NFC-verified identity and proof-of-presence for SMEs in Bangladesh and the GCC. Raising $5M seed. Family office and angel investors welcome." />
+        <meta property="og:title" content="Wavelink Investor Deck — Pre-seed/Seed 2026" />
+        <meta property="og:description" content="Trust infrastructure for the real economy. Bangladesh + GCC. 90% gross margin. Raising $5M. View the deck." />
+        <meta property="og:url" content="https://getwaved.ai/investor-deck" />
+        <meta property="og:type" content="website" />
+        <link rel="canonical" href="https://getwaved.ai/investor-deck" />
+        <meta name="robots" content="index, follow" />
+      </Helmet>
 
       {/* ── Nav dots ── */}
       <div className="fixed right-5 top-1/2 -translate-y-1/2 z-50 hidden md:flex flex-col gap-2.5 print:hidden">
@@ -85,7 +96,7 @@ const InvestorDeck = () => {
         <div className="container mx-auto max-w-6xl relative z-10">
           <motion.div initial="hidden" whileInView="show" viewport={{ once: true }} className="space-y-8">
             <motion.p custom={0} variants={fade} className="text-blue font-black uppercase tracking-[0.5em] text-[10px]">
-              Hub71 · Abu Dhabi &nbsp;·&nbsp; Pre-seed / Seed &nbsp;·&nbsp; 2026
+              Pre-seed / Seed &nbsp;·&nbsp; 2026
             </motion.p>
             <motion.h1 custom={1} variants={fade} className="text-7xl sm:text-[9rem] md:text-[11rem] font-bold tracking-tighter leading-[0.82]">
               Wave<span className="text-blue">Link</span>
@@ -98,7 +109,7 @@ const InvestorDeck = () => {
               portable across borders, readable by people and AI systems.
             </motion.p>
             <motion.div custom={4} variants={fade} className="flex flex-wrap gap-8 pt-2 text-[10px] font-black uppercase tracking-[0.4em] text-white/20">
-              <span className="flex items-center gap-2"><MapPin size={11} className="text-blue" /> Chattogram · Dhaka · Abu Dhabi</span>
+              <span className="flex items-center gap-2"><MapPin size={11} className="text-blue" /> Chattogram · Dhaka · GCC</span>
               <span className="flex items-center gap-2"><Shield size={11} className="text-blue" /> Mohammad Abir Abbas · Founder</span>
             </motion.div>
           </motion.div>
@@ -151,7 +162,7 @@ const InvestorDeck = () => {
               {[
                 { icon: "🤖", t: "AI fakes are everywhere", b: "Generated identities, reviews, and profiles flood every channel. Self-reported trust is now worthless." },
                 { icon: "🌐", t: "Commerce went borderless", b: "SMEs sell and partner across regions — but their reputation cannot cross with them." },
-                { icon: "🏛️", t: "GCC regulation demands it", b: "ADGM and UAE regulators now require verifiable identity at the edge. Compliance is a forcing function." },
+                { icon: "🏛️", t: "GCC regulation demands it", b: "GCC regulators now require verifiable identity at the edge. Compliance is a forcing function." },
                 { icon: "💡", t: "One architecture answers both", b: "GCC regulation demands verifiability. Bangladesh's cost pressure demands it be cheap. WaveLink is built for exactly this." },
               ].map((item, i) => (
                 <motion.div key={i} custom={i + 1} variants={fade} className="flex gap-4 p-6 bg-white/[0.03] border border-white/[0.06]">
@@ -354,7 +365,7 @@ const InvestorDeck = () => {
               {[
                 { phase: "Built ✓", d: "Platform live — NFC cards, review stands, Abaya Track — serverless on Cloudflare. GDPR & GCC data-residency compliant by design." },
                 { phase: "Validated ✓", d: "Live in BD + GCC. 1,350+ cards deployed. 4.9-star rating. Organic demand before any paid acquisition." },
-                { phase: "Next →", d: "GCC HQ via Hub71 · Scale pilots to revenue · Agent-readable Trust Graph v2 · Financial inclusion use cases." },
+                { phase: "Next →", d: "GCC regional HQ · Scale pilots to revenue · Agent-readable Trust Graph v2 · Financial inclusion use cases." },
               ].map((m, i) => (
                 <div key={i} className="p-5 border border-white/[0.06] space-y-2">
                   <p className="text-blue font-black text-[10px] uppercase tracking-widest">{m.phase}</p>
@@ -438,7 +449,7 @@ const InvestorDeck = () => {
                 {
                   icon: "🌏",
                   title: "Geographic diversification",
-                  desc: "Bangladesh beachhead (320M people, 400k+ SMEs) + GCC expansion (ADGM-regulated, high AUM per capita). Two non-correlated markets, one stack.",
+                  desc: "Bangladesh beachhead (320M people, 400k+ SMEs) + GCC expansion (high AUM per capita, regulated market). Two non-correlated markets, one stack.",
                 },
                 {
                   icon: "📈",
@@ -496,7 +507,7 @@ const InvestorDeck = () => {
                 <p className="font-black text-[10px] uppercase tracking-widest text-black/25 mb-5">Use of Funds — $5M</p>
                 {[
                   { item: "Product & engineering", amount: "$1.5M", w: "30%" },
-                  { item: "GCC entry & Hub71 pilots", amount: "$1.2M", w: "24%" },
+                  { item: "GCC market entry & pilots", amount: "$1.2M", w: "24%" },
                   { item: "Team & hiring", amount: "$1.1M", w: "22%" },
                   { item: "Compliance & regulatory", amount: "$0.6M", w: "12%" },
                   { item: "Runway & operations", amount: "$0.6M", w: "12%" },
@@ -516,8 +527,8 @@ const InvestorDeck = () => {
                 {[
                   {
                     phase: "Phase 1 · Year 1",
-                    desc: "Deepen the Bangladesh beachhead. Stand up the Abu Dhabi / Hub71 HQ. Ship verification rail v2.",
-                    items: ["GCC HQ established in Abu Dhabi (ADGM)", "Regulated verification pilots running", "SME & identity partners signed", "Hire local engineering + GTM"],
+                    desc: "Deepen the Bangladesh beachhead. Stand up the GCC regional HQ. Ship verification rail v2.",
+                    items: ["GCC regional HQ established", "Regulated verification pilots running", "SME & identity partners signed", "Hire local engineering + GTM"],
                   },
                   {
                     phase: "Phase 2 · Year 2",
@@ -614,7 +625,7 @@ const InvestorDeck = () => {
               Verifiable trust is, quietly, financial-inclusion infrastructure.
             </motion.p>
             <motion.p custom={3} variants={fade} className="text-white/35 italic">
-              Let's build the trust layer from Abu Dhabi.
+              Let's build the trust layer for the real economy.
             </motion.p>
           </motion.div>
 
